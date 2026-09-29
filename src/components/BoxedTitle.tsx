@@ -8,7 +8,7 @@ export function BoxedTitle({ text }: { text: string }) {
         <span
           key={`${word}-${i}`}
           className="boxed-title__word"
-          style={{ ["--d" as string]: `${i * 80}ms` }}
+          style={{ ["--d" as string]: `${i * 120}ms` }}
         >
           {word}
         </span>

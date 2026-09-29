@@ -54,7 +54,7 @@ export default function App() {
       panelExitTimer.current = null;
       setPanelExit(false);
       navigate(pathFromView({ kind: "index" }, locale));
-    }, 340);
+    }, 520);
   }, [navigate, locale, view.kind]);
   const goPage = useCallback(
     (id: PageId) => {

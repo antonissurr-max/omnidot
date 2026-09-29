@@ -1,4 +1,6 @@
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
+import { useInViewOnce } from "../hooks/useInViewOnce";
 import { formatPhoneDisplay, pages, phoneHref, site } from "../site";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
@@ -41,11 +43,12 @@ export function Footer() {
   const { locale, t } = useLocale();
   const callHref = site.phone ? phoneHref(site.phone) : "";
   const callLabel = site.phone ? formatPhoneDisplay(site.phone) : "";
+  const { ref, visible } = useInViewOnce<HTMLElement>();
 
   return (
-    <footer className="site-foot">
+    <footer ref={ref} className={`site-foot${visible ? " is-visible" : ""}`}>
       <div className="site-foot__inner">
-        <div className="site-foot__col">
+        <div className="site-foot__col" style={{ "--ri": 0 } as CSSProperties}>
           <h3 className="site-foot__heading">{t.footerMenu}</h3>
           <nav className="site-foot__list" aria-label={t.footerMenu}>
             <Link to={pathFromView({ kind: "index" }, locale)}>
@@ -59,7 +62,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="site-foot__col">
+        <div className="site-foot__col" style={{ "--ri": 1 } as CSSProperties}>
           <h3 className="site-foot__heading">{t.footerServices}</h3>
           <nav className="site-foot__list" aria-label={t.footerServices}>
             {pages.map((page) => (
@@ -73,7 +76,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="site-foot__col">
+        <div className="site-foot__col" style={{ "--ri": 2 } as CSSProperties}>
           <h3 className="site-foot__heading">{t.footerContact}</h3>
           <ul className="site-foot__contact">
             <li>
@@ -102,7 +105,7 @@ export function Footer() {
         </div>
       </div>
 
-      <p className="site-foot__copy">
+      <p className="site-foot__copy" style={{ "--ri": 3 } as CSSProperties}>
         © {year} {site.brand}. {t.rights}
       </p>
     </footer>

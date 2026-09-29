@@ -7,8 +7,10 @@ import {
   type MouseEvent as ReactMouseEvent,
 } from "react";
 import { Link } from "react-router-dom";
+import { useInViewOnce } from "../hooks/useInViewOnce";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
+import { partners } from "../site";
 import type { PageId } from "../types";
 
 const DOT_TONES = ["blue", "pink", "green", "sand"] as const;
@@ -22,6 +24,7 @@ const LAYOUT = [
 ] as const;
 
 const HERO_VIDEO = "/videos/pricing-hero.mp4";
+const HERO_CREDIT = partners.find((p) => p.name === "Nafplio4Sail");
 
 const ORB_MEDIA: Record<
   string,
@@ -70,6 +73,10 @@ export function Pricing({
   const [progress, setProgress] = useState(0);
   const [viewport, setViewport] = useState({ w: 1200, h: 800 });
   const [isMobile, setIsMobile] = useState(false);
+  const { ref: bottomRef, visible: revealBottom } = useInViewOnce<HTMLElement>(
+    0.18,
+    "0px 0px -8% 0px",
+  );
   const openPlan = openId ? plans.find((p) => p.id === openId) : null;
 
   const closeModule = useCallback(() => setOpenId(null), []);
@@ -229,6 +236,7 @@ export function Pricing({
                       "--ox": `${layout.x}%`,
                       "--oy": `${layout.y}%`,
                       "--os": layout.s,
+                      "--oi": index,
                     } as CSSProperties
                   }
                   onClick={(e) => {
@@ -322,6 +330,22 @@ export function Pricing({
                   onBrief("web");
                 }}
               />
+              {HERO_CREDIT ? (
+                <a
+                  className="pricing-reel__credit"
+                  href={HERO_CREDIT.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <img
+                    src={HERO_CREDIT.logo}
+                    alt={HERO_CREDIT.name}
+                    width={160}
+                    height={80}
+                  />
+                </a>
+              ) : null}
             </div>
           </div>
 
@@ -384,24 +408,36 @@ export function Pricing({
         </div>
       </section>
 
-      <section className="pricing-principles">
+      <section
+        className={`pricing-principles${revealBottom ? " is-visible" : ""}`}
+        ref={bottomRef}
+      >
         <p className="pricing-principles__eyebrow">{t.pricingPrinciplesEyebrow}</p>
         <h2 className="pricing-principles__title">{t.pricingPrinciplesTitle}</h2>
         <ul className="pricing-principles__list">
-          {t.pricingPrinciples.map((line) => (
-            <li key={line}>{line}</li>
+          {t.pricingPrinciples.map((line, i) => (
+            <li key={line} style={{ "--ri": i } as CSSProperties}>
+              {line}
+            </li>
           ))}
         </ul>
       </section>
 
-      <section className="pricing-faq" aria-labelledby="pricing-faq-title">
+      <section
+        className={`pricing-faq${revealBottom ? " is-visible" : ""}`}
+        aria-labelledby="pricing-faq-title"
+      >
         <p className="pricing-faq__eyebrow">{t.pricingFaqEyebrow}</p>
         <h2 id="pricing-faq-title" className="pricing-faq__title">
           {t.pricingFaqTitle}
         </h2>
         <dl className="pricing-faq__list">
-          {t.pricingFaq.map((item) => (
-            <div key={item.q} className="pricing-faq__item">
+          {t.pricingFaq.map((item, i) => (
+            <div
+              key={item.q}
+              className="pricing-faq__item"
+              style={{ "--ri": i } as CSSProperties}
+            >
               <dt>{item.q}</dt>
               <dd>{item.a}</dd>
             </div>

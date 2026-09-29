@@ -826,8 +826,8 @@ export const copy: Record<Locale, Copy> = {
     pricingPrinciplesTitle: "Οι αρχές μας",
     pricingPrinciples: [
       "Custom by default — κάθε brand παίρνει τη δική του φωνή, όχι template.",
-      "Style first — ακολουθούμε το αισθητικό σου, τον τόνο και το κοινό σου πριν κλιμακώσουμε.",
-      "Creativity με πρόθεση — ιδέες που ταιριάζουν στον κόσμο σου, όχι generic agency filler.",
+      "Style first — ακολουθούμε την αισθητική σου και τον τόνο που επιθυμείς, πριν κλιμακώσουμε.",
+      "Creativity με πρόθεση — έμφαση στη δημιουργικότητα, με ιδέες που ταιριάζουν και χτίζουν το brand σου, προσφέροντάς του αξία.",
       "Personal by design — ακούμε, προσαρμοζόμαστε και χτίζουμε γύρω από τις πραγματικές σου ανάγκες.",
     ],
     pricingFaqEyebrow: "FAQ",

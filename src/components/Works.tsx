@@ -8,8 +8,6 @@ export function Works({ dimmed }: { dimmed: boolean }) {
   const { locale, t } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
   const heroRef = useRef<HTMLElement>(null);
-  const proof = t.pages.social.proof;
-  const proofFeature = "/images/europatch-bags.webp";
 
   useEffect(() => {
     const root = sectionRef.current;
@@ -130,32 +128,6 @@ export function Works({ dimmed }: { dimmed: boolean }) {
           </Link>
         );
       })}
-
-      {proof ? (
-        <aside className="home-mobile home-mobile--proof">
-          <p className="home-mobile__eyebrow">{t.homeMobileProofKicker}</p>
-          <h2 className="home-mobile__title">{proof.client ?? "Europatch"}</h2>
-          <p className="home-mobile__proof-value">{proof.value}</p>
-          <div className="home-mobile__feature">
-            <img
-              src={proofFeature}
-              alt={
-                proof.client
-                  ? `${proof.client} — ${t.homeMobileProofKicker}`
-                  : t.homeMobileProofKicker
-              }
-            />
-          </div>
-          <p className="home-mobile__body">{t.homeMobileProofStory}</p>
-          <Link
-            className="home-mobile__cta-line home-mobile__cta-line--ink"
-            to={pathFromView({ kind: "page", id: "social" }, locale)}
-          >
-            <span>{t.pages.social.title}</span>
-            <span aria-hidden="true">→</span>
-          </Link>
-        </aside>
-      ) : null}
 
       <footer className="home-mobile home-mobile--close">
         <h2 className="home-mobile__display home-mobile__display--sm">
