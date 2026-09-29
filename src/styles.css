@@ -3970,6 +3970,28 @@ a.work__proof-line:hover {
   gap: 14px;
 }
 
+.form__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form__error {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: color-mix(in srgb, #c45c5c 85%, var(--ink));
+}
+
+.form__error a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .optional {
   text-transform: none;
   letter-spacing: 0;

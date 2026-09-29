@@ -276,8 +276,8 @@ export function WorkShow({
         onClick={() => onNavigate(next)}
         aria-label={`${t.next}: ${t.pages[next].title}`}
       >
-        <span>{t.next}</span>
         <span>→</span>
+        <span>{t.next}</span>
       </button>
 
       {lightbox && current ? (

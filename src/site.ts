@@ -2,7 +2,8 @@
 export const site = {
   brand: "omnidot",
   tagline: "Marketing that shapes brands",
-  email: "contact@omnidot.gr",
+  email: "info@omnidot.gr",
+  contactEmail: "contact@omnidot.gr",
   phone: "6970862839",
   whatsapp: "",
   location: "Athens · Remote",

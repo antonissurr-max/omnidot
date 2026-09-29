@@ -3,7 +3,7 @@ import { formatPhoneDisplay, phoneHref, site } from "../site";
 import { useLocale } from "../locale";
 import type { PageId } from "../types";
 
-type Status = "idle" | "sent";
+type Status = "idle" | "sending" | "sent" | "error";
 
 const interestIds: (PageId | "full")[] = [
   "social",
@@ -91,9 +91,10 @@ export function Contact({
     return id === "full" ? t.contactFull : t.pages[id].title;
   }
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
+    const formEl = e.currentTarget;
+    const form = new FormData(formEl);
     const interestId = String(form.get("interest") ?? "") as PageId | "full";
     const data = {
       name: String(form.get("name") ?? ""),
@@ -101,40 +102,24 @@ export function Contact({
       company: String(form.get("company") ?? ""),
       interest: interestLabel(interestId),
       notes: String(form.get("notes") ?? ""),
+      website: String(form.get("website") ?? ""),
+      locale,
     };
 
-    const labels =
-      locale === "el"
-        ? ["Brief έργου — omnidot.", "Όνομα", "Email", "Εταιρεία", "Ενδιαφέρομαι για", "Σημειώσεις"]
-        : ["Project brief — omnidot.", "Name", "Email", "Company", "Interested in", "Notes"];
-
-    const message = [
-      labels[0],
-      "",
-      `${labels[1]}: ${data.name}`,
-      `${labels[2]}: ${data.email}`,
-      `${labels[3]}: ${data.company || "—"}`,
-      `${labels[4]}: ${data.interest}`,
-      data.notes ? `${labels[5]}: ${data.notes}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
-
-    const subject = `omnidot. — ${data.interest}`;
-    const wa = site.whatsapp.replace(/\D/g, "");
-
-    if (wa) {
-      const intl = wa.startsWith("30") ? wa : `30${wa}`;
-      window.open(
-        `https://wa.me/${intl}?text=${encodeURIComponent(message)}`,
-        "_blank",
-        "noopener,noreferrer",
-      );
-    } else if (site.email) {
-      window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("send_failed");
+      const payload = (await res.json()) as { ok?: boolean };
+      if (!payload.ok) throw new Error("send_failed");
+      setStatus("sent");
+    } catch {
+      setStatus("error");
     }
-
-    setStatus("sent");
   }
 
   if (status === "sent") {
@@ -153,6 +138,16 @@ export function Contact({
         onSubmit={onSubmit}
         key={interest ?? "full"}
       >
+        {/* Honeypot — leave empty */}
+        <input
+          className="form__hp"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
+
         <label>
           {t.contactInterest}
           <select name="interest" defaultValue={interest ?? "full"} required>
@@ -185,8 +180,23 @@ export function Contact({
           <textarea name="notes" rows={onPaper ? 2 : 3} placeholder={t.contactPlaceholder} />
         </label>
 
-        <button className={`btn${onPaper ? " btn--ink" : " btn--light"}`} type="submit">
-          {t.contactSend}
+        {status === "error" ? (
+          <p className="form__error" role="alert">
+            {t.contactError}{" "}
+            {site.contactEmail || site.email ? (
+              <a href={`mailto:${site.contactEmail || site.email}`}>
+                {site.contactEmail || site.email}
+              </a>
+            ) : null}
+          </p>
+        ) : null}
+
+        <button
+          className={`btn${onPaper ? " btn--ink" : " btn--light"}`}
+          type="submit"
+          disabled={status === "sending"}
+        >
+          {status === "sending" ? t.contactSending : t.contactSend}
         </button>
 
         <CallPopup onPaper={onPaper} />

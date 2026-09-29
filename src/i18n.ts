@@ -101,6 +101,8 @@ export type Copy = {
   homeMobileClose: string;
   aboutVerse: VerseRow[];
   contactThanks: string;
+  contactError: string;
+  contactSending: string;
   contactInterest: string;
   contactName: string;
   contactEmail: string;
@@ -386,6 +388,8 @@ export const copy: Record<Locale, Copy> = {
     homeMobileClose: "Ready when you are.",
     aboutVerse: aboutVerseEn,
     contactThanks: "Thanks — we'll get back with next steps.",
+    contactError: "Something went wrong — please try again or email us directly.",
+    contactSending: "Sending…",
     contactInterest: "I'm interested in:",
     contactName: "Name",
     contactEmail: "Email",
@@ -916,6 +920,8 @@ export const copy: Record<Locale, Copy> = {
     homeMobileClose: "Όποτε είσαι έτοιμος.",
     aboutVerse: aboutVerseEl,
     contactThanks: "Ευχαριστούμε — θα επιστρέψουμε με τα επόμενα βήματα.",
+    contactError: "Κάτι πήγε στραβά — δοκίμασε ξανά ή στείλε μας απευθείας email.",
+    contactSending: "Αποστολή…",
     contactInterest: "Ενδιαφέρομαι για:",
     contactName: "Όνομα",
     contactEmail: "Email",
