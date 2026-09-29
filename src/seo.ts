@@ -24,8 +24,7 @@ function coverFor(id: PageId): string {
 
 function serviceDescription(locale: Locale, id: PageId): string {
   const page = copy[locale].pages[id];
-  const first = page.points[0];
-  return `${page.title} — ${first?.body ?? copy[locale].metaDescription}`;
+  return page.seoDescription || `${page.title} — ${copy[locale].metaDescription}`;
 }
 
 function organizationLd(locale: Locale) {
@@ -77,7 +76,7 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
   if (view.kind === "about") {
     return {
       title: `${t.about} — omnidot.`,
-      description: t.aboutBody.slice(0, 160),
+      description: t.aboutSeoDescription.slice(0, 160),
       path,
       canonical,
       image: DEFAULT_OG,
@@ -85,7 +84,7 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
         "@context": "https://schema.org",
         "@type": "AboutPage",
         name: t.about,
-        description: t.aboutBody,
+        description: t.aboutSeoDescription,
         url: canonical,
         isPartOf: { "@type": "WebSite", name: "omnidot.", url: SITE_ORIGIN },
       },
@@ -95,17 +94,32 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
   if (view.kind === "pricing") {
     return {
       title: `${t.pricingTitle} — omnidot.`,
-      description: t.pricingLede.slice(0, 160),
+      description: t.pricingSeoDescription.slice(0, 160),
       path,
       canonical,
       image: DEFAULT_OG,
       jsonLd: {
         "@context": "https://schema.org",
-        "@type": "WebPage",
-        name: t.pricingTitle,
-        description: t.pricingLede,
-        url: canonical,
-        isPartOf: { "@type": "WebSite", name: "omnidot.", url: SITE_ORIGIN },
+        "@graph": [
+          {
+            "@type": "WebPage",
+            name: t.pricingTitle,
+            description: t.pricingSeoDescription,
+            url: canonical,
+            isPartOf: { "@type": "WebSite", name: "omnidot.", url: SITE_ORIGIN },
+          },
+          {
+            "@type": "FAQPage",
+            mainEntity: t.pricingFaq.map((item) => ({
+              "@type": "Question",
+              name: item.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.a,
+              },
+            })),
+          },
+        ],
       },
     };
   }
@@ -116,7 +130,7 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
     const image = coverFor(view.id);
     const story = page.proof?.story;
     return {
-      title: `${page.title} — omnidot.`,
+      title: page.seoTitle ?? `${page.title} — omnidot.`,
       description: description.slice(0, 170),
       path,
       canonical,

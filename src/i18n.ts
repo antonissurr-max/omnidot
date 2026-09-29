@@ -78,6 +78,11 @@ export type Copy = {
   pricingPrinciplesEyebrow: string;
   pricingPrinciplesTitle: string;
   pricingPrinciples: string[];
+  pricingFaqEyebrow: string;
+  pricingFaqTitle: string;
+  pricingFaq: { q: string; a: string }[];
+  pricingSeoDescription: string;
+  aboutSeoDescription: string;
   mediaSoon: string;
   pricingPlans: {
     id: string;
@@ -113,6 +118,8 @@ export type Copy = {
     PageId,
     {
       title: string;
+      seoTitle?: string;
+      seoDescription: string;
       meta: { label: string; value: string }[];
       proof?: {
         label: string;
@@ -238,9 +245,9 @@ const aboutVerseEl: VerseRow[] = [
 
 export const copy: Record<Locale, Copy> = {
   en: {
-    metaTitle: "omnidot. — Marketing agency",
+    metaTitle: "omnidot. — Marketing agency in Athens",
     metaDescription:
-      "omnidot. — marketing agency for social media, content creation, performance marketing and web development.",
+      "omnidot. is a marketing agency for social media management, content creation, performance ads and websites. Athens & remote — clear packages, measurable growth.",
     langLabel: "Language",
     homeAria: "omnidot — home",
     about: "About",
@@ -293,6 +300,34 @@ export const copy: Record<Locale, Copy> = {
       "Creativity with intent — ideas that fit your world, not generic agency filler.",
       "Personal by design — we listen, adapt and build around your real needs.",
     ],
+    pricingFaqEyebrow: "FAQ",
+    pricingFaqTitle: "Before you brief us",
+    pricingFaq: [
+      {
+        q: "Is ad spend included in the monthly fee?",
+        a: "No. Management fees are ours; your Meta or Google ad budget stays yours and is paid directly to the platforms.",
+      },
+      {
+        q: "Why a 3-month minimum on retainers?",
+        a: "Social and paid need a learning window. Three months lets us set the system, test creatives and show a clear trend — not a one-week spike.",
+      },
+      {
+        q: "Who owns the photos, videos and copy?",
+        a: "You do. After delivery and payment, assets are yours to use on your channels, ads and site.",
+      },
+      {
+        q: "Do you only work in Athens?",
+        a: "We're based in Athens and work remote across Greece and abroad. Shoot days are planned where your product or place needs them.",
+      },
+      {
+        q: "How do we start?",
+        a: "Send a brief (goals, links, timeline). We reply with scope, package and first steps — no long decks before we know the job.",
+      },
+    ],
+    pricingSeoDescription:
+      "omnidot. packages & pricing: social media from €450/mo, content packs from €350, performance ads from €300/mo, websites from €700. Athens marketing agency — clear scope, ad spend separate.",
+    aboutSeoDescription:
+      "About omnidot. — Athens marketing agency for founders and local brands. Web, SEO, social and performance as one system: data, clean design, strategies that turn visitors into customers.",
     mediaSoon: "Media soon",
     pricingPlans: [
       {
@@ -367,6 +402,9 @@ export const copy: Record<Locale, Copy> = {
     pages: {
       social: {
         title: "Social Media Management",
+        seoTitle: "Social Media Management — omnidot.",
+        seoDescription:
+          "Social media management for Instagram, TikTok, Facebook & LinkedIn: strategy, publishing, community and growth. Athens & remote. From €450/mo.",
         meta: [
           { label: "Goal", value: "Steady presence" },
           { label: "Channels", value: "IG · TikTok · LinkedIn" },
@@ -415,6 +453,9 @@ export const copy: Record<Locale, Copy> = {
       },
       content: {
         title: "Content Creation",
+        seoTitle: "Content Creation — omnidot.",
+        seoDescription:
+          "Photo and video content for feed, Reels, ads and web — concept through edit. Shoot day €200. Asset packs from €350. Athens production.",
         meta: [
           { label: "Formats", value: "Photo · Video · Still" },
           { label: "Look", value: "Clean & editorial" },
@@ -531,6 +572,9 @@ export const copy: Record<Locale, Copy> = {
       },
       performance: {
         title: "Performance Marketing",
+        seoTitle: "Performance Marketing — omnidot.",
+        seoDescription:
+          "Meta & Google Ads management. Setup €200 once, management from €300/mo. Your ad spend stays yours. Conversion-focused campaigns for Greek brands.",
         meta: [
           { label: "Goal", value: "More customers" },
           { label: "Channels", value: "Meta · Google" },
@@ -573,6 +617,9 @@ export const copy: Record<Locale, Copy> = {
       },
       web: {
         title: "Web Development",
+        seoTitle: "Web Development & SEO — omnidot.",
+        seoDescription:
+          "Fast websites, landing pages and SEO. Landing from €700, multi-page sites ≈ €700/page. Built to rank, load quickly and convert — Athens & remote.",
         meta: [
           { label: "Build", value: "Sites & landings" },
           { label: "SEO", value: "Findable on Google" },
@@ -703,9 +750,9 @@ export const copy: Record<Locale, Copy> = {
     ],
   },
   el: {
-    metaTitle: "omnidot. — Διαφημιστική εταιρεία",
+    metaTitle: "omnidot. — Διαφημιστική εταιρεία Αθήνα",
     metaDescription:
-      "omnidot. — διαφημιστική για social media, παραγωγή περιεχομένου, performance marketing και web development.",
+      "omnidot. — διαφημιστική για διαχείριση social media, παραγωγή περιεχομένου, performance ads και ιστοσελίδες. Αθήνα & remote — καθαρά πακέτα, μετρήσιμη ανάπτυξη.",
     langLabel: "Γλώσσα",
     homeAria: "omnidot — αρχική",
     about: "Σχετικά",
@@ -758,6 +805,34 @@ export const copy: Record<Locale, Copy> = {
       "Creativity με πρόθεση — ιδέες που ταιριάζουν στον κόσμο σου, όχι generic agency filler.",
       "Personal by design — ακούμε, προσαρμοζόμαστε και χτίζουμε γύρω από τις πραγματικές σου ανάγκες.",
     ],
+    pricingFaqEyebrow: "FAQ",
+    pricingFaqTitle: "Πριν το brief",
+    pricingFaq: [
+      {
+        q: "Το ad spend περιλαμβάνεται στο μηνιαίο;",
+        a: "Όχι. Τα management fees είναι δικά μας· το budget Meta ή Google μένει δικό σας και πληρώνεται απευθείας στις πλατφόρμες.",
+      },
+      {
+        q: "Γιατί minimum 3 μήνες στα retainers;",
+        a: "Social και paid χρειάζονται παράθυρο μάθησης. Σε τρεις μήνες στήνουμε σύστημα, δοκιμάζουμε creatives και δείχνουμε καθαρή τάση — όχι spike μιας εβδομάδας.",
+      },
+      {
+        q: "Ποιος κατέχει φωτογραφίες, βίντεο και κείμενα;",
+        a: "Εσύ. Μετά την παράδοση και την πληρωμή, τα assets είναι δικά σου για κανάλια, ads και site.",
+      },
+      {
+        q: "Δουλεύετε μόνο στην Αθήνα;",
+        a: "Βάση Αθήνα, remote σε Ελλάδα και εξωτερικό. Τα γυρίσματα προγραμματίζονται εκεί που χρειάζεται το προϊόν ή ο χώρος σου.",
+      },
+      {
+        q: "Πώς ξεκινάμε;",
+        a: "Στείλε brief (στόχοι, links, χρονοδιάγραμμα). Απαντάμε με scope, πακέτο και πρώτα βήματα — χωρίς μακριά decks πριν ξέρουμε τη δουλειά.",
+      },
+    ],
+    pricingSeoDescription:
+      "Πακέτα & τιμές omnidot.: social από €450/μήνα, content από €350, performance από €300/μήνα, websites από €700. Διαφημιστική Αθήνα — καθαρό scope, ad spend ξεχωριστά.",
+    aboutSeoDescription:
+      "Σχετικά με την omnidot. — διαφημιστική Αθήνα για founders και τοπικά brands. Web, SEO, social και performance σαν ένα σύστημα: δεδομένα, καθαρό design, στρατηγικές που φέρνουν πελάτες.",
     mediaSoon: "Media σύντομα",
     pricingPlans: [
       {
@@ -832,6 +907,9 @@ export const copy: Record<Locale, Copy> = {
     pages: {
       social: {
         title: "Διαχείριση Social Media",
+        seoTitle: "Διαχείριση Social Media — omnidot.",
+        seoDescription:
+          "Διαχείριση social media για Instagram, TikTok, Facebook & LinkedIn: στρατηγική, posting, community και growth. Αθήνα & remote. Από €450/μήνα.",
         meta: [
           { label: "Στόχος", value: "Σταθερή παρουσία" },
           { label: "Κανάλια", value: "IG · TikTok · LinkedIn" },
@@ -880,6 +958,9 @@ export const copy: Record<Locale, Copy> = {
       },
       content: {
         title: "Δημιουργία Περιεχομένου",
+        seoTitle: "Δημιουργία Περιεχομένου — omnidot.",
+        seoDescription:
+          "Φωτογραφία και video για feed, Reels, ads και web — από concept έως edit. Γύρισμα €200. Πακέτα assets από €350. Παραγωγή Αθήνα.",
         meta: [
           { label: "Μορφές", value: "Φωτο · Video · Still" },
           { label: "Ύφος", value: "Καθαρό & editorial" },
@@ -996,6 +1077,9 @@ export const copy: Record<Locale, Copy> = {
       },
       performance: {
         title: "Performance Marketing",
+        seoTitle: "Performance Marketing — omnidot.",
+        seoDescription:
+          "Διαχείριση Meta & Google Ads. Setup €200 μία φορά, management από €300/μήνα. Το ad spend μένει δικό σας. Καμπάνιες με στόχο conversions.",
         meta: [
           { label: "Στόχος", value: "Περισσότεροι πελάτες" },
           { label: "Κανάλια", value: "Meta · Google" },
@@ -1038,6 +1122,9 @@ export const copy: Record<Locale, Copy> = {
       },
       web: {
         title: "Ανάπτυξη Ιστοσελίδων",
+        seoTitle: "Web Development & SEO — omnidot.",
+        seoDescription:
+          "Γρήγορες ιστοσελίδες, landing pages και SEO. Landing από €700, multi-page ≈ €700/σελίδα. Φτιαγμένα να rank-άρουν, να φορτώνουν γρήγορα και να μετατρέπουν.",
         meta: [
           { label: "Κατασκευή", value: "Sites & landings" },
           { label: "SEO", value: "Εμφανίσιμο στο Google" },

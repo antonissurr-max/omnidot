@@ -378,6 +378,21 @@ export function Pricing({
             <li key={line}>{line}</li>
           ))}
         </ul>
+      </section>
+
+      <section className="pricing-faq" aria-labelledby="pricing-faq-title">
+        <p className="pricing-faq__eyebrow">{t.pricingFaqEyebrow}</p>
+        <h2 id="pricing-faq-title" className="pricing-faq__title">
+          {t.pricingFaqTitle}
+        </h2>
+        <dl className="pricing-faq__list">
+          {t.pricingFaq.map((item) => (
+            <div key={item.q} className="pricing-faq__item">
+              <dt>{item.q}</dt>
+              <dd>{item.a}</dd>
+            </div>
+          ))}
+        </dl>
         <div className="pricing-principles__foot">
           <button
             type="button"
