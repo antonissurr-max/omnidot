@@ -59,6 +59,9 @@ export function Footer() {
             <Link to={pathFromView({ kind: "about" }, locale)}>
               {t.startBrief}
             </Link>
+            <Link to={pathFromView({ kind: "privacy" }, locale)}>
+              {t.privacyLink}
+            </Link>
           </nav>
         </div>
 

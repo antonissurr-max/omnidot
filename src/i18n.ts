@@ -116,6 +116,20 @@ export type Copy = {
   notFoundTitle: string;
   notFoundBody: string;
   notFoundHome: string;
+  privacyLink: string;
+  privacyEyebrow: string;
+  privacyTitle: string;
+  privacyUpdated: string;
+  privacyIntro: string;
+  privacyControllerLabel: string;
+  privacyVatLabel: string;
+  privacyDisclaimer: string;
+  privacySeoDescription: string;
+  privacySections: {
+    heading: string;
+    paragraphs?: string[];
+    bullets?: string[];
+  }[];
   pages: Record<
     PageId,
     {
@@ -403,6 +417,64 @@ export const copy: Record<Locale, Copy> = {
     notFoundTitle: "Page not found",
     notFoundBody: "This URL isn’t a page on omnidot. Head home or pick a service.",
     notFoundHome: "Back home",
+    privacyLink: "Privacy",
+    privacyEyebrow: "Legal",
+    privacyTitle: "Website terms, privacy & cookies",
+    privacyUpdated: "Last updated: September 2026",
+    privacyIntro:
+      "These terms cover the use of https://omnidot.gr, operated by {name} as a {form} under the brand omnidot. By browsing the site you accept these terms. If you disagree, please leave the site.",
+    privacyControllerLabel: "Data controller",
+    privacyVatLabel: "VAT / AFM",
+    privacyDisclaimer:
+      "This page is informational and reflects how we currently run the omnidot website and contact form. It is not legal advice. We may update it when our tools or processes change.",
+    privacySeoDescription:
+      "Terms of use, privacy policy and cookies for omnidot. — how we process contact data under GDPR.",
+    privacySections: [
+      {
+        heading: "Use of the website",
+        paragraphs: [
+          "Visitors must use the site lawfully and in line with Greek, EU and international law. You may not copy, store, reproduce, transmit or modify any substantial part of the site without prior written permission.",
+          "Information on the site is indicative and for general marketing information only. It does not create a professional engagement by itself. A project starts only after we agree scope in writing.",
+          "We may update these terms at any time. Check this page periodically for changes.",
+        ],
+      },
+      {
+        heading: "Cookies",
+        paragraphs: [
+          "Cookies are small files stored by your browser. We use them only where needed for the site to work and, if enabled, to understand aggregate traffic.",
+        ],
+        bullets: [
+          "Strictly necessary — required for basic navigation, language preference and form security. These cannot be switched off in our systems.",
+          "Performance / analytics — if we enable a tool such as Google Analytics or Cloudflare analytics, these help us see which pages are used. Data is aggregated where possible.",
+          "We do not currently use third-party advertising cookies on this site.",
+        ],
+      },
+      {
+        heading: "Personal data (GDPR)",
+        paragraphs: [
+          "We process personal data in line with the EU General Data Protection Regulation (GDPR) and Greek law. Typical data: name, email, company and message content when you use the brief form or email us; technical logs (IP, browser) from hosting and security providers such as Cloudflare.",
+          "Purpose: reply to enquiries, prepare proposals, deliver agreed marketing services, and keep the site secure. Legal bases: steps prior to a contract / contract performance, legitimate interest in running and securing the site, and consent where required for optional analytics.",
+          "We keep enquiry data only as long as needed to handle your request and any follow-up, then delete or anonymise it unless a longer retention is required by law or an active project.",
+          "Processors may include hosting and email infrastructure (e.g. Cloudflare Pages, Email Routing) that store or transmit data in the EU/EEA or under appropriate safeguards.",
+        ],
+        bullets: [
+          "Right of access",
+          "Right to rectification",
+          "Right to erasure",
+          "Right to withdraw consent (where processing is based on consent)",
+          "Right to data portability",
+          "Right to restrict processing",
+          "Right to object to processing",
+          "Right to lodge a complaint with the Hellenic Data Protection Authority (www.dpa.gr)",
+        ],
+      },
+      {
+        heading: "Contact for privacy requests",
+        paragraphs: [
+          "For any question about this policy or your personal data, email info@omnidot.gr. We aim to reply within one month.",
+        ],
+      },
+    ],
     pages: {
       social: {
         title: "Social Media Management",
@@ -935,6 +1007,64 @@ export const copy: Record<Locale, Copy> = {
     notFoundTitle: "Η σελίδα δεν βρέθηκε",
     notFoundBody: "Αυτό το URL δεν αντιστοιχεί σε σελίδα του omnidot. Γύρνα στην αρχική ή διάλεξε υπηρεσία.",
     notFoundHome: "Αρχική",
+    privacyLink: "Απόρρητο",
+    privacyEyebrow: "Νομικά",
+    privacyTitle: "Όροι χρήσης, πολιτική απορρήτου & cookies",
+    privacyUpdated: "Τελευταία ενημέρωση: Σεπτέμβριος 2026",
+    privacyIntro:
+      "Οι παρόντες όροι ρυθμίζουν τη χρήση του https://omnidot.gr, που λειτουργεί ο/η {name} ως {form} υπό το brand omnidot. Με την περιήγηση στον ιστότοπο αποδέχεστε τους όρους. Σε περίπτωση διαφωνίας, παρακαλούμε αποχωρήστε από τον ιστότοπο.",
+    privacyControllerLabel: "Υπεύθυνος επεξεργασίας",
+    privacyVatLabel: "ΑΦΜ",
+    privacyDisclaimer:
+      "Η σελίδα είναι ενημερωτική και περιγράφει τον τρόπο λειτουργίας του site και της φόρμας επικοινωνίας. Δεν αποτελεί νομική συμβουλή. Μπορεί να ενημερωθεί όταν αλλάζουν εργαλεία ή διαδικασίες.",
+    privacySeoDescription:
+      "Όροι χρήσης, πολιτική απορρήτου και cookies του omnidot. — πώς επεξεργαζόμαστε δεδομένα επικοινωνίας βάσει GDPR.",
+    privacySections: [
+      {
+        heading: "Χρήση του ιστοτόπου",
+        paragraphs: [
+          "Οι επισκέπτες οφείλουν να κάνουν σύννομη χρήση του ιστότοπου σύμφωνα με την ελληνική, ενωσιακή και διεθνή νομοθεσία. Απαγορεύεται η αντιγραφή, αποθήκευση, αναπαραγωγή, μετάδοση ή τροποποίηση ουσιώδους μέρους του περιεχομένου χωρίς προηγούμενη έγγραφη άδεια.",
+          "Οι πληροφορίες στον ιστότοπο είναι ενδεικτικές και ενημερωτικού χαρακτήρα. Δεν συνιστούν από μόνες τους ανάθεση έργου. Η συνεργασία ξεκινά μόνο μετά από έγγραφη συμφωνία εύρους.",
+          "Διατηρούμε το δικαίωμα τροποποίησης των όρων. Ελέγχετε περιοδικά την παρούσα σελίδα.",
+        ],
+      },
+      {
+        heading: "Πολιτική cookies",
+        paragraphs: [
+          "Τα cookies είναι μικρά αρχεία που αποθηκεύει ο browser σας. Τα χρησιμοποιούμε όπου χρειάζεται για τη λειτουργία του site και, αν ενεργοποιηθούν, για συγκεντρωτική ανάλυση επισκεψιμότητας.",
+        ],
+        bullets: [
+          "Απολύτως απαραίτητα — για βασική πλοήγηση, προτίμηση γλώσσας και ασφάλεια φόρμας. Δεν απενεργοποιούνται από εμάς.",
+          "Απόδοσης / analytics — αν ενεργοποιήσουμε εργαλείο όπως Google Analytics ή Cloudflare analytics, μας βοηθούν να δούμε ποιες σελίδες χρησιμοποιούνται. Όπου είναι δυνατόν τα δεδομένα είναι συγκεντρωτικά.",
+          "Δεν χρησιμοποιούμε προς το παρόν cookies τρίτων για διαφημίσεις σε αυτόν τον ιστότοπο.",
+        ],
+      },
+      {
+        heading: "Προστασία προσωπικών δεδομένων (GDPR)",
+        paragraphs: [
+          "Επεξεργαζόμαστε προσωπικά δεδομένα σύμφωνα με τον Γενικό Κανονισμό Προστασίας Δεδομένων (GDPR) και την ελληνική νομοθεσία. Τυπικά δεδομένα: ονοματεπώνυμο, email, εταιρεία και περιεχόμενο μηνύματος όταν χρησιμοποιείτε τη φόρμα brief ή μας στέλνετε email· τεχνικά logs (IP, browser) από παρόχους φιλοξενίας και ασφάλειας όπως το Cloudflare.",
+          "Σκοπός: απάντηση σε αιτήματα, προτάσεις συνεργασίας, παροχή συμφωνημένων υπηρεσιών marketing και ασφάλεια του ιστότοπου. Νομικές βάσεις: προσυμβατικά μέτρα / εκτέλεση σύμβασης, έννομο συμφέρον λειτουργίας και ασφάλειας του site, και συγκατάθεση όπου απαιτείται για προαιρετικά analytics.",
+          "Διατηρούμε δεδομένα επικοινωνίας μόνο όσο χρειάζεται για τη διαχείριση του αιτήματος και τυχόν follow-up, και στη συνέχεια τα διαγράφουμε ή ανωνυμοποιούμε, εκτός αν απαιτείται μεγαλύτερη διατήρηση από τον νόμο ή ενεργό έργο.",
+          "Εκτελούντες την επεξεργασία μπορεί να είναι υποδομές hosting και email (π.χ. Cloudflare Pages, Email Routing) εντός ΕΕ/ΕΟΧ ή με κατάλληλες εγγυήσεις.",
+        ],
+        bullets: [
+          "Δικαίωμα πρόσβασης",
+          "Δικαίωμα διόρθωσης",
+          "Δικαίωμα διαγραφής",
+          "Δικαίωμα ανάκλησης συγκατάθεσης (όταν η επεξεργασία βασίζεται σε συγκατάθεση)",
+          "Δικαίωμα φορητότητας",
+          "Δικαίωμα περιορισμού της επεξεργασίας",
+          "Δικαίωμα εναντίωσης στην επεξεργασία",
+          "Δικαίωμα καταγγελίας στην Αρχή Προστασίας Δεδομένων (www.dpa.gr)",
+        ],
+      },
+      {
+        heading: "Επικοινωνία για αιτήματα απορρήτου",
+        paragraphs: [
+          "Για οποιαδήποτε απορία σχετικά με την πολιτική ή τα δεδομένα σας, στείλτε μήνυμα στο info@omnidot.gr. Στοχεύουμε σε απάντηση εντός ενός μηνός.",
+        ],
+      },
+    ],
     pages: {
       social: {
         title: "Διαχείριση Social Media",

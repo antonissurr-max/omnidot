@@ -4,5 +4,6 @@ export type View =
   | { kind: "index" }
   | { kind: "about"; interest?: PageId }
   | { kind: "pricing" }
+  | { kind: "privacy" }
   | { kind: "page"; id: PageId }
   | { kind: "notfound" };

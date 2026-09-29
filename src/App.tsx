@@ -8,6 +8,7 @@ import { NotFound } from "./components/NotFound";
 import { Partners } from "./components/Partners";
 import { Preloader, shouldShowIntro } from "./components/Preloader";
 import { Pricing } from "./components/Pricing";
+import { Privacy } from "./components/Privacy";
 import { ServiceList } from "./components/ServicePanel";
 import { WorkShow } from "./components/WorkShow";
 import { Works } from "./components/Works";
@@ -96,7 +97,8 @@ export default function App() {
     document.body.style.overflow =
       view.kind === "index" ||
       view.kind === "notfound" ||
-      view.kind === "pricing"
+      view.kind === "pricing" ||
+      view.kind === "privacy"
         ? ""
         : "hidden";
     return () => {
@@ -159,9 +161,11 @@ export default function App() {
         ? "is-about"
         : view.kind === "pricing"
           ? "is-pricing"
-          : view.kind === "notfound"
-            ? "is-notfound"
-            : "is-work";
+          : view.kind === "privacy"
+            ? "is-privacy"
+            : view.kind === "notfound"
+              ? "is-notfound"
+              : "is-work";
 
   return (
     <div className={`stage ${stage} ${ready ? "is-ready" : ""}`}>
@@ -208,6 +212,8 @@ export default function App() {
           <ServiceList id={view.id} />
         </WorkShow>
       )}
+
+      {view.kind === "privacy" && <Privacy />}
 
       {view.kind === "notfound" && <NotFound />}
 

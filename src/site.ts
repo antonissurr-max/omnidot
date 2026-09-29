@@ -7,6 +7,13 @@ export const site = {
   phone: "6970862839",
   whatsapp: "",
   location: "Athens · Remote",
+  legal: {
+    nameEl: "Συριανός Αντώνιος",
+    nameEn: "Antonios Syrianos",
+    vat: "162731235",
+    formEl: "ατομική επιχείρηση",
+    formEn: "sole proprietorship",
+  },
 };
 
 export function phoneHref(phone: string) {

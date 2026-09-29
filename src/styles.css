@@ -118,7 +118,8 @@ img {
   --cursor: var(--steel);
 }
 
-.stage.is-pricing .works {
+.stage.is-pricing .works,
+.stage.is-privacy .works {
   display: none;
 }
 
@@ -534,6 +535,102 @@ h1.chrome__brand {
 }
 
 .notfound__home:hover {
+  opacity: 0.7;
+}
+
+.legal {
+  position: relative;
+  z-index: 40;
+  max-width: 40rem;
+  min-height: 70vh;
+  padding: 120px var(--chrome) 64px;
+}
+
+.legal__head {
+  margin-bottom: 28px;
+}
+
+.legal__eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.legal__title {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.legal__meta {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.55;
+}
+
+.legal__body {
+  display: grid;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 1.55;
+  opacity: 0.88;
+}
+
+.legal__body p {
+  margin: 0 0 12px;
+}
+
+.legal__body a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+.legal__section {
+  margin-top: 20px;
+}
+
+.legal__section h2 {
+  margin: 0 0 12px;
+  font-size: clamp(18px, 2.4vw, 22px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: inherit;
+}
+
+.legal__section ul {
+  margin: 0 0 12px;
+  padding-left: 1.2em;
+}
+
+.legal__section li {
+  margin-bottom: 6px;
+}
+
+.legal__note {
+  margin-top: 8px !important;
+  font-size: 13px;
+  opacity: 0.62;
+}
+
+.legal__back {
+  margin: 32px 0 0;
+}
+
+.legal__back a {
+  color: inherit;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.legal__back a:hover {
   opacity: 0.7;
 }
 
@@ -3647,7 +3744,8 @@ a.work__proof-line:hover {
 }
 
 .stage.is-pricing .partners,
-.stage:not(.is-index):not(.is-pricing) .partners {
+.stage.is-privacy .partners,
+.stage:not(.is-index):not(.is-pricing):not(.is-privacy) .partners {
   display: none;
 }
 
@@ -3702,7 +3800,8 @@ a.work__proof-line:hover {
   }
 
   .stage.is-pricing .partners,
-  .stage:not(.is-index):not(.is-pricing) .partners {
+  .stage.is-privacy .partners,
+  .stage:not(.is-index):not(.is-pricing):not(.is-privacy) .partners {
     display: none;
   }
 }
