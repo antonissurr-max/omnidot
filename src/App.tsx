@@ -27,6 +27,7 @@ export default function App() {
   );
   const [aboutRevealed, setAboutRevealed] = useState(false);
   const [panelExit, setPanelExit] = useState(false);
+  const [pricingModuleOpen, setPricingModuleOpen] = useState(false);
   const panelExitTimer = useRef<number | null>(null);
 
   const goView = useCallback(
@@ -140,13 +141,16 @@ export default function App() {
   }, [view.kind, goIndex]);
 
   useEffect(() => {
-    if (view.kind !== "pricing") return;
+    if (view.kind !== "pricing") {
+      setPricingModuleOpen(false);
+      return;
+    }
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") goIndex();
+      if (e.key === "Escape" && !pricingModuleOpen) goIndex();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [view.kind, goIndex]);
+  }, [view.kind, goIndex, pricingModuleOpen]);
 
   const stage =
     view.kind === "index"
@@ -168,6 +172,7 @@ export default function App() {
         onGo={goView}
         aboutRevealed={aboutRevealed}
         onToggleAbout={toggleAbout}
+        hideClose={view.kind === "pricing" && pricingModuleOpen}
       />
       <Works dimmed={view.kind !== "index"} />
 
@@ -188,6 +193,7 @@ export default function App() {
           exiting={panelExit}
           onClose={goIndex}
           onBrief={goAbout}
+          onModuleOpenChange={setPricingModuleOpen}
         />
       )}
 

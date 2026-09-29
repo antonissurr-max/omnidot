@@ -51,11 +51,13 @@ export function Pricing({
   exiting = false,
   onClose,
   onBrief,
+  onModuleOpenChange,
 }: {
   ready?: boolean;
   exiting?: boolean;
   onClose: () => void;
   onBrief: (interest?: PageId) => void;
+  onModuleOpenChange?: (open: boolean) => void;
 }) {
   const { locale, t } = useLocale();
   const plans = t.pricingPlans;
@@ -71,6 +73,14 @@ export function Pricing({
   const openPlan = openId ? plans.find((p) => p.id === openId) : null;
 
   const closeModule = useCallback(() => setOpenId(null), []);
+
+  useEffect(() => {
+    onModuleOpenChange?.(Boolean(openId));
+  }, [openId, onModuleOpenChange]);
+
+  useEffect(() => {
+    return () => onModuleOpenChange?.(false);
+  }, [onModuleOpenChange]);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 799px)");

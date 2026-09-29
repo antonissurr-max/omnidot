@@ -11,11 +11,13 @@ export function Chrome({
   onGo,
   aboutRevealed,
   onToggleAbout,
+  hideClose = false,
 }: {
   view: View;
   onGo: (next: View) => void;
   aboutRevealed: boolean;
   onToggleAbout: () => void;
+  hideClose?: boolean;
 }) {
   const { locale, t } = useLocale();
   const location = useLocation();
@@ -54,7 +56,7 @@ export function Chrome({
         </button>
       </div>
 
-      {onAbout || onPricing ? (
+      {(onAbout || onPricing) && !hideClose ? (
         <button
           className="chrome__about"
           type="button"
@@ -62,7 +64,7 @@ export function Chrome({
         >
           {t.close}
         </button>
-      ) : (
+      ) : !onAbout && !onPricing ? (
         <div className="chrome__end">
           <Link
             className="chrome__pricing"
@@ -77,7 +79,7 @@ export function Chrome({
             {onIndex || view.kind === "notfound" ? t.contactUs : t.about}
           </Link>
         </div>
-      )}
+      ) : null}
 
       {showBrand && (
         <BrandTag className={`chrome__brand${onAbout ? " is-about" : ""}`}>
