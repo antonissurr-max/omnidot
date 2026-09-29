@@ -8,7 +8,7 @@ export const site = {
   whatsapp: "",
   location: "Athens · Remote",
   /** Formspree endpoint, e.g. https://formspree.io/f/xxxxxxxx */
-  formspreeEndpoint: "",
+  formspreeEndpoint: "https://formspree.io/f/maenvbbb",
   legal: {
     nameEl: "Συριανός Αντώνιος",
     nameEn: "Antonios Syrianos",
