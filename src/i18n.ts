@@ -70,9 +70,14 @@ export type Copy = {
   pricingTitleSub: string;
   pricingLede: string;
   pricingNote: string;
-  pricingScrollCue: string;
   pricingCta: string;
   pricingSetup: string;
+  pricingReelLabel: string;
+  pricingReelSoon: string;
+  pricingReelHint: string;
+  pricingPrinciplesEyebrow: string;
+  pricingPrinciplesTitle: string;
+  pricingPrinciples: string[];
   mediaSoon: string;
   pricingPlans: {
     id: string;
@@ -80,6 +85,7 @@ export type Copy = {
     price: string;
     blurb: string;
     items: string[];
+    note?: string;
   }[];
   homeMobileHeadline: string;
   homeMobileAboutTitle: string;
@@ -274,54 +280,63 @@ export const copy: Record<Locale, Copy> = {
       "Clear monthly retainers and project fees. Ad spend is always separate. Scope is written down before we start.",
     pricingNote:
       "Prices in EUR, excl. VAT where applicable. Minimum 3 months on retainers. Creative production can be bundled or billed per asset.",
-    pricingScrollCue: "Scroll",
     pricingCta: "Start a brief",
     pricingSetup: "One-time setup",
+    pricingReelLabel: "Hero reel",
+    pricingReelSoon: "Hero reel soon",
+    pricingReelHint: "Click for websites & digital — or scroll for how we work",
+    pricingPrinciplesEyebrow: "How we work",
+    pricingPrinciplesTitle: "Our principles",
+    pricingPrinciples: [
+      "Custom by default — every brand gets its own voice, not a template.",
+      "Style first — we mirror your aesthetic, tone and audience before we scale.",
+      "Creativity with intent — ideas that fit your world, not generic agency filler.",
+      "Personal by design — we listen, adapt and build around your real needs.",
+    ],
     mediaSoon: "Media soon",
     pricingPlans: [
       {
         id: "social",
         name: "Social Media Management",
-        price: "From €750 / mo",
-        blurb: "Presence that stays consistent — plan, posts, light community, monthly report.",
+        price: "From €450 / mo",
+        blurb: "Setup once (€150–350 by platforms), then a monthly package that stays consistent.",
         items: [
-          "Starter €450–650 · 1 channel · 8–12 posts",
-          "Growth €750–1,100 · 2 channels · 12–16 posts",
-          "Pro €1,200–1,800 · fuller community + strategy",
+          "Essential €450–650 · 1 platform · 8–12 posts · 8 basic stories · light community · report",
+          "Standard €750–1,100 · 2 platforms · 12–16 posts/reels · community · report",
+          "Premium €1,200–1,800 · 3 platforms · 16–20 posts/reels · community · report",
         ],
       },
       {
         id: "content",
         name: "Content Creation",
         price: "From €350 / pack",
-        blurb: "Photo and video ready for feed, ads and web — concept through edit.",
+        blurb: "Asset packs for feed, ads and web — concept through edit.",
         items: [
-          "8 assets €350–550",
-          "12–16 assets + short video €650–1,000",
-          "Half-day / full shoot on request",
+          "1 platform · 8–12 assets (posts/carousels) · €350–550",
+          "2 platforms · 12–16 assets + 2–4 videos · €650–1,000",
         ],
+        note: "Shoot day €200.",
       },
       {
         id: "performance",
         name: "Performance Marketing",
-        price: "From €350 / mo",
-        blurb: "Meta & Google management. Your ad budget stays yours — we charge a fee.",
+        price: "From €300 / mo",
+        blurb: "Setup €200 once. Meta & Google management — your ad budget stays yours.",
         items: [
-          "Minimum €300–450 / mo management",
-          "Tiers by spend · % or flat, whichever is higher",
-          "Creative for ads billed separately",
-          "Campaign setup €150–300 once",
+          "Ad spend €0–500 → management €300",
+          "Ad spend €500–1,500 → management €500",
+          "Ad spend €1,500+ → by agreement",
         ],
       },
       {
         id: "web",
         name: "Web Development",
-        price: "From €800",
+        price: "From €700",
         blurb: "Sites and landings that load fast, rank cleanly, and stay yours.",
         items: [
-          "Landing page €800–1,500",
-          "Brochure site €1,800–3,500",
-          "CMS / care from €50–150 / mo",
+          "Landing page €700–1,200",
+          "4–6 page site ≈ €700 / page",
+          "E-shop — by agreement",
         ],
       },
     ],
@@ -416,6 +431,78 @@ export const copy: Record<Locale, Copy> = {
                 "Same Europatch partnership from the content side: how-to reels on the road, product in use, cuts built for feed and Reels. That library powered the organic reach — including one reel to 397.9K.",
               value: "The content behind 4.5M Facebook · 2.5M Instagram",
               notes: ["How-to reels on the road · product in use · one reel to 397.9K"],
+              media: [
+                {
+                  src: "/videos/europatch/timeline-1.mp4",
+                  kind: "video",
+                  poster: "/images/proof-europatch-reel.png",
+                  title: "Europatch reel",
+                  detail: "How-to on the road",
+                },
+                {
+                  src: "/videos/europatch/18.mp4",
+                  kind: "video",
+                  poster: "/images/europatch-bags.webp",
+                  title: "Europatch production",
+                  detail: "Product in use",
+                },
+                {
+                  src: "/images/europatch-reels-grid-1.png",
+                  title: "Reels performance",
+                  detail: "Top organic reach",
+                },
+                {
+                  src: "/images/europatch-reels-grid-2.jpg",
+                  title: "Reels library",
+                  detail: "Views across the feed",
+                },
+              ],
+            },
+            {
+              client: "N4Sails",
+              story:
+                "Nafplio for Sails — lifestyle Reels for catamaran escapes: dive shots, family moments, and guest stories cut for Instagram. Organic reach that sells the feeling of being on board.",
+              value: "",
+              media: [
+                {
+                  src: "/videos/n4sails/escape-summer-story.mp4",
+                  kind: "video",
+                  poster: "/images/n4sails-reel-views.png",
+                  title: "Escape summer story",
+                  detail: "Dive into Nafplio blue",
+                },
+                {
+                  src: "/videos/n4sails/little-moments-family.mp4",
+                  kind: "video",
+                  poster: "/images/n4sails-reels-grid.png",
+                  title: "Little moments",
+                  detail: "Family on deck",
+                },
+                {
+                  src: "/videos/n4sails/description-3-words.mp4",
+                  kind: "video",
+                  poster: "/images/n4sails-reels-grid.png",
+                  title: "Description in 3 words",
+                  detail: "Guest story · Konstantinos",
+                },
+                {
+                  src: "/videos/n4sails/home-away-from-home.mp4",
+                  kind: "video",
+                  poster: "/images/n4sails-reels-grid.png",
+                  title: "Home away from home",
+                  detail: "Onboard lifestyle",
+                },
+                {
+                  src: "/images/n4sails-reels-grid.png",
+                  title: "Reels performance",
+                  detail: "Top organic reach",
+                },
+                {
+                  src: "/images/n4sails-reel-views.png",
+                  title: "Reel views",
+                  detail: "14.2K organic",
+                },
+              ],
             },
           ],
         },
@@ -578,29 +665,28 @@ export const copy: Record<Locale, Copy> = {
     ],
     contentWork: [
       {
-        src: "/images/content.jpg",
-        title: "Capture",
-        detail: "On location",
+        src: "/videos/europatch/timeline-1.mp4",
+        kind: "video",
+        poster: "/images/proof-europatch-reel.png",
+        title: "Europatch reel",
+        detail: "How-to on the road",
       },
       {
-        src: "/images/living.jpg",
-        title: "Still life",
-        detail: "Editorial frame",
+        src: "/videos/europatch/18.mp4",
+        kind: "video",
+        poster: "/images/europatch-bags.webp",
+        title: "Europatch production",
+        detail: "Product in use",
       },
       {
-        src: "/images/bedroom.jpg",
-        title: "Interior set",
-        detail: "Mood & light",
+        src: "/images/europatch-reels-grid-1.png",
+        title: "Reels performance",
+        detail: "Top organic reach",
       },
       {
-        src: "/images/attic.jpg",
-        title: "Space study",
-        detail: "Texture & form",
-      },
-      {
-        src: "/images/bathroom.jpg",
-        title: "Detail cut",
-        detail: "Ready for feed",
+        src: "/images/europatch-reels-grid-2.jpg",
+        title: "Reels library",
+        detail: "Views across the feed",
       },
     ],
     performanceWork: [
@@ -659,54 +745,63 @@ export const copy: Record<Locale, Copy> = {
       "Καθαρά μηνιαία πακέτα και τιμές έργου. Το ad spend μένει πάντα δικό σας. Το scope γράφεται πριν ξεκινήσουμε.",
     pricingNote:
       "Τιμές σε €, χωρίς ΦΠΑ όπου εφαρμόζεται. Minimum 3 μήνες στα retainers. Το creative μπορεί να μπει στο πακέτο ή ανά asset.",
-    pricingScrollCue: "Κύλησε",
     pricingCta: "Ξεκίνα brief",
     pricingSetup: "Setup μία φορά",
+    pricingReelLabel: "Hero reel",
+    pricingReelSoon: "Hero reel σύντομα",
+    pricingReelHint: "Κλικ για websites & digital — ή σκρολάρισε για το πώς δουλεύουμε",
+    pricingPrinciplesEyebrow: "Πώς δουλεύουμε",
+    pricingPrinciplesTitle: "Οι αρχές μας",
+    pricingPrinciples: [
+      "Custom by default — κάθε brand παίρνει τη δική του φωνή, όχι template.",
+      "Style first — ακολουθούμε το αισθητικό σου, τον τόνο και το κοινό σου πριν κλιμακώσουμε.",
+      "Creativity με πρόθεση — ιδέες που ταιριάζουν στον κόσμο σου, όχι generic agency filler.",
+      "Personal by design — ακούμε, προσαρμοζόμαστε και χτίζουμε γύρω από τις πραγματικές σου ανάγκες.",
+    ],
     mediaSoon: "Media σύντομα",
     pricingPlans: [
       {
         id: "social",
         name: "Διαχείριση Social Media",
-        price: "Από €750 / μήνα",
-        blurb: "Σταθερή παρουσία — πλάνο, posts, ελαφρύ community, μηνιαίο report.",
+        price: "Από €450 / μήνα",
+        blurb: "Setup μία φορά (€150–350 ανάλογα τις πλατφόρμες), μετά μηνιαίο πακέτο με σταθερή παρουσία.",
         items: [
-          "Starter €450–650 · 1 κανάλι · 8–12 posts",
-          "Growth €750–1.100 · 2 κανάλια · 12–16 posts",
-          "Pro €1.200–1.800 · fuller community + στρατηγική",
+          "Essential €450–650 · 1 πλατφόρμα · 8–12 posts · 8 basic stories · ελαφρύ community · report",
+          "Standard €750–1.100 · 2 πλατφόρμες · 12–16 posts/reels · community · report",
+          "Premium €1.200–1.800 · 3 πλατφόρμες · 16–20 posts/reels · community · report",
         ],
       },
       {
         id: "content",
         name: "Δημιουργία Περιεχομένου",
         price: "Από €350 / πακέτο",
-        blurb: "Φωτο και video έτοιμα για feed, ads και web — από concept έως edit.",
+        blurb: "Πακέτα assets για feed, ads και web — από concept έως edit.",
         items: [
-          "8 assets €350–550",
-          "12–16 assets + short video €650–1.000",
-          "Half-day / full shoot κατόπιν συνεννόησης",
+          "1 πλατφόρμα · 8–12 assets (posts/carousels) · €350–550",
+          "2 πλατφόρμες · 12–16 assets + 2–4 videos · €650–1.000",
         ],
+        note: "Γύρισμα €200.",
       },
       {
         id: "performance",
         name: "Performance Marketing",
-        price: "Από €350 / μήνα",
-        blurb: "Διαχείριση Meta & Google. Το budget διαφημίσεων μένει δικό σας.",
+        price: "Από €300 / μήνα",
+        blurb: "Setup €200 μία φορά. Διαχείριση Meta & Google — το budget μένει δικό σας.",
         items: [
-          "Minimum €300–450 / μήνα management",
-          "Tiers ανά spend · % ή flat, όποιο μεγαλύτερο",
-          "Creative για ads ξεχωριστά",
-          "Setup καμπάνιας €150–300 μία φορά",
+          "Ad spend €0–500 → management €300",
+          "Ad spend €500–1.500 → management €500",
+          "Ad spend €1.500+ → κατόπιν συνεννόησης",
         ],
       },
       {
         id: "web",
         name: "Ανάπτυξη Ιστοσελίδων",
-        price: "Από €800",
+        price: "Από €700",
         blurb: "Sites και landings που φορτώνουν γρήγορα, rank-άρουν καθαρά και μένουν δικά σας.",
         items: [
-          "Landing page €800–1.500",
-          "Brochure site €1.800–3.500",
-          "CMS / care από €50–150 / μήνα",
+          "Landing page €700–1.200",
+          "4–6 σελίδες ≈ €700 / σελίδα",
+          "E-shop — κατόπιν συνεννόησης",
         ],
       },
     ],
@@ -801,6 +896,78 @@ export const copy: Record<Locale, Copy> = {
                 "Η ίδια συνεργασία Europatch από την πλευρά του content: how-to reels στον δρόμο, προϊόν σε χρήση, cuts για feed και Reels. Αυτή η βιβλιοθήκη στήριξε την οργανική εμβέλεια — με ένα reel στα 397.9K.",
               value: "Το περιεχόμενο πίσω από 4.5 εκ. Facebook · 2.5 εκ. Instagram",
               notes: ["How-to reels στον δρόμο · προϊόν σε χρήση · ένα reel στα 397.9K"],
+              media: [
+                {
+                  src: "/videos/europatch/timeline-1.mp4",
+                  kind: "video",
+                  poster: "/images/proof-europatch-reel.png",
+                  title: "Europatch reel",
+                  detail: "How-to στον δρόμο",
+                },
+                {
+                  src: "/videos/europatch/18.mp4",
+                  kind: "video",
+                  poster: "/images/europatch-bags.webp",
+                  title: "Europatch production",
+                  detail: "Προϊόν σε χρήση",
+                },
+                {
+                  src: "/images/europatch-reels-grid-1.png",
+                  title: "Απόδοση Reels",
+                  detail: "Top organic reach",
+                },
+                {
+                  src: "/images/europatch-reels-grid-2.jpg",
+                  title: "Βιβλιοθήκη Reels",
+                  detail: "Views στο feed",
+                },
+              ],
+            },
+            {
+              client: "N4Sails",
+              story:
+                "Nafplio for Sails — lifestyle Reels για καταμαράν: dive shots, οικογενειακές στιγμές και guest stories για Instagram. Οργανική εμβέλεια που πουλάει το αίσθημα του να είσαι πάνω στο σκάφος.",
+              value: "",
+              media: [
+                {
+                  src: "/videos/n4sails/escape-summer-story.mp4",
+                  kind: "video",
+                  poster: "/images/n4sails-reel-views.png",
+                  title: "Escape summer story",
+                  detail: "Dive στο μπλε του Ναυπλίου",
+                },
+                {
+                  src: "/videos/n4sails/little-moments-family.mp4",
+                  kind: "video",
+                  poster: "/images/n4sails-reels-grid.png",
+                  title: "Little moments",
+                  detail: "Οικογένεια στο κατάστρωμα",
+                },
+                {
+                  src: "/videos/n4sails/description-3-words.mp4",
+                  kind: "video",
+                  poster: "/images/n4sails-reels-grid.png",
+                  title: "Description in 3 words",
+                  detail: "Guest story · Konstantinos",
+                },
+                {
+                  src: "/videos/n4sails/home-away-from-home.mp4",
+                  kind: "video",
+                  poster: "/images/n4sails-reels-grid.png",
+                  title: "Home away from home",
+                  detail: "Lifestyle στο σκάφος",
+                },
+                {
+                  src: "/images/n4sails-reels-grid.png",
+                  title: "Απόδοση Reels",
+                  detail: "Top organic reach",
+                },
+                {
+                  src: "/images/n4sails-reel-views.png",
+                  title: "Views reel",
+                  detail: "14.2K οργανικά",
+                },
+              ],
             },
           ],
         },
@@ -963,29 +1130,28 @@ export const copy: Record<Locale, Copy> = {
     ],
     contentWork: [
       {
-        src: "/images/content.jpg",
-        title: "Capture",
-        detail: "On location",
+        src: "/videos/europatch/timeline-1.mp4",
+        kind: "video",
+        poster: "/images/proof-europatch-reel.png",
+        title: "Europatch reel",
+        detail: "How-to στον δρόμο",
       },
       {
-        src: "/images/living.jpg",
-        title: "Still life",
-        detail: "Editorial frame",
+        src: "/videos/europatch/18.mp4",
+        kind: "video",
+        poster: "/images/europatch-bags.webp",
+        title: "Europatch production",
+        detail: "Προϊόν σε χρήση",
       },
       {
-        src: "/images/bedroom.jpg",
-        title: "Interior set",
-        detail: "Mood & light",
+        src: "/images/europatch-reels-grid-1.png",
+        title: "Απόδοση Reels",
+        detail: "Top organic reach",
       },
       {
-        src: "/images/attic.jpg",
-        title: "Space study",
-        detail: "Texture & form",
-      },
-      {
-        src: "/images/bathroom.jpg",
-        title: "Detail cut",
-        detail: "Έτοιμο για feed",
+        src: "/images/europatch-reels-grid-2.jpg",
+        title: "Βιβλιοθήκη Reels",
+        detail: "Views στο feed",
       },
     ],
     performanceWork: [

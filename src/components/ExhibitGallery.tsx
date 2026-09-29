@@ -40,11 +40,20 @@ function ExhibitMedia({
         loop
         playsInline
         preload="metadata"
+        title={item.title}
+        aria-label={`${item.title}${item.detail ? ` — ${item.detail}` : ""}`}
       />
     );
   }
 
-  return <img className="exhibit__media" src={item.src} alt="" draggable={false} />;
+  return (
+    <img
+      className="exhibit__media"
+      src={item.src}
+      alt={`${item.title}${item.detail ? ` — ${item.detail}` : ""}`}
+      draggable={false}
+    />
+  );
 }
 
 export function ExhibitGallery({

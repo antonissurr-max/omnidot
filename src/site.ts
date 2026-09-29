@@ -42,14 +42,19 @@ export type Partner = {
 
 export const partners: Partner[] = [
   {
+    name: "Nafplio4Sail",
+    href: "https://nafplio4sail.com/",
+    logo: "/images/partners/nafplio4sail.png",
+  },
+  {
     name: "Europatch",
-    href: "https://europatch.gr",
-    logo: "/images/partners/europatch.svg",
+    href: "https://europatch.gr/",
+    logo: "/images/partners/europatch.png",
   },
   {
     name: "Pyrgiotis OE",
     href: "https://pyrgiotisoe.com/",
-    logo: "/images/partners/pyrgiotis.svg",
+    logo: "/images/partners/pyrgiotis.png",
   },
 ];
 

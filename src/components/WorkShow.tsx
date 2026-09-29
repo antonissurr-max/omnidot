@@ -296,10 +296,16 @@ export function WorkShow({
               controls
               autoPlay
               playsInline
+              title={current.title}
+              aria-label={`${current.title}${current.detail ? ` — ${current.detail}` : ""}`}
               onClick={(e) => e.stopPropagation()}
             />
           ) : (
-            <img className="lightbox__media" src={current.src} alt={current.title} />
+            <img
+              className="lightbox__media"
+              src={current.src}
+              alt={`${current.title}${current.detail ? ` — ${current.detail}` : ""}`}
+            />
           )}
           <button
             className="lightbox__close"

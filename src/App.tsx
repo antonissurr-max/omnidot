@@ -93,7 +93,11 @@ export default function App() {
 
   useEffect(() => {
     document.body.style.overflow =
-      view.kind === "index" || view.kind === "notfound" ? "" : "hidden";
+      view.kind === "index" ||
+      view.kind === "notfound" ||
+      view.kind === "pricing"
+        ? ""
+        : "hidden";
     return () => {
       document.body.style.overflow = "";
     };

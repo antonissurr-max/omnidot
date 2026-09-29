@@ -124,7 +124,7 @@ export function Works({ dimmed }: { dimmed: boolean }) {
             aria-label={title}
           >
             <span className="tile__media">
-              <img src={page.cover} alt="" />
+              <img src={page.cover} alt={title} />
             </span>
             <span className="tile__title">{title}</span>
           </Link>
@@ -137,7 +137,14 @@ export function Works({ dimmed }: { dimmed: boolean }) {
           <h2 className="home-mobile__title">{proof.client ?? "Europatch"}</h2>
           <p className="home-mobile__proof-value">{proof.value}</p>
           <div className="home-mobile__feature">
-            <img src={proofFeature} alt="" />
+            <img
+              src={proofFeature}
+              alt={
+                proof.client
+                  ? `${proof.client} — ${t.homeMobileProofKicker}`
+                  : t.homeMobileProofKicker
+              }
+            />
           </div>
           <p className="home-mobile__body">{t.homeMobileProofStory}</p>
           <Link

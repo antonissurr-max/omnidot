@@ -36,8 +36,19 @@ function organizationLd(locale: Locale) {
     url: SITE_ORIGIN,
     description: copy[locale].metaDescription,
     image: DEFAULT_OG,
+    email: site.email,
     ...(ORG_PHONE ? { telephone: ORG_PHONE } : {}),
-    areaServed: "GR",
+    areaServed: {
+      "@type": "Country",
+      name: "Greece",
+    },
+    knowsAbout: [
+      "Social media management",
+      "Content creation",
+      "Performance marketing",
+      "Web development",
+      "SEO",
+    ],
   };
 }
 
@@ -183,6 +194,7 @@ export function applyDocumentSeo(locale: Locale, view: View) {
   upsertMeta("property", "og:title", seo.title);
   upsertMeta("property", "og:description", seo.description);
   upsertMeta("property", "og:type", "website");
+  upsertMeta("property", "og:site_name", "omnidot.");
   upsertMeta("property", "og:url", seo.canonical);
   upsertMeta("property", "og:image", seo.image);
   upsertMeta("property", "og:locale", locale === "el" ? "el_GR" : "en_US");
