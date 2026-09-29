@@ -1113,8 +1113,8 @@ a.work__proof-line:hover {
 
 @media (max-width: 899px) {
   .exhibit__stage {
-    --exhibit-frame-w: min(78vw, 340px, calc((min(72vh, 640px) - 40px) * 9 / 16));
-    height: calc(var(--exhibit-frame-h) + 40px);
+    --exhibit-frame-w: min(78vw, 300px, calc((min(68vh, 560px) - 32px) * 9 / 16));
+    height: calc(var(--exhibit-frame-h) + 32px);
   }
 
   .exhibit__nav-btn {
@@ -1128,6 +1128,72 @@ a.work__proof-line:hover {
 
   .exhibit__nav-btn--next {
     left: calc(50% + var(--exhibit-frame-w) * 0.62);
+  }
+
+  .exhibit__meta {
+    padding-inline: 8px;
+  }
+
+  .work__scroll {
+    padding: calc(72px + env(safe-area-inset-top, 0px)) var(--chrome)
+      calc(88px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .work__head {
+    margin-bottom: 22px;
+  }
+
+  .work__proof-story {
+    font-size: 12px;
+    line-height: 1.55;
+    max-width: none;
+  }
+
+  .work__proof-name {
+    font-size: 12px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .work__brief {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .partners {
+    padding: 36px var(--chrome) 8px;
+  }
+
+  .partners__list {
+    gap: 20px 28px;
+  }
+
+  .partners__link img {
+    height: 32px;
+    max-width: min(160px, 40vw);
+  }
+
+  .pricing-faq {
+    padding: 40px var(--chrome) calc(64px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .pricing-faq__list {
+    gap: 18px;
+  }
+
+  .pricing-principles {
+    padding: 56px var(--chrome) 32px;
+  }
+
+  .home-mobile--hero {
+    padding-top: calc(80px + env(safe-area-inset-top, 0px));
+    padding-bottom: 28px;
+  }
+
+  .home-mobile__cta-line {
+    min-height: 44px;
+    align-items: center;
   }
 }
 

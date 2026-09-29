@@ -426,6 +426,31 @@ export const copy: Record<Locale, Copy> = {
                 "Last month: 96% of views from non-followers",
               ],
             },
+            {
+              client: "N4Sails",
+              story:
+                "Nafplio for Sails — lifestyle Reels for catamaran escapes. We ran the Instagram presence around summer stories that sell the feeling of being on board — organic reach, not ads.",
+              value: "",
+              media: [
+                {
+                  src: "/images/n4sails-reels-grid.png",
+                  title: "Reels grid",
+                  detail: "Profile performance",
+                },
+                {
+                  src: "/images/n4sails-reel-views.png",
+                  title: "Top reel",
+                  detail: "14.2K organic views",
+                },
+                {
+                  src: "/videos/n4sails/escape-summer-story.mp4",
+                  kind: "video",
+                  poster: "/images/n4sails-reel-views.png",
+                  title: "Escape summer story",
+                  detail: "Dive into Nafplio blue",
+                },
+              ],
+            },
           ],
         },
         points: [
@@ -929,6 +954,31 @@ export const copy: Record<Locale, Copy> = {
                 "1.2 εκ. unique viewers · 0 από ads",
                 "Reel 397.9K · Facebook post 120.8K",
                 "Τελευταίος μήνας: 96% των views από non-followers",
+              ],
+            },
+            {
+              client: "N4Sails",
+              story:
+                "Nafplio for Sails — lifestyle Reels για καταμαράν. Τρέξαμε την Instagram παρουσία γύρω από καλοκαιρινές ιστορίες που πουλάνε το αίσθημα του να είσαι πάνω στο σκάφος — οργανική εμβέλεια, όχι ads.",
+              value: "",
+              media: [
+                {
+                  src: "/images/n4sails-reels-grid.png",
+                  title: "Grid Reels",
+                  detail: "Απόδοση προφίλ",
+                },
+                {
+                  src: "/images/n4sails-reel-views.png",
+                  title: "Top reel",
+                  detail: "14.2K οργανικά views",
+                },
+                {
+                  src: "/videos/n4sails/escape-summer-story.mp4",
+                  kind: "video",
+                  poster: "/images/n4sails-reel-views.png",
+                  title: "Escape summer story",
+                  detail: "Dive στο μπλε του Ναυπλίου",
+                },
               ],
             },
           ],
