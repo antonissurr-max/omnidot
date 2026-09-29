@@ -14,6 +14,7 @@ const navEn = [
   { href: "/web", label: "Web Development" },
   { href: "/pricing", label: "Packages & pricing" },
   { href: "/about", label: "About / Contact" },
+  { href: "/privacy", label: "Privacy" },
 ];
 
 const navEl = [
@@ -23,6 +24,7 @@ const navEl = [
   { href: "/el/web", label: "Ανάπτυξη Ιστοσελίδων" },
   { href: "/el/pricing", label: "Πακέτα & τιμές" },
   { href: "/el/about", label: "Σχετικά / Επικοινωνία" },
+  { href: "/el/privacy", label: "Απόρρητο" },
 ];
 
 /** Keep in sync with src/i18n.ts — build-time crawlable shells. */
@@ -212,6 +214,31 @@ const routeDefs = [
     },
     type: "pricing",
   },
+  {
+    id: "privacy",
+    enPath: "/privacy",
+    elPath: "/el/privacy",
+    enFile: "privacy/index.html",
+    elFile: "el/privacy/index.html",
+    image: `${origin}/images/work-omnidot.jpg`,
+    en: {
+      title: "Website terms, privacy & cookies - omnidot.",
+      description:
+        "Terms of use, privacy policy and cookies for omnidot. — how we process contact data under GDPR.",
+      h1: "Website terms, privacy & cookies",
+      body: "How omnidot. processes contact form data under GDPR. Data controller: Antonios Syrianos, sole proprietorship. Contact: info@omnidot.gr.",
+      story: "",
+    },
+    el: {
+      title: "Όροι χρήσης, πολιτική απορρήτου & cookies - omnidot.",
+      description:
+        "Όροι χρήσης, πολιτική απορρήτου και cookies του omnidot. — πώς επεξεργαζόμαστε δεδομένα επικοινωνίας βάσει GDPR.",
+      h1: "Όροι χρήσης, πολιτική απορρήτου & cookies",
+      body: "Πώς το omnidot. επεξεργάζεται δεδομένα φόρμας επικοινωνίας βάσει GDPR. Υπεύθυνος: Συριανός Αντώνιος, ατομική επιχείρηση. Επικοινωνία: info@omnidot.gr.",
+      story: "",
+    },
+    type: "privacy",
+  },
 ];
 
 function escapeHtml(value) {
@@ -264,6 +291,16 @@ function jsonLdFor(def, locale) {
       "@context": "https://schema.org",
       "@type": "WebPage",
       name: locale === "el" ? "Πακέτα & τιμές" : "Packages & pricing",
+      description: copy.description,
+      url,
+      isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },
+    };
+  }
+  if (def.type === "privacy") {
+    return {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: copy.h1,
       description: copy.description,
       url,
       isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },

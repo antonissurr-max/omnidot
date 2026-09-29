@@ -108,14 +108,27 @@ export function Contact({
 
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
+      const accessKey = site.web3formsAccessKey?.trim();
+      if (!accessKey) throw new Error("missing_key");
+
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: data.name,
+          email: data.email,
+          company: data.company || undefined,
+          interest: data.interest,
+          message: data.notes || data.interest,
+          subject: `omnidot. — ${data.interest}`,
+          from_name: "omnidot. form",
+          replyto: data.email,
+          botcheck: data.website || "",
+        }),
       });
-      if (!res.ok) throw new Error("send_failed");
-      const payload = (await res.json()) as { ok?: boolean };
-      if (!payload.ok) throw new Error("send_failed");
+      const payload = (await res.json()) as { success?: boolean };
+      if (!res.ok || !payload.success) throw new Error("send_failed");
       setStatus("sent");
     } catch {
       setStatus("error");

@@ -7,6 +7,8 @@ export const site = {
   phone: "6970862839",
   whatsapp: "",
   location: "Athens · Remote",
+  /** Free Web3Forms access key (client-side). Create at https://web3forms.com */
+  web3formsAccessKey: "",
   legal: {
     nameEl: "Συριανός Αντώνιος",
     nameEn: "Antonios Syrianos",

@@ -1,8 +1,4 @@
-interface Env {
-  /** Optional override. Default: info@omnidot.gr (Email Routing → Gmail). */
-  CONTACT_TO?: string;
-}
-
+/** Optional Pages Function fallback — primary path is client-side Web3Forms (free). */
 type Body = {
   name?: string;
   email?: string;
@@ -10,10 +6,8 @@ type Body = {
   interest?: string;
   notes?: string;
   locale?: string;
-  website?: string; // honeypot
+  website?: string;
 };
-
-const DEFAULT_TO = "info@omnidot.gr";
 
 function json(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -25,7 +19,7 @@ function json(data: unknown, status = 200) {
   });
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
+export const onRequestPost: PagesFunction = async (context) => {
   let body: Body;
   try {
     body = (await context.request.json()) as Body;
@@ -33,95 +27,17 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return json({ ok: false, error: "invalid_json" }, 400);
   }
 
-  // Bots that fill hidden fields
-  if (body.website) {
-    return json({ ok: true });
-  }
+  if (body.website) return json({ ok: true });
 
-  const name = String(body.name ?? "").trim();
-  const email = String(body.email ?? "").trim();
-  const company = String(body.company ?? "").trim();
-  const interest = String(body.interest ?? "").trim();
-  const notes = String(body.notes ?? "").trim();
-  const locale = body.locale === "el" ? "el" : "en";
-
-  if (!name || !email || !interest) {
-    return json({ ok: false, error: "missing_fields" }, 400);
-  }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return json({ ok: false, error: "invalid_email" }, 400);
-  }
-
-  const to = (context.env.CONTACT_TO || DEFAULT_TO).trim();
-  const subject = `omnidot. — ${interest}`;
-  const message =
-    locale === "el"
-      ? [
-          `Όνομα: ${name}`,
-          `Email: ${email}`,
-          `Εταιρεία: ${company || "—"}`,
-          `Ενδιαφέρομαι για: ${interest}`,
-          notes ? `Σημειώσεις:\n${notes}` : "",
-        ]
-          .filter(Boolean)
-          .join("\n")
-      : [
-          `Name: ${name}`,
-          `Email: ${email}`,
-          `Company: ${company || "—"}`,
-          `Interested in: ${interest}`,
-          notes ? `Notes:\n${notes}` : "",
-        ]
-          .filter(Boolean)
-          .join("\n");
-
-  // Free relay (no Workers Paid / Email Sending). First use: confirm via email FormSubmit sends to `to`.
-  try {
-    const res = await fetch(
-      `https://formsubmit.co/ajax/${encodeURIComponent(to)}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          company: company || undefined,
-          interest,
-          message,
-          _subject: subject,
-          _replyto: email,
-          _template: "table",
-          _captcha: "false",
-        }),
-      },
-    );
-
-    const payload = (await res.json().catch(() => ({}))) as {
-      success?: boolean | string;
-      message?: string;
-    };
-
-    const ok =
-      res.ok &&
-      (payload.success === true ||
-        payload.success === "true" ||
-        String(payload.message ?? "")
-          .toLowerCase()
-          .includes("success"));
-
-    if (!ok) {
-      console.error("formsubmit failed", res.status, payload);
-      return json({ ok: false, error: "send_failed" }, 502);
-    }
-
-    return json({ ok: true });
-  } catch (err) {
-    console.error("contact email failed", err);
-    return json({ ok: false, error: "send_failed" }, 502);
-  }
+  // Kept for compatibility; the React form posts to Web3Forms directly (free, no Workers Paid).
+  return json(
+    {
+      ok: false,
+      error: "use_web3forms",
+      message: "Configure site.web3formsAccessKey and submit from the client.",
+    },
+    501,
+  );
 };
 
 export const onRequestOptions: PagesFunction = async () =>
