@@ -125,6 +125,11 @@ export type Copy = {
   privacyVatLabel: string;
   privacyDisclaimer: string;
   privacySeoDescription: string;
+  cookieTitle: string;
+  cookieBody: string;
+  cookieAccept: string;
+  cookieReject: string;
+  cookieSettings: string;
   privacySections: {
     heading: string;
     paragraphs?: string[];
@@ -429,6 +434,12 @@ export const copy: Record<Locale, Copy> = {
       "This page is informational and reflects how we currently run the omnidot website and contact form. It is not legal advice. We may update it when our tools or processes change.",
     privacySeoDescription:
       "Terms of use, privacy policy and cookies for omnidot. — how we process contact data under GDPR.",
+    cookieTitle: "Cookies & analytics",
+    cookieBody:
+      "We use essential cookies to run the site. With your OK we’ll also use analytics/marketing tags to measure visits and campaigns. You can change this anytime.",
+    cookieAccept: "Accept",
+    cookieReject: "Essential only",
+    cookieSettings: "Cookies",
     privacySections: [
       {
         heading: "Use of the website",
@@ -1019,6 +1030,12 @@ export const copy: Record<Locale, Copy> = {
       "Η σελίδα είναι ενημερωτική και περιγράφει τον τρόπο λειτουργίας του site και της φόρμας επικοινωνίας. Δεν αποτελεί νομική συμβουλή. Μπορεί να ενημερωθεί όταν αλλάζουν εργαλεία ή διαδικασίες.",
     privacySeoDescription:
       "Όροι χρήσης, πολιτική απορρήτου και cookies του omnidot. — πώς επεξεργαζόμαστε δεδομένα επικοινωνίας βάσει GDPR.",
+    cookieTitle: "Cookies & analytics",
+    cookieBody:
+      "Χρησιμοποιούμε απαραίτητα cookies για να λειτουργεί το site. Με την αποδοχή σου θα χρησιμοποιούμε και analytics/marketing tags για επισκεψιμότητα και καμπάνιες. Μπορείς να το αλλάξεις οποιαδήποτε στιγμή.",
+    cookieAccept: "Αποδοχή",
+    cookieReject: "Μόνο απαραίτητα",
+    cookieSettings: "Cookies",
     privacySections: [
       {
         heading: "Χρήση του ιστοτόπου",

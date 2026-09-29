@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
+import { openConsentPreferences } from "../consent";
 import { useInViewOnce } from "../hooks/useInViewOnce";
 import { formatPhoneDisplay, pages, phoneHref, site } from "../site";
 import { useLocale } from "../locale";
@@ -62,6 +63,9 @@ export function Footer() {
             <Link to={pathFromView({ kind: "privacy" }, locale)}>
               {t.privacyLink}
             </Link>
+            <button type="button" className="site-foot__text-btn" onClick={openConsentPreferences}>
+              {t.cookieSettings}
+            </button>
           </nav>
         </div>
 

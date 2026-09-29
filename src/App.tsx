@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { About } from "./components/About";
 import { Chrome } from "./components/Chrome";
+import { CookieConsent } from "./components/CookieConsent";
 import { Cursor } from "./components/Cursor";
 import { Footer } from "./components/Footer";
 import { NotFound } from "./components/NotFound";
@@ -219,6 +220,7 @@ export default function App() {
 
       <Partners />
       <Footer />
+      <CookieConsent />
     </div>
   );
 }
