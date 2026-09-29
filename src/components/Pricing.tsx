@@ -254,9 +254,6 @@ export function Pricing({
                     ) : null}
                     <span className="pricing-orb__shade" aria-hidden="true" />
                     <span className="pricing-orb__copy">
-                      <span className="pricing-orb__kicker">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
                       <span className="pricing-orb__name">{plan.name}</span>
                       <span className="pricing-orb__price">{plan.price}</span>
                     </span>
@@ -280,22 +277,7 @@ export function Pricing({
             }
           >
             <div className="pricing-reel__frame">
-              {videoReady ? (
-                <video
-                  className="pricing-reel__video"
-                  src={HERO_VIDEO}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  title={t.pricingReelLabel}
-                  aria-label={t.pricingReelHint}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onBrief("web");
-                  }}
-                />
-              ) : (
+              {!videoReady ? (
                 <button
                   type="button"
                   className="pricing-reel__placeholder"
@@ -311,15 +293,24 @@ export function Pricing({
                     {t.pricingReelHint}
                   </span>
                 </button>
-              )}
+              ) : null}
               <video
-                className="sr-only"
+                className="pricing-reel__video"
                 src={HERO_VIDEO}
+                autoPlay
                 muted
+                loop
                 playsInline
-                preload="metadata"
+                preload="auto"
+                title={t.pricingReelLabel}
+                aria-label={t.pricingReelHint}
                 onLoadedData={() => setVideoReady(true)}
+                onCanPlay={() => setVideoReady(true)}
                 onError={() => setVideoReady(false)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onBrief("web");
+                }}
               />
             </div>
           </div>
