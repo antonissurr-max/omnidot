@@ -67,9 +67,18 @@ export function Pricing({
   const [videoReady, setVideoReady] = useState(false);
   const [progress, setProgress] = useState(0);
   const [viewport, setViewport] = useState({ w: 1200, h: 800 });
+  const [isMobile, setIsMobile] = useState(false);
   const openPlan = openId ? plans.find((p) => p.id === openId) : null;
 
   const closeModule = useCallback(() => setOpenId(null), []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 799px)");
+    const sync = () => setIsMobile(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     if (!ready || exiting) return;
@@ -116,7 +125,7 @@ export function Pricing({
       }
 
       const track = trackRef.current;
-      if (track) {
+      if (track && !window.matchMedia("(max-width: 799px)").matches) {
         const rect = track.getBoundingClientRect();
         const range = Math.max(1, track.offsetHeight - h);
         const tgt = clamp(-rect.top / range, 0, 1);
@@ -128,6 +137,10 @@ export function Pricing({
           animProgress.current = next;
           setProgress(next);
         }
+      } else if (animProgress.current !== 0) {
+        animProgress.current = 0;
+        targetProgress.current = 0;
+        setProgress(0);
       }
 
       rafId.current = requestAnimationFrame(loop);
@@ -143,12 +156,12 @@ export function Pricing({
   useEffect(() => {
     const stage = document.querySelector(".stage");
     if (!stage) return;
-    const dark = progress > 0.1;
+    const dark = !isMobile && progress > 0.1;
     stage.classList.toggle("is-pricing-dark", dark);
     return () => {
       stage.classList.remove("is-pricing-dark");
     };
-  }, [progress]);
+  }, [progress, isMobile]);
 
   const onFieldClick = (e: ReactMouseEvent<HTMLElement>) => {
     if (!openId) return;
@@ -170,12 +183,12 @@ export function Pricing({
   return (
     <div
       className={`pricing-page${exiting ? " is-exit" : ""}${ready ? " is-ready" : ""}${
-        progress > 0.06 ? " is-past-hero" : ""
-      }${progress > 0.45 ? " is-reel-open" : ""}${
-        progress > 0.92 ? " is-reel-full" : ""
-      }${openId ? " is-module-open" : ""}`}
+        !isMobile && progress > 0.06 ? " is-past-hero" : ""
+      }${!isMobile && progress > 0.45 ? " is-reel-open" : ""}${
+        !isMobile && progress > 0.92 ? " is-reel-full" : ""
+      }${openId ? " is-module-open" : ""}${isMobile ? " is-mobile" : ""}`}
       aria-label={t.pricingTitle}
-      style={{ "--reel-p": String(progress) } as CSSProperties}
+      style={{ "--reel-p": String(isMobile ? 0 : progress) } as CSSProperties}
     >
       <section ref={trackRef} className="pricing-track">
         <div className="pricing-pin" onClick={onFieldClick}>
