@@ -1,8 +1,5 @@
-# Cloudflare Pages
-# Send Email binding: add in Dashboard → Pages → omnidot → Settings → Functions → Bindings
-#   Type: Send Email
-#   Name: EMAIL
-#   Destination: omnidotmarketing@gmail.com (must be a verified Email Routing destination)
+# Cloudflare Pages (static site + /functions)
+# Contact form uses free FormSubmit relay — no Workers Paid / Email Sending needed.
 name = "omnidot"
 compatibility_date = "2025-09-01"
 pages_build_output_dir = "./dist"

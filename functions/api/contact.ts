@@ -1,14 +1,6 @@
 interface Env {
-  EMAIL: {
-    send: (message: {
-      from: string | { email: string; name?: string };
-      to?: string | { email: string; name?: string } | null;
-      replyTo?: string | { email: string; name?: string };
-      subject: string;
-      text?: string;
-      html?: string;
-    }) => Promise<{ messageId: string }>;
-  };
+  /** Optional override. Default: info@omnidot.gr (Email Routing → Gmail). */
+  CONTACT_TO?: string;
 }
 
 type Body = {
@@ -21,10 +13,7 @@ type Body = {
   website?: string; // honeypot
 };
 
-const FROM = {
-  email: "contact@omnidot.gr",
-  name: "omnidot.",
-};
+const DEFAULT_TO = "info@omnidot.gr";
 
 function json(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -34,14 +23,6 @@ function json(data: unknown, status = 200) {
       "Cache-Control": "no-store",
     },
   });
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -71,54 +52,71 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return json({ ok: false, error: "invalid_email" }, 400);
   }
 
-  const labels =
+  const to = (context.env.CONTACT_TO || DEFAULT_TO).trim();
+  const subject = `omnidot. — ${interest}`;
+  const message =
     locale === "el"
-      ? {
-          title: "Νέο brief από τη φόρμα",
-          name: "Όνομα",
-          email: "Email",
-          company: "Εταιρεία",
-          interest: "Ενδιαφέρομαι για",
-          notes: "Σημειώσεις",
-        }
-      : {
-          title: "New brief from the form",
-          name: "Name",
-          email: "Email",
-          company: "Company",
-          interest: "Interested in",
-          notes: "Notes",
-        };
+      ? [
+          `Όνομα: ${name}`,
+          `Email: ${email}`,
+          `Εταιρεία: ${company || "—"}`,
+          `Ενδιαφέρομαι για: ${interest}`,
+          notes ? `Σημειώσεις:\n${notes}` : "",
+        ]
+          .filter(Boolean)
+          .join("\n")
+      : [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Company: ${company || "—"}`,
+          `Interested in: ${interest}`,
+          notes ? `Notes:\n${notes}` : "",
+        ]
+          .filter(Boolean)
+          .join("\n");
 
-  const text = [
-    labels.title,
-    "",
-    `${labels.name}: ${name}`,
-    `${labels.email}: ${email}`,
-    `${labels.company}: ${company || "—"}`,
-    `${labels.interest}: ${interest}`,
-    notes ? `${labels.notes}: ${notes}` : "",
-  ]
-    .filter(Boolean)
-    .join("\n");
-
-  const html = `
-    <h2>${escapeHtml(labels.title)}</h2>
-    <p><strong>${escapeHtml(labels.name)}:</strong> ${escapeHtml(name)}</p>
-    <p><strong>${escapeHtml(labels.email)}:</strong> ${escapeHtml(email)}</p>
-    <p><strong>${escapeHtml(labels.company)}:</strong> ${escapeHtml(company || "—")}</p>
-    <p><strong>${escapeHtml(labels.interest)}:</strong> ${escapeHtml(interest)}</p>
-    ${notes ? `<p><strong>${escapeHtml(labels.notes)}:</strong><br>${escapeHtml(notes).replaceAll("\n", "<br>")}</p>` : ""}
-  `;
-
+  // Free relay (no Workers Paid / Email Sending). First use: confirm via email FormSubmit sends to `to`.
   try {
-    await context.env.EMAIL.send({
-      from: FROM,
-      replyTo: { email, name },
-      subject: `omnidot. — ${interest}`,
-      text,
-      html,
-    });
+    const res = await fetch(
+      `https://formsubmit.co/ajax/${encodeURIComponent(to)}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          company: company || undefined,
+          interest,
+          message,
+          _subject: subject,
+          _replyto: email,
+          _template: "table",
+          _captcha: "false",
+        }),
+      },
+    );
+
+    const payload = (await res.json().catch(() => ({}))) as {
+      success?: boolean | string;
+      message?: string;
+    };
+
+    const ok =
+      res.ok &&
+      (payload.success === true ||
+        payload.success === "true" ||
+        String(payload.message ?? "")
+          .toLowerCase()
+          .includes("success"));
+
+    if (!ok) {
+      console.error("formsubmit failed", res.status, payload);
+      return json({ ok: false, error: "send_failed" }, 502);
+    }
+
     return json({ ok: true });
   } catch (err) {
     console.error("contact email failed", err);
