@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
-const origin = "https://omnidot.pages.dev";
+const origin = "https://omnidot.gr";
 const phone = "+306970862839";
 
 const navEn = [

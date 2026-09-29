@@ -1,7 +1,7 @@
 import type { Locale } from "./i18n";
 import type { PageId, View } from "./types";
 
-export const SITE_ORIGIN = "https://omnidot.pages.dev";
+export const SITE_ORIGIN = "https://omnidot.gr";
 
 export const PAGE_IDS: PageId[] = ["social", "content", "performance", "web"];
 

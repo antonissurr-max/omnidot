@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://omnidot.pages.dev/sitemap.xml
+Sitemap: https://omnidot.gr/sitemap.xml
