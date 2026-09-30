@@ -31,7 +31,11 @@ const ORB_MEDIA: Record<
     src: "/videos/pricing-orb-content.mp4",
     poster: "/images/content.jpg",
   },
-  performance: { type: "image", src: "/images/performance.jpg" },
+  performance: {
+    type: "video",
+    src: "/videos/pricing-hero.mp4",
+    poster: "/images/performance.jpg",
+  },
   web: { type: "image", src: "/images/web.jpg" },
 };
 
