@@ -363,8 +363,18 @@ a.chrome__pricing {
   transition: color 0.28s var(--ease);
 }
 
-.stage.is-chrome-on-dark .chrome {
+.stage.is-chrome-on-dark .chrome,
+.stage.is-chrome-on-dark .chrome__lang,
+.stage.is-chrome-on-dark .chrome__word,
+.stage.is-chrome-on-dark .chrome__about,
+.stage.is-chrome-on-dark .chrome__pricing,
+.stage.is-chrome-on-dark .chrome__end {
   color: var(--paper);
+}
+
+.stage.is-chrome-on-dark .chrome__logo svg {
+  color: var(--paper);
+  fill: currentColor;
 }
 
 .stage.is-chrome-on-dark .chrome__word-dot {
@@ -1927,19 +1937,6 @@ a.work__proof-line:hover {
     background: var(--paper);
     color: var(--ink);
   }
-
-  .stage.is-about .chrome,
-  .stage.is-about .chrome__lang,
-  .stage.is-pricing .chrome,
-  .stage.is-pricing .chrome__lang {
-    color: var(--ink);
-  }
-
-  .stage.is-about .chrome__logo svg,
-  .stage.is-pricing .chrome__logo svg {
-    color: var(--ink);
-    fill: currentColor;
-  }
 }
 
 .about-layer__center {
@@ -2332,7 +2329,7 @@ a.work__proof-line:hover {
   opacity: 0.55;
 }
 
-/* Pricing — Playfight-inspired: scatter orbs → circle reel expands → principles */
+/* Pricing — package orbs → principles / FAQ */
 .pricing-page {
   position: relative;
   z-index: 40;
@@ -2340,16 +2337,6 @@ a.work__proof-line:hover {
   background: var(--paper);
   color: var(--ink);
   overflow-x: clip;
-  transition: background 0.55s var(--ease);
-}
-
-.pricing-page.is-past-hero {
-  background: color-mix(in srgb, var(--paper) 70%, var(--night));
-}
-
-.pricing-page.is-reel-open {
-  background: var(--night);
-  color: var(--paper);
 }
 
 .pricing-page.is-exit {
@@ -2365,35 +2352,17 @@ a.work__proof-line:hover {
 
 .pricing-track {
   position: relative;
-  height: 320vh;
+  height: auto;
   background: transparent;
 }
 
 .pricing-pin {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 1;
-  height: 100svh;
+  min-height: 100svh;
   width: 100%;
   overflow: hidden;
   background: var(--paper);
-  transition: background 0.55s var(--ease);
-}
-
-.pricing-page.is-past-hero .pricing-pin {
-  background: color-mix(in srgb, var(--paper) 55%, var(--night));
-}
-
-.pricing-page.is-reel-open .pricing-pin,
-.pricing-page.is-reel-full .pricing-pin {
-  background: var(--night);
-}
-
-.pricing-page.is-past-hero:not(.is-module-open) .pricing-field {
-  opacity: calc(1 - min(1, var(--reel-p) * 1.35));
-  filter: blur(calc(var(--reel-p) * 3px));
-  pointer-events: none;
-  transition: opacity 0.2s linear, filter 0.2s linear;
 }
 
 .pricing-hero__title-wrap {
@@ -2403,8 +2372,6 @@ a.work__proof-line:hover {
   display: grid;
   place-items: center;
   pointer-events: none;
-  transform: translate3d(0, calc(var(--reel-p) * -6vh), 0);
-  opacity: calc(1 - min(0.92, var(--reel-p) * 1.15));
   transition: color 0.45s var(--ease);
 }
 
@@ -2428,10 +2395,6 @@ a.work__proof-line:hover {
   animation: pricing-rise-in var(--motion-in) var(--ease) 0.08s both;
 }
 
-.pricing-page.is-reel-open .pricing-hero__title {
-  color: var(--paper);
-}
-
 .pricing-hero__title-lead {
   font-weight: 500;
 }
@@ -2439,10 +2402,6 @@ a.work__proof-line:hover {
 .pricing-hero__title-sub {
   color: color-mix(in srgb, var(--navy) 42%, transparent);
   font-weight: 400;
-}
-
-.pricing-page.is-reel-open .pricing-hero__title-sub {
-  color: color-mix(in srgb, var(--paper) 48%, transparent);
 }
 
 .pricing-field {
@@ -2856,119 +2815,6 @@ a.work__proof-line:hover {
   background: var(--slate);
 }
 
-.pricing-reel {
-  position: absolute;
-  left: 50%;
-  top: var(--ft, 78%);
-  z-index: 5;
-  width: var(--fw, 200px);
-  height: var(--fh, 200px);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  will-change: width, height, top, border-radius;
-}
-
-.pricing-reel__frame {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--fr, 50%);
-  overflow: hidden;
-  background: #0a121c;
-  box-shadow: 0 24px 60px color-mix(in srgb, var(--ink-deep) 35%, transparent);
-  pointer-events: auto;
-  opacity: 0;
-}
-
-.pricing-page.is-ready .pricing-reel__frame {
-  opacity: 1;
-  animation: pricing-rise-in var(--motion-in-slow) var(--ease) 0.65s both;
-}
-
-.pricing-page.is-reel-full .pricing-reel {
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  transform: none;
-}
-
-.pricing-page.is-reel-full .pricing-reel__frame {
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.pricing-page.is-reel-full .pricing-hero__title-wrap,
-.pricing-page.is-reel-full .pricing-field {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.pricing-reel__video,
-.pricing-reel__placeholder {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  border: 0;
-  cursor: pointer;
-}
-
-.pricing-reel__credit {
-  position: absolute;
-  right: clamp(10px, 3.5%, 22px);
-  bottom: clamp(10px, 3.5%, 22px);
-  z-index: 4;
-  display: block;
-  width: clamp(64px, 22%, 128px);
-  line-height: 0;
-  opacity: 0.9;
-  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
-  pointer-events: auto;
-}
-
-.pricing-reel__credit:hover {
-  opacity: 1;
-  transform: scale(1.04);
-}
-
-.pricing-reel__credit img {
-  width: 100%;
-  height: auto;
-  display: block;
-  /* Partner mark is white on black — knock out the plate over footage */
-  mix-blend-mode: screen;
-}
-
-.pricing-reel__placeholder {
-  display: grid;
-  place-content: center;
-  gap: 8px;
-  padding: 16px;
-  text-align: center;
-  background:
-    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--hydrangea) 28%, transparent), transparent 55%),
-    radial-gradient(circle at 70% 80%, color-mix(in srgb, var(--sea) 22%, transparent), transparent 50%),
-    #141414;
-  color: var(--paper);
-  font: inherit;
-}
-
-.pricing-reel__placeholder-label {
-  font-family: inherit;
-  font-size: clamp(14px, 2vw, 18px);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-}
-
-.pricing-reel__placeholder-hint {
-  max-width: 18ch;
-  margin: 0 auto;
-  font-size: 11px;
-  line-height: 1.35;
-  opacity: 0.65;
-}
-
 .pricing-principles {
   position: relative;
   z-index: 2;
@@ -3190,8 +3036,6 @@ a.work__proof-line:hover {
     font-size: clamp(34px, 11vw, 48px);
   }
 
-  .pricing-page.is-past-hero .pricing-hero__title-wrap,
-  .pricing-page.is-reel-open .pricing-hero__title-wrap,
   .pricing-page.is-mobile .pricing-hero__title-wrap {
     opacity: 1;
     transform: none;
@@ -3211,7 +3055,6 @@ a.work__proof-line:hover {
     pointer-events: auto;
   }
 
-  .pricing-page.is-past-hero:not(.is-module-open) .pricing-field,
   .pricing-page.is-mobile .pricing-field {
     opacity: 1;
     filter: none;
@@ -3281,49 +3124,6 @@ a.work__proof-line:hover {
 
   .pricing-orb__price {
     font-size: 11px;
-  }
-
-  /* Hero reel: rectangular block revealed by normal scroll — not a circle */
-  .pricing-reel,
-  .pricing-page.is-past-hero .pricing-reel,
-  .pricing-page.is-reel-open .pricing-reel,
-  .pricing-page.is-reel-full .pricing-reel,
-  .pricing-page.is-mobile .pricing-reel {
-    position: relative;
-    left: auto !important;
-    top: auto !important;
-    width: 100% !important;
-    height: auto !important;
-    max-width: none;
-    aspect-ratio: 9 / 16;
-    max-height: min(72vh, 640px);
-    margin: 28px 0 8px;
-    transform: none !important;
-    z-index: 5;
-    pointer-events: auto;
-  }
-
-  .pricing-page.is-mobile .pricing-reel__frame,
-  .pricing-reel__frame {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 18px;
-    box-shadow: 0 16px 40px color-mix(in srgb, var(--ink-deep) 22%, transparent);
-  }
-
-  .pricing-page.is-mobile .pricing-reel__video,
-  .pricing-page.is-mobile .pricing-reel__placeholder {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .pricing-page.is-reel-full .pricing-hero__title-wrap,
-  .pricing-page.is-reel-full .pricing-field {
-    opacity: 1;
   }
 
   .pricing-backdrop {
@@ -3414,13 +3214,6 @@ a.work__proof-line:hover {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-}
-
-/* Pricing dark reel — chrome tone is driven by useChromeTone / data-chrome-tone */
-.stage.is-pricing.is-pricing-dark .chrome__start,
-.stage.is-pricing.is-pricing-dark .chrome__about,
-.stage.is-pricing.is-pricing-dark .chrome__end {
-  background: transparent;
 }
 
 /* Trusted by / partners */
@@ -4552,7 +4345,6 @@ a.work__proof-line:hover {
   .pricing-orb,
   .pricing-orb__ring,
   .pricing-module,
-  .pricing-reel__frame,
   .pricing-hero__title,
   .pricing-principles__eyebrow,
   .pricing-principles__title,
@@ -4573,7 +4365,6 @@ a.work__proof-line:hover {
   .pricing-orb,
   .pricing-orb__ring,
   .pricing-hero__title,
-  .pricing-reel__frame,
   .pricing-principles__eyebrow,
   .pricing-principles__title,
   .pricing-principles__list li,
