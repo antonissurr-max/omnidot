@@ -20,6 +20,7 @@ export const site = {
   sameAs: [
     "https://www.facebook.com/profile.php?id=61594988901400",
     "https://www.instagram.com/omni.dot/",
+    "https://www.linkedin.com/company/omnidotagency/",
   ] as string[],
   legal: {
     nameEl: "Συριανός Αντώνιος",
