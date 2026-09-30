@@ -17,7 +17,10 @@ export const site = {
     country: "GR",
   },
   /** Official profiles for schema.org sameAs (Instagram, LinkedIn, …) */
-  sameAs: [] as string[],
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=61594988901400",
+    "https://www.instagram.com/omni.dot/",
+  ] as string[],
   legal: {
     nameEl: "Συριανός Αντώνιος",
     nameEn: "Antonios Syrianos",

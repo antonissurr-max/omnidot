@@ -1855,53 +1855,64 @@ a.work__proof-line:hover {
   }
 
   .stage.is-index:not(.is-mobile-hero) .chrome,
-  .stage.is-about .chrome {
+  .stage.is-about .chrome,
+  .stage.is-pricing .chrome {
     padding-top: 12px;
-    background: linear-gradient(
-      to bottom,
-      var(--paper) 0%,
-      var(--paper) 72%,
-      color-mix(in srgb, var(--paper) 0%, transparent) 100%
-    );
-    background-size: 100% 72px;
-    background-repeat: no-repeat;
+    background: transparent;
   }
 
   .stage.is-index:not(.is-mobile-hero) .chrome__start,
   .stage.is-about .chrome__start,
   .stage.is-pricing .chrome__start {
     padding: 4px 10px 8px 0;
-    background: var(--paper);
+    background: transparent;
   }
 
   .stage.is-index:not(.is-mobile-hero) .chrome__about,
   .stage.is-index:not(.is-mobile-hero) .chrome__end,
+  .stage.is-index:not(.is-mobile-hero) .chrome__pricing,
   .stage.is-about .chrome__about,
-  .stage.is-pricing .chrome__about {
+  .stage.is-pricing .chrome__about,
+  .stage.is-pricing .chrome__end {
     padding: 8px 0 10px 12px;
-    background: var(--paper);
-    color: var(--ink);
+    background: transparent;
   }
 
+  /* Index home is dark after hero — keep chrome light like the hero */
   .stage.is-index:not(.is-mobile-hero) .chrome,
   .stage.is-index:not(.is-mobile-hero) .chrome__lang,
   .stage.is-index:not(.is-mobile-hero) .chrome__word,
+  .stage.is-index:not(.is-mobile-hero) .chrome__about,
+  .stage.is-index:not(.is-mobile-hero) .chrome__pricing {
+    color: var(--paper);
+  }
+
+  .stage.is-index:not(.is-mobile-hero) .chrome__word-dot {
+    color: var(--hydrangea);
+  }
+
+  .stage.is-index:not(.is-mobile-hero) .chrome__logo svg {
+    color: var(--paper);
+    fill: currentColor;
+  }
+
+  /* About / pricing (light paper pages) — dark type, no boxes */
   .stage.is-about .chrome,
   .stage.is-about .chrome__lang,
   .stage.is-about .chrome__word,
+  .stage.is-about .chrome__about,
   .stage.is-pricing .chrome,
   .stage.is-pricing .chrome__lang,
-  .stage.is-pricing .chrome__word {
+  .stage.is-pricing .chrome__word,
+  .stage.is-pricing .chrome__about {
     color: var(--ink);
   }
 
-  .stage.is-index:not(.is-mobile-hero) .chrome__word-dot,
   .stage.is-about .chrome__word-dot,
   .stage.is-pricing .chrome__word-dot {
     color: var(--hydrangea);
   }
 
-  .stage.is-index:not(.is-mobile-hero) .chrome__logo svg,
   .stage.is-about .chrome__logo svg,
   .stage.is-pricing .chrome__logo svg {
     color: var(--ink);
@@ -1920,7 +1931,7 @@ a.work__proof-line:hover {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    background: var(--paper);
+    background: transparent;
     padding: 6px 10px 6px 0;
   }
 }
