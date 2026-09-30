@@ -1,4 +1,24 @@
 /** omnidot. — marketing agency site content. */
+
+/** Public profiles — footer icons + schema.org sameAs */
+export const socials = [
+  {
+    id: "facebook",
+    label: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61594988901400",
+  },
+  {
+    id: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/omnidotgr/",
+  },
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/omnidotagency/",
+  },
+] as const;
+
 export const site = {
   brand: "omnidot",
   tagline: "Marketing that shapes brands",
@@ -16,12 +36,7 @@ export const site = {
     region: "Attica",
     country: "GR",
   },
-  /** Official profiles for schema.org sameAs (Instagram, LinkedIn, …) */
-  sameAs: [
-    "https://www.facebook.com/profile.php?id=61594988901400",
-    "https://www.instagram.com/omni.dot/",
-    "https://www.linkedin.com/company/omnidotagency/",
-  ] as string[],
+  sameAs: socials.map((s) => s.href) as string[],
   legal: {
     nameEl: "Συριανός Αντώνιος",
     nameEn: "Antonios Syrianos",

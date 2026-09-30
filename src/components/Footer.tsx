@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { openConsentPreferences } from "../consent";
 import { useInViewOnce } from "../hooks/useInViewOnce";
-import { formatPhoneDisplay, pages, phoneHref, site } from "../site";
+import { formatPhoneDisplay, pages, phoneHref, site, socials } from "../site";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
 
@@ -38,6 +38,45 @@ function IconMail() {
     </svg>
   );
 }
+
+function IconFacebook() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M14.5 8.5V6.8c0-.6.1-.9.9-.9h1.6V3h-2.2c-2.5 0-3.8 1.5-3.8 4v1.5H8.5V12h2.5v9h3.5v-9h2.4l.4-3.5h-2.8Z"
+      />
+    </svg>
+  );
+}
+
+function IconInstagram() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12 7.2A4.8 4.8 0 1 0 12 16.8 4.8 4.8 0 0 0 12 7.2Zm0 7.9a3.1 3.1 0 1 1 0-6.2 3.1 3.1 0 0 1 0 6.2Zm6.1-8.1a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0ZM12 3.5c-2.3 0-2.6 0-3.5.1-2.2.1-3.9 1.8-4 4-.1.9-.1 1.2-.1 3.5s0 2.6.1 3.5c.1 2.2 1.8 3.9 4 4 .9.1 1.2.1 3.5.1s2.6 0 3.5-.1c2.2-.1 3.9-1.8 4-4 .1-.9.1-1.2.1-3.5s0-2.6-.1-3.5c-.1-2.2-1.8-3.9-4-4-.9-.1-1.2-.1-3.5-.1Zm0 1.5c2.2 0 2.5 0 3.4.1 1.6.1 2.9 1.4 3 3 .1.9.1 1.1.1 3.4s0 2.5-.1 3.4c-.1 1.6-1.4 2.9-3 3-.9.1-1.2.1-3.4.1s-2.5 0-3.4-.1c-1.6-.1-2.9-1.4-3-3-.1-.9-.1-1.1-.1-3.4s0-2.5.1-3.4c.1-1.6 1.4-2.9 3-3 .9-.1 1.2-.1 3.4-.1Z"
+      />
+    </svg>
+  );
+}
+
+function IconLinkedIn() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M6.3 9.2H3.5V20h2.8V9.2ZM4.9 4a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2ZM20.5 13.2c0-3-1.6-4.4-3.7-4.4-1.7 0-2.5.9-2.9 1.6V9.2h-2.8c0 .8 0 10.8 0 10.8h2.8v-6c0-.3 0-.7.1-1 .3-.7.9-1.5 2-1.5 1.4 0 2 1.1 2 2.6V20h2.8v-6.8Z"
+      />
+    </svg>
+  );
+}
+
+const socialIcons = {
+  facebook: IconFacebook,
+  instagram: IconInstagram,
+  linkedin: IconLinkedIn,
+} as const;
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -113,6 +152,23 @@ export function Footer() {
               </li>
             ) : null}
           </ul>
+
+          <nav className="site-foot__social" aria-label={t.footerSocial}>
+            {socials.map((social) => {
+              const Icon = socialIcons[social.id];
+              return (
+                <a
+                  key={social.id}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                >
+                  <Icon />
+                </a>
+              );
+            })}
+          </nav>
         </div>
       </div>
 

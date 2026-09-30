@@ -53,6 +53,7 @@ export type Copy = {
   footerMenu: string;
   footerServices: string;
   footerContact: string;
+  footerSocial: string;
   footerHome: string;
   footerStudio: string;
   whatWeDo: string;
@@ -287,6 +288,7 @@ export const copy: Record<Locale, Copy> = {
     footerMenu: "Menu",
     footerServices: "Services",
     footerContact: "Contact",
+    footerSocial: "Follow",
     footerHome: "Home",
     footerStudio: "Marketing agency",
     whatWeDo: "What we do",
@@ -883,6 +885,7 @@ export const copy: Record<Locale, Copy> = {
     footerMenu: "Μενού",
     footerServices: "Υπηρεσίες",
     footerContact: "Επικοινωνία",
+    footerSocial: "Ακολούθησε",
     footerHome: "Αρχική",
     footerStudio: "Διαφημιστική εταιρεία",
     whatWeDo: "Τι κάνουμε",

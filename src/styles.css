@@ -3484,6 +3484,38 @@ a.work__proof-line:hover {
   height: 15px;
 }
 
+.site-foot__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.site-foot__social a {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+  color: color-mix(in srgb, var(--paper) 78%, transparent);
+  text-decoration: none;
+  transition:
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    background 0.2s var(--ease);
+}
+
+.site-foot__social a:hover {
+  color: var(--paper);
+  border-color: color-mix(in srgb, var(--paper) 42%, transparent);
+  background: color-mix(in srgb, var(--paper) 8%, transparent);
+}
+
+.site-foot__social svg {
+  width: 16px;
+  height: 16px;
+}
+
 .site-foot__copy {
   width: min(1120px, 100%);
   margin: 36px auto 0;
@@ -3516,12 +3548,14 @@ a.work__proof-line:hover {
 .stage.is-pricing .site-foot__list a,
 .stage.is-pricing .site-foot__contact,
 .stage.is-pricing .site-foot__contact a,
+.stage.is-pricing .site-foot__social a,
 .stage.is-pricing .site-foot__copy {
   color: var(--paper);
 }
 
 .stage.is-pricing .site-foot__list a:hover,
-.stage.is-pricing .site-foot__contact a:hover {
+.stage.is-pricing .site-foot__contact a:hover,
+.stage.is-pricing .site-foot__social a:hover {
   opacity: 0.7;
 }
 
