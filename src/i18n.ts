@@ -456,7 +456,7 @@ export const copy: Record<Locale, Copy> = {
         ],
         bullets: [
           "Strictly necessary — required for basic navigation, language preference and form security. These cannot be switched off in our systems.",
-          "Performance / analytics — if we enable a tool such as Google Analytics or Cloudflare analytics, these help us see which pages are used. Data is aggregated where possible.",
+          "Performance / analytics — with your consent we load Google Analytics 4 (gtag) to measure page views and form conversions. IP anonymisation is enabled. You can withdraw consent anytime via Cookies in the footer.",
           "We do not currently use third-party advertising cookies on this site.",
         ],
       },
@@ -466,7 +466,7 @@ export const copy: Record<Locale, Copy> = {
           "We process personal data in line with the EU General Data Protection Regulation (GDPR) and Greek law. Typical data: name, email, company and message content when you use the brief form or email us; technical logs (IP, browser) from hosting and security providers such as Cloudflare.",
           "Purpose: reply to enquiries, prepare proposals, deliver agreed marketing services, and keep the site secure. Legal bases: steps prior to a contract / contract performance, legitimate interest in running and securing the site, and consent where required for optional analytics.",
           "We keep enquiry data only as long as needed to handle your request and any follow-up, then delete or anonymise it unless a longer retention is required by law or an active project.",
-          "Processors may include hosting and email infrastructure (e.g. Cloudflare Pages, Email Routing) that store or transmit data in the EU/EEA or under appropriate safeguards.",
+          "Processors may include hosting and email infrastructure (e.g. Cloudflare Pages, Email Routing, Formspree) and, with consent, Google Analytics — in the EU/EEA or under appropriate safeguards.",
         ],
         bullets: [
           "Right of access",
@@ -1052,7 +1052,7 @@ export const copy: Record<Locale, Copy> = {
         ],
         bullets: [
           "Απολύτως απαραίτητα — για βασική πλοήγηση, προτίμηση γλώσσας και ασφάλεια φόρμας. Δεν απενεργοποιούνται από εμάς.",
-          "Απόδοσης / analytics — αν ενεργοποιήσουμε εργαλείο όπως Google Analytics ή Cloudflare analytics, μας βοηθούν να δούμε ποιες σελίδες χρησιμοποιούνται. Όπου είναι δυνατόν τα δεδομένα είναι συγκεντρωτικά.",
+          "Απόδοσης / analytics — με τη συγκατάθεσή σου φορτώνουμε Google Analytics 4 (gtag) για page views και conversions φόρμας. Η ανωνυμοποίηση IP είναι ενεργή. Μπορείς να ανακαλέσεις οποιαδήποτε στιγμή από Cookies στο footer.",
           "Δεν χρησιμοποιούμε προς το παρόν cookies τρίτων για διαφημίσεις σε αυτόν τον ιστότοπο.",
         ],
       },
@@ -1062,7 +1062,7 @@ export const copy: Record<Locale, Copy> = {
           "Επεξεργαζόμαστε προσωπικά δεδομένα σύμφωνα με τον Γενικό Κανονισμό Προστασίας Δεδομένων (GDPR) και την ελληνική νομοθεσία. Τυπικά δεδομένα: ονοματεπώνυμο, email, εταιρεία και περιεχόμενο μηνύματος όταν χρησιμοποιείτε τη φόρμα brief ή μας στέλνετε email· τεχνικά logs (IP, browser) από παρόχους φιλοξενίας και ασφάλειας όπως το Cloudflare.",
           "Σκοπός: απάντηση σε αιτήματα, προτάσεις συνεργασίας, παροχή συμφωνημένων υπηρεσιών marketing και ασφάλεια του ιστότοπου. Νομικές βάσεις: προσυμβατικά μέτρα / εκτέλεση σύμβασης, έννομο συμφέρον λειτουργίας και ασφάλειας του site, και συγκατάθεση όπου απαιτείται για προαιρετικά analytics.",
           "Διατηρούμε δεδομένα επικοινωνίας μόνο όσο χρειάζεται για τη διαχείριση του αιτήματος και τυχόν follow-up, και στη συνέχεια τα διαγράφουμε ή ανωνυμοποιούμε, εκτός αν απαιτείται μεγαλύτερη διατήρηση από τον νόμο ή ενεργό έργο.",
-          "Εκτελούντες την επεξεργασία μπορεί να είναι υποδομές hosting και email (π.χ. Cloudflare Pages, Email Routing) εντός ΕΕ/ΕΟΧ ή με κατάλληλες εγγυήσεις.",
+          "Εκτελούντες την επεξεργασία μπορεί να είναι υποδομές hosting και email (π.χ. Cloudflare Pages, Email Routing, Formspree) και, με συγκατάθεση, Google Analytics — εντός ΕΕ/ΕΟΧ ή με κατάλληλες εγγυήσεις.",
         ],
         bullets: [
           "Δικαίωμα πρόσβασης",

@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
+import { trackEvent } from "../analytics";
 import { formatPhoneDisplay, phoneHref, site } from "../site";
 import { useLocale } from "../locale";
 import type { PageId } from "../types";
@@ -132,6 +133,10 @@ export function Contact({
         next?: string;
       };
       if (!res.ok || payload.error) throw new Error("send_failed");
+      trackEvent("generate_lead", {
+        method: "contact_form",
+        interest: data.interest,
+      });
       setStatus("sent");
     } catch {
       setStatus("error");

@@ -9,6 +9,8 @@ export const site = {
   location: "Athens · Remote",
   /** Formspree endpoint, e.g. https://formspree.io/f/xxxxxxxx */
   formspreeEndpoint: "https://formspree.io/f/maenvbbb",
+  /** GA4 Measurement ID — loaded only after cookie consent */
+  gaMeasurementId: "G-84BQG2BT9N",
   legal: {
     nameEl: "Συριανός Αντώνιος",
     nameEn: "Antonios Syrianos",

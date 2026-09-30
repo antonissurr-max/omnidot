@@ -13,6 +13,7 @@ import { Privacy } from "./components/Privacy";
 import { ServiceList } from "./components/ServicePanel";
 import { WorkShow } from "./components/WorkShow";
 import { Works } from "./components/Works";
+import { trackPageView } from "./analytics";
 import { useLocale } from "./locale";
 import { pathFromView, viewFromLocation } from "./routing";
 import { applyDocumentSeo } from "./seo";
@@ -92,6 +93,7 @@ export default function App() {
 
   useEffect(() => {
     applyDocumentSeo(locale, viewFromLocation(location.pathname, location.search));
+    trackPageView(`${location.pathname}${location.search}`);
   }, [locale, location.pathname, location.search]);
 
   useEffect(() => {
