@@ -39,8 +39,14 @@ export function useChromeTone(active = true) {
     };
 
     const pickTone = (): Tone => {
-      // Service panels are always dark — don't let ghost home sections win.
+      // Route locks beat ghost layers still in the DOM under panels.
       if (stage.classList.contains("is-work")) return "dark";
+      if (
+        stage.classList.contains("is-about") ||
+        stage.classList.contains("is-privacy")
+      ) {
+        return "light";
+      }
 
       if (hits.size === 0) return stageFallbackTone(stage);
 
@@ -100,10 +106,15 @@ export function useChromeTone(active = true) {
       );
 
       stage.querySelectorAll<HTMLElement>("[data-chrome-tone]").forEach((el) => {
-        // Skip collapsed / invisible surfaces (dimmed home under work panels, etc.)
-        const style = getComputedStyle(el);
-        if (style.display === "none" || style.visibility === "hidden") return;
-        if (Number.parseFloat(style.opacity || "1") < 0.05) return;
+        // Skip collapsed / invisible surfaces (dimmed home under panels, etc.)
+        let node: HTMLElement | null = el;
+        while (node && node !== stage) {
+          const style = getComputedStyle(node);
+          if (style.display === "none" || style.visibility === "hidden") return;
+          if (Number.parseFloat(style.opacity || "1") < 0.05) return;
+          if (node.classList.contains("is-dim")) return;
+          node = node.parentElement;
+        }
         io?.observe(el);
       });
       schedule();

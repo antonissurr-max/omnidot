@@ -378,9 +378,30 @@ a.chrome__pricing {
   color: var(--paper);
 }
 
+.stage.is-about .chrome,
+.stage.is-about .chrome__lang,
+.stage.is-about .chrome__word,
+.stage.is-about .chrome__about,
+.stage.is-about .chrome__pricing,
+.stage.is-about .chrome__end,
+.stage.is-privacy .chrome,
+.stage.is-privacy .chrome__lang,
+.stage.is-privacy .chrome__word,
+.stage.is-privacy .chrome__about,
+.stage.is-privacy .chrome__pricing,
+.stage.is-privacy .chrome__end {
+  color: var(--ink);
+}
+
 .stage.is-chrome-on-dark .chrome__logo svg,
 .stage.is-work .chrome__logo svg {
   color: var(--paper);
+  fill: currentColor;
+}
+
+.stage.is-about .chrome__logo svg,
+.stage.is-privacy .chrome__logo svg {
+  color: var(--ink);
   fill: currentColor;
 }
 
@@ -389,6 +410,8 @@ a.chrome__pricing {
   color: color-mix(in srgb, var(--paper) 70%, var(--hydrangea));
 }
 
+.stage.is-about .chrome__word-dot,
+.stage.is-privacy .chrome__word-dot,
 .stage:not(.is-chrome-on-dark):not(.is-work) .chrome__word-dot {
   color: var(--hydrangea);
 }
