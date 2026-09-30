@@ -55,8 +55,6 @@ export function Pricing({
   const { locale, t } = useLocale();
   const plans = t.pricingPlans;
   const [openId, setOpenId] = useState<string | null>(null);
-  /** Defer heavy orb mp4 until hover/focus — poster shows first. */
-  const [orbVideoArmed, setOrbVideoArmed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const { ref: bottomRef, visible: revealBottom } = useInViewOnce<HTMLElement>(
     0.18,
@@ -165,39 +163,18 @@ export function Pricing({
                 >
                   <span className="pricing-orb__ring">
                     {media ? (
-                      <span
-                        className="pricing-orb__media"
-                        aria-hidden="true"
-                        onMouseEnter={() => {
-                          if (media.type === "video") setOrbVideoArmed(true);
-                        }}
-                        onFocus={() => {
-                          if (media.type === "video") setOrbVideoArmed(true);
-                        }}
-                      >
+                      <span className="pricing-orb__media" aria-hidden="true">
                         {media.type === "video" ? (
-                          <>
-                            {media.poster ? (
-                              <img
-                                src={media.poster}
-                                alt=""
-                                loading="lazy"
-                                decoding="async"
-                              />
-                            ) : null}
-                            {orbVideoArmed || isOpen ? (
-                              <video
-                                src={media.src}
-                                poster={media.poster}
-                                muted
-                                loop
-                                playsInline
-                                autoPlay
-                                preload="metadata"
-                                title={plan.name}
-                              />
-                            ) : null}
-                          </>
+                          <video
+                            src={media.src}
+                            poster={media.poster}
+                            muted
+                            loop
+                            playsInline
+                            autoPlay
+                            preload="auto"
+                            title={plan.name}
+                          />
                         ) : (
                           <img
                             src={media.src}
