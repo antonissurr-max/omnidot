@@ -287,7 +287,7 @@ h2 {
 .chrome {
   position: fixed;
   inset: 0 0 auto;
-  z-index: 55;
+  z-index: 70;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -343,8 +343,36 @@ a.chrome__pricing {
   color: var(--hydrangea);
 }
 
-.stage.is-work .chrome {
+/* Adaptive chrome — flips with backdrop under the fixed header */
+.chrome,
+.chrome__lang,
+.chrome__word,
+.chrome__about,
+.chrome__pricing {
+  color: inherit;
+  transition: color 0.28s var(--ease);
+}
+
+.chrome {
+  color: var(--ink);
+}
+
+.chrome__logo svg {
+  color: currentColor;
+  fill: currentColor;
+  transition: color 0.28s var(--ease);
+}
+
+.stage.is-chrome-on-dark .chrome {
   color: var(--paper);
+}
+
+.stage.is-chrome-on-dark .chrome__word-dot {
+  color: color-mix(in srgb, var(--paper) 70%, var(--hydrangea));
+}
+
+.stage:not(.is-chrome-on-dark) .chrome__word-dot {
+  color: var(--hydrangea);
 }
 
 .chrome__lang {
@@ -1578,23 +1606,6 @@ a.work__proof-line:hover {
     bottom: 36px;
   }
 
-  .stage.is-index.is-mobile-hero .chrome,
-  .stage.is-index.is-mobile-hero .chrome__lang,
-  .stage.is-index.is-mobile-hero .chrome__about,
-  .stage.is-index.is-mobile-hero .chrome__pricing,
-  .stage.is-index.is-mobile-hero .chrome__word {
-    color: var(--paper);
-  }
-
-  .stage.is-index.is-mobile-hero .chrome__word-dot {
-    color: var(--hydrangea);
-  }
-
-  .stage.is-index.is-mobile-hero .chrome__logo svg {
-    color: var(--paper);
-    fill: currentColor;
-  }
-
   .stage.is-index.is-mobile-hero .chrome {
     background: linear-gradient(
       to bottom,
@@ -1876,47 +1887,6 @@ a.work__proof-line:hover {
   .stage.is-pricing .chrome__end {
     padding: 8px 0 10px 12px;
     background: transparent;
-  }
-
-  /* Index home is dark after hero — keep chrome light like the hero */
-  .stage.is-index:not(.is-mobile-hero) .chrome,
-  .stage.is-index:not(.is-mobile-hero) .chrome__lang,
-  .stage.is-index:not(.is-mobile-hero) .chrome__word,
-  .stage.is-index:not(.is-mobile-hero) .chrome__about,
-  .stage.is-index:not(.is-mobile-hero) .chrome__pricing {
-    color: var(--paper);
-  }
-
-  .stage.is-index:not(.is-mobile-hero) .chrome__word-dot {
-    color: var(--hydrangea);
-  }
-
-  .stage.is-index:not(.is-mobile-hero) .chrome__logo svg {
-    color: var(--paper);
-    fill: currentColor;
-  }
-
-  /* About / pricing (light paper pages) — dark type, no boxes */
-  .stage.is-about .chrome,
-  .stage.is-about .chrome__lang,
-  .stage.is-about .chrome__word,
-  .stage.is-about .chrome__about,
-  .stage.is-pricing .chrome,
-  .stage.is-pricing .chrome__lang,
-  .stage.is-pricing .chrome__word,
-  .stage.is-pricing .chrome__about {
-    color: var(--ink);
-  }
-
-  .stage.is-about .chrome__word-dot,
-  .stage.is-pricing .chrome__word-dot {
-    color: var(--hydrangea);
-  }
-
-  .stage.is-about .chrome__logo svg,
-  .stage.is-pricing .chrome__logo svg {
-    color: var(--ink);
-    fill: currentColor;
   }
 
   .stage.is-about .chrome__brand,
@@ -3406,7 +3376,7 @@ a.work__proof-line:hover {
     position: fixed;
     top: calc(12px + env(safe-area-inset-top, 0px));
     right: 12px;
-    z-index: 70;
+    z-index: 72;
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -3446,59 +3416,11 @@ a.work__proof-line:hover {
   pointer-events: none;
 }
 
-/* Pricing chrome flips to light when the reel darkens */
-.stage.is-pricing.is-pricing-dark .chrome,
-.stage.is-pricing.is-pricing-dark .chrome__lang,
-.stage.is-pricing.is-pricing-dark .chrome__word,
-.stage.is-pricing.is-pricing-dark .chrome__about,
-.stage.is-pricing.is-pricing-dark .chrome__end {
-  color: var(--paper);
-}
-
-.stage.is-pricing.is-pricing-dark .chrome__word-dot {
-  color: color-mix(in srgb, var(--paper) 70%, var(--hydrangea));
-}
-
-.stage.is-pricing.is-pricing-dark .chrome__logo svg {
-  color: var(--paper);
-  fill: currentColor;
-}
-
+/* Pricing dark reel — chrome tone is driven by useChromeTone / data-chrome-tone */
 .stage.is-pricing.is-pricing-dark .chrome__start,
 .stage.is-pricing.is-pricing-dark .chrome__about,
 .stage.is-pricing.is-pricing-dark .chrome__end {
   background: transparent;
-}
-
-@media (min-width: 900px) {
-  .stage.is-pricing.is-pricing-dark .chrome__start,
-  .stage.is-pricing.is-pricing-dark .chrome__about {
-    background: transparent;
-    color: var(--paper);
-  }
-
-  .stage.is-pricing.is-pricing-dark .chrome,
-  .stage.is-pricing.is-pricing-dark .chrome__lang,
-  .stage.is-pricing.is-pricing-dark .chrome__word {
-    color: var(--paper);
-  }
-
-  .stage.is-pricing.is-pricing-dark .chrome__logo svg {
-    color: var(--paper);
-    fill: currentColor;
-  }
-}
-
-@media (max-width: 899px) {
-  .stage.is-pricing.is-pricing-dark .chrome,
-  .stage.is-pricing.is-pricing-dark .chrome__lang {
-    color: var(--paper);
-  }
-
-  .stage.is-pricing.is-pricing-dark .chrome__logo svg {
-    color: var(--paper);
-    fill: currentColor;
-  }
 }
 
 /* Trusted by / partners */
@@ -4269,7 +4191,7 @@ a.work__proof-line:hover {
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 70;
+  z-index: 80;
   display: grid;
   place-items: center;
   padding: 24px;

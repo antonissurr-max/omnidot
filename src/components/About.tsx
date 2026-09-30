@@ -92,6 +92,7 @@ export function About({
     <div
       ref={layerRef}
       className={`about-layer${exiting ? " is-exit" : ""}`}
+      data-chrome-tone="light"
       role="dialog"
       aria-modal="true"
       aria-label={t.about}

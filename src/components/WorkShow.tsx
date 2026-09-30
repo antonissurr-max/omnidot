@@ -217,6 +217,7 @@ export function WorkShow({
       className={`work is-open${gallery.length === 0 ? " work--text" : ""}${
         exiting ? " is-exit" : ""
       }`}
+      data-chrome-tone="dark"
       role="dialog"
       aria-modal="true"
       aria-label={copy.title}

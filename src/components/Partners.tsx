@@ -11,6 +11,7 @@ export function Partners() {
     <section
       ref={ref}
       className={`partners${visible ? " is-visible" : ""}`}
+      data-chrome-tone="dark"
       aria-label={t.trustedBy}
     >
       <div className="partners__inner">

@@ -206,6 +206,7 @@ export function Pricing({
       }${!isMobile && progress > 0.45 ? " is-reel-open" : ""}${
         !isMobile && progress > 0.92 ? " is-reel-full" : ""
       }${openId ? " is-module-open" : ""}${isMobile ? " is-mobile" : ""}`}
+      data-chrome-tone={!isMobile && progress > 0.1 && !openId ? "dark" : "light"}
       aria-label={t.pricingTitle}
       style={{ "--reel-p": String(isMobile ? 0 : progress) } as CSSProperties}
     >
@@ -377,6 +378,7 @@ export function Pricing({
             <div
               className="pricing-module"
               data-pricing-module
+              data-chrome-tone="light"
               id={`pricing-module-${openPlan.id}`}
               role="dialog"
               aria-modal="true"

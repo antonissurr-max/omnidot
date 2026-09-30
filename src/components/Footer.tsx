@@ -47,7 +47,11 @@ export function Footer() {
   const { ref, visible } = useInViewOnce<HTMLElement>();
 
   return (
-    <footer ref={ref} className={`site-foot${visible ? " is-visible" : ""}`}>
+    <footer
+      ref={ref}
+      className={`site-foot${visible ? " is-visible" : ""}`}
+      data-chrome-tone="dark"
+    >
       <div className="site-foot__inner">
         <div className="site-foot__col" style={{ "--ri": 0 } as CSSProperties}>
           <h3 className="site-foot__heading">{t.footerMenu}</h3>

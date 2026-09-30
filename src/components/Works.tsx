@@ -89,7 +89,7 @@ export function Works({ dimmed }: { dimmed: boolean }) {
       className={`works ${dimmed ? "is-dim" : ""}`}
       aria-label={t.sections}
     >
-      <header ref={heroRef} className="home-mobile home-mobile--hero">
+      <header ref={heroRef} className="home-mobile home-mobile--hero" data-chrome-tone="dark">
         <h1 className="home-mobile__display">{t.homeMobileHeadline}</h1>
         <p className="home-mobile__lede">{t.homeMobileAboutBody}</p>
         <Link
@@ -105,7 +105,7 @@ export function Works({ dimmed }: { dimmed: boolean }) {
         <p className="works__pitch">{t.aboutSub}</p>
       </div>
 
-      <div className="home-mobile home-mobile--services-head">
+      <div className="home-mobile home-mobile--services-head" data-chrome-tone="dark">
         <h2 className="home-mobile__title home-mobile__title--light">
           {t.whatWeDo}
         </h2>
@@ -120,6 +120,7 @@ export function Works({ dimmed }: { dimmed: boolean }) {
             to={pathFromView({ kind: "page", id: page.id }, locale)}
             style={{ ["--i" as string]: String(i) }}
             aria-label={title}
+            data-chrome-tone="dark"
           >
             <span className="tile__media">
               <img
@@ -137,7 +138,7 @@ export function Works({ dimmed }: { dimmed: boolean }) {
         );
       })}
 
-      <footer className="home-mobile home-mobile--close">
+      <footer className="home-mobile home-mobile--close" data-chrome-tone="dark">
         <h2 className="home-mobile__display home-mobile__display--sm">
           {t.homeMobileClose}
         </h2>

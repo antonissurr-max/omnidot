@@ -9,7 +9,7 @@ export function Privacy() {
   const legalForm = locale === "el" ? site.legal.formEl : site.legal.formEn;
 
   return (
-    <article className="legal" aria-labelledby="privacy-title">
+    <article className="legal" data-chrome-tone="light" aria-labelledby="privacy-title">
       <header className="legal__head">
         <p className="legal__eyebrow">{t.privacyEyebrow}</p>
         <h1 id="privacy-title" className="legal__title">

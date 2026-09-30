@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BrandWord } from "./BrandWord";
 import { Logo } from "./Logo";
+import { useChromeTone } from "../hooks/useChromeTone";
 import { site } from "../site";
 import { useLocale } from "../locale";
 import { pathForLocale, pathFromView } from "../routing";
@@ -27,6 +28,8 @@ export function Chrome({
   const onIndex = view.kind === "index";
   const BrandTag = onIndex ? "h1" : "p";
   const showBrand = onIndex || onAbout || onPricing;
+
+  useChromeTone(true);
 
   return (
     <header className="chrome">
