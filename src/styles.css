@@ -1623,8 +1623,10 @@ a.work__proof-line:hover {
 .case__related-card img,
 .case__related-card video,
 .case__related-fallback {
+  display: block;
   aspect-ratio: 1;
   width: 100%;
+  height: auto;
   object-fit: cover;
   border-radius: 0;
   background: color-mix(in srgb, var(--night) 50%, #000);

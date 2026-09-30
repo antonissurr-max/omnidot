@@ -68,6 +68,7 @@ function ProjectCover({ item }: { item: MediaItem }) {
       <video
         ref={videoRef}
         src={item.src}
+        poster={item.poster}
         muted
         loop
         playsInline
@@ -178,10 +179,14 @@ export function WorkShow({
     isFolder && openClient
       ? clients
           .filter((c) => c.client !== openClient)
-          .map((c) => ({
-            name: c.client,
-            cover: clientCover(c, pageGallery),
-          }))
+          .map((c) => {
+            const media = clientCover(c, pageGallery);
+            const cover =
+              media && mediaIsVideo(media) && !media.poster && c.backdrop
+                ? { ...media, poster: c.backdrop }
+                : media;
+            return { name: c.client, cover };
+          })
       : undefined;
 
   const caseBlock = viewingCase ? (
@@ -250,7 +255,11 @@ export function WorkShow({
                   <span className="work__proof-label">{copy.proof?.label}</span>
                   <div className="work__projects">
                     {clients.map((item) => {
-                      const cover = clientCover(item, pageGallery);
+                      const media = clientCover(item, pageGallery);
+                      const cover =
+                        media && mediaIsVideo(media) && !media.poster && item.backdrop
+                          ? { ...media, poster: item.backdrop }
+                          : media;
                       return (
                         <button
                           key={item.client}

@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { MediaItem } from "../site";
 import { ExhibitGallery, mediaIsVideo } from "./ExhibitGallery";
 
@@ -12,6 +12,46 @@ function orderSlides(media: MediaItem[]): MediaItem[] {
   const videos = media.filter((item) => mediaIsVideo(item));
   const stills = media.filter((item) => !mediaIsVideo(item));
   return [...videos, ...stills];
+}
+
+function RelatedCover({ item }: { item: MediaItem }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!mediaIsVideo(item)) return;
+    const el = videoRef.current;
+    if (!el) return;
+    const tryPlay = () => {
+      void el.play().catch(() => {
+        /* autoplay may be blocked */
+      });
+    };
+    tryPlay();
+    el.addEventListener("loadeddata", tryPlay);
+    el.addEventListener("canplay", tryPlay);
+    return () => {
+      el.removeEventListener("loadeddata", tryPlay);
+      el.removeEventListener("canplay", tryPlay);
+    };
+  }, [item.src]);
+
+  if (mediaIsVideo(item)) {
+    return (
+      <video
+        ref={videoRef}
+        src={item.src}
+        poster={item.poster}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="auto"
+        aria-hidden="true"
+      />
+    );
+  }
+
+  return <img src={item.src} alt="" loading="lazy" decoding="async" />;
 }
 
 export function CaseStudy({
@@ -50,7 +90,7 @@ export function CaseStudy({
     result: string;
     did: string;
   };
-  related?: { name: string; thumb?: string }[];
+  related?: { name: string; cover?: MediaItem }[];
   onSelectRelated?: (name: string) => void;
   onBack: () => void;
   backLabel: string;
@@ -170,8 +210,8 @@ export function CaseStudy({
               className="case__related-card"
               onClick={() => onSelectRelated(item.name)}
             >
-              {item.thumb ? (
-                <img src={item.thumb} alt="" loading="lazy" decoding="async" />
+              {item.cover ? (
+                <RelatedCover item={item.cover} />
               ) : (
                 <span className="case__related-fallback" aria-hidden="true" />
               )}
