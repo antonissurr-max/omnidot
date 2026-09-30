@@ -2,6 +2,19 @@ import { useEffect } from "react";
 
 type Tone = "dark" | "light";
 
+function stageFallbackTone(stage: Element): Tone {
+  if (stage.classList.contains("is-work")) return "dark";
+  if (
+    stage.classList.contains("is-about") ||
+    stage.classList.contains("is-privacy")
+  ) {
+    return "light";
+  }
+  // Pricing hero is light; dark principles/faq declare data-chrome-tone themselves.
+  if (stage.classList.contains("is-pricing")) return "light";
+  return "light";
+}
+
 /**
  * Keeps `.stage.is-chrome-on-dark` in sync with `[data-chrome-tone]` surfaces
  * that sit under the fixed header band (pages, panels, modules, media strips).
@@ -15,7 +28,6 @@ export function useChromeTone(active = true) {
     if (!stage || !chrome) return;
 
     const hits = new Map<Element, { tone: Tone; ratio: number; top: number }>();
-    let band = 72;
     let io: IntersectionObserver | null = null;
     let raf = 0;
     let last: Tone | null = null;
@@ -27,17 +39,10 @@ export function useChromeTone(active = true) {
     };
 
     const pickTone = (): Tone => {
-      if (hits.size === 0) {
-        if (stage.classList.contains("is-work")) return "dark";
-        if (
-          stage.classList.contains("is-about") ||
-          stage.classList.contains("is-pricing") ||
-          stage.classList.contains("is-privacy")
-        ) {
-          return "light";
-        }
-        return "light";
-      }
+      // Service panels are always dark — don't let ghost home sections win.
+      if (stage.classList.contains("is-work")) return "dark";
+
+      if (hits.size === 0) return stageFallbackTone(stage);
 
       let best: { tone: Tone; ratio: number; top: number } | null = null;
       for (const entry of hits.values()) {
@@ -49,7 +54,7 @@ export function useChromeTone(active = true) {
           best = entry;
         }
       }
-      return best?.tone ?? "light";
+      return best?.tone ?? stageFallbackTone(stage);
     };
 
     const flush = () => {
@@ -65,7 +70,7 @@ export function useChromeTone(active = true) {
     const observeAll = () => {
       io?.disconnect();
       hits.clear();
-      band = Math.max(64, Math.ceil(chrome.getBoundingClientRect().bottom + 12));
+      const band = Math.max(64, Math.ceil(chrome.getBoundingClientRect().bottom + 12));
       const bottomClip = Math.max(0, window.innerHeight - band);
       io = new IntersectionObserver(
         (entries) => {
@@ -89,18 +94,23 @@ export function useChromeTone(active = true) {
         },
         {
           root: null,
-          // Only the strip under the header counts as "backdrop".
           rootMargin: `0px 0px ${-bottomClip}px 0px`,
           threshold: [0, 0.05, 0.15, 0.3, 0.5, 0.75, 1],
         },
       );
 
       stage.querySelectorAll<HTMLElement>("[data-chrome-tone]").forEach((el) => {
+        // Skip collapsed / invisible surfaces (dimmed home under work panels, etc.)
+        const style = getComputedStyle(el);
+        if (style.display === "none" || style.visibility === "hidden") return;
+        if (Number.parseFloat(style.opacity || "1") < 0.05) return;
         io?.observe(el);
       });
       schedule();
     };
 
+    // Apply route fallback immediately (covers service pages before IO settles).
+    apply(stageFallbackTone(stage));
     observeAll();
 
     const onResize = () => observeAll();
@@ -109,8 +119,12 @@ export function useChromeTone(active = true) {
     const mo = new MutationObserver((records) => {
       let rescan = false;
       for (const record of records) {
-        if (record.type === "attributes" && record.attributeName === "data-chrome-tone") {
-          rescan = true;
+        if (record.type === "attributes") {
+          if (record.attributeName === "data-chrome-tone") rescan = true;
+          if (record.attributeName === "class" && record.target === stage) {
+            apply(pickTone());
+            rescan = true;
+          }
         }
         if (record.type === "childList") rescan = true;
       }
@@ -118,7 +132,7 @@ export function useChromeTone(active = true) {
     });
     mo.observe(stage, {
       attributes: true,
-      attributeFilter: ["data-chrome-tone"],
+      attributeFilter: ["class", "data-chrome-tone"],
       childList: true,
       subtree: true,
     });
