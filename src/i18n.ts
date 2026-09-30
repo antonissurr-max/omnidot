@@ -28,6 +28,10 @@ export type ProofClient = {
   value: string;
   notes?: string[];
   links?: { label: string; href: string }[];
+  /** Atmospheric hero backdrop behind the mood board */
+  backdrop?: string;
+  /** Short “what we did” line under the story (Advision-style) */
+  did?: string;
   /** When set, gallery switches to these assets while this client is open */
   media?: MediaItem[];
 };
@@ -85,6 +89,10 @@ export type Copy = {
   pricingSeoDescription: string;
   aboutSeoDescription: string;
   mediaSoon: string;
+  caseCompany: string;
+  caseTask: string;
+  caseResult: string;
+  caseDid: string;
   pricingPlans: {
     id: string;
     name: string;
@@ -352,6 +360,10 @@ export const copy: Record<Locale, Copy> = {
     aboutSeoDescription:
       "About omnidot. — Athens marketing agency for founders and local brands. Web, SEO, social and performance as one system: data, clean design, strategies that turn visitors into customers.",
     mediaSoon: "Media soon",
+    caseCompany: "Company",
+    caseTask: "Task",
+    caseResult: "Result",
+    caseDid: "What we did",
     pricingPlans: [
       {
         id: "social",
@@ -506,6 +518,8 @@ export const copy: Record<Locale, Copy> = {
           clients: [
             {
               client: "Europatch",
+              backdrop: "/images/europatch-backdrop.jpg",
+              did: "Social media, Reels, organic content",
               story:
                 "Europatch sells cold asphalt to B2B buyers — a category that rarely goes viral. We built a steady organic presence around real product use and how-to content. In one year: 4.5M Facebook and 2.5M Instagram views, 100% organic.",
               value: "4.5M Facebook · 2.5M Instagram · 100% organic · 1 year",
@@ -514,29 +528,68 @@ export const copy: Record<Locale, Copy> = {
                 "Reel 397.9K · Facebook post 120.8K",
                 "Last month: 96% of views from non-followers",
               ],
+              media: [
+                {
+                  src: "/videos/europatch/timeline-1.mp4",
+                  kind: "video",
+                  title: "Europatch reel",
+                  detail: "How-to on the road",
+                },
+                {
+                  src: "/images/europatch-reels-grid-1.png",
+                  title: "Reels performance",
+                  detail: "Top organic reach",
+                },
+                {
+                  src: "/images/europatch-reels-grid-2.jpg",
+                  title: "Reels library",
+                  detail: "Views across the feed",
+                },
+                {
+                  src: "/images/proof-europatch-all.png",
+                  title: "Europatch — all content",
+                  detail: "4.5M views · 100% organic",
+                },
+                {
+                  src: "/images/proof-europatch-ig.png",
+                  title: "Europatch — Instagram",
+                  detail: "2.5M organic views",
+                },
+                {
+                  src: "/images/proof-europatch-fb.png",
+                  title: "Facebook post",
+                  detail: "120.8K views",
+                },
+                {
+                  src: "/images/proof-europatch-month.png",
+                  title: "Last month",
+                  detail: "96% from non-followers",
+                },
+              ],
             },
             {
               client: "N4Sails",
+              backdrop: "/images/n4sails-backdrop.jpg",
+              did: "Instagram management, organic Reels",
               story:
-                "Nafplio for Sails — lifestyle Reels for catamaran escapes. We ran the Instagram presence around summer stories that sell the feeling of being on board — organic reach, not ads.",
-              value: "",
+                "Nafplio for Sails — we ran the Instagram account around summer catamaran stories. Publishing rhythm, Reels placement and organic reach — not ad spend — so the feed sells the feeling of being on board.",
+              value: "Organic Instagram reach · lifestyle Reels",
+              notes: [
+                "Steady publishing for summer escapes",
+                "Grid of top-performing organic cuts",
+                "Reach built without paid boost",
+              ],
               media: [
+                {
+                  src: "/videos/n4sails/escape-summer-story.mp4",
+                  kind: "video",
+                  title: "Escape summer story",
+                  detail: "Dive into Nafplio blue",
+                },
                 {
                   src: "/images/n4sails-reels-grid.png",
                   title: "Reels grid",
                   detail: "Profile performance",
-                },
-                {
-                  src: "/images/n4sails-reel-views.png",
-                  title: "Top reel",
-                  detail: "14.2K organic views",
-                },
-                {
-                  src: "/videos/n4sails/escape-summer-story.mp4",
-                  kind: "video",
-                  poster: "/images/n4sails-reel-views.png",
-                  title: "Escape summer story",
-                  detail: "Dive into Nafplio blue",
                 },
               ],
             },
@@ -582,80 +635,67 @@ export const copy: Record<Locale, Copy> = {
           clients: [
             {
               client: "Europatch",
+              backdrop: "/images/europatch-backdrop.jpg",
+              did: "Content creation, Reels, how-to video",
               story:
-                "Same Europatch partnership from the content side: how-to reels on the road, product in use, cuts built for feed and Reels. That library powered the organic reach — including one reel to 397.9K.",
-              value: "The content behind 4.5M Facebook · 2.5M Instagram",
-              notes: ["How-to reels on the road · product in use · one reel to 397.9K"],
+                "Same Europatch partnership from the production side: how-to reels on the road, product in use, cuts built for feed and Reels. Concept, shoot and edit — the library that later drove organic reach.",
+              value: "How-to Reels · product in use · feed-ready cuts",
+              notes: [
+                "On-road how-to and product demos",
+                "Cuts sized for Reels and feed",
+                "One production line feeding every channel",
+              ],
               media: [
                 {
                   src: "/videos/europatch/timeline-1.mp4",
                   kind: "video",
-                  poster: "/images/proof-europatch-reel.png",
                   title: "Europatch reel",
                   detail: "How-to on the road",
                 },
                 {
                   src: "/videos/europatch/18.mp4",
                   kind: "video",
-                  poster: "/images/europatch-bags.webp",
-                  title: "Europatch production",
-                  detail: "Product in use",
-                },
-                {
-                  src: "/images/europatch-reels-grid-1.png",
-                  title: "Reels performance",
-                  detail: "Top organic reach",
-                },
-                {
-                  src: "/images/europatch-reels-grid-2.jpg",
-                  title: "Reels library",
-                  detail: "Views across the feed",
+                  title: "Product in use",
+                  detail: "Cold asphalt on site",
                 },
               ],
             },
             {
               client: "N4Sails",
+              backdrop: "/images/n4sails-backdrop.jpg",
+              did: "Lifestyle Reels, guest stories, edit",
               story:
-                "Nafplio for Sails — lifestyle Reels for catamaran escapes: dive shots, family moments, and guest stories cut for Instagram. Organic reach that sells the feeling of being on board.",
-              value: "",
+                "Nafplio for Sails — lifestyle Reels for catamaran escapes: dive shots, family moments, and guest stories cut for Instagram. Full content production that sells the feeling of being on board.",
+              value: "Lifestyle Reels · Nafplio · feed-ready",
+              notes: [
+                "Escape / little moments / guest stories",
+                "Dive, deck and onboard lifestyle cuts",
+                "Edited for Instagram Reels length",
+              ],
               media: [
                 {
                   src: "/videos/n4sails/escape-summer-story.mp4",
                   kind: "video",
-                  poster: "/images/n4sails-reel-views.png",
                   title: "Escape summer story",
                   detail: "Dive into Nafplio blue",
                 },
                 {
                   src: "/videos/n4sails/little-moments-family.mp4",
                   kind: "video",
-                  poster: "/images/n4sails-reels-grid.png",
                   title: "Little moments",
                   detail: "Family on deck",
                 },
                 {
                   src: "/videos/n4sails/description-3-words.mp4",
                   kind: "video",
-                  poster: "/images/n4sails-reels-grid.png",
                   title: "Description in 3 words",
                   detail: "Guest story · Konstantinos",
                 },
                 {
                   src: "/videos/n4sails/home-away-from-home.mp4",
                   kind: "video",
-                  poster: "/images/n4sails-reels-grid.png",
                   title: "Home away from home",
                   detail: "Onboard lifestyle",
-                },
-                {
-                  src: "/images/n4sails-reels-grid.png",
-                  title: "Reels performance",
-                  detail: "Top organic reach",
-                },
-                {
-                  src: "/images/n4sails-reel-views.png",
-                  title: "Reel views",
-                  detail: "14.2K organic",
                 },
               ],
             },
@@ -833,13 +873,6 @@ export const copy: Record<Locale, Copy> = {
         detail: "How-to on the road",
       },
       {
-        src: "/videos/europatch/18.mp4",
-        kind: "video",
-        poster: "/images/europatch-bags.webp",
-        title: "Europatch production",
-        detail: "Product in use",
-      },
-      {
         src: "/images/europatch-reels-grid-1.png",
         title: "Reels performance",
         detail: "Top organic reach",
@@ -949,6 +982,10 @@ export const copy: Record<Locale, Copy> = {
     aboutSeoDescription:
       "Σχετικά με την omnidot. — διαφημιστική Αθήνα για founders και τοπικά brands. Web, SEO, social και performance σαν ένα σύστημα: δεδομένα, καθαρό design, στρατηγικές που φέρνουν πελάτες.",
     mediaSoon: "Media σύντομα",
+    caseCompany: "Εταιρεία",
+    caseTask: "Υπηρεσία",
+    caseResult: "Αποτέλεσμα",
+    caseDid: "Τι κάναμε",
     pricingPlans: [
       {
         id: "social",
@@ -1103,6 +1140,8 @@ export const copy: Record<Locale, Copy> = {
           clients: [
             {
               client: "Europatch",
+              backdrop: "/images/europatch-backdrop.jpg",
+              did: "Social media, Reels, οργανικό content",
               story:
                 "Η Europatch πουλάει ψυχρή άσφαλτο σε B2B πελάτες — κατηγορία που σπάνια γίνεται viral online. Χτίσαμε σταθερή οργανική παρουσία γύρω από πραγματική χρήση προϊόντος και how-to περιεχόμενο. Σε έναν χρόνο: 4.5 εκ. views στο Facebook και 2.5 εκ. στο Instagram, 100% organic.",
               value: "4.5 εκ. Facebook · 2.5 εκ. Instagram · 100% organic · 1 χρόνος",
@@ -1111,29 +1150,68 @@ export const copy: Record<Locale, Copy> = {
                 "Reel 397.9K · Facebook post 120.8K",
                 "Τελευταίος μήνας: 96% των views από non-followers",
               ],
+              media: [
+                {
+                  src: "/videos/europatch/timeline-1.mp4",
+                  kind: "video",
+                  title: "Europatch reel",
+                  detail: "How-to στον δρόμο",
+                },
+                {
+                  src: "/images/europatch-reels-grid-1.png",
+                  title: "Απόδοση Reels",
+                  detail: "Top organic reach",
+                },
+                {
+                  src: "/images/europatch-reels-grid-2.jpg",
+                  title: "Βιβλιοθήκη Reels",
+                  detail: "Views στο feed",
+                },
+                {
+                  src: "/images/proof-europatch-all.png",
+                  title: "Europatch — όλο το content",
+                  detail: "4.5 εκ. views · 100% organic",
+                },
+                {
+                  src: "/images/proof-europatch-ig.png",
+                  title: "Europatch — Instagram",
+                  detail: "2.5 εκ. οργανικά views",
+                },
+                {
+                  src: "/images/proof-europatch-fb.png",
+                  title: "Facebook post",
+                  detail: "120.8K views",
+                },
+                {
+                  src: "/images/proof-europatch-month.png",
+                  title: "Τελευταίος μήνας",
+                  detail: "96% από non-followers",
+                },
+              ],
             },
             {
               client: "N4Sails",
+              backdrop: "/images/n4sails-backdrop.jpg",
+              did: "Διαχείριση Instagram, οργανικά Reels",
               story:
-                "Nafplio for Sails — lifestyle Reels για καταμαράν. Τρέξαμε την Instagram παρουσία γύρω από καλοκαιρινές ιστορίες που πουλάνε το αίσθημα του να είσαι πάνω στο σκάφος — οργανική εμβέλεια, όχι ads.",
-              value: "",
+                "Nafplio for Sails — τρέξαμε τον λογαριασμό Instagram γύρω από καλοκαιρινές ιστορίες καταμαράν. Ρυθμός δημοσίευσης, τοποθέτηση Reels και οργανική εμβέλεια — όχι ad spend — ώστε το feed να πουλάει το αίσθημα του να είσαι πάνω στο σκάφος.",
+              value: "Οργανική εμβέλεια Instagram · lifestyle Reels",
+              notes: [
+                "Σταθερό publishing για summer escapes",
+                "Grid με top οργανικά cuts",
+                "Reach χωρίς paid boost",
+              ],
               media: [
+                {
+                  src: "/videos/n4sails/escape-summer-story.mp4",
+                  kind: "video",
+                  title: "Escape summer story",
+                  detail: "Dive στο μπλε του Ναυπλίου",
+                },
                 {
                   src: "/images/n4sails-reels-grid.png",
                   title: "Grid Reels",
                   detail: "Απόδοση προφίλ",
-                },
-                {
-                  src: "/images/n4sails-reel-views.png",
-                  title: "Top reel",
-                  detail: "14.2K οργανικά views",
-                },
-                {
-                  src: "/videos/n4sails/escape-summer-story.mp4",
-                  kind: "video",
-                  poster: "/images/n4sails-reel-views.png",
-                  title: "Escape summer story",
-                  detail: "Dive στο μπλε του Ναυπλίου",
                 },
               ],
             },
@@ -1179,80 +1257,67 @@ export const copy: Record<Locale, Copy> = {
           clients: [
             {
               client: "Europatch",
+              backdrop: "/images/europatch-backdrop.jpg",
+              did: "Content creation, Reels, how-to video",
               story:
-                "Η ίδια συνεργασία Europatch από την πλευρά του content: how-to reels στον δρόμο, προϊόν σε χρήση, cuts για feed και Reels. Αυτή η βιβλιοθήκη στήριξε την οργανική εμβέλεια — με ένα reel στα 397.9K.",
-              value: "Το περιεχόμενο πίσω από 4.5 εκ. Facebook · 2.5 εκ. Instagram",
-              notes: ["How-to reels στον δρόμο · προϊόν σε χρήση · ένα reel στα 397.9K"],
+                "Ίδια συνεργασία Europatch από την πλευρά της παραγωγής: how-to reels στον δρόμο, προϊόν σε χρήση, cuts για feed και Reels. Concept, γύρισμα και μοντάζ — η βιβλιοθήκη που μετά έφερε οργανική εμβέλεια.",
+              value: "How-to Reels · προϊόν σε χρήση · ready-to-post cuts",
+              notes: [
+                "How-to στον δρόμο και demos προϊόντος",
+                "Cuts για Reels και feed",
+                "Μία γραμμή παραγωγής για όλα τα κανάλια",
+              ],
               media: [
                 {
                   src: "/videos/europatch/timeline-1.mp4",
                   kind: "video",
-                  poster: "/images/proof-europatch-reel.png",
                   title: "Europatch reel",
                   detail: "How-to στον δρόμο",
                 },
                 {
                   src: "/videos/europatch/18.mp4",
                   kind: "video",
-                  poster: "/images/europatch-bags.webp",
-                  title: "Europatch production",
-                  detail: "Προϊόν σε χρήση",
-                },
-                {
-                  src: "/images/europatch-reels-grid-1.png",
-                  title: "Απόδοση Reels",
-                  detail: "Top organic reach",
-                },
-                {
-                  src: "/images/europatch-reels-grid-2.jpg",
-                  title: "Βιβλιοθήκη Reels",
-                  detail: "Views στο feed",
+                  title: "Προϊόν σε χρήση",
+                  detail: "Ψυχρή άσφαλτος on site",
                 },
               ],
             },
             {
               client: "N4Sails",
+              backdrop: "/images/n4sails-backdrop.jpg",
+              did: "Lifestyle Reels, guest stories, μοντάζ",
               story:
-                "Nafplio for Sails — lifestyle Reels για καταμαράν: dive shots, οικογενειακές στιγμές και guest stories για Instagram. Οργανική εμβέλεια που πουλάει το αίσθημα του να είσαι πάνω στο σκάφος.",
-              value: "",
+                "Nafplio for Sails — lifestyle Reels για καταμαράν: dive shots, οικογενειακές στιγμές και guest stories για Instagram. Πλήρης παραγωγή περιεχομένου που πουλάει το αίσθημα του να είσαι πάνω στο σκάφος.",
+              value: "Lifestyle Reels · Ναύπλιο · ready-to-post",
+              notes: [
+                "Escape / little moments / guest stories",
+                "Dive, κατάστρωμα και onboard lifestyle",
+                "Μοντάζ για μήκος Instagram Reels",
+              ],
               media: [
                 {
                   src: "/videos/n4sails/escape-summer-story.mp4",
                   kind: "video",
-                  poster: "/images/n4sails-reel-views.png",
                   title: "Escape summer story",
                   detail: "Dive στο μπλε του Ναυπλίου",
                 },
                 {
                   src: "/videos/n4sails/little-moments-family.mp4",
                   kind: "video",
-                  poster: "/images/n4sails-reels-grid.png",
                   title: "Little moments",
                   detail: "Οικογένεια στο κατάστρωμα",
                 },
                 {
                   src: "/videos/n4sails/description-3-words.mp4",
                   kind: "video",
-                  poster: "/images/n4sails-reels-grid.png",
                   title: "Description in 3 words",
                   detail: "Guest story · Konstantinos",
                 },
                 {
                   src: "/videos/n4sails/home-away-from-home.mp4",
                   kind: "video",
-                  poster: "/images/n4sails-reels-grid.png",
                   title: "Home away from home",
                   detail: "Lifestyle στο σκάφος",
-                },
-                {
-                  src: "/images/n4sails-reels-grid.png",
-                  title: "Απόδοση Reels",
-                  detail: "Top organic reach",
-                },
-                {
-                  src: "/images/n4sails-reel-views.png",
-                  title: "Views reel",
-                  detail: "14.2K οργανικά",
                 },
               ],
             },
@@ -1428,13 +1493,6 @@ export const copy: Record<Locale, Copy> = {
         poster: "/images/proof-europatch-reel.png",
         title: "Europatch reel",
         detail: "How-to στον δρόμο",
-      },
-      {
-        src: "/videos/europatch/18.mp4",
-        kind: "video",
-        poster: "/images/europatch-bags.webp",
-        title: "Europatch production",
-        detail: "Προϊόν σε χρήση",
       },
       {
         src: "/images/europatch-reels-grid-1.png",

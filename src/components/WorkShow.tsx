@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { BoxedTitle } from "./BoxedTitle";
-import { ExhibitGallery, mediaIsVideo } from "./ExhibitGallery";
+import { CaseStudy } from "./CaseStudy";
+import { mediaIsVideo } from "./ExhibitGallery";
 import { pageOrder, type MediaItem, type PageId } from "../site";
 import { useLocale } from "../locale";
 import type { ProofClient } from "../i18n";
@@ -31,6 +32,53 @@ function resolveClients(
     ];
   }
   return [];
+}
+
+function clientCover(
+  item: ProofClient,
+  fallback: MediaItem[],
+): MediaItem | undefined {
+  const media = item.media && item.media.length > 0 ? item.media : fallback;
+  return media.find((m) => mediaIsVideo(m)) ?? media[0];
+}
+
+function ProjectCover({ item }: { item: MediaItem }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!mediaIsVideo(item)) return;
+    const el = videoRef.current;
+    if (!el) return;
+    const tryPlay = () => {
+      void el.play().catch(() => {
+        /* autoplay may be blocked */
+      });
+    };
+    tryPlay();
+    el.addEventListener("loadeddata", tryPlay);
+    el.addEventListener("canplay", tryPlay);
+    return () => {
+      el.removeEventListener("loadeddata", tryPlay);
+      el.removeEventListener("canplay", tryPlay);
+    };
+  }, [item.src]);
+
+  if (mediaIsVideo(item)) {
+    return (
+      <video
+        ref={videoRef}
+        src={item.src}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="auto"
+        aria-hidden="true"
+      />
+    );
+  }
+
+  return <img src={item.src} alt="" loading="lazy" decoding="async" />;
 }
 
 export function WorkShow({
@@ -66,10 +114,10 @@ export function WorkShow({
               : [];
   const clients = resolveClients(copy.proof);
   const isFolder = clients.length > 0;
-  const [active, setActive] = useState(0);
   const [lightbox, setLightbox] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   const [openClient, setOpenClient] = useState<string | null>(null);
-  const exhibitRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const activeCase = clients.find((c) => c.client === openClient);
   const gallery = !isFolder
@@ -79,22 +127,24 @@ export function WorkShow({
       : activeCase?.media !== undefined
         ? activeCase.media
         : pageGallery;
-  const mediaCount = gallery.length;
-  const showExhibit = mediaCount > 0 && (!isFolder || Boolean(openClient));
+
+  const viewingCase = Boolean(openClient && activeCase) || (!isFolder && gallery.length > 0);
 
   const i = pageOrder.indexOf(id);
   const prev = pageOrder[(i - 1 + pageOrder.length) % pageOrder.length];
   const next = pageOrder[(i + 1) % pageOrder.length];
-  const current = gallery[active];
+  const current = gallery[lightboxIndex];
 
   useEffect(() => {
-    setActive(0);
     setLightbox(false);
+    setLightboxIndex(0);
     setOpenClient(null);
   }, [id]);
 
   useEffect(() => {
-    setActive(0);
+    setLightbox(false);
+    setLightboxIndex(0);
+    scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   }, [openClient]);
 
   useEffect(() => {
@@ -108,158 +158,163 @@ export function WorkShow({
       if (lightbox) return;
       if (e.key === "ArrowLeft") onNavigate(prev);
       if (e.key === "ArrowRight") onNavigate(next);
-      if (showExhibit && mediaCount > 1 && e.key === "ArrowUp") {
-        e.preventDefault();
-        setActive((n) => (n - 1 + mediaCount) % mediaCount);
-      }
-      if (showExhibit && mediaCount > 1 && e.key === "ArrowDown") {
-        e.preventDefault();
-        setActive((n) => (n + 1) % mediaCount);
-      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [lightbox, openClient, onClose, onNavigate, prev, next, mediaCount, showExhibit]);
+  }, [lightbox, openClient, onClose, onNavigate, prev, next]);
 
-  const proofBlock = copy.proof ? (
-    <div className={`work__proof${isFolder ? " work__proof--folder" : ""}`}>
-      <span className="work__proof-label">{copy.proof.label}</span>
-      {clients.length > 0 ? (
-        <div className="work__proof-clients">
-          {clients.map((item) => {
-            const open = openClient === item.client;
-            return (
-              <div key={item.client} className="work__proof-client">
-                <button
-                  className="work__proof-name"
-                  type="button"
-                  aria-expanded={open}
-                  onClick={() =>
-                    setOpenClient((cur) => (cur === item.client ? null : item.client))
-                  }
-                >
-                  {item.client}
-                </button>
-                {open && (
-                  <div className="work__proof-lines">
-                    {item.story ? <p className="work__proof-story">{item.story}</p> : null}
-                    {item.value ? <div className="work__proof-line">{item.value}</div> : null}
-                    {item.notes?.map((note) => (
-                      <div key={note} className="work__proof-line">
-                        {note}
-                      </div>
-                    ))}
-                    {item.links?.map((link) => (
-                      <a
-                        key={link.href}
-                        className="work__proof-line"
-                        href={link.href}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {link.label}
-                      </a>
-                    ))}
-                    {item.media && item.media.length === 0 ? (
-                      <div className="work__proof-line work__proof-line--muted">
-                        {t.mediaSoon}
-                      </div>
-                    ) : null}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      ) : copy.proof.links && copy.proof.links.length > 0 ? (
-        <div className="work__proof-lines">
-          {copy.proof.links.map((link) => (
-            <a
-              key={link.href}
-              className="work__proof-line"
-              href={link.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-      ) : copy.proof.href ? (
-        <a className="work__proof-line" href={copy.proof.href} target="_blank" rel="noreferrer">
-          {copy.proof.value}
-        </a>
-      ) : (
-        <strong className="work__proof-line">{copy.proof.value}</strong>
-      )}
-    </div>
-  ) : null;
+  const openZoom = (idx: number) => {
+    setLightboxIndex(idx);
+    setLightbox(true);
+  };
 
-  const exhibit = showExhibit ? (
-    <div className="work__exhibit" ref={exhibitRef} aria-label={t.gallery}>
-      <ExhibitGallery
-        items={gallery}
-        active={active}
-        onSelect={setActive}
-        onZoom={(idx) => {
-          setActive(idx);
-          setLightbox(true);
-        }}
-        zoomLabel={t.zoom}
-        prevLabel={t.prevPhoto}
-        nextLabel={t.nextPhoto}
-      />
-    </div>
+  const briefBtn = (
+    <button className="work__brief" type="button" onClick={onBrief}>
+      {t.startBrief} ↗
+    </button>
+  );
+
+  const related =
+    isFolder && openClient
+      ? clients
+          .filter((c) => c.client !== openClient)
+          .map((c) => ({
+            name: c.client,
+            cover: clientCover(c, pageGallery),
+          }))
+      : undefined;
+
+  const caseBlock = viewingCase ? (
+    <CaseStudy
+      title={activeCase?.client ?? copy.title}
+      story={activeCase?.story}
+      value={activeCase?.value}
+      notes={activeCase?.notes}
+      links={activeCase?.links}
+      media={gallery}
+      backdrop={activeCase?.backdrop}
+      did={activeCase?.did}
+      task={copy.title}
+      metaLabels={{
+        company: t.caseCompany,
+        task: t.caseTask,
+        result: t.caseResult,
+        did: t.caseDid,
+      }}
+      related={related}
+      onSelectRelated={(name) => setOpenClient(name)}
+      onBack={() => {
+        if (openClient) setOpenClient(null);
+        else onClose();
+      }}
+      backLabel={openClient ? copy.title : t.close}
+      onZoom={openZoom}
+      zoomLabel={t.zoom}
+      prevLabel={t.prevPhoto}
+      nextLabel={t.nextPhoto}
+      brief={briefBtn}
+    />
   ) : null;
 
   return (
     <div
-      className={`work is-open${gallery.length === 0 ? " work--text" : ""}${
-        exiting ? " is-exit" : ""
-      }`}
+      className={`work is-open${
+        !viewingCase && gallery.length === 0 ? " work--text" : ""
+      }${viewingCase ? " work--case" : ""}${exiting ? " is-exit" : ""}`}
       data-chrome-tone="dark"
       role="dialog"
       aria-modal="true"
-      aria-label={copy.title}
+      aria-label={openClient ?? copy.title}
     >
-      <div className="work__scroll" key={id}>
-        <header className="work__head">
-          <div className="work__lead">
-            <BoxedTitle text={copy.title} />
+      <div className="work__scroll" key={`${id}-${openClient ?? "list"}`} ref={scrollRef}>
+        {viewingCase ? (
+          caseBlock
+        ) : (
+          <>
+            <header className="work__head">
+              <div className="work__lead">
+                <BoxedTitle text={copy.title} />
 
-            <div className="work__meta">
-              {copy.meta.map((item) => (
-                <div key={item.label} className="work__meta-item">
-                  <span>{item.label}</span>
-                  <strong>{item.value}</strong>
+                <div className="work__meta">
+                  {copy.meta.map((item) => (
+                    <div key={item.label} className="work__meta-item">
+                      <span>{item.label}</span>
+                      <strong>{item.value}</strong>
+                    </div>
+                  ))}
                 </div>
-              ))}
-              {mediaCount > 1 && !isFolder && (
-                <button
-                  className="work__explore"
-                  type="button"
-                  onClick={() =>
-                    exhibitRef.current?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "start",
-                    })
-                  }
-                >
-                  {t.explore} ↗
-                </button>
-              )}
-            </div>
-          </div>
-          {proofBlock}
+              </div>
 
-          <button className="work__brief" type="button" onClick={onBrief}>
-            {t.startBrief} ↗
-          </button>
-        </header>
+              {isFolder ? (
+                <div className="work__proof work__proof--folder">
+                  <span className="work__proof-label">{copy.proof?.label}</span>
+                  <div className="work__projects">
+                    {clients.map((item) => {
+                      const cover = clientCover(item, pageGallery);
+                      return (
+                        <button
+                          key={item.client}
+                          className="work__project"
+                          type="button"
+                          onClick={() => setOpenClient(item.client)}
+                        >
+                          <span className="work__project-media">
+                            {cover ? (
+                              <ProjectCover item={cover} />
+                            ) : (
+                              <span className="work__project-empty" aria-hidden="true" />
+                            )}
+                          </span>
+                          <span className="work__project-copy">
+                            <span className="work__project-name">{item.client}</span>
+                            {item.value ? (
+                              <span className="work__project-value">{item.value}</span>
+                            ) : item.media && item.media.length === 0 ? (
+                              <span className="work__project-value">{t.mediaSoon}</span>
+                            ) : null}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : copy.proof ? (
+                <div className="work__proof">
+                  <span className="work__proof-label">{copy.proof.label}</span>
+                  {copy.proof.links && copy.proof.links.length > 0 ? (
+                    <div className="work__proof-lines">
+                      {copy.proof.links.map((link) => (
+                        <a
+                          key={link.href}
+                          className="work__proof-line"
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  ) : copy.proof.href ? (
+                    <a
+                      className="work__proof-line"
+                      href={copy.proof.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {copy.proof.value}
+                    </a>
+                  ) : (
+                    <strong className="work__proof-line">{copy.proof.value}</strong>
+                  )}
+                </div>
+              ) : null}
 
-        {exhibit}
-
-        {children && <div className="work__body">{children}</div>}
+              {briefBtn}
+            </header>
+            {children && <div className="work__body">{children}</div>}
+          </>
+        )}
       </div>
 
       <button
@@ -293,10 +348,10 @@ export function WorkShow({
             <video
               className="lightbox__media"
               src={current.src}
-              poster={current.poster}
               controls
               autoPlay
               playsInline
+              muted={false}
               title={current.title}
               aria-label={`${current.title}${current.detail ? ` — ${current.detail}` : ""}`}
               onClick={(e) => e.stopPropagation()}

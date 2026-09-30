@@ -22,44 +22,38 @@ function ExhibitMedia({
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
-    if (active) {
+    if (!active) {
+      el.pause();
+      if (el.currentTime) el.currentTime = 0;
+      return;
+    }
+    const tryPlay = () => {
       void el.play().catch(() => {
         /* autoplay may be blocked */
       });
-    } else {
-      el.pause();
-      if (el.currentTime) el.currentTime = 0;
-    }
-  }, [active]);
+    };
+    tryPlay();
+    el.addEventListener("loadeddata", tryPlay);
+    el.addEventListener("canplay", tryPlay);
+    return () => {
+      el.removeEventListener("loadeddata", tryPlay);
+      el.removeEventListener("canplay", tryPlay);
+    };
+  }, [active, item.src, near]);
 
   if (isVideo(item)) {
-    // Far slides: poster only — avoid downloading multi‑MB mp4s offscreen
-    if (!near) {
-      if (item.poster) {
-        return (
-          <img
-            className="exhibit__media"
-            src={item.poster}
-            alt=""
-            draggable={false}
-            loading="lazy"
-            decoding="async"
-          />
-        );
-      }
-      return <div className="exhibit__media" aria-hidden="true" />;
-    }
-
+    // Far slides: keep a live video element ready (no poster image)
+    const playNow = active || near;
     return (
       <video
         ref={videoRef}
         className="exhibit__media"
-        src={item.src}
-        poster={item.poster}
+        src={near || active ? item.src : undefined}
         muted
         loop
         playsInline
-        preload={active ? "metadata" : "none"}
+        autoPlay={playNow}
+        preload={active ? "auto" : near ? "metadata" : "none"}
         title={item.title}
         aria-label={`${item.title}${item.detail ? ` — ${item.detail}` : ""}`}
       />
