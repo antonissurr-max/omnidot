@@ -268,13 +268,26 @@ function jsonLdFor(def, locale) {
   if (def.type === "org") {
     return {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "ProfessionalService",
       name: "omnidot.",
+      legalName: "Antonios Syrianos",
       url: origin,
       description: copy.description,
       image: def.image,
+      logo: `${origin}/images/omnidot-logo.svg`,
       telephone: phone,
-      areaServed: "GR",
+      email: "info@omnidot.gr",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Athens",
+        addressRegion: "Attica",
+        addressCountry: "GR",
+      },
+      areaServed: [
+        { "@type": "City", name: "Athens" },
+        { "@type": "Country", name: "Greece" },
+      ],
+      priceRange: "€€",
     };
   }
   if (def.type === "about") {
@@ -312,10 +325,16 @@ function jsonLdFor(def, locale) {
     name: def.serviceName[locale],
     description: (copy.story || copy.body).slice(0, 300),
     provider: {
-      "@type": "Organization",
+      "@type": "ProfessionalService",
       name: "omnidot.",
       url: origin,
       telephone: phone,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Athens",
+        addressRegion: "Attica",
+        addressCountry: "GR",
+      },
     },
     areaServed: "GR",
     url,

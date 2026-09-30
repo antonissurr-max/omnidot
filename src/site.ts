@@ -11,6 +11,13 @@ export const site = {
   formspreeEndpoint: "https://formspree.io/f/maenvbbb",
   /** GA4 Measurement ID — loaded only after cookie consent */
   gaMeasurementId: "G-84BQG2BT9N",
+  address: {
+    locality: "Athens",
+    region: "Attica",
+    country: "GR",
+  },
+  /** Official profiles for schema.org sameAs (Instagram, LinkedIn, …) */
+  sameAs: [] as string[],
   legal: {
     nameEl: "Συριανός Αντώνιος",
     nameEn: "Antonios Syrianos",

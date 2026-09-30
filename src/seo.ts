@@ -28,19 +28,29 @@ function serviceDescription(locale: Locale, id: PageId): string {
 }
 
 function organizationLd(locale: Locale) {
+  const sameAs = site.sameAs.filter(Boolean);
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "ProfessionalService",
     name: "omnidot.",
+    legalName: site.legal.nameEn,
     url: SITE_ORIGIN,
     description: copy[locale].metaDescription,
     image: DEFAULT_OG,
+    logo: `${SITE_ORIGIN}/images/omnidot-logo.svg`,
     email: site.email,
     ...(ORG_PHONE ? { telephone: ORG_PHONE } : {}),
-    areaServed: {
-      "@type": "Country",
-      name: "Greece",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: site.address.locality,
+      addressRegion: site.address.region,
+      addressCountry: site.address.country,
     },
+    areaServed: [
+      { "@type": "City", name: "Athens" },
+      { "@type": "Country", name: "Greece" },
+    ],
+    priceRange: "€€",
     knowsAbout: [
       "Social media management",
       "Content creation",
@@ -48,6 +58,22 @@ function organizationLd(locale: Locale) {
       "Web development",
       "SEO",
     ],
+    ...(sameAs.length ? { sameAs } : {}),
+  };
+}
+
+function providerLd() {
+  return {
+    "@type": "ProfessionalService",
+    name: "omnidot.",
+    url: SITE_ORIGIN,
+    ...(ORG_PHONE ? { telephone: ORG_PHONE } : {}),
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: site.address.locality,
+      addressRegion: site.address.region,
+      addressCountry: site.address.country,
+    },
   };
 }
 
@@ -158,12 +184,7 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
         "@type": "Service",
         name: page.title,
         description: (story ?? description).slice(0, 300),
-        provider: {
-          "@type": "Organization",
-          name: "omnidot.",
-          url: SITE_ORIGIN,
-          ...(ORG_PHONE ? { telephone: ORG_PHONE } : {}),
-        },
+        provider: providerLd(),
         areaServed: "GR",
         url: canonical,
         image,
