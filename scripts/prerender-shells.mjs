@@ -37,19 +37,19 @@ const routeDefs = [
     elFile: "el/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
     en: {
-      title: "omnidot. - Marketing agency",
+      title: "omnidot. — Marketing Agency Athens | Social, Ads & Web",
       description:
-        "omnidot. - marketing agency for social media, content creation, performance marketing and web development.",
+        "Athens marketing agency for social media management, content creation, Meta & Google Ads, and SEO websites. Clear packages, remote-friendly, measurable growth.",
       h1: "omnidot.",
-      body: "Web, SEO, social and performance — one partner for brands that want to grow. Marketing agency in Athens and remote for founders and local brands.",
+      body: "Athens marketing agency for web, SEO, social media and performance ads — one partner for brands that want to grow. Founders and local brands, Athens and remote.",
       story: "",
     },
     el: {
-      title: "omnidot. - Διαφημιστική εταιρεία",
+      title: "omnidot. — Διαφημιστική Αθήνα | Social, Ads & Web",
       description:
-        "omnidot. - διαφημιστική για social media, παραγωγή περιεχομένου, performance marketing και web development.",
+        "Διαφημιστική Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, remote, μετρήσιμη ανάπτυξη.",
       h1: "omnidot.",
-      body: "Web, SEO, social και performance — ένας συνεργάτης για brands που θέλουν να μεγαλώσουν. Αθήνα και remote.",
+      body: "Διαφημιστική Αθήνα για web, SEO, social media και performance ads — ένας συνεργάτης για brands που θέλουν να μεγαλώσουν. Αθήνα και remote.",
       story: "",
     },
     type: "org",
@@ -62,20 +62,20 @@ const routeDefs = [
     elFile: "el/social/index.html",
     image: `${origin}/images/social.jpg`,
     en: {
-      title: "Social Media Management - omnidot.",
+      title: "Social Media Management — Instagram & TikTok | omnidot.",
       description:
-        "Social Media Management - We define how the brand should sound and look online, which themes actually matter, and a calendar that can be kept.",
+        "Social media management for Instagram, TikTok, Facebook & LinkedIn: strategy, Reels, community and growth. Athens & remote. From €450/mo.",
       h1: "Social Media Management",
-      body: "Strategy, publishing, growth and monthly reporting from omnidot.",
+      body: "Instagram, TikTok, Facebook and LinkedIn management — strategy, publishing, growth and monthly reporting from omnidot. Athens & remote.",
       story:
         "Europatch sells cold asphalt to B2B buyers — a category that rarely goes viral. We built a steady organic presence around real product use and how-to content. In one year: 4.5M Facebook and 2.5M Instagram views, 100% organic.",
     },
     el: {
-      title: "Διαχείριση Social Media - omnidot.",
+      title: "Διαχείριση Social Media & Instagram — omnidot. Αθήνα",
       description:
-        "Διαχείριση Social Media - Ορίζουμε πώς ακούγεται και φαίνεται το brand online, ποια θέματα έχουν ουσία, και ένα ημερολόγιο που κρατιέται.",
+        "Διαχείριση Instagram, TikTok, Facebook & LinkedIn: στρατηγική, Reels, community και growth. Διαφημιστική Αθήνα & remote. Από €450/μήνα.",
       h1: "Διαχείριση Social Media",
-      body: "Στρατηγική, δημοσίευση, ανάπτυξη και μηνιαίο reporting από το omnidot.",
+      body: "Διαχείριση Instagram, TikTok, Facebook και LinkedIn — στρατηγική, δημοσίευση, ανάπτυξη και μηνιαίο reporting από το omnidot. Αθήνα & remote.",
       story:
         "Η Europatch πουλάει ψυχρή άσφαλτο σε B2B πελάτες — κατηγορία που σπάνια γίνεται viral online. Χτίσαμε σταθερή οργανική παρουσία γύρω από πραγματική χρήση προϊόντος και how-to περιεχόμενο. Σε έναν χρόνο: 4.5 εκ. views στο Facebook και 2.5 εκ. στο Instagram, 100% organic.",
     },
@@ -90,20 +90,20 @@ const routeDefs = [
     elFile: "el/content/index.html",
     image: `${origin}/images/content.jpg`,
     en: {
-      title: "Content Creation - omnidot.",
+      title: "Content Creation — Photo, Video & Reels | omnidot.",
       description:
-        "Content Creation - Before anyone shoots, we lock the idea, the story, and the shots for social, ads and the site.",
+        "Content creation for Instagram Reels, ads and web: photo, video and edit from concept to ready-to-post. Shoot day €200. Packs from €350. Athens.",
       h1: "Content Creation",
-      body: "Concept, capture, edit and assets ready to post.",
+      body: "Photo, video and Reels content creation — concept, capture, edit and assets ready to post for social, ads and web.",
       story:
         "Same Europatch partnership from the content side: how-to reels on the road, product in use, cuts built for feed and Reels. That library powered the organic reach — including one reel to 397.9K.",
     },
     el: {
-      title: "Δημιουργία Περιεχομένου - omnidot.",
+      title: "Παραγωγή Περιεχομένου — Reels, Video & Φωτο | omnidot.",
       description:
-        "Δημιουργία Περιεχομένου - Πριν γυρίσει κάμερα, κλειδώνουμε την ιδέα, την ιστορία και τα πλάνα.",
+        "Παραγωγή περιεχομένου για Instagram Reels, ads και web: φωτογραφία, video και μοντάζ από concept έως ανάρτηση. Γύρισμα €200. Πακέτα από €350. Αθήνα.",
       h1: "Δημιουργία Περιεχομένου",
-      body: "Concept, λήψη, μοντάζ και assets έτοιμα για ανάρτηση.",
+      body: "Παραγωγή περιεχομένου — φωτογραφία, video και Reels από concept έως assets έτοιμα για ανάρτηση σε social, ads και web.",
       story:
         "Η ίδια συνεργασία Europatch από την πλευρά του content: how-to reels στον δρόμο, προϊόν σε χρήση, cuts για feed και Reels. Αυτή η βιβλιοθήκη στήριξε την οργανική εμβέλεια — με ένα reel στα 397.9K.",
     },
@@ -118,20 +118,20 @@ const routeDefs = [
     elFile: "el/performance/index.html",
     image: `${origin}/images/performance.jpg`,
     en: {
-      title: "Performance Marketing - omnidot.",
+      title: "Meta & Google Ads Management — omnidot. Athens",
       description:
-        "Performance Marketing - We set up and run paid social and search so spend has a job: traffic, leads or sales.",
+        "Performance marketing with Meta Ads and Google Ads. Setup €200 once, management from €300/mo. Your ad spend stays yours. Conversion-focused for Greek brands.",
       h1: "Performance Marketing",
-      body: "Meta and Google with clear cost, return and next moves.",
+      body: "Meta Ads and Google Ads management with clear cost, return and next moves. Setup once, then monthly optimization.",
       story:
         "Pyrgiotis OE needed paid acquisition a founder could read without a deck. We ran Meta and Google with tight creative tests and a clean landing path. In 30 days on Meta: 1,791 landing-page views at €0.08 each on €148 spend — plus Google search at 3.23% CTR.",
     },
     el: {
-      title: "Performance Marketing - omnidot.",
+      title: "Google Ads & Meta Ads — Διαχείριση | omnidot. Αθήνα",
       description:
-        "Performance Marketing - Στήνουμε και τρέχουμε paid social και search ώστε τα λεφτά να έχουν δουλειά: traffic, leads ή πωλήσεις.",
+        "Διαχείριση Google Ads και Meta Ads. Setup €200 μία φορά, management από €300/μήνα. Το ad spend μένει δικό σας. Διαφημίσεις με στόχο conversions.",
       h1: "Performance Marketing",
-      body: "Meta και Google με καθαρό κόστος, απόδοση και επόμενα βήματα.",
+      body: "Διαχείριση Meta Ads και Google Ads με καθαρό κόστος, απόδοση και επόμενα βήματα. Setup μία φορά, μετά μηνιαία βελτιστοποίηση.",
       story:
         "Ο Πυργιώτης ΟΕ ήθελε paid acquisition που να διαβάζει ένας founder χωρίς 40σέλιδο deck. Τρέξαμε Meta και Google με σφιχτά creative tests και καθαρό landing path. Σε 30 ημέρες στο Meta: 1.791 landing-page views στα €0,08 το καθένα με €148 spend — και Google search με 3,23% CTR.",
     },
@@ -146,19 +146,19 @@ const routeDefs = [
     elFile: "el/web/index.html",
     image: `${origin}/images/web.jpg`,
     en: {
-      title: "Web Development - omnidot.",
+      title: "Web Development & SEO — Athens | omnidot.",
       description:
-        "Web Development - We build sites that load quickly, read clearly, and ask for the right action.",
+        "Website development and SEO: fast sites, landing pages and Google-ready structure. Landing from €700, multi-page ≈ €700/page. Athens & remote.",
       h1: "Web Development",
-      body: "Fast, editorial sites built to convert.",
+      body: "Website development and SEO — fast, editorial sites and landing pages built to rank, load quickly and convert.",
       story: "",
     },
     el: {
-      title: "Ανάπτυξη Ιστοσελίδων - omnidot.",
+      title: "Κατασκευή Ιστοσελίδας & SEO — Αθήνα | omnidot.",
       description:
-        "Ανάπτυξη Ιστοσελίδων - Φτιάχνουμε sites που φορτώνουν γρήγορα, διαβάζονται καθαρά και ζητούν τη σωστή ενέργεια.",
+        "Κατασκευή ιστοσελίδας και SEO: γρήγορα sites, landing pages και δομή για Google. Landing από €700, multi-page ≈ €700/σελίδα. Αθήνα & remote.",
       h1: "Ανάπτυξη Ιστοσελίδων",
-      body: "Γρήγορα, editorial sites φτιαγμένα για conversion.",
+      body: "Κατασκευή ιστοσελίδας και SEO — γρήγορα sites και landing pages φτιαγμένα να rankάρουν, να φορτώνουν γρήγορα και να μετατρέπουν.",
       story: "",
     },
     type: "service",
@@ -172,19 +172,19 @@ const routeDefs = [
     elFile: "el/about/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
     en: {
-      title: "About - omnidot.",
+      title: "About & Contact — Marketing Agency Athens | omnidot.",
       description:
-        "For founders and local brands that want a clear next step - not another report. From websites and SEO to social and performance.",
+        "About omnidot. — Athens marketing agency for founders and local brands. Contact us for social media, content, Meta & Google Ads, and SEO websites.",
       h1: "About omnidot.",
-      body: "For founders and local brands that want a clear next step — not another report. Start a brief with omnidot.",
+      body: "Athens marketing agency for founders and local brands. From SEO websites to social media and Meta & Google Ads. Start a brief with omnidot.",
       story: "",
     },
     el: {
-      title: "Σχετικά - omnidot.",
+      title: "Σχετικά & Επικοινωνία — Διαφημιστική Αθήνα | omnidot.",
       description:
-        "Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Από ιστοσελίδες και SEO μέχρι social και performance.",
+        "Σχετικά με την omnidot. — διαφημιστική Αθήνα για founders και τοπικά brands. Επικοινωνία για social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
       h1: "Σχετικά με το omnidot.",
-      body: "Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Ξεκίνα ένα brief με το omnidot.",
+      body: "Διαφημιστική Αθήνα για founders και τοπικά brands. Από ιστοσελίδες με SEO μέχρι social media και Meta & Google Ads. Ξεκίνα ένα brief με το omnidot.",
       story: "",
     },
     type: "about",
@@ -197,19 +197,19 @@ const routeDefs = [
     elFile: "el/pricing/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
     en: {
-      title: "Packages & pricing - omnidot.",
+      title: "Marketing Agency Pricing — Packages | omnidot. Athens",
       description:
-        "Clear monthly retainers and project fees for social, content, performance and web. Ad spend is always separate.",
+        "Marketing agency pricing in Athens: social media from €450/mo, content packs from €350, Meta & Google Ads from €300/mo, SEO websites from €700. Ad spend separate.",
       h1: "Packages & pricing",
-      body: "Clear monthly retainers and project fees. Ad spend is always separate. Scope is written down before we start. Social from €750/mo, content packs from €350, performance from €350/mo, web from €800.",
+      body: "Clear marketing agency packages for social, content, ads and web. Ad spend is always separate. Social from €450/mo, content from €350, performance from €300/mo, web from €700.",
       story: "",
     },
     el: {
-      title: "Πακέτα & τιμές - omnidot.",
+      title: "Τιμές Διαφημιστικής — Πακέτα | omnidot. Αθήνα",
       description:
-        "Καθαρά μηνιαία retainers και project fees για social, content, performance και web. Το ad spend είναι πάντα ξεχωριστά.",
+        "Τιμές διαφημιστικής Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες SEO από €700. Ad spend ξεχωριστά.",
       h1: "Πακέτα & τιμές",
-      body: "Καθαρά μηνιαία retainers και project fees. Το ad spend είναι πάντα ξεχωριστά. Το scope γράφεται πριν ξεκινήσουμε. Social από €750/μήνα, content packs από €350, performance από €350/μήνα, web από €800.",
+      body: "Καθαρά πακέτα διαφημιστικής για social, content, ads και web. Το ad spend είναι πάντα ξεχωριστά. Social από €450/μήνα, content από €350, performance από €300/μήνα, web από €700.",
       story: "",
     },
     type: "pricing",

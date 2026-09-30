@@ -275,9 +275,9 @@ const aboutVerseEl: VerseRow[] = [
 
 export const copy: Record<Locale, Copy> = {
   en: {
-    metaTitle: "omnidot. — Marketing agency in Athens",
+    metaTitle: "omnidot. — Marketing Agency Athens | Social, Ads & Web",
     metaDescription:
-      "omnidot. is a marketing agency for social media management, content creation, performance ads and websites. Athens & remote — clear packages, measurable growth.",
+      "Athens marketing agency for social media management, content creation, Meta & Google Ads, and SEO websites. Clear packages, remote-friendly, measurable growth.",
     langLabel: "Language",
     homeAria: "omnidot — home",
     about: "About",
@@ -304,9 +304,9 @@ export const copy: Record<Locale, Copy> = {
     revealShort: "Reveal shorter message",
     revealFull: "Show full message",
     aboutSub:
-      "Web, SEO, social and performance — one partner for brands that want to grow.",
+      "Athens marketing agency for web, SEO, social media and performance ads — one partner for brands that want to grow.",
     aboutBody:
-      "For founders and local brands that want a clear next step — not another report. From a premium, fast website and SEO to social strategy and performance campaigns. We don't believe in noise. We believe in data, clean design, and strategies that turn visitors into loyal customers.",
+      "For founders and local brands that want a clear next step — not another report. From a fast SEO website to social media management and Meta & Google Ads campaigns. We don't believe in noise. We believe in data, clean design, and strategies that turn visitors into loyal customers.",
     landingLede: "Athens · pick a service or start a brief",
     startBrief: "Start a brief",
     contactUs: "Contact us",
@@ -315,7 +315,7 @@ export const copy: Record<Locale, Copy> = {
     pricingTitleLead: "Packages",
     pricingTitleSub: "& pricing",
     pricingLede:
-      "Clear monthly retainers and project fees. Ad spend is always separate. Scope is written down before we start.",
+      "Clear marketing agency packages for social, content, ads and web. Ad spend is always separate. Scope is written down before we start.",
     pricingNote:
       "Prices in EUR, excl. VAT where applicable. Minimum 3 months on retainers. Creative production can be bundled or billed per asset.",
     pricingCta: "Start a brief",
@@ -356,9 +356,9 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     pricingSeoDescription:
-      "omnidot. packages & pricing: social media from €450/mo, content packs from €350, performance ads from €300/mo, websites from €700. Athens marketing agency — clear scope, ad spend separate.",
+      "Marketing agency pricing in Athens: social media from €450/mo, content packs from €350, Meta & Google Ads from €300/mo, SEO websites from €700. Clear scope — ad spend separate.",
     aboutSeoDescription:
-      "About omnidot. — Athens marketing agency for founders and local brands. Web, SEO, social and performance as one system: data, clean design, strategies that turn visitors into customers.",
+      "About omnidot. — Athens marketing agency for founders and local brands. Contact us for social media, content, Meta & Google Ads, and SEO websites built as one system.",
     mediaSoon: "Media soon",
     caseCompany: "Company",
     caseTask: "Task",
@@ -503,9 +503,9 @@ export const copy: Record<Locale, Copy> = {
     pages: {
       social: {
         title: "Social Media Management",
-        seoTitle: "Social Media Management — omnidot.",
+        seoTitle: "Social Media Management — Instagram & TikTok | omnidot.",
         seoDescription:
-          "Social media management for Instagram, TikTok, Facebook & LinkedIn: strategy, publishing, community and growth. Athens & remote. From €450/mo.",
+          "Social media management for Instagram, TikTok, Facebook & LinkedIn: strategy, Reels, community and growth. Athens & remote. From €450/mo.",
         meta: [
           { label: "Goal", value: "Steady presence" },
           { label: "Channels", value: "IG · TikTok · LinkedIn" },
@@ -620,9 +620,9 @@ export const copy: Record<Locale, Copy> = {
       },
       content: {
         title: "Content Creation",
-        seoTitle: "Content Creation — omnidot.",
+        seoTitle: "Content Creation — Photo, Video & Reels | omnidot.",
         seoDescription:
-          "Photo and video content for feed, Reels, ads and web — concept through edit. Shoot day €200. Asset packs from €350. Athens production.",
+          "Content creation for Instagram Reels, ads and web: photo, video and edit from concept to ready-to-post. Shoot day €200. Packs from €350. Athens.",
         meta: [
           { label: "Formats", value: "Photo · Video · Still" },
           { label: "Look", value: "Clean & editorial" },
@@ -726,9 +726,9 @@ export const copy: Record<Locale, Copy> = {
       },
       performance: {
         title: "Performance Marketing",
-        seoTitle: "Performance Marketing — omnidot.",
+        seoTitle: "Meta & Google Ads Management — omnidot. Athens",
         seoDescription:
-          "Meta & Google Ads management. Setup €200 once, management from €300/mo. Your ad spend stays yours. Conversion-focused campaigns for Greek brands.",
+          "Performance marketing with Meta Ads and Google Ads. Setup €200 once, management from €300/mo. Your ad spend stays yours. Conversion-focused for Greek brands.",
         meta: [
           { label: "Goal", value: "More customers" },
           { label: "Channels", value: "Meta · Google" },
@@ -771,9 +771,9 @@ export const copy: Record<Locale, Copy> = {
       },
       web: {
         title: "Web Development",
-        seoTitle: "Web Development & SEO — omnidot.",
+        seoTitle: "Web Development & SEO — Athens | omnidot.",
         seoDescription:
-          "Fast websites, landing pages and SEO. Landing from €700, multi-page sites ≈ €700/page. Built to rank, load quickly and convert — Athens & remote.",
+          "Website development and SEO: fast sites, landing pages and Google-ready structure. Landing from €700, multi-page ≈ €700/page. Athens & remote.",
         meta: [
           { label: "Build", value: "Sites & landings" },
           { label: "SEO", value: "Findable on Google" },
@@ -897,9 +897,9 @@ export const copy: Record<Locale, Copy> = {
     ],
   },
   el: {
-    metaTitle: "omnidot. — Διαφημιστική εταιρεία Αθήνα",
+    metaTitle: "omnidot. — Διαφημιστική Αθήνα | Social, Ads & Web",
     metaDescription:
-      "omnidot. — διαφημιστική για διαχείριση social media, παραγωγή περιεχομένου, performance ads και ιστοσελίδες. Αθήνα & remote — καθαρά πακέτα, μετρήσιμη ανάπτυξη.",
+      "Διαφημιστική Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, remote, μετρήσιμη ανάπτυξη.",
     langLabel: "Γλώσσα",
     homeAria: "omnidot — αρχική",
     about: "Σχετικά",
@@ -926,9 +926,9 @@ export const copy: Record<Locale, Copy> = {
     revealShort: "Σύντομο μήνυμα",
     revealFull: "Πλήρες μήνυμα",
     aboutSub:
-      "Web, SEO, social και performance — ένα στούντιο για brands που θέλουν να μεγαλώσουν.",
+      "Διαφημιστική Αθήνα για web, SEO, social media και performance ads — ένας συνεργάτης για brands που θέλουν να μεγαλώσουν.",
     aboutBody:
-      "Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Από premium, γρήγορη ιστοσελίδα και SEO μέχρι social strategy και performance campaigns. Δεν πιστεύουμε στον θόρυβο. Πιστεύουμε στα δεδομένα, στο καθαρό design και στις στρατηγικές που μετατρέπουν τους επισκέπτες σε πιστούς πελάτες.",
+      "Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Από γρήγορη ιστοσελίδα με SEO μέχρι διαχείριση social media και καμπάνιες Meta & Google Ads. Δεν πιστεύουμε στον θόρυβο. Πιστεύουμε στα δεδομένα, στο καθαρό design και στις στρατηγικές που μετατρέπουν τους επισκέπτες σε πιστούς πελάτες.",
     landingLede: "Αθήνα · διάλεξε υπηρεσία ή ξεκίνα brief",
     startBrief: "Ξεκίνα ένα brief",
     contactUs: "Επικοινωνία",
@@ -937,7 +937,7 @@ export const copy: Record<Locale, Copy> = {
     pricingTitleLead: "Πακέτα",
     pricingTitleSub: "& τιμές",
     pricingLede:
-      "Καθαρά μηνιαία πακέτα και τιμές έργου. Το ad spend μένει πάντα δικό σας. Το scope γράφεται πριν ξεκινήσουμε.",
+      "Καθαρά πακέτα διαφημιστικής για social, content, ads και web. Το ad spend μένει πάντα δικό σας. Το scope γράφεται πριν ξεκινήσουμε.",
     pricingNote:
       "Τιμές σε €, χωρίς ΦΠΑ όπου εφαρμόζεται. Minimum 3 μήνες στα retainers. Το creative μπορεί να μπει στο πακέτο ή ανά asset.",
     pricingCta: "Ξεκίνα brief",
@@ -978,9 +978,9 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     pricingSeoDescription:
-      "Πακέτα & τιμές omnidot.: social από €450/μήνα, content από €350, performance από €300/μήνα, websites από €700. Διαφημιστική Αθήνα — καθαρό scope, ad spend ξεχωριστά.",
+      "Τιμές διαφημιστικής Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες SEO από €700. Καθαρό scope — ad spend ξεχωριστά.",
     aboutSeoDescription:
-      "Σχετικά με την omnidot. — διαφημιστική Αθήνα για founders και τοπικά brands. Web, SEO, social και performance σαν ένα σύστημα: δεδομένα, καθαρό design, στρατηγικές που φέρνουν πελάτες.",
+      "Σχετικά με την omnidot. — διαφημιστική Αθήνα για founders και τοπικά brands. Επικοινωνία για social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
     mediaSoon: "Media σύντομα",
     caseCompany: "Εταιρεία",
     caseTask: "Υπηρεσία",
@@ -1125,9 +1125,9 @@ export const copy: Record<Locale, Copy> = {
     pages: {
       social: {
         title: "Διαχείριση Social Media",
-        seoTitle: "Διαχείριση Social Media — omnidot.",
+        seoTitle: "Διαχείριση Social Media & Instagram — omnidot. Αθήνα",
         seoDescription:
-          "Διαχείριση social media για Instagram, TikTok, Facebook & LinkedIn: στρατηγική, posting, community και growth. Αθήνα & remote. Από €450/μήνα.",
+          "Διαχείριση Instagram, TikTok, Facebook & LinkedIn: στρατηγική, Reels, community και growth. Διαφημιστική Αθήνα & remote. Από €450/μήνα.",
         meta: [
           { label: "Στόχος", value: "Σταθερή παρουσία" },
           { label: "Κανάλια", value: "IG · TikTok · LinkedIn" },
@@ -1242,9 +1242,9 @@ export const copy: Record<Locale, Copy> = {
       },
       content: {
         title: "Δημιουργία Περιεχομένου",
-        seoTitle: "Δημιουργία Περιεχομένου — omnidot.",
+        seoTitle: "Παραγωγή Περιεχομένου — Reels, Video & Φωτο | omnidot.",
         seoDescription:
-          "Φωτογραφία και video για feed, Reels, ads και web — από concept έως edit. Γύρισμα €200. Πακέτα assets από €350. Παραγωγή Αθήνα.",
+          "Παραγωγή περιεχομένου για Instagram Reels, ads και web: φωτογραφία, video και μοντάζ από concept έως ανάρτηση. Γύρισμα €200. Πακέτα από €350. Αθήνα.",
         meta: [
           { label: "Μορφές", value: "Φωτο · Video · Still" },
           { label: "Ύφος", value: "Καθαρό & editorial" },
@@ -1348,9 +1348,9 @@ export const copy: Record<Locale, Copy> = {
       },
       performance: {
         title: "Performance Marketing",
-        seoTitle: "Performance Marketing — omnidot.",
+        seoTitle: "Google Ads & Meta Ads — Διαχείριση | omnidot. Αθήνα",
         seoDescription:
-          "Διαχείριση Meta & Google Ads. Setup €200 μία φορά, management από €300/μήνα. Το ad spend μένει δικό σας. Καμπάνιες με στόχο conversions.",
+          "Διαχείριση Google Ads και Meta Ads. Setup €200 μία φορά, management από €300/μήνα. Το ad spend μένει δικό σας. Διαφημίσεις με στόχο conversions.",
         meta: [
           { label: "Στόχος", value: "Περισσότεροι πελάτες" },
           { label: "Κανάλια", value: "Meta · Google" },
@@ -1393,9 +1393,9 @@ export const copy: Record<Locale, Copy> = {
       },
       web: {
         title: "Ανάπτυξη Ιστοσελίδων",
-        seoTitle: "Web Development & SEO — omnidot.",
+        seoTitle: "Κατασκευή Ιστοσελίδας & SEO — Αθήνα | omnidot.",
         seoDescription:
-          "Γρήγορες ιστοσελίδες, landing pages και SEO. Landing από €700, multi-page ≈ €700/σελίδα. Φτιαγμένα να rank-άρουν, να φορτώνουν γρήγορα και να μετατρέπουν.",
+          "Κατασκευή ιστοσελίδας και SEO: γρήγορα sites, landing pages και δομή για Google. Landing από €700, multi-page ≈ €700/σελίδα. Αθήνα & remote.",
         meta: [
           { label: "Κατασκευή", value: "Sites & landings" },
           { label: "SEO", value: "Εμφανίσιμο στο Google" },
