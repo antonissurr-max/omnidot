@@ -10,9 +10,12 @@ function isVideo(item: MediaItem) {
 function ExhibitMedia({
   item,
   active,
+  near,
 }: {
   item: MediaItem;
   active: boolean;
+  /** Active or adjacent — only these attach a video src */
+  near: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -25,11 +28,28 @@ function ExhibitMedia({
       });
     } else {
       el.pause();
-      el.currentTime = 0;
+      if (el.currentTime) el.currentTime = 0;
     }
   }, [active]);
 
   if (isVideo(item)) {
+    // Far slides: poster only — avoid downloading multi‑MB mp4s offscreen
+    if (!near) {
+      if (item.poster) {
+        return (
+          <img
+            className="exhibit__media"
+            src={item.poster}
+            alt=""
+            draggable={false}
+            loading="lazy"
+            decoding="async"
+          />
+        );
+      }
+      return <div className="exhibit__media" aria-hidden="true" />;
+    }
+
     return (
       <video
         ref={videoRef}
@@ -39,7 +59,7 @@ function ExhibitMedia({
         muted
         loop
         playsInline
-        preload="metadata"
+        preload={active ? "metadata" : "none"}
         title={item.title}
         aria-label={`${item.title}${item.detail ? ` — ${item.detail}` : ""}`}
       />
@@ -52,6 +72,8 @@ function ExhibitMedia({
       src={item.src}
       alt={`${item.title}${item.detail ? ` — ${item.detail}` : ""}`}
       draggable={false}
+      loading={near ? "eager" : "lazy"}
+      decoding="async"
     />
   );
 }
@@ -118,6 +140,7 @@ export function ExhibitGallery({
                       : wrapped === 2
                         ? "is-near is-near-next"
                         : "is-far";
+            const near = Math.abs(wrapped) <= 1;
 
             return (
               <button
@@ -136,7 +159,8 @@ export function ExhibitGallery({
               >
                 <ExhibitMedia
                   item={item}
-                  active={idx === active && Math.abs(wrapped) === 0}
+                  active={idx === active && wrapped === 0}
+                  near={near}
                 />
               </button>
             );

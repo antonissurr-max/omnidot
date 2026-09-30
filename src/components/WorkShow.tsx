@@ -305,6 +305,7 @@ export function WorkShow({
               className="lightbox__media"
               src={current.src}
               alt={`${current.title}${current.detail ? ` — ${current.detail}` : ""}`}
+              decoding="async"
             />
           )}
           <button

@@ -122,7 +122,15 @@ export function Works({ dimmed }: { dimmed: boolean }) {
             aria-label={title}
           >
             <span className="tile__media">
-              <img src={page.cover} alt={title} />
+              <img
+                src={page.cover}
+                alt={title}
+                loading={i < 2 ? "eager" : "lazy"}
+                decoding="async"
+                fetchPriority={i === 0 ? "high" : "auto"}
+                width={800}
+                height={1000}
+              />
             </span>
             <span className="tile__title">{title}</span>
           </Link>

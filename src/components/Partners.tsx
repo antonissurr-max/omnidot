@@ -27,7 +27,14 @@ export function Partners() {
                 rel="noopener noreferrer"
                 title={partner.name}
               >
-                <img src={partner.logo} alt={partner.name} width={220} height={56} />
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={220}
+                  height={56}
+                  loading="lazy"
+                  decoding="async"
+                />
               </a>
             </li>
           ))}

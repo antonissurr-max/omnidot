@@ -24,11 +24,13 @@ function markIntroSeen() {
   }
 }
 
-function preloadCovers() {
-  pages.forEach((page) => {
-    const img = new Image();
-    img.src = page.cover;
-  });
+/** Warm only the first home tile — avoids racing LCP with 4 cover downloads. */
+function preloadFirstCover() {
+  const cover = pages[0]?.cover;
+  if (!cover) return;
+  const img = new Image();
+  img.decoding = "async";
+  img.src = cover;
 }
 
 export function Preloader({ onDone }: { onDone: () => void }) {
@@ -45,7 +47,7 @@ export function Preloader({ onDone }: { onDone: () => void }) {
   };
 
   useEffect(() => {
-    preloadCovers();
+    preloadFirstCover();
 
     const exitAt = window.setTimeout(() => setExiting(true), 1280);
     const doneAt = window.setTimeout(finish, 1780);

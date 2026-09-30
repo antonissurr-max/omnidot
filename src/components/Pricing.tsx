@@ -70,6 +70,8 @@ export function Pricing({
   const rafId = useRef(0);
   const [openId, setOpenId] = useState<string | null>(null);
   const [videoReady, setVideoReady] = useState(false);
+  /** Defer heavy orb mp4 until hover/focus — poster shows first. */
+  const [orbVideoArmed, setOrbVideoArmed] = useState(false);
   const [progress, setProgress] = useState(0);
   const [viewport, setViewport] = useState({ w: 1200, h: 800 });
   const [isMobile, setIsMobile] = useState(false);
@@ -248,25 +250,46 @@ export function Pricing({
                 >
                   <span className="pricing-orb__ring">
                     {media ? (
-                      <span className="pricing-orb__media" aria-hidden="true">
+                      <span
+                        className="pricing-orb__media"
+                        aria-hidden="true"
+                        onMouseEnter={() => {
+                          if (media.type === "video") setOrbVideoArmed(true);
+                        }}
+                        onFocus={() => {
+                          if (media.type === "video") setOrbVideoArmed(true);
+                        }}
+                      >
                         {media.type === "video" ? (
                           <>
                             {media.poster ? (
-                              <img src={media.poster} alt="" />
+                              <img
+                                src={media.poster}
+                                alt=""
+                                loading="lazy"
+                                decoding="async"
+                              />
                             ) : null}
-                            <video
-                              src={media.src}
-                              poster={media.poster}
-                              muted
-                              loop
-                              playsInline
-                              autoPlay
-                              preload="auto"
-                              title={plan.name}
-                            />
+                            {orbVideoArmed || isOpen ? (
+                              <video
+                                src={media.src}
+                                poster={media.poster}
+                                muted
+                                loop
+                                playsInline
+                                autoPlay
+                                preload="metadata"
+                                title={plan.name}
+                              />
+                            ) : null}
                           </>
                         ) : (
-                          <img src={media.src} alt="" />
+                          <img
+                            src={media.src}
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                          />
                         )}
                       </span>
                     ) : null}
@@ -315,11 +338,12 @@ export function Pricing({
               <video
                 className="pricing-reel__video"
                 src={HERO_VIDEO}
+                poster="/images/web.jpg"
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="auto"
+                preload="metadata"
                 title={t.pricingReelLabel}
                 aria-label={t.pricingReelHint}
                 onLoadedData={() => setVideoReady(true)}
