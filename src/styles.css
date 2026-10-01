@@ -490,9 +490,19 @@ a.chrome__pricing {
 }
 
 .stage.is-index.is-foot-visible .chrome__brand {
-  opacity: 0;
-  visibility: hidden;
-  transition: none;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+.stage.is-index.is-foot-visible .chrome__brand .brand-word__dot,
+.stage.is-index.is-foot-visible .chrome__brand .brand-word__name {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: none !important;
 }
 
 h1.chrome__brand {
@@ -514,7 +524,7 @@ h1.chrome__brand {
   display: inline-block;
   width: 0.28em;
   height: 0.28em;
-  margin: 0 0 0.02em 0.02em;
+  margin: 0 0 0.02em 0.1em;
   padding: 0;
   border: 0;
   border-radius: 50%;

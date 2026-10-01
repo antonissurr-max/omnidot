@@ -117,19 +117,28 @@ export default function App() {
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        stage.classList.toggle(
-          "is-foot-visible",
-          Boolean(entry?.isIntersecting),
-        );
-      },
-      // Hide the fixed brand as soon as any footer blue enters the viewport
-      { threshold: 0, rootMargin: "0px" },
-    );
-    observer.observe(foot);
+    // Brand sits ~bottom 18–56px; hide before footer paints under it (footer only).
+    const LEAD_PX = 72;
+    let raf = 0;
+    const sync = () => {
+      raf = 0;
+      const top = foot.getBoundingClientRect().top;
+      stage.classList.toggle(
+        "is-foot-visible",
+        top <= window.innerHeight + LEAD_PX,
+      );
+    };
+    const onScrollOrResize = () => {
+      if (!raf) raf = requestAnimationFrame(sync);
+    };
+
+    sync();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
     return () => {
-      observer.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
       stage.classList.remove("is-foot-visible");
     };
   }, [view.kind]);
