@@ -439,12 +439,15 @@ a.chrome__pricing {
   font-size: clamp(11px, 0.95vw, 13px);
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .chrome__end {
   display: flex;
   align-items: center;
-  gap: clamp(16px, 2.4vw, 28px);
+  gap: clamp(14px, 2.2vw, 28px);
+  flex-wrap: nowrap;
 }
 
 .chrome__home,
@@ -455,6 +458,8 @@ a.chrome__pricing {
   font-size: clamp(11px, 0.95vw, 13px);
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .chrome__lede {
@@ -2501,14 +2506,15 @@ a.work__proof-line:hover {
     background: transparent;
   }
 
-  .stage.is-index:not(.is-mobile-hero) .chrome__about,
-  .stage.is-index:not(.is-mobile-hero) .chrome__end,
-  .stage.is-index:not(.is-mobile-hero) .chrome__home,
-  .stage.is-index:not(.is-mobile-hero) .chrome__pricing,
+  /* Keep Pricing + Contact padding identical in/out of hero so they don't jump */
+  .stage.is-index .chrome__end,
+  .stage.is-index .chrome__home,
+  .stage.is-index .chrome__pricing,
+  .stage.is-index .chrome__about,
   .stage.is-about .chrome__about,
   .stage.is-pricing .chrome__about,
   .stage.is-pricing .chrome__end {
-    padding: 8px 0 10px 12px;
+    padding: 8px 0;
     background: transparent;
   }
 
@@ -2526,6 +2532,29 @@ a.work__proof-line:hover {
     pointer-events: auto;
     background: transparent;
     padding: 6px 10px 6px 0;
+  }
+}
+
+@media (max-width: 399px) {
+  .chrome {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .chrome__end {
+    gap: 10px;
+  }
+
+  .chrome__about,
+  .chrome__home,
+  .chrome__pricing,
+  .chrome__lang {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .chrome__start {
+    gap: 8px;
   }
 }
 
