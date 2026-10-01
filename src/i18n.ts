@@ -730,7 +730,7 @@ export const copy: Record<Locale, Copy> = {
         seoDescription:
           "Performance marketing with Meta Ads and Google Ads. Setup €200 once, management from €300/mo. Your ad spend stays yours. Conversion-focused for Greek brands.",
         meta: [
-          { label: "Goal", value: "More customers" },
+          { label: "Goal", value: "Conversion growth" },
           { label: "Channels", value: "Meta · Google" },
           { label: "How", value: "Test, then scale" },
           { label: "You see", value: "Clear numbers" },
@@ -897,9 +897,9 @@ export const copy: Record<Locale, Copy> = {
     ],
   },
   el: {
-    metaTitle: "omnidot. — Διαφημιστική Αθήνα | Social, Ads & Web",
+    metaTitle: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
     metaDescription:
-      "Διαφημιστική Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, remote, μετρήσιμη ανάπτυξη.",
+      "Διαφημιστική στην Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, remote, μετρήσιμη ανάπτυξη.",
     langLabel: "Γλώσσα",
     homeAria: "omnidot — αρχική",
     about: "Σχετικά",
@@ -926,7 +926,7 @@ export const copy: Record<Locale, Copy> = {
     revealShort: "Σύντομο μήνυμα",
     revealFull: "Πλήρες μήνυμα",
     aboutSub:
-      "Διαφημιστική Αθήνα για web, SEO, social media και performance ads — ένας συνεργάτης για brands που θέλουν να μεγαλώσουν.",
+      "Διαφημιστική στην Αθήνα για web, SEO, social media και performance ads — ένας συνεργάτης για brands που θέλουν να αναπτυχθούν.",
     aboutBody:
       "Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Από γρήγορη ιστοσελίδα με SEO μέχρι διαχείριση social media και καμπάνιες Meta & Google Ads. Δεν πιστεύουμε στον θόρυβο. Πιστεύουμε στα δεδομένα, στο καθαρό design και στις στρατηγικές που μετατρέπουν τους επισκέπτες σε πιστούς πελάτες.",
     landingLede: "Αθήνα · διάλεξε υπηρεσία ή ξεκίνα brief",
@@ -978,9 +978,9 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     pricingSeoDescription:
-      "Τιμές διαφημιστικής Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες SEO από €700. Καθαρό scope — ad spend ξεχωριστά.",
+      "Τιμές διαφημιστικής στην Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες SEO από €700. Καθαρό scope — ad spend ξεχωριστά.",
     aboutSeoDescription:
-      "Σχετικά με την omnidot. — διαφημιστική Αθήνα για founders και τοπικά brands. Επικοινωνία για social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
+      "Σχετικά με την omnidot. — διαφημιστική στην Αθήνα για founders και τοπικά brands. Επικοινωνία για social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
     mediaSoon: "Media σύντομα",
     caseCompany: "Εταιρεία",
     caseTask: "Υπηρεσία",
@@ -1127,7 +1127,7 @@ export const copy: Record<Locale, Copy> = {
         title: "Διαχείριση Social Media",
         seoTitle: "Διαχείριση Social Media & Instagram — omnidot. Αθήνα",
         seoDescription:
-          "Διαχείριση Instagram, TikTok, Facebook & LinkedIn: στρατηγική, Reels, community και growth. Διαφημιστική Αθήνα & remote. Από €450/μήνα.",
+          "Διαχείριση Instagram, TikTok, Facebook & LinkedIn: στρατηγική, Reels, community και growth. Διαφημιστική στην Αθήνα & remote. Από €450/μήνα.",
         meta: [
           { label: "Στόχος", value: "Σταθερή παρουσία" },
           { label: "Κανάλια", value: "IG · TikTok · LinkedIn" },
@@ -1352,7 +1352,7 @@ export const copy: Record<Locale, Copy> = {
         seoDescription:
           "Διαχείριση Google Ads και Meta Ads. Setup €200 μία φορά, management από €300/μήνα. Το ad spend μένει δικό σας. Διαφημίσεις με στόχο conversions.",
         meta: [
-          { label: "Στόχος", value: "Περισσότεροι πελάτες" },
+          { label: "Στόχος", value: "Αύξηση conversions" },
           { label: "Κανάλια", value: "Meta · Google" },
           { label: "Τρόπος", value: "Δοκιμή, μετά scale" },
           { label: "Βλέπεις", value: "Καθαρούς αριθμούς" },

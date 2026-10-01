@@ -1,5 +1,6 @@
 /**
- * Export LinkedIn Company Page assets via export-wordmark-only.
+ * Export Omnidot profile avatars (white bg) for FB / Instagram.
+ * Delegates to export-wordmark-only (keeps mark + wordmark-only in sync).
  */
 import { spawn } from "node:child_process";
 import path from "node:path";

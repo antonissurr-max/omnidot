@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { pages, site } from "../site";
+import { BrandWord } from "./BrandWord";
 import { Logo } from "./Logo";
 
 const STORAGE_KEY = "omnidot-intro-seen";
@@ -82,8 +83,7 @@ export function Preloader({ onDone }: { onDone: () => void }) {
       <div className="preloader__stage">
         <Logo className="preloader__mark" />
         <p className="preloader__brand">
-          {site.brand}
-          <span className="preloader__dot">.</span>
+          <BrandWord />
         </p>
       </div>
     </div>

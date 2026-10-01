@@ -1,5 +1,5 @@
 /**
- * Export LinkedIn Company Page assets via export-wordmark-only.
+ * Export Facebook Page cover via export-wordmark-only.
  */
 import { spawn } from "node:child_process";
 import path from "node:path";

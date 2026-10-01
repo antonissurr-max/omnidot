@@ -45,11 +45,11 @@ const routeDefs = [
       story: "",
     },
     el: {
-      title: "omnidot. — Διαφημιστική Αθήνα | Social, Ads & Web",
+      title: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
       description:
-        "Διαφημιστική Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, remote, μετρήσιμη ανάπτυξη.",
+        "Διαφημιστική στην Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, remote, μετρήσιμη ανάπτυξη.",
       h1: "omnidot.",
-      body: "Διαφημιστική Αθήνα για web, SEO, social media και performance ads — ένας συνεργάτης για brands που θέλουν να μεγαλώσουν. Αθήνα και remote.",
+      body: "Διαφημιστική στην Αθήνα για web, SEO, social media και performance ads — ένας συνεργάτης για brands που θέλουν να αναπτυχθούν. Αθήνα και remote.",
       story: "",
     },
     type: "org",
@@ -73,7 +73,7 @@ const routeDefs = [
     el: {
       title: "Διαχείριση Social Media & Instagram — omnidot. Αθήνα",
       description:
-        "Διαχείριση Instagram, TikTok, Facebook & LinkedIn: στρατηγική, Reels, community και growth. Διαφημιστική Αθήνα & remote. Από €450/μήνα.",
+        "Διαχείριση Instagram, TikTok, Facebook & LinkedIn: στρατηγική, Reels, community και growth. Διαφημιστική στην Αθήνα & remote. Από €450/μήνα.",
       h1: "Διαχείριση Social Media",
       body: "Διαχείριση Instagram, TikTok, Facebook και LinkedIn — στρατηγική, δημοσίευση, ανάπτυξη και μηνιαίο reporting από το omnidot. Αθήνα & remote.",
       story:
@@ -180,11 +180,11 @@ const routeDefs = [
       story: "",
     },
     el: {
-      title: "Σχετικά & Επικοινωνία — Διαφημιστική Αθήνα | omnidot.",
+      title: "Σχετικά & Επικοινωνία — Διαφημιστική στην Αθήνα | omnidot.",
       description:
-        "Σχετικά με την omnidot. — διαφημιστική Αθήνα για founders και τοπικά brands. Επικοινωνία για social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
+        "Σχετικά με την omnidot. — διαφημιστική στην Αθήνα για founders και τοπικά brands. Επικοινωνία για social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
       h1: "Σχετικά με το omnidot.",
-      body: "Διαφημιστική Αθήνα για founders και τοπικά brands. Από ιστοσελίδες με SEO μέχρι social media και Meta & Google Ads. Ξεκίνα ένα brief με το omnidot.",
+      body: "Διαφημιστική στην Αθήνα για founders και τοπικά brands. Από ιστοσελίδες με SEO μέχρι social media και Meta & Google Ads. Ξεκίνα ένα brief με το omnidot.",
       story: "",
     },
     type: "about",
@@ -207,7 +207,7 @@ const routeDefs = [
     el: {
       title: "Τιμές Διαφημιστικής — Πακέτα | omnidot. Αθήνα",
       description:
-        "Τιμές διαφημιστικής Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες SEO από €700. Ad spend ξεχωριστά.",
+        "Τιμές διαφημιστικής στην Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες SEO από €700. Ad spend ξεχωριστά.",
       h1: "Πακέτα & τιμές",
       body: "Καθαρά πακέτα διαφημιστικής για social, content, ads και web. Το ad spend είναι πάντα ξεχωριστά. Social από €450/μήνα, content από €350, performance από €300/μήνα, web από €700.",
       story: "",

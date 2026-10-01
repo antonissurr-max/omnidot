@@ -2,7 +2,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BrandWord } from "./BrandWord";
 import { Logo } from "./Logo";
 import { useChromeTone } from "../hooks/useChromeTone";
-import { site } from "../site";
 import { useLocale } from "../locale";
 import { pathForLocale, pathFromView } from "../routing";
 import type { View } from "../types";
@@ -41,8 +40,7 @@ export function Chrome({
         >
           <Logo />
           <span className="chrome__word">
-            {site.brand}
-            <span className="chrome__word-dot">.</span>
+            <BrandWord />
           </span>
         </Link>
 
@@ -69,6 +67,14 @@ export function Chrome({
         </button>
       ) : !onAbout && !onPricing ? (
         <div className="chrome__end">
+          {!onIndex ? (
+            <Link
+              className="chrome__home"
+              to={pathFromView({ kind: "index" }, locale)}
+            >
+              {t.footerHome}
+            </Link>
+          ) : null}
           <Link
             className="chrome__pricing"
             to={pathFromView({ kind: "pricing" }, locale)}

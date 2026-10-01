@@ -124,7 +124,8 @@ export default function App() {
           Boolean(entry?.isIntersecting),
         );
       },
-      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
+      // Hide the fixed brand as soon as any footer blue enters the viewport
+      { threshold: 0, rootMargin: "0px" },
     );
     observer.observe(foot);
     return () => {

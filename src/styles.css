@@ -299,12 +299,14 @@ h2 {
 .chrome__start,
 .chrome__end,
 .chrome__about,
+.chrome__home,
 .chrome__pricing {
   pointer-events: auto;
 }
 
 a.chrome__logo,
 a.chrome__about,
+a.chrome__home,
 a.chrome__pricing {
   color: inherit;
   text-decoration: none;
@@ -348,6 +350,7 @@ a.chrome__pricing {
 .chrome__lang,
 .chrome__word,
 .chrome__about,
+.chrome__home,
 .chrome__pricing {
   color: inherit;
   transition: color 0.28s var(--ease);
@@ -367,12 +370,14 @@ a.chrome__pricing {
 .stage.is-chrome-on-dark .chrome__lang,
 .stage.is-chrome-on-dark .chrome__word,
 .stage.is-chrome-on-dark .chrome__about,
+.stage.is-chrome-on-dark .chrome__home,
 .stage.is-chrome-on-dark .chrome__pricing,
 .stage.is-chrome-on-dark .chrome__end,
 .stage.is-work .chrome,
 .stage.is-work .chrome__lang,
 .stage.is-work .chrome__word,
 .stage.is-work .chrome__about,
+.stage.is-work .chrome__home,
 .stage.is-work .chrome__pricing,
 .stage.is-work .chrome__end {
   color: var(--paper);
@@ -382,12 +387,14 @@ a.chrome__pricing {
 .stage.is-about .chrome__lang,
 .stage.is-about .chrome__word,
 .stage.is-about .chrome__about,
+.stage.is-about .chrome__home,
 .stage.is-about .chrome__pricing,
 .stage.is-about .chrome__end,
 .stage.is-privacy .chrome,
 .stage.is-privacy .chrome__lang,
 .stage.is-privacy .chrome__word,
 .stage.is-privacy .chrome__about,
+.stage.is-privacy .chrome__home,
 .stage.is-privacy .chrome__pricing,
 .stage.is-privacy .chrome__end {
   color: var(--ink);
@@ -440,6 +447,7 @@ a.chrome__pricing {
   gap: clamp(16px, 2.4vw, 28px);
 }
 
+.chrome__home,
 .chrome__pricing {
   padding: 8px 0;
   border: 0;
@@ -479,12 +487,12 @@ a.chrome__pricing {
   line-height: 1.1;
   pointer-events: none;
   z-index: 56;
-  transition: opacity 0.28s var(--ease);
 }
 
 .stage.is-index.is-foot-visible .chrome__brand {
   opacity: 0;
   visibility: hidden;
+  transition: none;
 }
 
 h1.chrome__brand {
@@ -504,16 +512,16 @@ h1.chrome__brand {
 
 .brand-word__dot {
   display: inline-block;
-  width: 0.38em;
-  height: 0.38em;
-  margin: 0 0 0.02em 0.08em;
+  width: 0.28em;
+  height: 0.28em;
+  margin: 0 0 0.02em 0.02em;
   padding: 0;
   border: 0;
   border-radius: 50%;
   background: var(--hydrangea);
   flex-shrink: 0;
   align-self: flex-end;
-  transform: translateY(-0.12em);
+  transform: translateY(-0.06em);
 }
 
 .brand-word.is-live .brand-word__dot {
@@ -533,7 +541,7 @@ h1.chrome__brand {
 
 .brand-word.is-live .brand-word__dot:hover,
 .brand-word.is-live .brand-word__dot:focus-visible {
-  transform: translateY(-0.12em) scale(1.18);
+  transform: translateY(-0.06em) scale(1.18);
   background: var(--sea);
 }
 
@@ -2485,6 +2493,7 @@ a.work__proof-line:hover {
 
   .stage.is-index:not(.is-mobile-hero) .chrome__about,
   .stage.is-index:not(.is-mobile-hero) .chrome__end,
+  .stage.is-index:not(.is-mobile-hero) .chrome__home,
   .stage.is-index:not(.is-mobile-hero) .chrome__pricing,
   .stage.is-about .chrome__about,
   .stage.is-pricing .chrome__about,
@@ -3071,7 +3080,9 @@ a.work__proof-line:hover {
 .pricing-orb.is-open {
   left: 50%;
   top: 50%;
-  width: min(720px, 92vmin);
+  width: min(720px, 86vmin, calc(100svh - 40px), calc(100svw - 40px));
+  aspect-ratio: 1;
+  height: auto;
   transform: translate(-50%, -50%);
   z-index: 28;
   opacity: 0;
@@ -3220,16 +3231,19 @@ a.work__proof-line:hover {
 }
 
 .pricing-module {
+  --pm-size: min(720px, 86vmin, calc(100svh - 40px), calc(100svw - 40px));
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 40;
-  width: min(720px, 92vmin);
-  height: min(720px, 92vmin);
+  width: var(--pm-size);
+  height: var(--pm-size);
   overflow: hidden;
   transform: translate(-50%, -50%);
   padding: 0;
   border-radius: 50%;
+  container-type: size;
+  container-name: pricing-mod;
   background:
     radial-gradient(
       circle at 30% 22%,
@@ -3266,32 +3280,31 @@ a.work__proof-line:hover {
   position: relative;
   z-index: 2;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   overscroll-behavior: contain;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0;
-  padding: clamp(56px, 10vmin, 88px) clamp(44px, 9vmin, 80px);
+  padding: clamp(40px, 11cqh, 88px) clamp(36px, 10cqw, 80px);
   box-sizing: border-box;
-  scrollbar-width: thin;
 }
 
 .pricing-module__close {
   position: absolute;
   /* Must sit inside the circular clip — corner % would fall outside the radius */
-  top: 16%;
-  right: 18%;
+  top: 14%;
+  right: 16%;
   z-index: 5;
-  width: 44px;
-  height: 44px;
+  width: clamp(32px, 6.5cqh, 44px);
+  height: clamp(32px, 6.5cqh, 44px);
   display: grid;
   place-items: center;
   padding: 0;
   border: 0;
   background: transparent;
-  font-size: 28px;
+  font-size: clamp(22px, 4.5cqh, 28px);
   line-height: 1;
   color: color-mix(in srgb, var(--ink-deep) 55%, transparent);
   cursor: pointer;
@@ -3299,53 +3312,53 @@ a.work__proof-line:hover {
 }
 
 .pricing-module__kicker {
-  margin: 0 0 10px;
-  font-size: 11px;
+  margin: 0 0 clamp(6px, 1.2cqh, 10px);
+  font-size: clamp(9px, 1.6cqh, 11px);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   opacity: 0.5;
 }
 
 .pricing-module__title {
-  margin: 0 0 8px;
+  margin: 0 0 clamp(4px, 1cqh, 8px);
   font-family: inherit;
-  font-size: clamp(26px, 3.8vw, 38px);
+  font-size: clamp(20px, 5.4cqh, 38px);
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.05;
   color: var(--ink-deep);
-  max-width: 14ch;
+  max-width: 16ch;
 }
 
 .pricing-module__price {
-  margin: 0 0 12px;
-  font-size: 15px;
+  margin: 0 0 clamp(8px, 1.6cqh, 12px);
+  font-size: clamp(12px, 2.2cqh, 15px);
   font-weight: 500;
 }
 
 .pricing-module__blurb {
-  margin: 0 0 16px;
-  font-size: 14px;
-  line-height: 1.45;
-  max-width: 32ch;
+  margin: 0 0 clamp(10px, 2cqh, 16px);
+  font-size: clamp(11px, 2cqh, 14px);
+  line-height: 1.4;
+  max-width: 34ch;
   color: color-mix(in srgb, var(--ink-deep) 70%, transparent);
 }
 
 .pricing-module__list {
-  margin: 0 0 16px;
+  margin: 0 0 clamp(10px, 2cqh, 16px);
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 10px;
-  max-width: 34ch;
+  gap: clamp(6px, 1.4cqh, 10px);
+  max-width: 36ch;
   text-align: left;
 }
 
 .pricing-module__list li {
   position: relative;
   padding-left: 16px;
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: clamp(11px, 1.9cqh, 13px);
+  line-height: 1.35;
   color: color-mix(in srgb, var(--ink-deep) 82%, transparent);
 }
 
@@ -3362,11 +3375,11 @@ a.work__proof-line:hover {
 
 .pricing-module__important {
   position: relative;
-  margin: 0 0 16px;
+  margin: 0 0 clamp(10px, 2cqh, 16px);
   padding-left: 16px;
-  max-width: 34ch;
-  font-size: 13px;
-  line-height: 1.4;
+  max-width: 36ch;
+  font-size: clamp(11px, 1.9cqh, 13px);
+  line-height: 1.35;
   text-align: left;
   color: color-mix(in srgb, var(--ink-deep) 82%, transparent);
 }
@@ -3383,30 +3396,49 @@ a.work__proof-line:hover {
 }
 
 .pricing-module__note {
-  margin: 0 0 18px;
-  font-size: 11px;
-  line-height: 1.4;
-  max-width: 32ch;
+  margin: 0 0 clamp(12px, 2.4cqh, 18px);
+  font-size: clamp(10px, 1.6cqh, 11px);
+  line-height: 1.35;
+  max-width: 34ch;
   opacity: 0.5;
 }
 
 .pricing-module__cta {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  padding: 0 18px;
+  min-height: clamp(36px, 6.5cqh, 44px);
+  padding: 0 clamp(14px, 2.5cqw, 18px);
   border: 0;
   border-radius: 999px;
   background: var(--ink-deep);
   color: var(--paper);
   font: inherit;
-  font-size: 13px;
+  font-size: clamp(11px, 1.9cqh, 13px);
   letter-spacing: 0.04em;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .pricing-module__cta:hover {
   background: var(--slate);
+}
+
+/* Ultra-short viewports: tighten further so Greek copy still fits in-circle */
+@container pricing-mod (max-height: 520px) {
+  .pricing-module__body {
+    padding: 12% 11%;
+  }
+
+  .pricing-module__blurb {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .pricing-module__note {
+    display: none;
+  }
 }
 
 .pricing-principles {
@@ -3762,6 +3794,7 @@ a.work__proof-line:hover {
     align-items: flex-start;
     justify-content: flex-start;
     min-height: 100%;
+    overflow: auto;
     padding: calc(72px + env(safe-area-inset-top, 0px)) var(--chrome)
       calc(40px + env(safe-area-inset-bottom, 0px));
   }
