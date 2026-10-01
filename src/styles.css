@@ -24,6 +24,7 @@
   --stagger: 0.14s;
   --label: 11px;
   --chrome: 20px;
+  --chrome-nav-h: clamp(22px, 2vw, 28px);
   --tile-size: clamp(200px, min(18.5vw, 26vh), 360px);
   --tile-gap-sm: clamp(10px, 1.1vw, 18px);
   --tile-gap-lg: max(calc(var(--tile-size) * 0.95), 16vw);
@@ -289,9 +290,9 @@ h2 {
   inset: 0 0 auto;
   z-index: 70;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  padding: 18px var(--chrome) 0;
+  padding: 16px var(--chrome);
   pointer-events: none;
 }
 
@@ -316,6 +317,7 @@ a.chrome__pricing {
   display: flex;
   align-items: center;
   gap: 14px;
+  min-height: var(--chrome-nav-h);
 }
 
 .chrome__logo {
@@ -325,11 +327,12 @@ a.chrome__pricing {
   padding: 0;
   border: 0;
   background: none;
+  height: var(--chrome-nav-h);
 }
 
 .chrome__logo svg {
   width: clamp(32px, 2.8vw, 42px);
-  height: clamp(22px, 2vw, 28px);
+  height: var(--chrome-nav-h);
   flex: 0 0 auto;
 }
 
@@ -423,21 +426,24 @@ a.chrome__pricing {
   color: var(--hydrangea);
 }
 
-.chrome__lang {
-  padding: 8px 0;
+.chrome__lang,
+.chrome__about,
+.chrome__home,
+.chrome__pricing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: var(--chrome-nav-h);
+  margin: 0;
+  padding: 0;
   border: 0;
   background: none;
+  font: inherit;
   font-size: clamp(11px, 0.95vw, 13px);
+  font-weight: 500;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.chrome__about {
-  padding: 8px 0;
-  border: 0;
-  background: none;
-  font-size: clamp(11px, 0.95vw, 13px);
-  letter-spacing: 0.16em;
+  line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
   flex-shrink: 0;
@@ -448,18 +454,7 @@ a.chrome__pricing {
   align-items: center;
   gap: clamp(14px, 2.2vw, 28px);
   flex-wrap: nowrap;
-}
-
-.chrome__home,
-.chrome__pricing {
-  padding: 8px 0;
-  border: 0;
-  background: none;
-  font-size: clamp(11px, 0.95vw, 13px);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  flex-shrink: 0;
+  min-height: var(--chrome-nav-h);
 }
 
 .chrome__lede {
@@ -2496,25 +2491,28 @@ a.work__proof-line:hover {
   .stage.is-about .chrome,
   .stage.is-pricing .chrome {
     padding-top: 12px;
+    padding-bottom: 12px;
     background: transparent;
   }
 
   .stage.is-index:not(.is-mobile-hero) .chrome__start,
   .stage.is-about .chrome__start,
   .stage.is-pricing .chrome__start {
-    padding: 4px 10px 8px 0;
+    padding: 0;
     background: transparent;
   }
 
-  /* Keep Pricing + Contact padding identical in/out of hero so they don't jump */
+  /* Keep Pricing / Contact / EN on one shared letter midline */
   .stage.is-index .chrome__end,
   .stage.is-index .chrome__home,
   .stage.is-index .chrome__pricing,
   .stage.is-index .chrome__about,
+  .stage.is-index .chrome__lang,
   .stage.is-about .chrome__about,
   .stage.is-pricing .chrome__about,
   .stage.is-pricing .chrome__end {
-    padding: 8px 0;
+    padding: 0;
+    height: var(--chrome-nav-h);
     background: transparent;
   }
 
@@ -2551,6 +2549,8 @@ a.work__proof-line:hover {
   .chrome__lang {
     font-size: 10px;
     letter-spacing: 0.1em;
+    height: var(--chrome-nav-h);
+    padding: 0;
   }
 
   .chrome__start {
