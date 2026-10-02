@@ -1938,7 +1938,8 @@ a.work__proof-line:hover {
   }
 
   .partners__list {
-    gap: 20px 28px;
+    justify-content: space-between;
+    gap: 28px 40px;
   }
 
   .partners__link img {
@@ -3904,7 +3905,9 @@ a.work__proof-line:hover {
 .partners__head {
   display: grid;
   gap: 8px;
-  max-width: 40ch;
+  justify-items: center;
+  text-align: center;
+  max-width: none;
 }
 
 .partners__title {
@@ -3932,7 +3935,8 @@ a.work__proof-line:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: clamp(20px, 4vw, 48px) clamp(28px, 5vw, 64px);
+  justify-content: space-between;
+  gap: clamp(28px, 5vw, 56px) clamp(48px, 8vw, 120px);
 }
 
 .partners__list > li {
