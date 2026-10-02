@@ -80,6 +80,11 @@ export type Partner = {
 
 export const partners: Partner[] = [
   {
+    name: "DotXI",
+    href: "https://dotxi.app/",
+    logo: "/images/partners/dotxi.svg",
+  },
+  {
     name: "Nafplio4Sail",
     href: "https://nafplio4sail.com/",
     logo: "/images/partners/nafplio4sail.png",
