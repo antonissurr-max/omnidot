@@ -783,7 +783,10 @@ export const copy: Record<Locale, Copy> = {
         proof: {
           label: "Some of our websites",
           value: "",
-          links: [{ label: "pyrgiotisoe.com", href: "https://pyrgiotisoe.com/" }],
+          links: [
+            { label: "dotxi.app", href: "https://dotxi.app/" },
+            { label: "pyrgiotisoe.com", href: "https://pyrgiotisoe.com/" },
+          ],
         },
         points: [
           {
@@ -1405,7 +1408,10 @@ export const copy: Record<Locale, Copy> = {
         proof: {
           label: "Μερικές ιστοσελίδες μας",
           value: "",
-          links: [{ label: "pyrgiotisoe.com", href: "https://pyrgiotisoe.com/" }],
+          links: [
+            { label: "dotxi.app", href: "https://dotxi.app/" },
+            { label: "pyrgiotisoe.com", href: "https://pyrgiotisoe.com/" },
+          ],
         },
         points: [
           {
