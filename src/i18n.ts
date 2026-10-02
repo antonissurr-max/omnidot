@@ -410,7 +410,7 @@ export const copy: Record<Locale, Copy> = {
         ],
       },
     ],
-    homeMobileHeadline: "Clear work. Real growth.",
+    homeMobileHeadline: "Athens agency for web, SEO, social and ads.",
     homeMobileAboutTitle: "One partner. Four crafts.",
     homeMobileAboutBody:
       "Web, SEO, social and performance — built as one system for founders who want the next move, not another deck.",
@@ -1035,7 +1035,7 @@ export const copy: Record<Locale, Copy> = {
         ],
       },
     ],
-    homeMobileHeadline: "Καθαρή δουλειά. Πραγματική ανάπτυξη.",
+    homeMobileHeadline: "Διαφημιστική στην Αθήνα για web, SEO, social και ads.",
     homeMobileAboutTitle: "Ένας συνεργάτης. Τέσσερα crafts.",
     homeMobileAboutBody:
       "Web, SEO, social και performance — σαν ένα σύστημα για founders που θέλουν την επόμενη κίνηση, όχι άλλο deck.",
