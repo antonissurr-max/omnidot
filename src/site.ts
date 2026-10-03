@@ -97,7 +97,7 @@ export const partners: Partner[] = [
   {
     name: "Pyrgiotis OE",
     href: "https://pyrgiotisoe.com/",
-    logo: "/images/partners/pyrgiotis.png",
+    logo: "/images/partners/pyrgiotis.svg",
   },
 ];
 
