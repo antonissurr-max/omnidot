@@ -2287,15 +2287,6 @@ a.work__proof-line:hover {
     font-size: clamp(28px, 9vw, 38px);
   }
 
-  .home-mobile--hero .home-mobile__lede {
-    margin: 0;
-    max-width: 34ch;
-    font-size: 14px;
-    line-height: 1.55;
-    opacity: 0.78;
-    color: var(--paper);
-  }
-
   .home-mobile__cta-line {
     display: inline-flex;
     align-items: center;
