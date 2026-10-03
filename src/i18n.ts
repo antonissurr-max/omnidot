@@ -410,7 +410,7 @@ export const copy: Record<Locale, Copy> = {
         ],
       },
     ],
-    homeMobileHeadline: "Athens agency for web, SEO, social and ads.",
+    homeMobileHeadline: "Agency in Athens for web, SEO, social and ads.",
     homeMobileAboutTitle: "One partner. Four crafts.",
     homeMobileAboutBody:
       "Web, SEO, social and performance — built as one system for founders who want the next move, not another deck.",
