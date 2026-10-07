@@ -24,9 +24,11 @@ export function Chrome({
   const navigate = useNavigate();
   const onAbout = view.kind === "about";
   const onPricing = view.kind === "pricing";
+  const onArticles = view.kind === "articles" || view.kind === "article";
   const onIndex = view.kind === "index";
   const BrandTag = onIndex ? "h1" : "p";
   const showBrand = onIndex || onAbout || onPricing;
+  const onPanelClose = onAbout || onPricing || onArticles;
 
   useChromeTone(true);
 
@@ -57,7 +59,7 @@ export function Chrome({
         </button>
       </div>
 
-      {(onAbout || onPricing) && !hideClose ? (
+      {onPanelClose && !hideClose ? (
         <button
           className="chrome__about"
           type="button"
@@ -65,7 +67,7 @@ export function Chrome({
         >
           {t.close}
         </button>
-      ) : !onAbout && !onPricing ? (
+      ) : !onPanelClose ? (
         <div className="chrome__end">
           {!onIndex ? (
             <Link
@@ -80,6 +82,12 @@ export function Chrome({
             to={pathFromView({ kind: "pricing" }, locale)}
           >
             {t.pricing}
+          </Link>
+          <Link
+            className="chrome__articles"
+            to={pathFromView({ kind: "articles" }, locale)}
+          >
+            {t.articles}
           </Link>
           <Link
             className="chrome__about"

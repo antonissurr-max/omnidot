@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 import { NotFound } from "./components/NotFound";
 import { Partners } from "./components/Partners";
 import { Preloader, shouldShowIntro } from "./components/Preloader";
+import { Articles } from "./components/Articles";
 import { Pricing } from "./components/Pricing";
 import { Privacy } from "./components/Privacy";
 import { ServiceList } from "./components/ServicePanel";
@@ -41,7 +42,11 @@ export default function App() {
   );
   const goIndex = useCallback(() => {
     const fromPanel =
-      view.kind === "page" || view.kind === "about" || view.kind === "pricing";
+      view.kind === "page" ||
+      view.kind === "about" ||
+      view.kind === "pricing" ||
+      view.kind === "articles" ||
+      view.kind === "article";
     const reduce =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -101,6 +106,8 @@ export default function App() {
       view.kind === "index" ||
       view.kind === "notfound" ||
       view.kind === "pricing" ||
+      view.kind === "articles" ||
+      view.kind === "article" ||
       view.kind === "privacy"
         ? ""
         : "hidden";
@@ -167,6 +174,15 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, [view.kind, goIndex, pricingModuleOpen]);
 
+  useEffect(() => {
+    if (view.kind !== "articles" && view.kind !== "article") return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") goIndex();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [view.kind, goIndex]);
+
   const stage =
     view.kind === "index"
       ? "is-index"
@@ -174,11 +190,13 @@ export default function App() {
         ? "is-about"
         : view.kind === "pricing"
           ? "is-pricing"
-          : view.kind === "privacy"
-            ? "is-privacy"
-            : view.kind === "notfound"
-              ? "is-notfound"
-              : "is-work";
+          : view.kind === "articles" || view.kind === "article"
+            ? "is-articles"
+            : view.kind === "privacy"
+              ? "is-privacy"
+              : view.kind === "notfound"
+                ? "is-notfound"
+                : "is-work";
 
   return (
     <div className={`stage ${stage} ${ready ? "is-ready" : ""}`}>
@@ -213,6 +231,9 @@ export default function App() {
           onModuleOpenChange={setPricingModuleOpen}
         />
       )}
+
+      {view.kind === "articles" && <Articles />}
+      {view.kind === "article" && <Articles slug={view.slug} />}
 
       {view.kind === "page" && (
         <WorkShow

@@ -43,6 +43,14 @@ export type Copy = {
   homeAria: string;
   about: string;
   pricing: string;
+  articles: string;
+  articlesTitle: string;
+  articlesEyebrow: string;
+  articlesLede: string;
+  articlesRead: string;
+  articlesBack: string;
+  articlesReadTime: string;
+  articlesSeoDescription: string;
   close: string;
   previous: string;
   next: string;
@@ -282,6 +290,16 @@ export const copy: Record<Locale, Copy> = {
     homeAria: "omnidot — home",
     about: "About",
     pricing: "Pricing",
+    articles: "Articles",
+    articlesTitle: "Articles",
+    articlesEyebrow: "Notes from the studio",
+    articlesLede:
+      "Short reads on social, ads, SEO and websites — practical notes from how we work with founders and local brands.",
+    articlesRead: "Read",
+    articlesBack: "All articles",
+    articlesReadTime: "{n} min read",
+    articlesSeoDescription:
+      "Articles from omnidot. on Meta & Google Ads, social media, SEO websites and marketing for Athens brands.",
     close: "Close",
     previous: "Previous",
     next: "Next",
@@ -907,6 +925,16 @@ export const copy: Record<Locale, Copy> = {
     homeAria: "omnidot — αρχική",
     about: "Σχετικά",
     pricing: "Τιμές",
+    articles: "Άρθρα",
+    articlesTitle: "Άρθρα",
+    articlesEyebrow: "Σημειώσεις από το στούντιο",
+    articlesLede:
+      "Σύντομα κείμενα για social, ads, SEO και ιστοσελίδες — πρακτικές σημειώσεις από τη δουλειά μας με founders και τοπικά brands.",
+    articlesRead: "Διάβασε",
+    articlesBack: "Όλα τα άρθρα",
+    articlesReadTime: "{n} λεπτά",
+    articlesSeoDescription:
+      "Άρθρα από την omnidot. για Meta & Google Ads, social media, ιστοσελίδες με SEO και marketing για brands στην Αθήνα.",
     close: "Κλείσιμο",
     previous: "Προηγούμενο",
     next: "Επόμενο",

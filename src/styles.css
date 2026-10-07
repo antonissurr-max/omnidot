@@ -120,6 +120,7 @@ img {
 }
 
 .stage.is-pricing .works,
+.stage.is-articles .works,
 .stage.is-privacy .works {
   display: none;
 }
@@ -301,14 +302,16 @@ h2 {
 .chrome__end,
 .chrome__about,
 .chrome__home,
-.chrome__pricing {
+.chrome__pricing,
+.chrome__articles {
   pointer-events: auto;
 }
 
 a.chrome__logo,
 a.chrome__about,
 a.chrome__home,
-a.chrome__pricing {
+a.chrome__pricing,
+a.chrome__articles {
   color: inherit;
   text-decoration: none;
 }
@@ -354,7 +357,8 @@ a.chrome__pricing {
 .chrome__word,
 .chrome__about,
 .chrome__home,
-.chrome__pricing {
+.chrome__pricing,
+.chrome__articles {
   color: inherit;
   transition: color 0.28s var(--ease);
 }
@@ -375,6 +379,7 @@ a.chrome__pricing {
 .stage.is-chrome-on-dark .chrome__about,
 .stage.is-chrome-on-dark .chrome__home,
 .stage.is-chrome-on-dark .chrome__pricing,
+.stage.is-chrome-on-dark .chrome__articles,
 .stage.is-chrome-on-dark .chrome__end,
 .stage.is-work .chrome,
 .stage.is-work .chrome__lang,
@@ -382,6 +387,7 @@ a.chrome__pricing {
 .stage.is-work .chrome__about,
 .stage.is-work .chrome__home,
 .stage.is-work .chrome__pricing,
+.stage.is-work .chrome__articles,
 .stage.is-work .chrome__end {
   color: var(--paper);
 }
@@ -392,13 +398,23 @@ a.chrome__pricing {
 .stage.is-about .chrome__about,
 .stage.is-about .chrome__home,
 .stage.is-about .chrome__pricing,
+.stage.is-about .chrome__articles,
 .stage.is-about .chrome__end,
+.stage.is-articles .chrome,
+.stage.is-articles .chrome__lang,
+.stage.is-articles .chrome__word,
+.stage.is-articles .chrome__about,
+.stage.is-articles .chrome__home,
+.stage.is-articles .chrome__pricing,
+.stage.is-articles .chrome__articles,
+.stage.is-articles .chrome__end,
 .stage.is-privacy .chrome,
 .stage.is-privacy .chrome__lang,
 .stage.is-privacy .chrome__word,
 .stage.is-privacy .chrome__about,
 .stage.is-privacy .chrome__home,
 .stage.is-privacy .chrome__pricing,
+.stage.is-privacy .chrome__articles,
 .stage.is-privacy .chrome__end {
   color: var(--ink);
 }
@@ -410,6 +426,7 @@ a.chrome__pricing {
 }
 
 .stage.is-about .chrome__logo svg,
+.stage.is-articles .chrome__logo svg,
 .stage.is-privacy .chrome__logo svg {
   color: var(--ink);
   fill: currentColor;
@@ -421,6 +438,7 @@ a.chrome__pricing {
 }
 
 .stage.is-about .chrome__word-dot,
+.stage.is-articles .chrome__word-dot,
 .stage.is-privacy .chrome__word-dot,
 .stage:not(.is-chrome-on-dark):not(.is-work) .chrome__word-dot {
   color: var(--hydrangea);
@@ -429,7 +447,8 @@ a.chrome__pricing {
 .chrome__lang,
 .chrome__about,
 .chrome__home,
-.chrome__pricing {
+.chrome__pricing,
+.chrome__articles {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -718,6 +737,179 @@ h1.chrome__brand {
 }
 
 .legal__back a:hover {
+  opacity: 0.7;
+}
+
+/* Articles — editorial index + detail */
+.articles {
+  position: relative;
+  z-index: 40;
+  max-width: 46rem;
+  min-height: 70vh;
+  padding: 120px var(--chrome) 80px;
+}
+
+.articles--detail {
+  max-width: 40rem;
+}
+
+.articles__head {
+  margin-bottom: 36px;
+}
+
+.articles__eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.45;
+}
+
+.articles__title {
+  margin: 0 0 12px;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: inherit;
+}
+
+.articles__lede {
+  margin: 0;
+  max-width: 34rem;
+  font-size: 16px;
+  line-height: 1.5;
+  opacity: 0.72;
+}
+
+.articles__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.articles__item {
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.articles__link {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  padding: 20px 0;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.25s var(--ease);
+}
+
+.articles__link:hover {
+  opacity: 0.78;
+}
+
+.articles__thumb {
+  display: block;
+  width: 112px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+
+.articles__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.articles__copy {
+  min-width: 0;
+}
+
+.articles__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.48;
+}
+
+.articles__topic {
+  color: var(--slate);
+  opacity: 1;
+}
+
+.articles__item-title {
+  margin: 0 0 8px;
+  font-size: clamp(18px, 2.4vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  color: inherit;
+}
+
+.articles__excerpt {
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.72;
+}
+
+.articles__more {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid currentColor;
+}
+
+@media (max-width: 560px) {
+  .articles__link {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .articles__thumb {
+    width: 88px;
+  }
+
+  .articles__excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.articles__body {
+  display: grid;
+  gap: 4px;
+  font-size: 16px;
+  line-height: 1.65;
+  opacity: 0.9;
+}
+
+.articles__body p {
+  margin: 0 0 16px;
+}
+
+.articles__back {
+  margin: 36px 0 0;
+}
+
+.articles__back a {
+  color: inherit;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.articles__back a:hover {
   opacity: 0.7;
 }
 
@@ -2481,7 +2673,8 @@ a.work__proof-line:hover {
 
   .stage.is-index:not(.is-mobile-hero) .chrome,
   .stage.is-about .chrome,
-  .stage.is-pricing .chrome {
+  .stage.is-pricing .chrome,
+  .stage.is-articles .chrome {
     padding-top: 12px;
     padding-bottom: 12px;
     background: transparent;
@@ -2489,7 +2682,8 @@ a.work__proof-line:hover {
 
   .stage.is-index:not(.is-mobile-hero) .chrome__start,
   .stage.is-about .chrome__start,
-  .stage.is-pricing .chrome__start {
+  .stage.is-pricing .chrome__start,
+  .stage.is-articles .chrome__start {
     padding: 0;
     background: transparent;
   }
@@ -2498,11 +2692,14 @@ a.work__proof-line:hover {
   .stage.is-index .chrome__end,
   .stage.is-index .chrome__home,
   .stage.is-index .chrome__pricing,
+  .stage.is-index .chrome__articles,
   .stage.is-index .chrome__about,
   .stage.is-index .chrome__lang,
   .stage.is-about .chrome__about,
   .stage.is-pricing .chrome__about,
-  .stage.is-pricing .chrome__end {
+  .stage.is-pricing .chrome__end,
+  .stage.is-articles .chrome__about,
+  .stage.is-articles .chrome__end {
     padding: 0;
     height: var(--chrome-nav-h);
     background: transparent;
@@ -2538,6 +2735,7 @@ a.work__proof-line:hover {
   .chrome__about,
   .chrome__home,
   .chrome__pricing,
+  .chrome__articles,
   .chrome__lang {
     font-size: 10px;
     letter-spacing: 0.1em;
@@ -4163,9 +4361,14 @@ a.work__proof-line:hover {
 }
 
 .stage.is-pricing .partners,
+.stage.is-articles .partners,
 .stage.is-privacy .partners,
-.stage:not(.is-index):not(.is-pricing):not(.is-privacy) .partners {
+.stage:not(.is-index):not(.is-pricing):not(.is-articles):not(.is-privacy) .partners {
   display: none;
+}
+
+.stage.is-articles .site-foot {
+  display: block;
 }
 
 .stage.is-pricing .site-foot {
