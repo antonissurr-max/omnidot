@@ -53,7 +53,6 @@ export function Articles({ slug }: { slug?: string }) {
           <h1 id="article-title" className="articles__title">
             {article.title}
           </h1>
-          <p className="articles__lede">{article.excerpt}</p>
         </header>
 
         <div className="articles__body">
@@ -88,18 +87,30 @@ export function Articles({ slug }: { slug?: string }) {
               className="articles__link"
               to={pathFromView({ kind: "article", slug: item.slug }, locale)}
             >
-              <div className="articles__meta">
-                <span className="articles__topic">{item.topic}</span>
-                <time dateTime={item.date}>
-                  {formatArticleDate(locale, item.date)}
-                </time>
-                <span>
-                  {t.articlesReadTime.replace("{n}", String(item.readMinutes))}
+              <span className="articles__thumb">
+                <img
+                  src={item.image}
+                  alt=""
+                  width={160}
+                  height={120}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+              <span className="articles__copy">
+                <span className="articles__meta">
+                  <span className="articles__topic">{item.topic}</span>
+                  <time dateTime={item.date}>
+                    {formatArticleDate(locale, item.date)}
+                  </time>
+                  <span>
+                    {t.articlesReadTime.replace("{n}", String(item.readMinutes))}
+                  </span>
                 </span>
-              </div>
-              <h2 className="articles__item-title">{item.title}</h2>
-              <p className="articles__excerpt">{item.excerpt}</p>
-              <span className="articles__more">{t.articlesRead} ↗</span>
+                <h2 className="articles__item-title">{item.title}</h2>
+                <p className="articles__excerpt">{item.excerpt}</p>
+                <span className="articles__more">{t.articlesRead} ↗</span>
+              </span>
             </Link>
           </li>
         ))}
