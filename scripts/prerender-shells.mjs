@@ -242,6 +242,33 @@ const routeDefs = [
     type: "articles",
   },
   {
+    id: "article-website-athens",
+    enPath: "/articles/dimiourgia-istoselidas-athina",
+    elPath: "/el/articles/dimiourgia-istoselidas-athina",
+    enFile: "articles/dimiourgia-istoselidas-athina/index.html",
+    elFile: "el/articles/dimiourgia-istoselidas-athina/index.html",
+    image: `${origin}/images/articles/dimiourgia-istoselidas-athina.jpg`,
+    en: {
+      title:
+        "Website creation in Athens: what it includes, SEO and price — omnidot.",
+      description:
+        "What a real website build in Athens includes, where SEO fits from day one, and what drives the price — from omnidot.",
+      h1: "Website creation in Athens: what it actually includes, how it ties to SEO, and what drives the price",
+      body: "A website for a business in Athens has one job: turn whoever finds it into someone who calls, messages or buys. What the build includes, where SEO fits, and what shapes the price.",
+      story: "",
+    },
+    el: {
+      title:
+        "Δημιουργία ιστοσελίδας στην Αθήνα: SEO και τιμή — omnidot.",
+      description:
+        "Τι περιλαμβάνει στην πράξη η κατασκευή ιστοσελίδας στην Αθήνα, πώς δένει με το SEO και τι καθορίζει την τιμή — από την omnidot.",
+      h1: "Δημιουργία ιστοσελίδας στην Αθήνα: τι περιλαμβάνει στην πράξη, πώς δένει με το SEO και τι καθορίζει την τιμή",
+      body: "Μια ιστοσελίδα για επιχείρηση στην Αθήνα έχει μία δουλειά: να μετατρέπει όποιον τη βρίσκει σε κάποιον που σε παίρνει τηλέφωνο, σου στέλνει μήνυμα ή αγοράζει. Τι περιλαμβάνει η κατασκευή, πού μπαίνει το SEO και τι καθορίζει την τιμή.",
+      story: "",
+    },
+    type: "articles",
+  },
+  {
     id: "privacy",
     enPath: "/privacy",
     elPath: "/el/privacy",
