@@ -767,6 +767,7 @@ h1.chrome__brand {
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.12;
+  color: inherit;
 }
 
 .articles__lede {
@@ -822,6 +823,7 @@ h1.chrome__brand {
   font-weight: 600;
   letter-spacing: -0.025em;
   line-height: 1.25;
+  color: inherit;
 }
 
 .articles__excerpt {
