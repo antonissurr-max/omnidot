@@ -6,7 +6,8 @@ function stageFallbackTone(stage: Element): Tone {
   if (stage.classList.contains("is-work")) return "dark";
   if (
     stage.classList.contains("is-about") ||
-    stage.classList.contains("is-privacy")
+    stage.classList.contains("is-privacy") ||
+    stage.classList.contains("is-articles")
   ) {
     return "light";
   }
@@ -43,7 +44,8 @@ export function useChromeTone(active = true) {
       if (stage.classList.contains("is-work")) return "dark";
       if (
         stage.classList.contains("is-about") ||
-        stage.classList.contains("is-privacy")
+        stage.classList.contains("is-privacy") ||
+        stage.classList.contains("is-articles")
       ) {
         return "light";
       }

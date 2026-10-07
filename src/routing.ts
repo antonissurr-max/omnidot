@@ -37,6 +37,14 @@ export function pathFromView(view: View, locale: Locale = "en"): string {
     return `${prefix}/pricing`;
   }
 
+  if (view.kind === "articles") {
+    return `${prefix}/articles`;
+  }
+
+  if (view.kind === "article") {
+    return `${prefix}/articles/${view.slug}`;
+  }
+
   if (view.kind === "privacy") {
     return `${prefix}/privacy`;
   }
@@ -55,6 +63,11 @@ export function viewFromLocation(pathname: string, search: string): View {
     return { kind: "about" };
   }
   if (bare === "/pricing") return { kind: "pricing" };
+  if (bare === "/articles") return { kind: "articles" };
+  if (bare.startsWith("/articles/")) {
+    const slug = bare.slice("/articles/".length);
+    if (slug && !slug.includes("/")) return { kind: "article", slug };
+  }
   if (bare === "/privacy") return { kind: "privacy" };
   const id = bare.slice(1) as PageId;
   if (PAGE_IDS.includes(id)) return { kind: "page", id };

@@ -13,6 +13,7 @@ const navEn = [
   { href: "/performance", label: "Performance Marketing" },
   { href: "/web", label: "Web Development" },
   { href: "/pricing", label: "Packages & pricing" },
+  { href: "/articles", label: "Articles" },
   { href: "/about", label: "About / Contact" },
   { href: "/privacy", label: "Privacy" },
 ];
@@ -23,6 +24,7 @@ const navEl = [
   { href: "/el/performance", label: "Performance Marketing" },
   { href: "/el/web", label: "Ανάπτυξη Ιστοσελίδων" },
   { href: "/el/pricing", label: "Πακέτα & τιμές" },
+  { href: "/el/articles", label: "Άρθρα" },
   { href: "/el/about", label: "Σχετικά / Επικοινωνία" },
   { href: "/el/privacy", label: "Απόρρητο" },
 ];
@@ -215,6 +217,31 @@ const routeDefs = [
     type: "pricing",
   },
   {
+    id: "articles",
+    enPath: "/articles",
+    elPath: "/el/articles",
+    enFile: "articles/index.html",
+    elFile: "el/articles/index.html",
+    image: `${origin}/images/work-omnidot.jpg`,
+    en: {
+      title: "Articles — omnidot.",
+      description:
+        "Articles from omnidot. on Meta & Google Ads, social media, SEO websites and marketing for Athens brands.",
+      h1: "Articles",
+      body: "Short reads on social, ads, SEO and websites — practical notes from how we work with founders and local brands.",
+      story: "",
+    },
+    el: {
+      title: "Άρθρα — omnidot.",
+      description:
+        "Άρθρα από την omnidot. για Meta & Google Ads, social media, ιστοσελίδες με SEO και marketing για brands στην Αθήνα.",
+      h1: "Άρθρα",
+      body: "Σύντομα κείμενα για social, ads, SEO και ιστοσελίδες — πρακτικές σημειώσεις από τη δουλειά μας με founders και τοπικά brands.",
+      story: "",
+    },
+    type: "articles",
+  },
+  {
     id: "privacy",
     enPath: "/privacy",
     elPath: "/el/privacy",
@@ -304,6 +331,16 @@ function jsonLdFor(def, locale) {
       "@context": "https://schema.org",
       "@type": "WebPage",
       name: locale === "el" ? "Πακέτα & τιμές" : "Packages & pricing",
+      description: copy.description,
+      url,
+      isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },
+    };
+  }
+  if (def.type === "articles") {
+    return {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: copy.h1,
       description: copy.description,
       url,
       isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },

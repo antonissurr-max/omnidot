@@ -1,3 +1,4 @@
+import { articleBySlug, articlesFor } from "./articles";
 import { copy, type Locale } from "./i18n";
 import { phoneHref, site } from "./site";
 import { pages } from "./site";
@@ -146,6 +147,78 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
             })),
           },
         ],
+      },
+    };
+  }
+
+  if (view.kind === "articles") {
+    const list = articlesFor(locale);
+    return {
+      title: `${t.articlesTitle} — omnidot.`,
+      description: t.articlesSeoDescription.slice(0, 160),
+      path,
+      canonical,
+      image: DEFAULT_OG,
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: t.articlesTitle,
+        description: t.articlesSeoDescription,
+        url: canonical,
+        isPartOf: { "@type": "WebSite", name: "omnidot.", url: SITE_ORIGIN },
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: list.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `${SITE_ORIGIN}${pathFromView({ kind: "article", slug: item.slug }, locale)}`,
+            name: item.title,
+          })),
+        },
+      },
+    };
+  }
+
+  if (view.kind === "article") {
+    const article = articleBySlug(locale, view.slug);
+    if (!article) {
+      return {
+        title: `${t.notFoundTitle} — omnidot.`,
+        description: t.notFoundBody,
+        path,
+        canonical,
+        image: DEFAULT_OG,
+        robots: "noindex, follow",
+        jsonLd: {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: t.notFoundTitle,
+          url: canonical,
+        },
+      };
+    }
+    return {
+      title: `${article.title} — omnidot.`,
+      description: article.excerpt.slice(0, 160),
+      path,
+      canonical,
+      image: DEFAULT_OG,
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: article.title,
+        description: article.excerpt,
+        datePublished: article.date,
+        author: { "@type": "Organization", name: "omnidot.", url: SITE_ORIGIN },
+        publisher: {
+          "@type": "Organization",
+          name: "omnidot.",
+          url: SITE_ORIGIN,
+          logo: { "@type": "ImageObject", url: `${SITE_ORIGIN}/images/omnidot-logo.svg` },
+        },
+        mainEntityOfPage: canonical,
+        articleSection: article.topic,
+        inLanguage: locale === "el" ? "el" : "en",
       },
     };
   }
