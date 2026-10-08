@@ -153,19 +153,15 @@ const routeDefs = [
           "Γνωριμία: ένα call για την επιχείρηση, τους πελάτες και τους στόχους σου.",
           "Στρατηγική: ποιες πλατφόρμες, τι περιεχόμενο και με ποιο ύφος.",
           "Πρόγραμμα: το πρώτο μηνιαίο πλάνο για έγκριση.",
-          "Δημοσιεύσεις: ξεκινάμε και στο τέλος του μήνα βλέπουμε μαζί τα αποτελέσματα.",
+          "Δημοσιεύσεις: ξεκινάμε να ανεβάζουμε με βάση το εγκεκριμένο πλάνο.",
         ],
         costTitle: "Πόσο κοστίζει",
         costBody:
-          "Η διαχείριση social media ξεκινά από €450 τον μήνα. Η τελική τιμή εξαρτάται από τον αριθμό πλατφορμών, το πόσο περιεχόμενο χρειάζεσαι και αν θέλεις φωτογράφιση ή βίντεο. Αν τρέξουμε και διαφημίσεις, τα χρήματα που πάνε στη Meta ή στη Google τα πληρώνεις εσύ απευθείας και είναι ξεχωριστά από την αμοιβή μας.",
+          "Η διαχείριση social media ξεκινά από €450 τον μήνα. Η τελική τιμή εξαρτάται από το πακέτο, τον αριθμό πλατφορμών και τον όγκο περιεχομένου.",
         costLinkLabel: "Δες όλα τα πακέτα →",
         costLinkHref: "/el/pricing/",
         faqTitle: "Συχνές ερωτήσεις",
         faq: [
-          {
-            q: "Πόσο κοστίζει η διαχείριση social media;",
-            a: "Ξεκινά από €450 τον μήνα. Η τιμή ανεβαίνει με τις πλατφόρμες, τον όγκο περιεχομένου και τις φωτογραφίσεις ή τα βίντεο. Όλα τα πακέτα είναι στη σελίδα Πακέτα & τιμές.",
-          },
           {
             q: "Υπάρχει ελάχιστη διάρκεια συνεργασίας;",
             a: "Ναι — minimum 3 μήνες στα retainers.",
@@ -176,11 +172,11 @@ const routeDefs = [
           },
           {
             q: "Σε πόσο καιρό φαίνονται αποτελέσματα;",
-            a: "Τον πρώτο μήνα στήνουμε σταθερή παρουσία. Συνήθως χρειάζονται μερικοί μήνες συνεπούς δουλειάς για να δεις καθαρή εικόνα, και κάθε μήνα σου δείχνουμε τι προχωράει στη μηνιαία αναφορά.",
+            a: "Τον πρώτο μήνα στήνουμε σταθερή παρουσία. Συνήθως χρειάζονται μερικοί μήνες συνεπούς δουλειάς για να φανεί καθαρή εικόνα.",
           },
           {
             q: "Δουλεύετε μόνο με επιχειρήσεις στην Αθήνα;",
-            a: "Όχι. Η έδρα μας είναι στην Αθήνα, αλλά συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα. Τα calls και η καθημερινή επικοινωνία γίνονται online, οπότε η απόσταση δεν παίζει ρόλο.",
+            a: "Όχι. Συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα και τα calls γίνονται online.",
           },
           {
             q: "Κάνετε και διαφημίσεις στα social;",
@@ -708,7 +704,7 @@ function crawlPoints(points) {
   return `<section aria-label="What we do"><ol>${items}</ol></section>`;
 }
 
-function crawlGuide(guide) {
+function crawlGuide(guide, storyHtml = "") {
   if (!guide) return "";
   const parts = [];
   if (guide.includesTitle && guide.includes?.length) {
@@ -753,6 +749,8 @@ function crawlGuide(guide) {
       }</section>`,
     );
   }
+  // Case proof (Europatch) sits after pricing, before FAQ.
+  if (storyHtml) parts.push(storyHtml);
   if (guide.faqTitle && guide.faq?.length) {
     parts.push(
       `<section><h2>${escapeHtml(guide.faqTitle)}</h2><dl>${guide.faq
@@ -802,13 +800,13 @@ function crawlBody(def, locale) {
 
   // Full Greek social service guide (all FAQ answers in HTML for crawlers).
   if (copy.guide) {
-    parts.push(crawlGuide(copy.guide));
+    parts.push(crawlGuide(copy.guide, story));
   } else {
     // Accordion “what we do” bodies — always in prerender HTML (not click-loaded).
     parts.push(crawlPoints(copy.points));
+    parts.push(story);
   }
 
-  parts.push(story);
   parts.push(`<nav aria-label="Services">${links}</nav>`);
 
   // Plain HTML article links so Google can crawl /articles/ without JS.
