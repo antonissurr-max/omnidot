@@ -96,3 +96,53 @@ async function optimizeOne(rel) {
 for (const rel of TARGETS) {
   await optimizeOne(rel);
 }
+
+/** Re-runnable LCP variants next to originals (home tile + service posters). */
+const LCP_VARIANTS = [
+  { src: "social.webp", out: "social-480.webp", width: 480 },
+  { src: "social.webp", out: "social-800.webp", width: 800 },
+  {
+    src: "europatch-backdrop.webp",
+    out: "europatch-backdrop-540.webp",
+    width: 540,
+    height: 960,
+  },
+  {
+    src: "n4sails-backdrop.webp",
+    out: "n4sails-backdrop-540.webp",
+    width: 540,
+    height: 960,
+  },
+];
+
+async function writeLcpVariant({ src, out, width, height }) {
+  const inputPath = path.join(imagesDir, src);
+  const outputPath = path.join(imagesDir, out);
+  try {
+    await fs.access(inputPath);
+  } catch {
+    console.log(`skip missing ${src}`);
+    return;
+  }
+
+  let pipeline = sharp(inputPath, { failOn: "none" }).rotate();
+  if (height) {
+    pipeline = pipeline.resize(width, height, {
+      fit: "cover",
+      withoutEnlargement: false,
+    });
+  } else {
+    pipeline = pipeline.resize({
+      width,
+      fit: "inside",
+      withoutEnlargement: true,
+    });
+  }
+  const buf = await pipeline.webp({ quality: 78 }).toBuffer();
+  await fs.writeFile(outputPath, buf);
+  console.log(`lcp  ${out}  ${(buf.length / 1024).toFixed(0)}KB`);
+}
+
+for (const variant of LCP_VARIANTS) {
+  await writeLcpVariant(variant);
+}

@@ -155,15 +155,6 @@ const routeStructure = [
     type: "articles",
   },
   {
-    id: "article-website-athens",
-    enPath: "/articles/dimiourgia-istoselidas-athina/",
-    elPath: "/el/articles/dimiourgia-istoselidas-athina/",
-    enFile: "articles/dimiourgia-istoselidas-athina/index.html",
-    elFile: "el/articles/dimiourgia-istoselidas-athina/index.html",
-    image: `${origin}/images/articles/dimiourgia-istoselidas-athina.jpg`,
-    type: "articles",
-  },
-  {
     id: "privacy",
     enPath: "/privacy/",
     elPath: "/el/privacy/",
@@ -173,6 +164,19 @@ const routeStructure = [
     type: "privacy",
   },
 ];
+
+/** Card poster sized for LCP (project grid), derived from backdrop originals. */
+function cardPosterUrl(poster) {
+  if (!poster || typeof poster !== "string") return poster;
+  if (poster.endsWith("-backdrop.webp") && !poster.includes("-540")) {
+    return poster.replace(/-backdrop\.webp$/, "-backdrop-540.webp");
+  }
+  return poster;
+}
+
+const HOME_TILE_SRCSET =
+  "/images/social-480.webp 480w, /images/social-800.webp 800w, /images/social.webp 1024w";
+const HOME_TILE_SIZES = "(min-width: 900px) min(360px, 18.5vw), 100vw";
 
 /** @type {typeof routeStructure} */
 let routeDefs = routeStructure;
@@ -262,20 +266,22 @@ function localeShell(locale, def) {
 
   if (def.type === "service") {
     const page = t.pages[def.id];
-    const cases = serviceCases(page, def.id);
+    const cases = serviceCases(page, def.id).filter((c) => c.story);
     const story =
       def.id === "social" && cases[0]?.story ? cases[0].story : "";
+    const coverPoster =
+      page.proof?.clients?.[0]?.cover?.poster ||
+      page.proof?.clients?.[0]?.backdrop ||
+      "";
     return {
       title: titles[def.id] || page.seoTitle,
       description: page.seoDescription,
       h1: page.title,
       body: page.serviceGuide?.intro || page.points?.[0]?.body || "",
       story,
-      // Social uses a single story paragraph after intro; content has showcase only.
-      cases:
-        def.id === "content" || def.id === "social"
-          ? []
-          : cases,
+      // Social: single story paragraph. Content/performance/web: case list.
+      cases: def.id === "social" ? [] : cases,
+      lcpPoster: coverPoster ? cardPosterUrl(coverPoster) : "",
       guide: page.serviceGuide,
       points: page.points,
       serviceName: page.title,
@@ -304,33 +310,80 @@ function localeShell(locale, def) {
   }
 
   if (isArticleDetail(def)) {
-    // Titles filled later from article module; keep stubs for path wiring.
+    const slug = articleSlugFromDef(def);
+    const article = articleModule.articleBySlug(locale, slug);
+    if (!article) {
+      return { title: "", description: "", h1: "", body: "", story: "" };
+    }
+    const seo = articleModule.articleSeo(article);
+    const image = article.image.startsWith("http")
+      ? article.image
+      : `${origin}${article.image}`;
     return {
-      title: titles.article,
-      description: "",
-      h1: "",
+      title: seo.title,
+      description: seo.description,
+      h1: article.title,
+      subtitle: article.subtitle,
       body: "",
       story: "",
+      date: article.date,
+      dateModified: article.dateModified,
+      image,
     };
   }
 
   return { title: "", description: "", h1: "", body: "", story: "" };
 }
 
-function hydrateRouteDefs() {
-  routeDefs = routeStructure.map((def) => {
-    if (isArticleDetail(def)) {
-      return {
-        ...def,
-        en: localeShell("en", def),
-        el: localeShell("el", def),
-      };
+function buildArticleRouteDefs() {
+  if (!articleModule) return [];
+  const enList = articleModule.articlesFor("en");
+  const elList = articleModule.articlesFor("el");
+  const enSlugs = new Set(enList.map((a) => a.slug));
+  const elSlugs = new Set(elList.map((a) => a.slug));
+  const shared = [...enSlugs].filter((slug) => elSlugs.has(slug));
+  for (const slug of enSlugs) {
+    if (!elSlugs.has(slug)) {
+      console.warn(`prerender: skip article slug only in en: ${slug}`);
     }
+  }
+  for (const slug of elSlugs) {
+    if (!enSlugs.has(slug)) {
+      console.warn(`prerender: skip article slug only in el: ${slug}`);
+    }
+  }
+  return shared.map((slug) => {
+    const enArticle = articleModule.articleBySlug("en", slug);
+    const image = `${origin}${enArticle.image}`;
+    return {
+      id: `article-${slug}`,
+      enPath: `/articles/${slug}/`,
+      elPath: `/el/articles/${slug}/`,
+      enFile: `articles/${slug}/index.html`,
+      elFile: `el/articles/${slug}/index.html`,
+      image,
+      type: "articles",
+    };
+  });
+}
+
+function hydrateRouteDefs() {
+  const articleRoutes = buildArticleRouteDefs();
+  const structure = [...routeStructure];
+  const privacyIdx = structure.findIndex((d) => d.id === "privacy");
+  const insertAt = privacyIdx >= 0 ? privacyIdx : structure.length;
+  structure.splice(insertAt, 0, ...articleRoutes);
+
+  routeDefs = structure.map((def) => {
     const en = localeShell("en", def);
     const el = localeShell("el", def);
     const out = { ...def, en, el };
     if (def.type === "service") {
       out.serviceName = { en: en.h1, el: el.h1 };
+    }
+    if (isArticleDetail(def)) {
+      // Prefer absolute article image from locale shell.
+      out.image = en.image || el.image || def.image;
     }
     return out;
   });
@@ -348,7 +401,11 @@ function stripPrior(html) {
   return html
     .replace(/<link\s+rel="canonical"[^>]*>\s*/gi, "")
     .replace(/<link\s+rel="alternate"[^>]*>\s*/gi, "")
+    .replace(/<link\s+rel="preload"[^>]*as="image"[^>]*>\s*/gi, "")
     .replace(/<meta\s+property="og:url"[^>]*>\s*/gi, "")
+    .replace(/<meta\s+property="og:type"[^>]*>\s*/gi, "")
+    .replace(/<meta\s+property="og:site_name"[^>]*>\s*/gi, "")
+    .replace(/<meta\s+property="article:[^"]*"[^>]*>\s*/gi, "")
     .replace(/<meta\s+name="twitter:title"[^>]*>\s*/gi, "")
     .replace(/<meta\s+name="twitter:description"[^>]*>\s*/gi, "")
     .replace(/<meta\s+name="robots"[^>]*>\s*/gi, "")
@@ -465,57 +522,25 @@ function jsonLdFor(def, locale) {
       [{ name: locale === "el" ? "Πακέτα & τιμές" : "Packages & pricing", url }],
     );
   }
-  if (isArticleDetail(def)) {
-    const articlesUrl =
-      locale === "el" ? `${origin}/el/articles/` : `${origin}/articles/`;
-    const date = copy.date || "2026-10-07";
-    return {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "BlogPosting",
-          headline: copy.subtitle ? `${copy.h1}: ${copy.subtitle}` : copy.h1,
-          description: copy.description,
-          datePublished: date,
-          dateModified: copy.dateModified || date,
-          author: { "@type": "Organization", name: "omnidot", url: origin },
-          publisher: {
-            "@type": "Organization",
-            name: "omnidot",
-            url: origin,
-            logo: {
-              "@type": "ImageObject",
-              url: `${origin}/images/omnidot-logo.svg`,
-            },
-          },
-          mainEntityOfPage: { "@type": "WebPage", "@id": url },
-          inLanguage: locale === "el" ? "el" : "en",
-        },
-        breadcrumbs(locale, [
-          {
-            name: locale === "el" ? "Άρθρα" : "Articles",
-            url: articlesUrl,
-          },
-          { name: copy.h1, url },
-        ]),
-      ],
-    };
-  }
-  if (def.type === "articles" && isArticleDetail(def) && articleModule) {
+  if (isArticleDetail(def) && articleModule) {
     const slug = articleSlugFromDef(def);
     const article = articleModule.articleBySlug(locale, slug);
     if (article) {
       const headline = articleModule.articleHeadline(article);
+      const seo = articleModule.articleSeo(article);
       const homePath = locale === "el" ? "/el/" : "/";
       const articlesPath = locale === "el" ? "/el/articles/" : "/articles/";
       const logoUrl = `${origin}/images/omnidot-logo.svg`;
+      const image = article.image.startsWith("http")
+        ? article.image
+        : `${origin}${article.image}`;
       return {
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": "BlogPosting",
             headline,
-            description: article.excerpt,
+            description: seo.description,
             datePublished: article.date,
             dateModified: article.dateModified ?? article.date,
             author: {
@@ -532,7 +557,7 @@ function jsonLdFor(def, locale) {
             mainEntityOfPage: { "@type": "WebPage", "@id": url },
             inLanguage: locale === "el" ? "el" : "en",
             articleSection: article.topic,
-            image: `${origin}${article.image}`,
+            image,
           },
           {
             "@type": "BreadcrumbList",
@@ -980,7 +1005,10 @@ function crawlBody(def, locale) {
     (def.id === "web" || def.id === "performance") &&
     copy.guide &&
     copy.cases?.length;
-  if (copy.cases?.length && !casesAfterCost) {
+  // Content: case blurbs right after intro (before guide), matching React afterIntro.
+  if (def.id === "content" && copy.cases?.length) {
+    parts.push(crawlCases(copy.cases));
+  } else if (copy.cases?.length && !casesAfterCost) {
     parts.push(crawlCases(copy.cases));
   } else if (story && !copy.cases?.length) {
     parts.push(story);
@@ -998,20 +1026,32 @@ function crawlBody(def, locale) {
 
   parts.push(`<nav aria-label="Services">${links}</nav>`);
 
-  if (def.id === "articles") {
+  if (def.id === "articles" && articleModule) {
+    const t = i18nModule.copy[locale];
     const prefix = locale === "el" ? "/el" : "";
-    const items = articleRouteDefs()
-      .map((article) => {
-        const href = withTrailingSlash(
-          `${prefix}/articles/${article.enPath.split("/").filter(Boolean).pop()}`,
+    const list = articleModule.articlesFor(locale);
+    const items = list
+      .map((item) => {
+        const href = withTrailingSlash(`${prefix}/articles/${item.slug}`);
+        const readTime = t.articlesReadTime.replace(
+          "{n}",
+          String(item.readMinutes),
         );
-        const title = article[locale].h1;
-        return `<li><a href="${href}">${escapeHtml(title)}</a></li>`;
+        const dateLabel = articleModule.formatArticleDate(locale, item.date);
+        return `<li><a href="${href}"><span>${escapeHtml(item.topic)} · <time datetime="${escapeAttr(item.date)}">${escapeHtml(dateLabel)}</time> · ${escapeHtml(readTime)}</span><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(item.excerpt)}</p><span>${escapeHtml(t.articlesRead)} ↗</span></a></li>`;
       })
       .join("");
-    parts.push(
-      `<nav aria-label="${locale === "el" ? "Άρθρα" : "Articles"}"><ul>${items}</ul></nav>`,
-    );
+    // Rebuild main with list intro matching Articles.tsx
+    return [
+      `<main id="prerender">`,
+      `<header><a href="${homeHref}">${escapeHtml(homeText)} — omnidot.</a></header>`,
+      `<p>${escapeHtml(t.articlesEyebrow)}</p>`,
+      `<h1>${escapeHtml(t.articlesTitle)}</h1>`,
+      `<p>${escapeHtml(t.articlesLede)}</p>`,
+      `<ul>${items}</ul>`,
+      `<nav aria-label="Services">${links}</nav>`,
+      `</main>`,
+    ].join("");
   }
 
   // Article detail: include full body paragraphs from route def when present.
@@ -1042,6 +1082,8 @@ function patchHtml(html, def, locale) {
   const canonical = `${origin}${path}`;
   const enUrl = `${origin}${withTrailingSlash(def.enPath)}`;
   const elUrl = `${origin}${withTrailingSlash(def.elPath)}`;
+  const ogImage = copy.image || def.image;
+  const isArticle = isArticleDetail(def);
   let out = stripPrior(html);
 
   out = out.replace(/<html[^>]*>/, `<html lang="${locale === "el" ? "el" : "en"}">`);
@@ -1060,7 +1102,7 @@ function patchHtml(html, def, locale) {
   );
   out = out.replace(
     /<meta\s+property="og:image"\s+content="[^"]*"\s*\/>/,
-    `<meta property="og:image" content="${escapeAttr(def.image)}" />`,
+    `<meta property="og:image" content="${escapeAttr(ogImage)}" />`,
   );
   out = out.replace(
     /<meta\s+property="og:locale"\s+content="[^"]*"\s*\/>/,
@@ -1072,10 +1114,12 @@ function patchHtml(html, def, locale) {
   );
   out = out.replace(
     /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/>/,
-    `<meta name="twitter:image" content="${escapeAttr(def.image)}" />`,
+    `<meta name="twitter:image" content="${escapeAttr(ogImage)}" />`,
   );
 
   const headExtras = [
+    `    <meta property="og:type" content="${isArticle ? "article" : "website"}" />`,
+    `    <meta property="og:site_name" content="omnidot." />`,
     `    <link rel="canonical" href="${canonical}" />`,
     `    <link rel="alternate" hreflang="en" href="${enUrl}" />`,
     `    <link rel="alternate" hreflang="el" href="${elUrl}" />`,
@@ -1083,10 +1127,38 @@ function patchHtml(html, def, locale) {
     `    <meta property="og:url" content="${canonical}" />`,
     `    <meta name="twitter:title" content="${escapeAttr(copy.title)}" />`,
     `    <meta name="twitter:description" content="${escapeAttr(copy.description)}" />`,
-    `    <script id="omnidot-jsonld" type="application/ld+json">${JSON.stringify(jsonLdFor(def, locale))}</script>`,
-  ].join("\n");
+  ];
 
-  out = out.replace("</head>", `${headExtras}\n  </head>`);
+  if (isArticle && copy.date) {
+    headExtras.push(
+      `    <meta property="article:published_time" content="${escapeAttr(copy.date)}" />`,
+    );
+    if (copy.dateModified) {
+      headExtras.push(
+        `    <meta property="article:modified_time" content="${escapeAttr(copy.dateModified)}" />`,
+      );
+    }
+  }
+
+  // Max one LCP image preload per page (home / social / content only).
+  if (def.id === "home") {
+    headExtras.push(
+      `    <link rel="preload" as="image" href="/images/social.webp" imagesrcset="${escapeAttr(HOME_TILE_SRCSET)}" imagesizes="${escapeAttr(HOME_TILE_SIZES)}" fetchpriority="high" />`,
+    );
+  } else if (
+    (def.id === "social" || def.id === "content") &&
+    copy.lcpPoster
+  ) {
+    headExtras.push(
+      `    <link rel="preload" as="image" href="${escapeAttr(copy.lcpPoster)}" fetchpriority="high" />`,
+    );
+  }
+
+  headExtras.push(
+    `    <script id="omnidot-jsonld" type="application/ld+json">${JSON.stringify(jsonLdFor(def, locale))}</script>`,
+  );
+
+  out = out.replace("</head>", `${headExtras.join("\n")}\n  </head>`);
   out = out.replace(
     '<div id="root"></div>',
     `${crawlBody(def, locale)}\n    <div id="root"></div>`,
@@ -1102,8 +1174,9 @@ function patch404(html) {
     `<meta name="description" content="This URL is not a page on omnidot." />`,
   );
   const extras = [
+    `    <meta property="og:type" content="website" />`,
+    `    <meta property="og:site_name" content="omnidot." />`,
     `    <meta name="robots" content="noindex, follow" />`,
-    `    <link rel="canonical" href="${origin}/" />`,
   ].join("\n");
   out = out.replace("</head>", `${extras}\n  </head>`);
   out = out.replace(
@@ -1216,8 +1289,8 @@ function writeRedirects() {
 
 async function main() {
   i18nModule = await loadI18nModule();
-  hydrateRouteDefs();
   articleModule = await loadArticleModule();
+  hydrateRouteDefs();
   const template = stripPrior(readFileSync(join(dist, "index.html"), "utf8"));
 
   for (const def of routeDefs) {

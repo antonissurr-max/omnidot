@@ -2,6 +2,7 @@
 export {
   articleBySlug,
   articleHeadline,
+  articleSeo,
   articlesFor,
   formatArticleDate,
 } from "../src/articles";

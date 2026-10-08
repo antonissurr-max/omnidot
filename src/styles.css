@@ -1081,7 +1081,7 @@ h1.chrome__brand {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.55;
+  opacity: 0.7;
 }
 
 .articles__glance ul {
@@ -1285,7 +1285,7 @@ h1.chrome__brand {
   margin: 0 0 0.85em !important;
   font-size: 13px !important;
   line-height: 1.5 !important;
-  opacity: 0.65;
+  opacity: 0.7;
 }
 
 .articles__price-link {
@@ -2910,7 +2910,7 @@ a.work__project:focus-visible .work__project-name {
   max-width: 100%;
   font-size: clamp(14px, 2.45vw, 36px);
   letter-spacing: -0.03em;
-  gap: 0.22em;
+  gap: 0;
 }
 
 .work--guide .boxed-title__word {
@@ -5161,9 +5161,13 @@ a.work__project:focus-visible .work__project-name {
   transition-delay: calc(0.1s + var(--ri, 0) * 0.12s);
 }
 
-.site-foot.is-visible .site-foot__col,
-.site-foot.is-visible .site-foot__copy {
+.site-foot.is-visible .site-foot__col {
   opacity: 1;
+  transform: none;
+}
+
+.site-foot.is-visible .site-foot__copy {
+  opacity: 0.55;
   transform: none;
 }
 
@@ -5279,7 +5283,7 @@ a.work__project:focus-visible .work__project-name {
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.45;
+  opacity: 0.55;
 }
 
 .stage.is-work .site-foot,

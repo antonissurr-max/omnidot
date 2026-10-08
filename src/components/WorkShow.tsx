@@ -45,6 +45,15 @@ function clientCover(
   return media.find((m) => mediaIsVideo(m)) ?? media[0];
 }
 
+/** Project-grid poster at displayed size; keep full backdrop for case view. */
+function cardPoster(poster?: string) {
+  if (!poster) return poster;
+  if (poster.endsWith("-backdrop.webp") && !poster.includes("-540")) {
+    return poster.replace(/-backdrop\.webp$/, "-backdrop-540.webp");
+  }
+  return poster;
+}
+
 function ProjectCover({ item }: { item: MediaItem }) {
   const contain = item.fit === "contain";
 
@@ -53,7 +62,7 @@ function ProjectCover({ item }: { item: MediaItem }) {
       <LazyVideo
         className={contain ? "is-contain" : undefined}
         src={item.src}
-        poster={item.poster}
+        poster={cardPoster(item.poster)}
         width={540}
         height={960}
         title={item.title}
@@ -362,6 +371,19 @@ export function WorkShow({
                         {" — "}
                         {clients[0].story}
                       </p>
+                    ) : id === "content" &&
+                      clients.some((c) => c.story) ? (
+                      <ul className="service-guide__cases">
+                        {clients
+                          .filter((c) => c.story)
+                          .map((c) => (
+                            <li key={c.client}>
+                              <strong>{c.client}</strong>
+                              {" — "}
+                              {c.story}
+                            </li>
+                          ))}
+                      </ul>
                     ) : null
                   }
                   afterCost={

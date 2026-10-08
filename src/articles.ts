@@ -31,6 +31,10 @@ export type Article = {
   /** Optional dek under the H1 on the detail page */
   subtitle?: string;
   excerpt: string;
+  /** Optional document <title>; fallback `${title} — omnidot.` */
+  seoTitle?: string;
+  /** Optional meta description (≤155); fallback word-trimmed excerpt */
+  seoDescription?: string;
   readMinutes: number;
   /** “Με μια ματιά” takeaways under the intro */
   takeaways?: string[];
@@ -71,6 +75,9 @@ const articles: ArticleSource[] = [
       title: "Δημιουργία ιστοσελίδας στην Αθήνα",
       subtitle:
         "τι περιλαμβάνει στην πράξη, πώς δένει με το SEO και τι καθορίζει την τιμή",
+      seoTitle: "Δημιουργία ιστοσελίδας στην Αθήνα: SEO και τιμή — omnidot.",
+      seoDescription:
+        "Τι περιλαμβάνει στην πράξη η κατασκευή ιστοσελίδας στην Αθήνα, πώς δένει με το SEO και τι καθορίζει την τιμή — από την omnidot.",
       excerpt:
         "Οι περισσότερες συζητήσεις για καινούργιο site ξεκινούν από το λάθος σημείο. Τι περιλαμβάνει πραγματικά η κατασκευή, πού μπαίνει το SEO και τι ανεβάζει την τιμή.",
       takeaways: [
@@ -267,6 +274,9 @@ const articles: ArticleSource[] = [
       title: "Website creation in Athens",
       subtitle:
         "what it actually includes, how it ties to SEO, and what drives the price",
+      seoTitle: "Website creation in Athens: SEO and price — omnidot.",
+      seoDescription:
+        "What a real website build in Athens includes, where SEO fits from day one, and what drives the price — from omnidot.",
       excerpt:
         "Most new-site conversations start in the wrong place. What real website builds include, where SEO fits, and what moves the price up or down.",
       takeaways: [
@@ -471,6 +481,30 @@ export function articleHeadline(article: Pick<Article, "title" | "subtitle">) {
   return article.subtitle
     ? `${article.title}: ${article.subtitle}`
     : article.title;
+}
+
+/** Trim at a word boundary; append … when shortened. Never cuts mid-word. */
+function trimAtWordBoundary(text: string, maxChars: number): string {
+  const chars = [...text];
+  if (chars.length <= maxChars) return text;
+  const budget = Math.max(1, maxChars - 1); // room for …
+  let end = budget;
+  while (end > 0 && !/\s/u.test(chars[end - 1])) end -= 1;
+  while (end > 0 && /\s/u.test(chars[end - 1])) end -= 1;
+  if (end === 0) end = budget;
+  return `${chars.slice(0, end).join("")}…`;
+}
+
+/** Document title + meta description — shared by client SEO and prerender. */
+export function articleSeo(article: Article): {
+  title: string;
+  description: string;
+} {
+  return {
+    title: article.seoTitle ?? `${article.title} — omnidot.`,
+    description:
+      article.seoDescription ?? trimAtWordBoundary(article.excerpt, 155),
+  };
 }
 
 export function articlesFor(locale: Locale): Article[] {

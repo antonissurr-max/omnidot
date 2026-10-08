@@ -43,6 +43,7 @@ export function BoxedTitle({ text }: { text: string }) {
           style={{ ["--d" as string]: `${i * 120}ms` }}
         >
           {word}
+          {i < words.length - 1 ? " " : null}
         </span>
       ))}
     </h1>

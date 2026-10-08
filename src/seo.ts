@@ -1,4 +1,9 @@
-import { articleBySlug, articleHeadline, articlesFor } from "./articles";
+import {
+  articleBySlug,
+  articleHeadline,
+  articleSeo,
+  articlesFor,
+} from "./articles";
 import { copy, type Locale } from "./i18n";
 import { phoneHref, site } from "./site";
 import { pages } from "./site";
@@ -12,6 +17,9 @@ export type RouteSeo = {
   canonical: string;
   image: string;
   robots?: string;
+  ogType?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
   jsonLd: Record<string, unknown>;
 };
 
@@ -31,8 +39,6 @@ export const PAGE_TITLES = {
     content: "Content Creation for Social Media | omnidot. Athens",
     performance: "Google Ads & Meta Ads Management | omnidot. Athens",
     web: "Website Development in Athens | omnidot.",
-    article:
-      "Website creation in Athens: SEO and price — omnidot.",
   },
   el: {
     home: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
@@ -44,7 +50,6 @@ export const PAGE_TITLES = {
     content: "Παραγωγή Περιεχομένου για Social Media | omnidot. Αθήνα",
     performance: "Διαχείριση Google Ads & Meta Ads | omnidot. Αθήνα",
     web: "Κατασκευή Ιστοσελίδας στην Αθήνα | omnidot.",
-    article: "Δημιουργία ιστοσελίδας στην Αθήνα: SEO και τιμή — omnidot.",
   },
 } as const;
 
@@ -168,7 +173,7 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
   if (view.kind === "about") {
     return {
       title: titles.about,
-      description: t.aboutSeoDescription.slice(0, 160),
+      description: t.aboutSeoDescription,
       path,
       canonical,
       image: DEFAULT_OG,
@@ -189,7 +194,7 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
   if (view.kind === "pricing") {
     return {
       title: titles.pricing,
-      description: t.pricingSeoDescription.slice(0, 160),
+      description: t.pricingSeoDescription,
       path,
       canonical,
       image: DEFAULT_OG,
@@ -273,23 +278,30 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
       };
     }
     const headline = articleHeadline(article);
+    const seo = articleSeo(article);
     const articlesPath = pathFromView({ kind: "articles" }, locale);
     const logoUrl = `${SITE_ORIGIN}/images/omnidot-logo.svg`;
+    const image = article.image.startsWith("http")
+      ? article.image
+      : `${SITE_ORIGIN}${article.image}`;
     return {
-      title: titles.article,
-      description: article.excerpt.slice(0, 160),
+      title: seo.title,
+      description: seo.description,
       path,
       canonical,
-      image: article.image.startsWith("http")
-        ? article.image
-        : `${SITE_ORIGIN}${article.image}`,
+      image,
+      ogType: "article",
+      publishedTime: article.date,
+      ...(article.dateModified
+        ? { modifiedTime: article.dateModified }
+        : {}),
       jsonLd: {
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": "BlogPosting",
             headline,
-            description: article.excerpt,
+            description: seo.description,
             datePublished: article.date,
             dateModified: article.dateModified ?? article.date,
             author: {
@@ -306,9 +318,7 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
             mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
             inLanguage: locale === "el" ? "el" : "en",
             articleSection: article.topic,
-            image: article.image.startsWith("http")
-              ? article.image
-              : `${SITE_ORIGIN}${article.image}`,
+            image,
           },
           breadcrumbLd([
             homeCrumb(locale),
@@ -459,7 +469,7 @@ export function applyDocumentSeo(locale: Locale, view: View) {
   upsertMeta("name", "description", seo.description);
   upsertMeta("property", "og:title", seo.title);
   upsertMeta("property", "og:description", seo.description);
-  upsertMeta("property", "og:type", "website");
+  upsertMeta("property", "og:type", seo.ogType ?? "website");
   upsertMeta("property", "og:site_name", "omnidot.");
   upsertMeta("property", "og:url", seo.canonical);
   upsertMeta("property", "og:image", seo.image);
@@ -470,15 +480,35 @@ export function applyDocumentSeo(locale: Locale, view: View) {
   upsertMeta("name", "twitter:description", seo.description);
   upsertMeta("name", "twitter:image", seo.image);
 
+  if (seo.publishedTime) {
+    upsertMeta("property", "article:published_time", seo.publishedTime);
+  } else {
+    document.head
+      .querySelector('meta[property="article:published_time"]')
+      ?.remove();
+  }
+  if (seo.modifiedTime) {
+    upsertMeta("property", "article:modified_time", seo.modifiedTime);
+  } else {
+    document.head
+      .querySelector('meta[property="article:modified_time"]')
+      ?.remove();
+  }
+
   if (seo.robots) {
     upsertMeta("name", "robots", seo.robots);
   } else {
     document.head.querySelector('meta[name="robots"]')?.remove();
   }
 
-  upsertLink("canonical", seo.canonical);
-
-  if (view.kind !== "notfound") {
+  const noindex = Boolean(seo.robots?.includes("noindex"));
+  if (noindex) {
+    document.head.querySelector('link[rel="canonical"]')?.remove();
+    document.head
+      .querySelectorAll('link[rel="alternate"][hreflang]')
+      .forEach((el) => el.remove());
+  } else {
+    upsertLink("canonical", seo.canonical);
     const enPath = pathFromView(view, "en").split("?")[0];
     const elPath = pathFromView(view, "el").split("?")[0];
     const enUrl = `${SITE_ORIGIN}${enPath}`;

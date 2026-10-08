@@ -438,9 +438,9 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     pricingSeoDescription:
-      "Marketing agency pricing in Athens: social media from €450/mo, content packs from €350, Meta & Google Ads from €300/mo, SEO websites from €700. Clear scope — ad spend separate.",
+      "Marketing agency pricing in Athens: social media from €450/mo, content from €350, Meta & Google Ads from €300/mo, websites from €700. Ad spend separate.",
     aboutSeoDescription:
-      "About omnidot. — Athens marketing agency for founders and local brands. Contact us for social media, content, Meta & Google Ads, and SEO websites built as one system.",
+      "About omnidot., a marketing agency in Athens for founders and local brands: social media, content, Meta & Google Ads and SEO websites. Get in touch.",
     mediaSoon: "Media soon",
     caseCompany: "Company",
     caseTask: "Task",
@@ -1187,9 +1187,9 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     pricingSeoDescription:
-      "Τιμές διαφημιστικής στην Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες SEO από €700. Καθαρό scope — ad spend ξεχωριστά.",
+      "Τιμές διαφημιστικής στην Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες από €700. Ad spend ξεχωριστά.",
     aboutSeoDescription:
-      "Σχετικά με την omnidot. — διαφημιστική στην Αθήνα για founders και τοπικά brands. Επικοινωνία για social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
+      "Σχετικά με την omnidot., διαφημιστική στην Αθήνα για founders και τοπικά brands: social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
     mediaSoon: "Media σύντομα",
     caseCompany: "Εταιρεία",
     caseTask: "Υπηρεσία",

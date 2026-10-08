@@ -130,6 +130,13 @@ export function Works({ dimmed }: { dimmed: boolean }) {
                 fetchPriority={i === 0 ? "high" : "auto"}
                 width={800}
                 height={1000}
+                {...(page.id === "social"
+                  ? {
+                      srcSet:
+                        "/images/social-480.webp 480w, /images/social-800.webp 800w, /images/social.webp 1024w",
+                      sizes: "(min-width: 900px) min(360px, 18.5vw), 100vw",
+                    }
+                  : {})}
               />
             </span>
             <span className="tile__title">{title}</span>
