@@ -1376,12 +1376,27 @@ a.work__proof-line:hover {
     transform 0.55s var(--ease);
 }
 
+.work__project-media img.is-contain,
+.work__project-media video.is-contain {
+  object-fit: contain;
+  padding: 22%;
+  box-sizing: border-box;
+  filter: none;
+}
+
 .work__project:hover .work__project-media img,
 .work__project:focus-visible .work__project-media img,
 .work__project:hover .work__project-media video,
 .work__project:focus-visible .work__project-media video {
   filter: none;
   transform: scale(1.03);
+}
+
+.work__project:hover .work__project-media img.is-contain,
+.work__project:focus-visible .work__project-media img.is-contain,
+.work__project:hover .work__project-media video.is-contain,
+.work__project:focus-visible .work__project-media video.is-contain {
+  transform: scale(1.04);
 }
 
 .work__project-empty {

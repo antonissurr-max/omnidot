@@ -60,6 +60,8 @@ export type ProofClient = {
   backdrop?: string;
   /** Short “what we did” line under the story (Advision-style) */
   did?: string;
+  /** Folder card cover (logo/mark) — separate from case gallery media */
+  cover?: MediaItem;
   /** When set, gallery switches to these assets while this client is open */
   media?: MediaItem[];
 };
@@ -1580,11 +1582,18 @@ export const copy: Record<Locale, Copy> = {
               value:
                 "Ιστοσελίδα για ψηφιακή υπηρεσία, με καθαρή δομή που εξηγεί γρήγορα τι κάνει και οδηγεί τον επισκέπτη στο επόμενο βήμα.",
               links: [{ label: "dotxi.app", href: "https://dotxi.app/" }],
+              cover: {
+                src: "/images/partners/dotxi-mark.svg",
+                title: "DotXI",
+                detail: "dotxi.app",
+                fit: "contain",
+              },
               media: [
                 {
-                  src: "/images/partners/dotxi.svg",
+                  src: "/images/partners/dotxi-mark.svg",
                   title: "DotXI",
                   detail: "dotxi.app",
+                  fit: "contain",
                 },
               ],
             },
@@ -1599,6 +1608,12 @@ export const copy: Record<Locale, Copy> = {
               links: [
                 { label: "pyrgiotisoe.com", href: "https://pyrgiotisoe.com/" },
               ],
+              cover: {
+                src: "/images/partners/pyrgiotis.png",
+                title: "Πυργιώτης ΟΕ",
+                detail: "pyrgiotisoe.com",
+                fit: "contain",
+              },
               media: [
                 {
                   src: "/images/work-pyrgiotis-home.jpg",

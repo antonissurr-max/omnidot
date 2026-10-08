@@ -39,12 +39,14 @@ function clientCover(
   item: ProofClient,
   fallback: MediaItem[],
 ): MediaItem | undefined {
+  if (item.cover) return item.cover;
   const media = item.media && item.media.length > 0 ? item.media : fallback;
   return media.find((m) => mediaIsVideo(m)) ?? media[0];
 }
 
 function ProjectCover({ item }: { item: MediaItem }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const contain = item.fit === "contain";
 
   useEffect(() => {
     if (!mediaIsVideo(item)) return;
@@ -68,6 +70,7 @@ function ProjectCover({ item }: { item: MediaItem }) {
     return (
       <video
         ref={videoRef}
+        className={contain ? "is-contain" : undefined}
         src={item.src}
         poster={item.poster}
         muted
@@ -80,7 +83,15 @@ function ProjectCover({ item }: { item: MediaItem }) {
     );
   }
 
-  return <img src={item.src} alt="" loading="lazy" decoding="async" />;
+  return (
+    <img
+      className={contain ? "is-contain" : undefined}
+      src={item.src}
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+  );
 }
 
 export function WorkShow({
