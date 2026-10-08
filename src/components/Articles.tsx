@@ -5,9 +5,45 @@ import {
   articleBlockText,
   formatArticleDate,
   isArticleSection,
+  type ArticleBlock,
 } from "../articles";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
+
+type BodyNode =
+  | { kind: "section"; text: string }
+  | { kind: "p"; text: string }
+  | { kind: "list"; items: string[] };
+
+/** Group consecutive “1. … / 2. …” body lines into a real list under a section. */
+function groupArticleBody(body: ArticleBlock[]): BodyNode[] {
+  const nodes: BodyNode[] = [];
+  let listItems: string[] = [];
+
+  const flushList = () => {
+    if (listItems.length === 0) return;
+    nodes.push({ kind: "list", items: listItems });
+    listItems = [];
+  };
+
+  for (const block of body) {
+    if (isArticleSection(block)) {
+      flushList();
+      nodes.push({ kind: "section", text: block.section });
+      continue;
+    }
+    const text = articleBlockText(block);
+    const numbered = text.match(/^(\d+)\.\s+([\s\S]+)$/);
+    if (numbered) {
+      listItems.push(numbered[2]);
+      continue;
+    }
+    flushList();
+    nodes.push({ kind: "p", text });
+  }
+  flushList();
+  return nodes;
+}
 
 export function Articles({ slug }: { slug?: string }) {
   const { locale, t } = useLocale();
@@ -59,16 +95,27 @@ export function Articles({ slug }: { slug?: string }) {
         </header>
 
         <div className="articles__body">
-          {article.body.map((block) => {
-            const text = articleBlockText(block);
-            return (
-              <p
-                key={text.slice(0, 48)}
-                className={isArticleSection(block) ? "articles__section" : undefined}
-              >
-                {text}
-              </p>
-            );
+          {groupArticleBody(article.body).map((node) => {
+            if (node.kind === "section") {
+              return (
+                <p key={node.text.slice(0, 48)} className="articles__section">
+                  {node.text}
+                </p>
+              );
+            }
+            if (node.kind === "list") {
+              return (
+                <ol
+                  key={node.items[0]?.slice(0, 40)}
+                  className="articles__points"
+                >
+                  {node.items.map((item) => (
+                    <li key={item.slice(0, 48)}>{item}</li>
+                  ))}
+                </ol>
+              );
+            }
+            return <p key={node.text.slice(0, 48)}>{node.text}</p>;
           })}
         </div>
 
