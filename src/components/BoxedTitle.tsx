@@ -1,5 +1,17 @@
 import { useLayoutEffect, useRef } from "react";
 
+/** Right edge of rendered text (not the block box — meta span/strong are display:block). */
+function textContentRight(el: Element): number {
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  const rects = range.getClientRects();
+  let right = 0;
+  for (let i = 0; i < rects.length; i++) {
+    right = Math.max(right, rects[i].right);
+  }
+  return right;
+}
+
 /** Word-level title — one line on guide pages, scaled to the meta περασιά */
 export function BoxedTitle({ text }: { text: string }) {
   const words = text.split(/\s+/).filter(Boolean);
@@ -28,7 +40,7 @@ export function BoxedTitle({ text }: { text: string }) {
         const headLeft = head.getBoundingClientRect().left;
         let textRight = headLeft;
         lastMeta.querySelectorAll("span, strong").forEach((node) => {
-          textRight = Math.max(textRight, node.getBoundingClientRect().right);
+          textRight = Math.max(textRight, textContentRight(node));
         });
         maxW = Math.max(0, textRight - headLeft);
         const colW = head.clientWidth;
