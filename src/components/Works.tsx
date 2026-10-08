@@ -126,7 +126,7 @@ export function Works({ dimmed }: { dimmed: boolean }) {
               <img
                 src={page.cover}
                 alt={title}
-                loading={i < 2 ? "eager" : "lazy"}
+                loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
                 fetchPriority={i === 0 ? "high" : "auto"}
                 width={800}

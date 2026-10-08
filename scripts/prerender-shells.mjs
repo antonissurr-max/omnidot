@@ -1129,6 +1129,13 @@ function patchHtml(html, def, locale) {
     `    <meta name="twitter:description" content="${escapeAttr(copy.description)}" />`,
   ];
 
+  // Greek H1/display weight 600 — preload the same URL @font-face requests.
+  if (locale === "el") {
+    headExtras.push(
+      `    <link rel="preload" href="/fonts/ibm-plex-sans-greek-600.woff2" as="font" type="font/woff2" crossorigin />`,
+    );
+  }
+
   if (isArticle && copy.date) {
     headExtras.push(
       `    <meta property="article:published_time" content="${escapeAttr(copy.date)}" />`,
