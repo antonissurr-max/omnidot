@@ -368,5 +368,106 @@ for (const rel of files) {
   console.log(`image preloads: ${preloads.length}`);
 }
 
+/** Fail if any built CSS rule targeting `.boxed-title` (not `__word`) sets a zero column gap. */
+function isZeroLength(value) {
+  return /^(?:0+|0*\.0+)(?:px|em|rem|%|vw|vh|vmin|vmax|ex|ch)?$/i.test(
+    String(value).trim(),
+  );
+}
+
+function extractCssRules(text, rules = []) {
+  let i = 0;
+  while (i < text.length) {
+    while (i < text.length && /\s/.test(text[i])) i++;
+    if (i >= text.length) break;
+
+    if (text[i] === "@") {
+      const brace = text.indexOf("{", i);
+      if (brace < 0) break;
+      const prelude = text.slice(i, brace).trim();
+      let depth = 0;
+      let j = brace;
+      for (; j < text.length; j++) {
+        if (text[j] === "{") depth++;
+        else if (text[j] === "}") {
+          depth--;
+          if (depth === 0) {
+            j++;
+            break;
+          }
+        }
+      }
+      const body = text.slice(brace + 1, j - 1);
+      if (/^@(?:media|supports|layer)\b/i.test(prelude)) {
+        extractCssRules(body, rules);
+      }
+      i = j;
+      continue;
+    }
+
+    const brace = text.indexOf("{", i);
+    if (brace < 0) break;
+    const selector = text.slice(i, brace).trim();
+    let depth = 0;
+    let j = brace;
+    for (; j < text.length; j++) {
+      if (text[j] === "{") depth++;
+      else if (text[j] === "}") {
+        depth--;
+        if (depth === 0) {
+          j++;
+          break;
+        }
+      }
+    }
+    const decls = text.slice(brace + 1, j - 1);
+    if (selector) rules.push({ selector, decls });
+    i = j;
+  }
+  return rules;
+}
+
+function selectorTargetsBoxedTitle(selector) {
+  const stripped = selector.replace(/\.boxed-title__word\b/g, "");
+  return /\.boxed-title\b/.test(stripped);
+}
+
+function hasZeroColumnGap(decls) {
+  const col = decls.match(/(?:^|;)\s*column-gap\s*:\s*([^;]+)/i);
+  if (col && isZeroLength(col[1])) return true;
+
+  const gap = decls.match(/(?:^|;)\s*gap\s*:\s*([^;]+)/i);
+  if (!gap) return false;
+  const parts = gap[1].trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 1) return isZeroLength(parts[0]);
+  return isZeroLength(parts[1]);
+}
+
+const assetsDir = join(dist, "assets");
+const cssFiles = existsSync(assetsDir)
+  ? readdirSync(assetsDir).filter((f) => f.endsWith(".css"))
+  : [];
+
+if (!cssFiles.length) {
+  console.log("\nFAIL no built CSS in dist/assets");
+  failed = true;
+} else {
+  for (const file of cssFiles) {
+    const css = readFileSync(join(assetsDir, file), "utf8");
+    const rules = extractCssRules(css);
+    for (const { selector, decls } of rules) {
+      if (!selectorTargetsBoxedTitle(selector)) continue;
+      if (!hasZeroColumnGap(decls)) continue;
+      console.log(
+        `\nFAIL ${file}: .boxed-title rule has zero column gap\n  ${selector} { ${decls.trim()} }`,
+      );
+      failed = true;
+    }
+  }
+  if (!failed) {
+    console.log("\nboxed-title gap check: OK (no zero column gap)");
+  }
+}
+
 console.log(failed ? "\ncheck-prerender: FAILED" : "\ncheck-prerender: OK");
 process.exit(failed ? 1 : 0);

@@ -2934,13 +2934,17 @@ a.work__project:focus-visible .work__project-name {
   margin-bottom: 40px;
 }
 
+.work--guide {
+  --guide-col: min(1120px, 100%);
+}
+
 .work--guide .work__body {
-  max-width: 920px;
+  max-width: var(--guide-col);
 }
 
 /* Title + meta share the full panel width — H1 one line to the same περασιά */
 .work--guide .work__head {
-  max-width: min(1120px, 100%);
+  max-width: var(--guide-col);
 }
 
 .work--guide .work__lead {
@@ -2955,7 +2959,7 @@ a.work__project:focus-visible .work__project-name {
   max-width: 100%;
   font-size: clamp(14px, 2.45vw, 36px);
   letter-spacing: -0.03em;
-  gap: 0;
+  gap: 0.22em;
 }
 
 .work--guide .boxed-title__word {
@@ -2969,6 +2973,30 @@ a.work__project:focus-visible .work__project-name {
   width: 100%;
   min-width: 0;
   max-width: 100%;
+}
+
+.work--guide .work__projects {
+  max-width: none;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .work--guide .work__projects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.work--guide .service-guide__intro,
+.work--guide .service-guide__p,
+.work--guide .service-guide__case,
+.work--guide .service-guide__cases,
+.work--guide .service-guide__blocks,
+.work--guide .service-guide__list,
+.work--guide .service-guide__steps,
+.work--guide .service-guide__related,
+.work--guide .service-guide__final,
+.work--guide .service-guide__section {
+  max-width: none;
 }
 
 @media (max-width: 899px) {
