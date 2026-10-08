@@ -209,7 +209,9 @@ export default function App() {
         onToggleAbout={toggleAbout}
         hideClose={view.kind === "pricing" && pricingModuleOpen}
       />
-      <Works dimmed={view.kind !== "index"} />
+      {view.kind !== "articles" && view.kind !== "article" && (
+        <Works dimmed={view.kind !== "index"} />
+      )}
 
       {view.kind === "about" && (
         <About

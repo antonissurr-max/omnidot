@@ -1,4 +1,4 @@
-import { articleBySlug, articlesFor } from "./articles";
+import { articleBySlug, articleHeadline, articlesFor } from "./articles";
 import { copy, type Locale } from "./i18n";
 import { phoneHref, site } from "./site";
 import { pages } from "./site";
@@ -197,31 +197,72 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
         },
       };
     }
-    const headline = article.subtitle
-      ? `${article.title}: ${article.subtitle}`
-      : article.title;
+    const headline = articleHeadline(article);
+    const articlesPath = pathFromView({ kind: "articles" }, locale);
+    const homePath = pathFromView({ kind: "index" }, locale);
+    const logoUrl = `${SITE_ORIGIN}/images/omnidot-logo.svg`;
     return {
       title: `${headline} — omnidot.`,
       description: article.excerpt.slice(0, 160),
       path,
       canonical,
-      image: DEFAULT_OG,
+      image: article.image.startsWith("http")
+        ? article.image
+        : `${SITE_ORIGIN}${article.image}`,
       jsonLd: {
         "@context": "https://schema.org",
-        "@type": "Article",
-        headline,
-        description: article.excerpt,
-        datePublished: article.date,
-        author: { "@type": "Organization", name: "omnidot.", url: SITE_ORIGIN },
-        publisher: {
-          "@type": "Organization",
-          name: "omnidot.",
-          url: SITE_ORIGIN,
-          logo: { "@type": "ImageObject", url: `${SITE_ORIGIN}/images/omnidot-logo.svg` },
-        },
-        mainEntityOfPage: canonical,
-        articleSection: article.topic,
-        inLanguage: locale === "el" ? "el" : "en",
+        "@graph": [
+          {
+            "@type": "BlogPosting",
+            headline,
+            description: article.excerpt,
+            datePublished: article.date,
+            dateModified: article.dateModified ?? article.date,
+            author: {
+              "@type": "Organization",
+              name: "omnidot",
+              url: SITE_ORIGIN,
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "omnidot",
+              url: SITE_ORIGIN,
+              logo: { "@type": "ImageObject", url: logoUrl },
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": canonical,
+            },
+            inLanguage: locale === "el" ? "el" : "en",
+            articleSection: article.topic,
+            image: article.image.startsWith("http")
+              ? article.image
+              : `${SITE_ORIGIN}${article.image}`,
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: t.footerHome,
+                item: `${SITE_ORIGIN}${homePath}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: t.articlesTitle,
+                item: `${SITE_ORIGIN}${articlesPath}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: article.title,
+                item: canonical,
+              },
+            ],
+          },
+        ],
       },
     };
   }

@@ -81,6 +81,17 @@ export type Copy = {
   articlesBack: string;
   articlesReadTime: string;
   articlesSeoDescription: string;
+  articlePublished: string;
+  articleUpdated: string;
+  articleGlance: string;
+  articleToc: string;
+  articleMidCtaTitle: string;
+  articleMidCta: string;
+  articleEndCtaTitle: string;
+  articleEndCta: string;
+  articlePriceCta: string;
+  articleRelatedServices: string;
+  articleMoreArticles: string;
   close: string;
   previous: string;
   next: string;
@@ -332,6 +343,17 @@ export const copy: Record<Locale, Copy> = {
     articlesReadTime: "{n} min read",
     articlesSeoDescription:
       "Articles from omnidot. on Meta & Google Ads, social media, SEO websites and marketing for Athens brands.",
+    articlePublished: "Published",
+    articleUpdated: "Updated",
+    articleGlance: "At a glance",
+    articleToc: "Contents",
+    articleMidCtaTitle: "Want to see what your business needs?",
+    articleMidCta: "Book a short call",
+    articleEndCtaTitle: "Want to see what your business needs?",
+    articleEndCta: "Book a short call",
+    articlePriceCta: "See packages & pricing",
+    articleRelatedServices: "Related services",
+    articleMoreArticles: "More articles",
     close: "Close",
     previous: "Previous",
     next: "Next",
@@ -342,7 +364,7 @@ export const copy: Record<Locale, Copy> = {
     gallery: "Gallery",
     sections: "Sections",
     rights: "All rights reserved.",
-    location: "Athens · Remote",
+    location: "Athens · All of Greece",
     footerMenu: "Menu",
     footerServices: "Services",
     footerContact: "Contact",
@@ -967,6 +989,17 @@ export const copy: Record<Locale, Copy> = {
     articlesReadTime: "{n} λεπτά",
     articlesSeoDescription:
       "Άρθρα από την omnidot. για Meta & Google Ads, social media, ιστοσελίδες με SEO και marketing για brands στην Αθήνα.",
+    articlePublished: "Δημοσιεύτηκε",
+    articleUpdated: "Ενημερώθηκε",
+    articleGlance: "Με μια ματιά",
+    articleToc: "Περιεχόμενα",
+    articleMidCtaTitle: "Θες να δούμε τι χρειάζεται η επιχείρησή σου;",
+    articleMidCta: "Κλείσε ένα σύντομο call",
+    articleEndCtaTitle: "Θες να δούμε τι χρειάζεται η επιχείρησή σου;",
+    articleEndCta: "Κλείσε ένα σύντομο call",
+    articlePriceCta: "Δες πακέτα & τιμές",
+    articleRelatedServices: "Σχετικές υπηρεσίες",
+    articleMoreArticles: "Περισσότερα άρθρα",
     close: "Κλείσιμο",
     previous: "Προηγούμενο",
     next: "Επόμενο",
@@ -977,7 +1010,7 @@ export const copy: Record<Locale, Copy> = {
     gallery: "Γκαλερί",
     sections: "Ενότητες",
     rights: "Με επιφύλαξη παντός δικαιώματος.",
-    location: "Αθήνα · Remote",
+    location: "Αθήνα · Όλη η Ελλάδα",
     footerMenu: "Μενού",
     footerServices: "Υπηρεσίες",
     footerContact: "Επικοινωνία",
