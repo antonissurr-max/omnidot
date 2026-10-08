@@ -1,17 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" role="img" aria-label="dotXI">
   <rect width="240" height="240" fill="#FFFFFF"/>
-  <g transform="translate(48 58)">
-    <circle cx="28" cy="40" r="16" fill="#0A192F"/>
-    <rect x="40" y="35" width="24" height="10" rx="5" fill="#0A192F"/>
-    <circle cx="80" cy="40" r="16" fill="#7BA3C9"/>
-  </g>
   <text
     x="120"
-    y="168"
+    y="132"
     text-anchor="middle"
     fill="#0A192F"
     font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
-    font-size="42"
+    font-size="48"
     font-weight="700"
     letter-spacing="-0.02em"
   >dotXI</text>
