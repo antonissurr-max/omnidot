@@ -11,13 +11,40 @@ export function BoxedTitle({ text }: { text: string }) {
 
     const fit = () => {
       el.style.fontSize = "";
-      if (!el.closest(".work--guide")) return;
-      if (window.matchMedia("(max-width: 899px)").matches) return;
+      const guideEl = el.closest(".work--guide");
+      if (!guideEl) return;
 
-      const max = parseFloat(getComputedStyle(el).fontSize);
-      let size = max;
+      if (window.matchMedia("(max-width: 899px)").matches) {
+        (guideEl as HTMLElement).style.removeProperty("--guide-peirasia");
+        (guideEl as HTMLElement).style.removeProperty("--guide-card");
+        return;
+      }
+
+      const head = el.closest(".work__head");
+      const lastMeta = head?.querySelector(".work__meta-item:last-child");
+      let maxW = el.clientWidth;
+
+      if (head instanceof HTMLElement && lastMeta instanceof HTMLElement) {
+        const headLeft = head.getBoundingClientRect().left;
+        let textRight = headLeft;
+        lastMeta.querySelectorAll("span, strong").forEach((node) => {
+          textRight = Math.max(textRight, node.getBoundingClientRect().right);
+        });
+        maxW = Math.max(0, textRight - headLeft);
+        const colW = head.clientWidth;
+        (guideEl as HTMLElement).style.setProperty(
+          "--guide-peirasia",
+          `${maxW}px`,
+        );
+        (guideEl as HTMLElement).style.setProperty(
+          "--guide-card",
+          `${Math.max(0, (colW * 0.7 - 14) / 2)}px`,
+        );
+      }
+
+      let size = parseFloat(getComputedStyle(el).fontSize);
       const min = 14;
-      while (el.scrollWidth > el.clientWidth + 1 && size > min) {
+      while (el.scrollWidth > maxW + 1 && size > min) {
         size -= 0.5;
         el.style.fontSize = `${size}px`;
       }
@@ -27,7 +54,12 @@ export function BoxedTitle({ text }: { text: string }) {
     const ro = new ResizeObserver(fit);
     ro.observe(el);
     if (el.parentElement) ro.observe(el.parentElement);
+    const head = el.closest(".work__head");
+    if (head) ro.observe(head);
+    const meta = head?.querySelector(".work__meta");
+    if (meta) ro.observe(meta);
     window.addEventListener("resize", fit);
+    document.fonts?.ready?.then(() => fit()).catch(() => {});
     return () => {
       ro.disconnect();
       window.removeEventListener("resize", fit);
