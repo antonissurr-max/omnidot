@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { useLocale } from "../locale";
 import type { PageId } from "../types";
 
-function FactRow({
+export function FactRow({
   index,
   title,
   detail,
@@ -10,8 +10,8 @@ function FactRow({
 }: {
   index: number;
   title: string;
-  detail: string;
-  body: string;
+  detail?: string;
+  body: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -27,14 +27,15 @@ function FactRow({
         <span className="facts__copy">
           <span className="facts__line">
             <strong>{title}</strong>
-            <span className="facts__detail"> — {detail}</span>
-          </span>
-          <span className="facts__body">
-            <span>{body}</span>
+            {detail ? <span className="facts__detail"> — {detail}</span> : null}
           </span>
         </span>
         <span className="facts__chev" aria-hidden="true" />
       </button>
+      {/* Answer stays in the DOM when collapsed (CSS grid 0fr) — nothing loaded on click. */}
+      <div className="facts__body">
+        <span>{body}</span>
+      </div>
     </li>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { BoxedTitle } from "./BoxedTitle";
 import { CaseStudy } from "./CaseStudy";
+import { ServiceGuide } from "./ServiceGuide";
 import { mediaIsVideo } from "./ExhibitGallery";
 import { pageOrder, type MediaItem, type PageId } from "../site";
 import { useLocale } from "../locale";
@@ -38,12 +39,14 @@ function clientCover(
   item: ProofClient,
   fallback: MediaItem[],
 ): MediaItem | undefined {
+  if (item.cover) return item.cover;
   const media = item.media && item.media.length > 0 ? item.media : fallback;
   return media.find((m) => mediaIsVideo(m)) ?? media[0];
 }
 
 function ProjectCover({ item }: { item: MediaItem }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const contain = item.fit === "contain";
 
   useEffect(() => {
     if (!mediaIsVideo(item)) return;
@@ -67,6 +70,7 @@ function ProjectCover({ item }: { item: MediaItem }) {
     return (
       <video
         ref={videoRef}
+        className={contain ? "is-contain" : undefined}
         src={item.src}
         poster={item.poster}
         muted
@@ -79,7 +83,15 @@ function ProjectCover({ item }: { item: MediaItem }) {
     );
   }
 
-  return <img src={item.src} alt="" loading="lazy" decoding="async" />;
+  return (
+    <img
+      className={contain ? "is-contain" : undefined}
+      src={item.src}
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+  );
 }
 
 export function WorkShow({
@@ -169,9 +181,11 @@ export function WorkShow({
     setLightbox(true);
   };
 
+  const guide = copy.serviceGuide;
+  const briefLabel = guide?.cta ?? t.startBrief;
   const briefBtn = (
     <button className="work__brief" type="button" onClick={onBrief}>
-      {t.startBrief} ↗
+      {briefLabel} ↗
     </button>
   );
 
@@ -221,11 +235,112 @@ export function WorkShow({
     />
   ) : null;
 
+  const folderProof =
+    isFolder ? (
+      <div className="work__proof work__proof--folder">
+        <span className="work__proof-label">{copy.proof?.label}</span>
+        <div className="work__projects">
+          {clients.map((item) => {
+            const media = clientCover(item, pageGallery);
+            const cover =
+              media && mediaIsVideo(media) && !media.poster && item.backdrop
+                ? { ...media, poster: item.backdrop }
+                : media;
+            const externalHref =
+              item.cover && item.links?.[0]?.href
+                ? item.links[0].href
+                : undefined;
+            const card = (
+              <>
+                <span
+                  className={`work__project-media${
+                    cover?.fit === "contain" ? " work__project-media--logo" : ""
+                  }`}
+                >
+                  {cover ? (
+                    <ProjectCover item={cover} />
+                  ) : (
+                    <span className="work__project-empty" aria-hidden="true" />
+                  )}
+                </span>
+                <span className="work__project-copy">
+                  <span className="work__project-name">{item.client}</span>
+                  {item.value ? (
+                    <span className="work__project-value">{item.value}</span>
+                  ) : item.media && item.media.length === 0 ? (
+                    <span className="work__project-value">{t.mediaSoon}</span>
+                  ) : null}
+                </span>
+              </>
+            );
+            if (externalHref) {
+              return (
+                <a
+                  key={item.client}
+                  className="work__project"
+                  href={externalHref}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {card}
+                </a>
+              );
+            }
+            return (
+              <button
+                key={item.client}
+                className="work__project"
+                type="button"
+                onClick={() => setOpenClient(item.client)}
+              >
+                {card}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    ) : null;
+
+  const simpleProof =
+    !isFolder && copy.proof ? (
+      <div className="work__proof">
+        <span className="work__proof-label">{copy.proof.label}</span>
+        {copy.proof.links && copy.proof.links.length > 0 ? (
+          <div className="work__proof-lines">
+            {copy.proof.links.map((link) => (
+              <a
+                key={link.href}
+                className="work__proof-line"
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        ) : copy.proof.href ? (
+          <a
+            className="work__proof-line"
+            href={copy.proof.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {copy.proof.value}
+          </a>
+        ) : (
+          <strong className="work__proof-line">{copy.proof.value}</strong>
+        )}
+      </div>
+    ) : null;
+
   return (
     <div
       className={`work is-open${
         !viewingCase && gallery.length === 0 ? " work--text" : ""
-      }${viewingCase ? " work--case" : ""}${exiting ? " is-exit" : ""}`}
+      }${viewingCase ? " work--case" : ""}${guide ? " work--guide" : ""}${
+        exiting ? " is-exit" : ""
+      }`}
       data-chrome-tone="dark"
       role="dialog"
       aria-modal="true"
@@ -250,78 +365,17 @@ export function WorkShow({
                 </div>
               </div>
 
-              {isFolder ? (
-                <div className="work__proof work__proof--folder">
-                  <span className="work__proof-label">{copy.proof?.label}</span>
-                  <div className="work__projects">
-                    {clients.map((item) => {
-                      const media = clientCover(item, pageGallery);
-                      const cover =
-                        media && mediaIsVideo(media) && !media.poster && item.backdrop
-                          ? { ...media, poster: item.backdrop }
-                          : media;
-                      return (
-                        <button
-                          key={item.client}
-                          className="work__project"
-                          type="button"
-                          onClick={() => setOpenClient(item.client)}
-                        >
-                          <span className="work__project-media">
-                            {cover ? (
-                              <ProjectCover item={cover} />
-                            ) : (
-                              <span className="work__project-empty" aria-hidden="true" />
-                            )}
-                          </span>
-                          <span className="work__project-copy">
-                            <span className="work__project-name">{item.client}</span>
-                            {item.value ? (
-                              <span className="work__project-value">{item.value}</span>
-                            ) : item.media && item.media.length === 0 ? (
-                              <span className="work__project-value">{t.mediaSoon}</span>
-                            ) : null}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              ) : copy.proof ? (
-                <div className="work__proof">
-                  <span className="work__proof-label">{copy.proof.label}</span>
-                  {copy.proof.links && copy.proof.links.length > 0 ? (
-                    <div className="work__proof-lines">
-                      {copy.proof.links.map((link) => (
-                        <a
-                          key={link.href}
-                          className="work__proof-line"
-                          href={link.href}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {link.label}
-                        </a>
-                      ))}
-                    </div>
-                  ) : copy.proof.href ? (
-                    <a
-                      className="work__proof-line"
-                      href={copy.proof.href}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {copy.proof.value}
-                    </a>
-                  ) : (
-                    <strong className="work__proof-line">{copy.proof.value}</strong>
-                  )}
-                </div>
-              ) : null}
-
-              {briefBtn}
+              {folderProof}
+              {simpleProof}
+              {guide ? null : briefBtn}
             </header>
-            {children && <div className="work__body">{children}</div>}
+            {guide ? (
+              <div className="work__body">
+                <ServiceGuide guide={guide} onBrief={onBrief} />
+              </div>
+            ) : (
+              children && <div className="work__body">{children}</div>
+            )}
           </>
         )}
       </div>

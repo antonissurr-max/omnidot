@@ -22,6 +22,34 @@ export type ServicePoint = {
   body: string;
 };
 
+export type ServiceGuideCopy = {
+  intro: string;
+  cta: string;
+  /** Bullet list section (e.g. social monthly includes) */
+  includesTitle?: string;
+  includes?: string[];
+  /** Open H3 cards (e.g. web “Τι φτιάχνουμε”) — not accordion */
+  blocksTitle?: string;
+  blocks?: { title: string; body: string }[];
+  audienceTitle: string;
+  audienceBody: string;
+  platformsTitle?: string;
+  platforms?: { name: string; detail: string }[];
+  processTitle: string;
+  process: { title: string; body: string }[];
+  costTitle: string;
+  costBody: string;
+  costLinkLabel: string;
+  costLinkHref: string;
+  faqTitle: string;
+  faq: { q: string; a: string; aLink?: { label: string; href: string } }[];
+  readMoreTitle?: string;
+  readMore?: { label: string; href: string };
+  relatedTitle: string;
+  related: { label: string; href: string; blurb: string }[];
+  finalTitle: string;
+};
+
 export type ProofClient = {
   client: string;
   story?: string;
@@ -32,6 +60,8 @@ export type ProofClient = {
   backdrop?: string;
   /** Short “what we did” line under the story (Advision-style) */
   did?: string;
+  /** Folder card cover (logo/mark) — separate from case gallery media */
+  cover?: MediaItem;
   /** When set, gallery switches to these assets while this client is open */
   media?: MediaItem[];
 };
@@ -170,6 +200,8 @@ export type Copy = {
         clients?: ProofClient[];
       };
       points: ServicePoint[];
+      /** Optional long-form service page (Greek social). English pages omit this. */
+      serviceGuide?: ServiceGuideCopy;
     }
   >;
   performanceFacts: { place: string; detail: string; body: string }[];
@@ -1155,10 +1187,10 @@ export const copy: Record<Locale, Copy> = {
     ],
     pages: {
       social: {
-        title: "Διαχείριση Social Media",
-        seoTitle: "Διαχείριση Social Media & Instagram — omnidot. Αθήνα",
+        title: "Διαχείριση Social Media για επιχειρήσεις",
+        seoTitle: "Διαχείριση Social Media στην Αθήνα | omnidot.",
         seoDescription:
-          "Διαχείριση Instagram, TikTok, Facebook & LinkedIn: στρατηγική, Reels, community και growth. Διαφημιστική στην Αθήνα & remote. Από €450/μήνα.",
+          "Διαχείριση Instagram, TikTok, Facebook και LinkedIn για επιχειρήσεις σε όλη την Ελλάδα. Στρατηγική, περιεχόμενο, community και μηνιαίο reporting. Από €450/μήνα.",
         meta: [
           { label: "Στόχος", value: "Σταθερή παρουσία" },
           { label: "Κανάλια", value: "IG · TikTok · LinkedIn" },
@@ -1270,6 +1302,111 @@ export const copy: Record<Locale, Copy> = {
             body: "Μηνιαίο social media reporting με reach, engagement, αποθηκεύσεις, επισκέψεις προφίλ και τι αλλάζουμε μετά. Απλή γλώσσα για founders και marketing — χρήσιμα metrics, καθαρά επόμενα βήματα, χωρίς vanity dashboards.",
           },
         ],
+        serviceGuide: {
+          intro:
+            "Αναλαμβάνουμε τα social της επιχείρησής σου από την αρχή ως το τέλος: στρατηγική, περιεχόμενο, δημοσίευση, απαντήσεις και μηνιαία αναφορά. Είμαστε στην Αθήνα και συνεργαζόμαστε με founders και επιχειρήσεις σε όλη την Ελλάδα, ώστε να έχεις σταθερή παρουσία χωρίς να το κυνηγάς εσύ κάθε μέρα.",
+          cta: "Κλείσε ένα σύντομο call",
+          includesTitle: "Τι περιλαμβάνει κάθε μήνα",
+          includes: [
+            "Στρατηγική και μηνιαίο πρόγραμμα δημοσιεύσεων",
+            "8–20 posts/Reels τον μήνα και stories, ανάλογα με το πακέτο (Essential: 8–12 posts και 8 basic stories · Standard: 12–16 posts/reels · Premium: 16–20 posts/reels)",
+            "Κείμενα, hashtags και προγραμματισμός δημοσιεύσεων",
+            "Απαντήσεις σε σχόλια και μηνύματα ως μέρος του community στο πακέτο",
+            "Μηνιαία αναφορά με το τι δούλεψε και τι αλλάζουμε τον επόμενο μήνα",
+          ],
+          audienceTitle: "Για ποιον είναι",
+          audienceBody:
+            "Για founders που δεν έχουν χρόνο να τρέχουν τα social τους, για τοπικές επιχειρήσεις στην Αθήνα που θέλουν να τις βρίσκουν και να τις εμπιστεύονται, και για B2B εταιρείες που θέλουν σοβαρή, σταθερή παρουσία.",
+          platformsTitle: "Ποια πλατφόρμα σου ταιριάζει",
+          platforms: [
+            {
+              name: "Instagram: ",
+              detail:
+                "για τοπικές επιχειρήσεις, εστίαση, λιανική και brands με εικόνα.",
+            },
+            {
+              name: "TikTok: ",
+              detail:
+                "για brands που μπορούν να δείξουν προϊόν ή παρασκήνιο σε σύντομο βίντεο.",
+            },
+            {
+              name: "Facebook: ",
+              detail:
+                "για κοινό μεγαλύτερης ηλικίας και τοπικές κοινότητες.",
+            },
+            {
+              name: "LinkedIn: ",
+              detail:
+                "για B2B και για founders που χτίζουν το προσωπικό τους προφίλ.",
+            },
+          ],
+          processTitle: "Πώς ξεκινάμε",
+          process: [
+            {
+              title: "Γνωριμία: ",
+              body: "ένα call για την επιχείρηση, τους πελάτες και τους στόχους σου.",
+            },
+            {
+              title: "Στρατηγική: ",
+              body: "ποιες πλατφόρμες, τι περιεχόμενο και με ποιο ύφος.",
+            },
+            {
+              title: "Πρόγραμμα: ",
+              body: "το πρώτο μηνιαίο πλάνο για έγκριση.",
+            },
+            {
+              title: "Δημοσιεύσεις: ",
+              body: "ξεκινάμε να ανεβάζουμε με βάση το εγκεκριμένο πλάνο.",
+            },
+          ],
+          costTitle: "Πόσο κοστίζει",
+          costBody:
+            "Η διαχείριση social media ξεκινά από €450 τον μήνα. Η τελική τιμή εξαρτάται από το πακέτο, τον αριθμό πλατφορμών και τον όγκο περιεχομένου.",
+          costLinkLabel: "Δες όλα τα πακέτα →",
+          costLinkHref: "/el/pricing/",
+          faqTitle: "Συχνές ερωτήσεις",
+          faq: [
+            {
+              q: "Υπάρχει ελάχιστη διάρκεια συνεργασίας;",
+              a: "Ναι — minimum 3 μήνες στα retainers.",
+            },
+            {
+              q: "Ποιος φτιάχνει τις φωτογραφίες και τα βίντεο;",
+              a: "Εμείς δημιουργούμε και ανεβάζουμε το περιεχόμενο της διαχείρισης. Το creative μπορεί να μπει στο πακέτο ή να χρεωθεί ανά asset· για ξεχωριστή φωτογράφιση ή βίντεο υπάρχει η υπηρεσία Δημιουργία Περιεχομένου.",
+            },
+            {
+              q: "Σε πόσο καιρό φαίνονται αποτελέσματα;",
+              a: "Τον πρώτο μήνα στήνουμε σταθερή παρουσία. Συνήθως χρειάζονται μερικοί μήνες συνεπούς δουλειάς για να φανεί καθαρή εικόνα.",
+            },
+            {
+              q: "Δουλεύετε μόνο με επιχειρήσεις στην Αθήνα;",
+              a: "Όχι. Συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα και τα calls γίνονται online.",
+            },
+            {
+              q: "Κάνετε και διαφημίσεις στα social;",
+              a: "Ναι. Η διαχείριση διαφημίσεων ξεκινά από €300 τον μήνα και τα χρήματα των διαφημίσεων τα πληρώνει απευθείας η επιχείρηση. Δες τη σελίδα Performance.",
+            },
+          ],
+          relatedTitle: "Σχετικές υπηρεσίες",
+          related: [
+            {
+              label: "Δημιουργία Περιεχομένου",
+              href: "/el/content/",
+              blurb: "Φωτογραφία, video και Reels από concept έως ανάρτηση.",
+            },
+            {
+              label: "Performance Marketing",
+              href: "/el/performance/",
+              blurb: "Meta Ads και Google Ads με καθαρό κόστος και απόδοση.",
+            },
+            {
+              label: "Ανάπτυξη Ιστοσελίδων",
+              href: "/el/web/",
+              blurb: "Γρήγορα sites και landing pages με SEO.",
+            },
+          ],
+          finalTitle: "Θες να δούμε τι χρειάζονται τα social σου;",
+        },
       },
       content: {
         title: "Δημιουργία Περιεχομένου",
@@ -1423,10 +1560,10 @@ export const copy: Record<Locale, Copy> = {
         ],
       },
       web: {
-        title: "Ανάπτυξη Ιστοσελίδων",
-        seoTitle: "Κατασκευή Ιστοσελίδας & SEO — Αθήνα | omnidot.",
+        title: "Κατασκευή Ιστοσελίδας για επιχειρήσεις",
+        seoTitle: "Κατασκευή Ιστοσελίδας στην Αθήνα | omnidot.",
         seoDescription:
-          "Κατασκευή ιστοσελίδας και SEO: γρήγορα sites, landing pages και δομή για Google. Landing από €700, multi-page ≈ €700/σελίδα. Αθήνα & remote.",
+          "Κατασκευή ιστοσελίδας για επιχειρήσεις σε όλη την Ελλάδα: γρήγορα sites, landing pages και σωστή δομή για τη Google. Landing page από €700.",
         meta: [
           { label: "Κατασκευή", value: "Sites & landings" },
           { label: "SEO", value: "Εμφανίσιμο στο Google" },
@@ -1434,35 +1571,198 @@ export const copy: Record<Locale, Copy> = {
           { label: "Ιδιοκτησία", value: "Μένει δικό σου" },
         ],
         proof: {
-          label: "Μερικές ιστοσελίδες μας",
+          label: "Επιλεγμένο",
           value: "",
-          links: [
-            { label: "dotxi.app", href: "https://dotxi.app/" },
-            { label: "pyrgiotisoe.com", href: "https://pyrgiotisoe.com/" },
+          clients: [
+            {
+              client: "dotxi.app",
+              did: "Κατασκευή ιστοσελίδας",
+              story:
+                "Ιστοσελίδα για ψηφιακή υπηρεσία, με καθαρή δομή που εξηγεί γρήγορα τι κάνει και οδηγεί τον επισκέπτη στο επόμενο βήμα.",
+              value:
+                "Ιστοσελίδα για ψηφιακή υπηρεσία, με καθαρή δομή που εξηγεί γρήγορα τι κάνει και οδηγεί τον επισκέπτη στο επόμενο βήμα.",
+              links: [{ label: "dotxi.app", href: "https://dotxi.app/" }],
+              cover: {
+                src: "/images/partners/dotxi-cover.svg",
+                title: "DotXI",
+                detail: "dotxi.app",
+                fit: "contain",
+              },
+              media: [
+                {
+                  src: "/images/partners/dotxi-cover.svg",
+                  title: "DotXI",
+                  detail: "dotxi.app",
+                  fit: "contain",
+                },
+              ],
+            },
+            {
+              client: "Πυργιώτης ΟΕ",
+              backdrop: "/images/work-pyrgiotis-home.jpg",
+              did: "Κατασκευή ιστοσελίδας",
+              story:
+                "Εταιρική ιστοσελίδα που παρουσιάζει την επιχείρηση και τις υπηρεσίες της και διευκολύνει την επικοινωνία με νέους πελάτες.",
+              value:
+                "Εταιρική ιστοσελίδα που παρουσιάζει την επιχείρηση και τις υπηρεσίες της και διευκολύνει την επικοινωνία με νέους πελάτες.",
+              links: [
+                { label: "pyrgiotisoe.com", href: "https://pyrgiotisoe.com/" },
+              ],
+              cover: {
+                src: "/images/partners/pyrgiotis.png",
+                title: "Πυργιώτης ΟΕ",
+                detail: "pyrgiotisoe.com",
+                fit: "contain",
+              },
+              media: [
+                {
+                  src: "/images/work-pyrgiotis-home.jpg",
+                  title: "Πυργιώτης ΟΕ — home",
+                  detail: "pyrgiotisoe.com",
+                },
+                {
+                  src: "/images/work-pyrgiotis-office.jpg",
+                  title: "Πυργιώτης ΟΕ — office",
+                  detail: "pyrgiotisoe.com",
+                },
+                {
+                  src: "/images/work-pyrgiotis-check.jpg",
+                  title: "Πυργιώτης ΟΕ",
+                  detail: "pyrgiotisoe.com",
+                },
+              ],
+            },
           ],
         },
         points: [
           {
-            name: "Ιστοσελίδες",
-            detail: "Εταιρικά sites & brand pages",
-            body: "Σχεδιάζουμε και κατασκευάζουμε εταιρικές ιστοσελίδες και brand sites που φορτώνουν γρήγορα, δουλεύουν σωστά σε κινητό και desktop και οδηγούν τον επισκέπτη σε επικοινωνία, προσφορά ή αγορά. Καθαρή δομή σελίδων, δυνατά calls to action και κείμενα γραμμένα ώστε να τα καταλαβαίνουν και οι άνθρωποι και η Google.",
-          },
-          {
-            name: "SEO",
-            detail: "Τεχνικό SEO + περιεχόμενο που rankάρει",
-            body: "Βελτιστοποίηση για μηχανές αναζήτησης από τη βάση: δομή site, title tags, meta descriptions, επικεφαλίδες, εσωτερικά links, Core Web Vitals, schema markup και σελίδες που το Googlebot διαβάζει εύκολα. Συνδυάζουμε τεχνικό SEO με περιεχόμενο για τις λέξεις-κλειδιά που πραγματικά ψάχνουν οι πελάτες σας — και τοπικό SEO όταν εξυπηρετείτε περιοχή ή πόλη.",
+            name: "Εταιρικές ιστοσελίδες",
+            detail: "Sites που μετατρέπουν",
+            body: "Σχεδιάζουμε εταιρικά sites που φορτώνουν γρήγορα, δουλεύουν σωστά σε κινητό και υπολογιστή και οδηγούν τον επισκέπτη σε επικοινωνία, προσφορά ή αγορά. Καθαρή δομή σελίδων και κείμενα που τα καταλαβαίνουν και οι άνθρωποι και η Google.",
           },
           {
             name: "Landing pages",
-            detail: "Σελίδες για καμπάνιες & διαφημίσεις",
-            body: "Ξεχωριστές landing pages για Google Ads, Meta ads και email — μία προσφορά, μία διαδρομή, γρήγορο φόρτωμα. Φτιαγμένες να μετατρέπουν paid traffic και organic search σε leads ή πωλήσεις, με μέτρηση (GA4, pixels) ώστε να βλέπετε ποια καμπάνια και ποια λέξη-κλειδί φέρνουν αποτέλεσμα.",
+            detail: "Μία προσφορά, μία σελίδα",
+            body: "Μία σελίδα για μία προσφορά ή καμπάνια, για Google Ads, Meta ads ή email. Γρήγορο φόρτωμα και μέτρηση (GA4, pixels), ώστε να βλέπεις ποια καμπάνια φέρνει αποτέλεσμα.",
           },
           {
-            name: "Φροντίδα",
-            detail: "Ενημερώσεις, ταχύτητα & συνεχές SEO",
-            body: "Μετά το launch κρατάμε την ιστοσελίδα υγιή: ενημερώσεις περιεχομένου, βελτιώσεις ταχύτητας και απόδοσης, SEO fixes, ασφάλεια και μικρές αλλαγές UX όσο εξελίσσονται προϊόντα και καμπάνιες. Το site είναι κανάλι πωλήσεων, όχι brochure μιας χρήσης.",
+            name: "SEO από τη βάση",
+            detail: "Δομή για τη Google",
+            body: "Δομή site, τίτλοι και περιγραφές, επικεφαλίδες, εσωτερικά links, ταχύτητα, schema markup και σύνδεση με Google Search Console. Τοπικό SEO όταν εξυπηρετείς συγκεκριμένη περιοχή.",
+          },
+          {
+            name: "Φροντίδα μετά το launch",
+            detail: "Συνεχής υποστήριξη",
+            body: "Ενημερώσεις περιεχομένου, βελτιώσεις ταχύτητας, SEO διορθώσεις, ασφάλεια και μικρές αλλαγές, όσο εξελίσσεται η επιχείρησή σου.",
           },
         ],
+        serviceGuide: {
+          intro:
+            "Φτιάχνουμε ιστοσελίδες που φορτώνουν γρήγορα, δείχνουν σωστά στο κινητό και είναι στημένες από την αρχή για να τις βρίσκει η Google. Είμαστε στην Αθήνα και συνεργαζόμαστε με founders και επιχειρήσεις σε όλη την Ελλάδα.",
+          cta: "Κλείσε ένα σύντομο call",
+          blocksTitle: "Τι φτιάχνουμε",
+          blocks: [
+            {
+              title: "Εταιρικές ιστοσελίδες",
+              body: "Σχεδιάζουμε εταιρικά sites που φορτώνουν γρήγορα, δουλεύουν σωστά σε κινητό και υπολογιστή και οδηγούν τον επισκέπτη σε επικοινωνία, προσφορά ή αγορά. Καθαρή δομή σελίδων και κείμενα που τα καταλαβαίνουν και οι άνθρωποι και η Google.",
+            },
+            {
+              title: "Landing pages",
+              body: "Μία σελίδα για μία προσφορά ή καμπάνια, για Google Ads, Meta ads ή email. Γρήγορο φόρτωμα και μέτρηση (GA4, pixels), ώστε να βλέπεις ποια καμπάνια φέρνει αποτέλεσμα.",
+            },
+            {
+              title: "SEO από τη βάση",
+              body: "Δομή site, τίτλοι και περιγραφές, επικεφαλίδες, εσωτερικά links, ταχύτητα, schema markup και σύνδεση με Google Search Console. Τοπικό SEO όταν εξυπηρετείς συγκεκριμένη περιοχή.",
+            },
+            {
+              title: "Φροντίδα μετά το launch",
+              body: "Ενημερώσεις περιεχομένου, βελτιώσεις ταχύτητας, SEO διορθώσεις, ασφάλεια και μικρές αλλαγές, όσο εξελίσσεται η επιχείρησή σου.",
+            },
+          ],
+          audienceTitle: "Για ποιον είναι",
+          audienceBody:
+            "Για founders που ξεκινούν και χρειάζονται ένα site που πείθει από την πρώτη μέρα, για τοπικές επιχειρήσεις στην Αθήνα που θέλουν να τις βρίσκουν στη Google, και για εταιρείες που το site τους έχει μείνει πίσω και δεν φέρνει επαφές.",
+          processTitle: "Πώς δουλεύουμε",
+          process: [
+            {
+              title: "Γνωριμία: ",
+              body: "ένα call για την επιχείρηση, τους πελάτες σου και τι πρέπει να κάνει το site.",
+            },
+            {
+              title: "Δομή και κείμενα: ",
+              body: "ποιες σελίδες χρειάζονται και τι λέει η καθεμία.",
+            },
+            {
+              title: "Σχέδιο: ",
+              body: "βλέπεις πώς θα είναι πριν το χτίσουμε.",
+            },
+            {
+              title: "Κατασκευή και έλεγχος ",
+              body: "σε όλες τις συσκευές.",
+            },
+            {
+              title: "Ανέβασμα και σύνδεση με τη Google.",
+              body: "",
+            },
+          ],
+          costTitle: "Πόσο κοστίζει",
+          costBody:
+            "Μια landing page κοστίζει €700–1.200 και ένα site με πολλές σελίδες περίπου €700 ανά σελίδα. Για e-shop η τιμή βγαίνει αφού δούμε τι χρειάζεσαι.",
+          costLinkLabel: "Δες όλα τα πακέτα →",
+          costLinkHref: "/el/pricing/",
+          faqTitle: "Συχνές ερωτήσεις",
+          faq: [
+            {
+              q: "Σε πόσο καιρό είναι έτοιμο το site;",
+              a: "Μια landing page είναι συνήθως έτοιμη μέσα σε λίγες εβδομάδες, ενώ ένα εταιρικό site με περισσότερες σελίδες θέλει λίγο περισσότερο. Τον ακριβή χρόνο τον συμφωνούμε από την αρχή, ανάλογα με τις σελίδες και το πόσο γρήγορα έχουμε τα κείμενα και τις φωτογραφίες.",
+            },
+            {
+              q: "Θα βγαίνει το site στη Google;",
+              a: "Το στήνουμε σωστά για τη Google από την αρχή και το συνδέουμε με το Search Console. Η θέση στα αποτελέσματα χτίζεται με τον καιρό και κανείς δεν μπορεί να εγγυηθεί την πρώτη θέση.",
+            },
+            {
+              q: "Θα μπορώ να αλλάζω μόνος μου κείμενα και φωτογραφίες;",
+              a: "Αν θέλεις να κάνεις αλλαγές μόνος σου, το στήνουμε έτσι από την αρχή. Διαφορετικά, τις αλλαγές τις αναλαμβάνουμε εμείς μέσα από τη φροντίδα μετά το launch.",
+            },
+            {
+              q: "Ποιος γράφει τα κείμενα;",
+              a: "Τα γράφουμε μαζί. Εσύ μας δίνεις τις πληροφορίες για την επιχείρηση και εμείς τα δουλεύουμε ώστε να είναι καθαρά για τον επισκέπτη και σωστά για τη Google. Αν χρειάζεσαι και φωτογραφίες ή βίντεο, υπάρχει η υπηρεσία ",
+              aLink: {
+                label: "Δημιουργία Περιεχομένου",
+                href: "/el/content/",
+              },
+            },
+            {
+              q: "Δουλεύετε μόνο με επιχειρήσεις στην Αθήνα;",
+              a: "Όχι. Συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα και τα calls γίνονται online.",
+            },
+          ],
+          readMoreTitle: "Διάβασε περισσότερα",
+          readMore: {
+            label:
+              "Δημιουργία ιστοσελίδας στην Αθήνα: τι περιλαμβάνει στην πράξη, πώς δένει με το SEO και τι καθορίζει την τιμή",
+            href: "/el/articles/dimiourgia-istoselidas-athina/",
+          },
+          relatedTitle: "Σχετικές υπηρεσίες",
+          related: [
+            {
+              label: "Διαχείριση Social Media",
+              href: "/el/social/",
+              blurb: "Στρατηγική, περιεχόμενο, community και μηνιαίο reporting.",
+            },
+            {
+              label: "Δημιουργία Περιεχομένου",
+              href: "/el/content/",
+              blurb: "Φωτογραφία, video και Reels από concept έως ανάρτηση.",
+            },
+            {
+              label: "Performance Marketing",
+              href: "/el/performance/",
+              blurb: "Meta Ads και Google Ads με καθαρό κόστος και απόδοση.",
+            },
+          ],
+          finalTitle: "Θες να δούμε τι site χρειάζεται η επιχείρησή σου;",
+        },
       },
     },
     performanceFacts: [
@@ -1492,7 +1792,23 @@ export const copy: Record<Locale, Copy> = {
         body: "Σύντομη εβδομαδιαία ανάγνωση: κρατάμε, κόβουμε ή μεγαλώνουμε. Όχι decks 40 σελίδων.",
       },
     ],
-    webWork: [],
+    webWork: [
+      {
+        src: "/images/work-pyrgiotis-home.jpg",
+        title: "Πυργιώτης ΟΕ — home",
+        detail: "pyrgiotisoe.com",
+      },
+      {
+        src: "/images/work-pyrgiotis-office.jpg",
+        title: "Πυργιώτης ΟΕ — office",
+        detail: "pyrgiotisoe.com",
+      },
+      {
+        src: "/images/work-pyrgiotis-check.jpg",
+        title: "Πυργιώτης ΟΕ",
+        detail: "pyrgiotisoe.com",
+      },
+    ],
     socialWork: [
       {
         src: "/images/proof-europatch-all.png",

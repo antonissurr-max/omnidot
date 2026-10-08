@@ -246,22 +246,47 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
     const description = serviceDescription(locale, view.id);
     const image = coverFor(view.id);
     const story = page.proof?.story;
+    const serviceLd = {
+      "@type": "Service",
+      name: page.title,
+      description: (story ?? description).slice(0, 300),
+      provider: providerLd(),
+      areaServed: "GR",
+      url: canonical,
+      image,
+    };
+    const faq = page.serviceGuide?.faq;
+    const jsonLd = faq?.length
+      ? {
+          "@context": "https://schema.org",
+          "@graph": [
+            serviceLd,
+            {
+              "@type": "FAQPage",
+              mainEntity: faq.map((item) => ({
+                "@type": "Question",
+                name: item.q,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: item.aLink
+                    ? `${item.a}${item.aLink.label}.`
+                    : item.a,
+                },
+              })),
+            },
+          ],
+        }
+      : {
+          "@context": "https://schema.org",
+          ...serviceLd,
+        };
     return {
       title: page.seoTitle ?? `${page.title} — omnidot.`,
       description: description.slice(0, 170),
       path,
       canonical,
       image,
-      jsonLd: {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        name: page.title,
-        description: (story ?? description).slice(0, 300),
-        provider: providerLd(),
-        areaServed: "GR",
-        url: canonical,
-        image,
-      },
+      jsonLd,
     };
   }
 

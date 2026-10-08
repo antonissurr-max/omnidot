@@ -69,6 +69,8 @@ export type MediaItem = {
   /** Defaults to image; use video for mp4/webm clips */
   kind?: "image" | "video";
   poster?: string;
+  /** Logo/mark thumbs: contain + padding instead of cover-crop */
+  fit?: "cover" | "contain";
 };
 
 /** Homepage “Trusted by” strip — logos link out (partner backlinks). */
