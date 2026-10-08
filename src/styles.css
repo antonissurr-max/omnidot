@@ -2981,8 +2981,13 @@ a.work__project:focus-visible .work__project-name {
 }
 
 @media (min-width: 900px) {
+  /* Keep current square size (~half of 70%); span full meta περασιά */
   .work--guide .work__projects {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    --guide-card: calc((70% - 14px) / 2);
+    width: 100%;
+    grid-template-columns: var(--guide-card) var(--guide-card);
+    justify-content: space-between;
+    column-gap: 0;
   }
 }
 
