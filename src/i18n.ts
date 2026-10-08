@@ -22,6 +22,28 @@ export type ServicePoint = {
   body: string;
 };
 
+export type ServiceGuideCopy = {
+  intro: string;
+  cta: string;
+  includesTitle: string;
+  includes: string[];
+  audienceTitle: string;
+  audienceBody: string;
+  platformsTitle: string;
+  platforms: { name: string; detail: string }[];
+  processTitle: string;
+  process: { title: string; body: string }[];
+  costTitle: string;
+  costBody: string;
+  costLinkLabel: string;
+  costLinkHref: string;
+  faqTitle: string;
+  faq: { q: string; a: string }[];
+  relatedTitle: string;
+  related: { label: string; href: string; blurb: string }[];
+  finalTitle: string;
+};
+
 export type ProofClient = {
   client: string;
   story?: string;
@@ -170,6 +192,8 @@ export type Copy = {
         clients?: ProofClient[];
       };
       points: ServicePoint[];
+      /** Optional long-form service page (Greek social). English pages omit this. */
+      serviceGuide?: ServiceGuideCopy;
     }
   >;
   performanceFacts: { place: string; detail: string; body: string }[];
@@ -1155,10 +1179,10 @@ export const copy: Record<Locale, Copy> = {
     ],
     pages: {
       social: {
-        title: "Διαχείριση Social Media",
-        seoTitle: "Διαχείριση Social Media & Instagram — omnidot. Αθήνα",
+        title: "Διαχείριση Social Media στην Αθήνα",
+        seoTitle: "Διαχείριση Social Media στην Αθήνα | omnidot.",
         seoDescription:
-          "Διαχείριση Instagram, TikTok, Facebook & LinkedIn: στρατηγική, Reels, community και growth. Διαφημιστική στην Αθήνα & remote. Από €450/μήνα.",
+          "Διαχείριση Instagram, TikTok, Facebook και LinkedIn για επιχειρήσεις στην Αθήνα και remote. Στρατηγική, περιεχόμενο, community και μηνιαίο reporting. Από €450/μήνα.",
         meta: [
           { label: "Στόχος", value: "Σταθερή παρουσία" },
           { label: "Κανάλια", value: "IG · TikTok · LinkedIn" },
@@ -1270,6 +1294,115 @@ export const copy: Record<Locale, Copy> = {
             body: "Μηνιαίο social media reporting με reach, engagement, αποθηκεύσεις, επισκέψεις προφίλ και τι αλλάζουμε μετά. Απλή γλώσσα για founders και marketing — χρήσιμα metrics, καθαρά επόμενα βήματα, χωρίς vanity dashboards.",
           },
         ],
+        serviceGuide: {
+          intro:
+            "Αναλαμβάνουμε τα social της επιχείρησής σου από την αρχή ως το τέλος: στρατηγική, περιεχόμενο, δημοσίευση, απαντήσεις και μηνιαία αναφορά. Δουλεύουμε με founders και τοπικές επιχειρήσεις στην Αθήνα και remote, ώστε να έχεις σταθερή παρουσία χωρίς να το κυνηγάς εσύ κάθε μέρα.",
+          cta: "Κλείσε ένα σύντομο call",
+          includesTitle: "Τι περιλαμβάνει κάθε μήνα",
+          includes: [
+            "Στρατηγική και μηνιαίο πρόγραμμα δημοσιεύσεων",
+            "8–20 posts/Reels τον μήνα και stories, ανάλογα με το πακέτο (Essential: 8–12 posts και 8 basic stories · Standard: 12–16 posts/reels · Premium: 16–20 posts/reels)",
+            "Κείμενα, hashtags και προγραμματισμός δημοσιεύσεων",
+            "Απαντήσεις σε σχόλια και μηνύματα ως μέρος του community στο πακέτο",
+            "Μηνιαία αναφορά με το τι δούλεψε και τι αλλάζουμε τον επόμενο μήνα",
+          ],
+          audienceTitle: "Για ποιον είναι",
+          audienceBody:
+            "Για founders που δεν έχουν χρόνο να τρέχουν τα social τους, για τοπικές επιχειρήσεις στην Αθήνα που θέλουν να τις βρίσκουν και να τις εμπιστεύονται, και για B2B εταιρείες που θέλουν σοβαρή, σταθερή παρουσία.",
+          platformsTitle: "Ποια πλατφόρμα σου ταιριάζει",
+          platforms: [
+            {
+              name: "Instagram: ",
+              detail:
+                "για τοπικές επιχειρήσεις, εστίαση, λιανική και brands με εικόνα.",
+            },
+            {
+              name: "TikTok: ",
+              detail:
+                "για brands που μπορούν να δείξουν προϊόν ή παρασκήνιο σε σύντομο βίντεο.",
+            },
+            {
+              name: "Facebook: ",
+              detail:
+                "για κοινό μεγαλύτερης ηλικίας και τοπικές κοινότητες.",
+            },
+            {
+              name: "LinkedIn: ",
+              detail:
+                "για B2B και για founders που χτίζουν το προσωπικό τους προφίλ.",
+            },
+          ],
+          processTitle: "Πώς ξεκινάμε",
+          process: [
+            {
+              title: "Γνωριμία: ",
+              body: "ένα call για την επιχείρηση, τους πελάτες και τους στόχους σου.",
+            },
+            {
+              title: "Στρατηγική: ",
+              body: "ποιες πλατφόρμες, τι περιεχόμενο και με ποιο ύφος.",
+            },
+            {
+              title: "Πρόγραμμα: ",
+              body: "το πρώτο μηνιαίο πλάνο για έγκριση.",
+            },
+            {
+              title: "Δημοσιεύσεις: ",
+              body: "ξεκινάμε και στο τέλος του μήνα βλέπουμε μαζί τα αποτελέσματα.",
+            },
+          ],
+          costTitle: "Πόσο κοστίζει",
+          costBody:
+            "Η διαχείριση social media ξεκινά από €450 τον μήνα. Η τελική τιμή εξαρτάται από τον αριθμό πλατφορμών, το πόσο περιεχόμενο χρειάζεσαι και αν θέλεις φωτογράφιση ή βίντεο. Αν τρέξουμε και διαφημίσεις, τα χρήματα που πάνε στη Meta ή στη Google τα πληρώνεις εσύ απευθείας και είναι ξεχωριστά από την αμοιβή μας.",
+          costLinkLabel: "Δες όλα τα πακέτα →",
+          costLinkHref: "/el/pricing/",
+          faqTitle: "Συχνές ερωτήσεις",
+          faq: [
+            {
+              q: "Πόσο κοστίζει η διαχείριση social media;",
+              a: "Ξεκινά από €450 τον μήνα. Η τιμή ανεβαίνει με τις πλατφόρμες, τον όγκο περιεχομένου και τις φωτογραφίσεις ή τα βίντεο. Όλα τα πακέτα είναι στη σελίδα Πακέτα & τιμές.",
+            },
+            {
+              q: "Υπάρχει ελάχιστη διάρκεια συνεργασίας;",
+              a: "Ναι — minimum 3 μήνες στα retainers.",
+            },
+            {
+              q: "Ποιος φτιάχνει τις φωτογραφίες και τα βίντεο;",
+              a: "Εμείς δημιουργούμε και ανεβάζουμε το περιεχόμενο της διαχείρισης. Το creative μπορεί να μπει στο πακέτο ή να χρεωθεί ανά asset· για ξεχωριστή φωτογράφιση ή βίντεο υπάρχει η υπηρεσία Δημιουργία Περιεχομένου.",
+            },
+            {
+              q: "Σε πόσο καιρό φαίνονται αποτελέσματα;",
+              a: "Τον πρώτο μήνα στήνουμε σταθερή παρουσία. Συνήθως χρειάζονται μερικοί μήνες συνεπούς δουλειάς για να δεις καθαρή εικόνα, και κάθε μήνα σου δείχνουμε τι προχωράει στη μηνιαία αναφορά.",
+            },
+            {
+              q: "Δουλεύετε μόνο με επιχειρήσεις στην Αθήνα;",
+              a: "Όχι. Είμαστε στην Αθήνα, αλλά δουλεύουμε και remote με επιχειρήσεις σε όλη την Ελλάδα.",
+            },
+            {
+              q: "Κάνετε και διαφημίσεις στα social;",
+              a: "Ναι. Η διαχείριση διαφημίσεων ξεκινά από €300 τον μήνα και τα χρήματα των διαφημίσεων τα πληρώνει απευθείας η επιχείρηση. Δες τη σελίδα Performance.",
+            },
+          ],
+          relatedTitle: "Σχετικές υπηρεσίες",
+          related: [
+            {
+              label: "Δημιουργία Περιεχομένου",
+              href: "/el/content/",
+              blurb: "Φωτογραφία, video και Reels από concept έως ανάρτηση.",
+            },
+            {
+              label: "Performance Marketing",
+              href: "/el/performance/",
+              blurb: "Meta Ads και Google Ads με καθαρό κόστος και απόδοση.",
+            },
+            {
+              label: "Ανάπτυξη Ιστοσελίδων",
+              href: "/el/web/",
+              blurb: "Γρήγορα sites και landing pages με SEO.",
+            },
+          ],
+          finalTitle: "Θες να δούμε τι χρειάζονται τα social σου;",
+        },
       },
       content: {
         title: "Δημιουργία Περιεχομένου",
