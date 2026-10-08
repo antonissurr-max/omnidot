@@ -1285,7 +1285,7 @@ h1.chrome__brand {
   margin: 0 0 0.85em !important;
   font-size: 13px !important;
   line-height: 1.5 !important;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .articles__price-link {
@@ -1533,10 +1533,21 @@ h1.chrome__brand {
   animation: none;
 }
 
+/* First home tile is LCP — never start at opacity 0 or wait for tile-in. */
+.tile.tile--0 {
+  opacity: 1;
+  animation: none;
+}
+
 .stage.is-ready .tile {
   opacity: 1;
   animation: tile-in var(--motion-in-slow) var(--ease) both;
   animation-delay: calc(var(--i) * 140ms);
+}
+
+.stage.is-ready .tile.tile--0 {
+  opacity: 1;
+  animation: none;
 }
 
 .tile:nth-of-type(odd) {

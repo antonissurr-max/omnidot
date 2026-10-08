@@ -1339,7 +1339,7 @@ export const copy: Record<Locale, Copy> = {
         title: "Διαχείριση Social Media για επιχειρήσεις",
         seoTitle: "Διαχείριση Social Media στην Αθήνα | omnidot.",
         seoDescription:
-          "Διαχείριση Instagram, TikTok, Facebook και LinkedIn για επιχειρήσεις σε όλη την Ελλάδα. Στρατηγική, περιεχόμενο, community και μηνιαίο reporting. Από €450/μήνα.",
+          "Διαχείριση Instagram, TikTok, Facebook και LinkedIn στην Αθήνα: στρατηγική, περιεχόμενο, community και reporting. Από €450/μήνα.",
         meta: [
           { label: "Στόχος", value: "Σταθερή παρουσία" },
           { label: "Κανάλια", value: "IG · TikTok · LinkedIn" },
@@ -1793,7 +1793,7 @@ export const copy: Record<Locale, Copy> = {
         title: "Διαχείριση Google Ads και Meta Ads",
         seoTitle: "Διαχείριση Google Ads & Meta Ads | omnidot. Αθήνα",
         seoDescription:
-          "Διαχείριση διαφημίσεων σε Google, Facebook και Instagram με στόχο επαφές και πωλήσεις. Setup €200 μία φορά, διαχείριση από €300/μήνα. Το budget μένει δικό σου.",
+          "Διαχείριση διαφημίσεων Google, Facebook και Instagram στην Αθήνα. Setup €200 μία φορά, διαχείριση από €300/μήνα. Το budget μένει δικό σου.",
         meta: [
           { label: "Στόχος", value: "Επαφές & πωλήσεις" },
           { label: "Κανάλια", value: "Google · Meta" },

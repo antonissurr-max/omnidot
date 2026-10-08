@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { pages, site } from "../site";
+import { site } from "../site";
 import { BrandWord } from "./BrandWord";
 import { Logo } from "./Logo";
 
@@ -25,15 +25,6 @@ function markIntroSeen() {
   }
 }
 
-/** Warm only the first home tile — avoids racing LCP with 4 cover downloads. */
-function preloadFirstCover() {
-  const cover = pages[0]?.cover;
-  if (!cover) return;
-  const img = new Image();
-  img.decoding = "async";
-  img.src = cover;
-}
-
 export function Preloader({ onDone }: { onDone: () => void }) {
   const [exiting, setExiting] = useState(false);
   const finished = useRef(false);
@@ -48,8 +39,6 @@ export function Preloader({ onDone }: { onDone: () => void }) {
   };
 
   useEffect(() => {
-    preloadFirstCover();
-
     const exitAt = window.setTimeout(() => setExiting(true), 1280);
     const doneAt = window.setTimeout(finish, 1780);
 
