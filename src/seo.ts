@@ -42,7 +42,7 @@ const PAGE_TITLES = {
     privacy: "Όροι χρήσης, πολιτική απορρήτου & cookies - omnidot.",
     social: "Διαχείριση Social Media στην Αθήνα | omnidot.",
     content: "Παραγωγή Περιεχομένου — Reels, Video & Φωτο | omnidot.",
-    performance: "Google Ads & Meta Ads — Διαχείριση | omnidot. Αθήνα",
+    performance: "Διαχείριση Google Ads & Meta Ads | omnidot. Αθήνα",
     web: "Κατασκευή Ιστοσελίδας στην Αθήνα | omnidot.",
     article: "Δημιουργία ιστοσελίδας στην Αθήνα: SEO και τιμή — omnidot.",
   },

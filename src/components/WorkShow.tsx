@@ -303,6 +303,44 @@ export function WorkShow({
       </div>
     ) : null;
 
+  // /el/performance/: proof screenshots at top (web uses logo folder cards instead)
+  const performanceMediaItems: MediaItem[] =
+    id === "performance"
+      ? (clients.flatMap((c) => c.media ?? []).filter(
+          (m) => mediaIsVideo(m) || m.fit !== "contain",
+        ).length
+          ? clients
+              .flatMap((c) => c.media ?? [])
+              .filter((m) => mediaIsVideo(m) || m.fit !== "contain")
+              .slice(0, 6)
+          : pageGallery.slice(0, 6))
+      : [];
+
+  const performanceMediaTop =
+    performanceMediaItems.length > 0 ? (
+      <div className="work__proof work__proof--folder">
+        <span className="work__proof-label">{copy.proof?.label}</span>
+        <div className="work__projects">
+          {performanceMediaItems.map((item) => (
+            <div
+              key={`${item.src}-${item.title}`}
+              className="work__project work__project--static"
+            >
+              <span className="work__project-media">
+                <ProjectCover item={item} />
+              </span>
+              <span className="work__project-copy">
+                <span className="work__project-name">{item.title}</span>
+                {item.detail ? (
+                  <span className="work__project-value">{item.detail}</span>
+                ) : null}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ) : null;
+
   const simpleProof =
     !isFolder && copy.proof ? (
       <div className="work__proof">
@@ -354,6 +392,9 @@ export function WorkShow({
         ) : (
           <>
             <header className="work__head">
+              {/* /el/performance/: proof visuals first, then H1 */}
+              {id === "performance" && guide ? performanceMediaTop : null}
+
               <div className="work__lead">
                 <BoxedTitle text={copy.title} />
 
@@ -367,13 +408,18 @@ export function WorkShow({
                 </div>
               </div>
 
-              {folderProof}
+              {/* web/social: logo/case folder under title; performance case goes after cost */}
+              {id === "performance" && guide ? null : folderProof}
               {simpleProof}
               {guide ? null : briefBtn}
             </header>
             {guide ? (
               <div className="work__body">
-                <ServiceGuide guide={guide} onBrief={onBrief} />
+                <ServiceGuide
+                  guide={guide}
+                  onBrief={onBrief}
+                  afterCost={id === "performance" ? folderProof : undefined}
+                />
               </div>
             ) : (
               children && <div className="work__body">{children}</div>
