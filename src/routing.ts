@@ -5,6 +5,16 @@ export const SITE_ORIGIN = "https://omnidot.gr";
 
 export const PAGE_IDS: PageId[] = ["social", "content", "performance", "web"];
 
+/** Ensure a path uses the trailing-slash canonical form (root stays `/`). */
+export function withTrailingSlash(path: string): string {
+  if (!path || path === "/") return "/";
+  const q = path.indexOf("?");
+  const pathname = q === -1 ? path : path.slice(0, q);
+  const query = q === -1 ? "" : path.slice(q);
+  if (pathname.endsWith("/")) return `${pathname}${query}`;
+  return `${pathname}/${query}`;
+}
+
 export function localeFromPathname(pathname: string): Locale {
   const path = pathname.replace(/\/+$/, "") || "/";
   return path === "/el" || path.startsWith("/el/") ? "el" : "en";
@@ -25,31 +35,31 @@ export function pathFromView(view: View, locale: Locale = "en"): string {
   const prefix = locale === "el" ? "/el" : "";
 
   if (view.kind === "index" || view.kind === "notfound") {
-    return prefix || "/";
+    return prefix ? withTrailingSlash(prefix) : "/";
   }
 
   if (view.kind === "about") {
-    const base = `${prefix}/about`;
+    const base = withTrailingSlash(`${prefix}/about`);
     return view.interest ? `${base}?interest=${view.interest}` : base;
   }
 
   if (view.kind === "pricing") {
-    return `${prefix}/pricing`;
+    return withTrailingSlash(`${prefix}/pricing`);
   }
 
   if (view.kind === "articles") {
-    return `${prefix}/articles`;
+    return withTrailingSlash(`${prefix}/articles`);
   }
 
   if (view.kind === "article") {
-    return `${prefix}/articles/${view.slug}`;
+    return withTrailingSlash(`${prefix}/articles/${view.slug}`);
   }
 
   if (view.kind === "privacy") {
-    return `${prefix}/privacy`;
+    return withTrailingSlash(`${prefix}/privacy`);
   }
 
-  return `${prefix}/${view.id}`;
+  return withTrailingSlash(`${prefix}/${view.id}`);
 }
 
 export function viewFromLocation(pathname: string, search: string): View {
@@ -65,7 +75,7 @@ export function viewFromLocation(pathname: string, search: string): View {
   if (bare === "/pricing") return { kind: "pricing" };
   if (bare === "/articles") return { kind: "articles" };
   if (bare.startsWith("/articles/")) {
-    const slug = bare.slice("/articles/".length);
+    const slug = bare.slice("/articles/".length).replace(/\/+$/, "");
     if (slug && !slug.includes("/")) return { kind: "article", slug };
   }
   if (bare === "/privacy") return { kind: "privacy" };
@@ -82,7 +92,7 @@ export function pathForLocale(
 ): string {
   const view = viewFromLocation(pathname, search);
   if (view.kind === "notfound") {
-    return locale === "el" ? "/el" : "/";
+    return locale === "el" ? "/el/" : "/";
   }
   return pathFromView(view, locale);
 }

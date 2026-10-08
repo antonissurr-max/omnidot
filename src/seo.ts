@@ -81,7 +81,7 @@ function providerLd() {
 export function getRouteSeo(locale: Locale, view: View): RouteSeo {
   const t = copy[locale];
   const path = pathFromView(view, locale).split("?")[0];
-  const canonical = `${SITE_ORIGIN}${path === "/" ? "/" : path}`;
+  const canonical = `${SITE_ORIGIN}${path}`;
 
   if (view.kind === "notfound") {
     return {
@@ -341,7 +341,7 @@ export function applyDocumentSeo(locale: Locale, view: View) {
   if (view.kind !== "notfound") {
     const enPath = pathFromView(view, "en").split("?")[0];
     const elPath = pathFromView(view, "el").split("?")[0];
-    const enUrl = `${SITE_ORIGIN}${enPath === "/" ? "/" : enPath}`;
+    const enUrl = `${SITE_ORIGIN}${enPath}`;
     const elUrl = `${SITE_ORIGIN}${elPath}`;
     upsertLink("alternate", enUrl, "en");
     upsertLink("alternate", elUrl, "el");

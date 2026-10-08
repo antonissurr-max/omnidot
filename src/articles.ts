@@ -166,6 +166,10 @@ export function articlesFor(locale: Locale): Article[] {
   return articles.map((item) => toArticle(item, locale));
 }
 
+export function articleSlugs(): string[] {
+  return articles.map((item) => item.slug);
+}
+
 export function articleBySlug(locale: Locale, slug: string): Article | undefined {
   const source = articles.find((a) => a.slug === slug);
   return source ? toArticle(source, locale) : undefined;

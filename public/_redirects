@@ -1,1 +1,24 @@
+# Trailing-slash canonicals — non-slash → slash (301).
+# Listed explicitly so asset URLs (e.g. /sitemap.xml) are never rewritten.
+/about  /about/  301
+/articles  /articles/  301
+/articles/dimiourgia-istoselidas-athina  /articles/dimiourgia-istoselidas-athina/  301
+/content  /content/  301
+/el  /el/  301
+/el/about  /el/about/  301
+/el/articles  /el/articles/  301
+/el/articles/dimiourgia-istoselidas-athina  /el/articles/dimiourgia-istoselidas-athina/  301
+/el/content  /el/content/  301
+/el/performance  /el/performance/  301
+/el/pricing  /el/pricing/  301
+/el/privacy  /el/privacy/  301
+/el/social  /el/social/  301
+/el/web  /el/web/  301
+/performance  /performance/  301
+/pricing  /pricing/  301
+/privacy  /privacy/  301
+/social  /social/  301
+/web  /web/  301
+
+# SPA fallback for client-side routes
 /*    /index.html   200
