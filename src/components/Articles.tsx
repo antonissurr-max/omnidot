@@ -41,6 +41,7 @@ export function Articles({ slug }: { slug?: string }) {
       <article
         className="articles articles--detail"
         data-chrome-tone="light"
+        lang={locale}
         aria-labelledby="article-title"
       >
         <header className="articles__head">
