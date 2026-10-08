@@ -151,7 +151,7 @@ export function About({
               {" · "}
               <a href={`tel:${site.phone.replace(/\D/g, "")}`}>{site.phone}</a>
               {" · "}
-              {locale === "el" ? "Αθήνα · Όλη η Ελλάδα" : site.location}
+              {t.location}
             </p>
           </div>
 

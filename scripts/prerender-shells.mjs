@@ -955,8 +955,8 @@ function crawlBody(def, locale) {
     }
     const contact =
       locale === "el"
-        ? "info@omnidot.gr · Αθήνα · Όλη η Ελλάδα"
-        : "info@omnidot.gr · Athens · All of Greece";
+        ? "info@omnidot.gr · Αθήνα"
+        : "info@omnidot.gr · Athens";
     parts.push(`<p>${escapeHtml(contact)}</p>`);
   }
 

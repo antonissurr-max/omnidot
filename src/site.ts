@@ -26,7 +26,7 @@ export const site = {
   contactEmail: "contact@omnidot.gr",
   phone: "6970862839",
   whatsapp: "",
-  location: "Athens · All of Greece",
+  location: "Athens",
   /** Formspree endpoint, e.g. https://formspree.io/f/xxxxxxxx */
   formspreeEndpoint: "https://formspree.io/f/maenvbbb",
   /** GA4 Measurement ID — loaded only after cookie consent */
