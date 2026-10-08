@@ -7,9 +7,20 @@ import {
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
 
-/** Numbered section titles in the body (e.g. "1. Ξεκίνα από…") */
-function isSectionHeading(paragraph: string) {
-  return /^\d+\.\s+\S/.test(paragraph);
+/**
+ * Mark only top-level article sections (1., 2., 3. … in order).
+ * Nested lists that restart at 1. inside a section stay body text.
+ */
+function sectionHeadingFlags(body: string[]): boolean[] {
+  let next = 1;
+  return body.map((paragraph) => {
+    const match = paragraph.match(/^(\d+)\.\s+\S/);
+    if (!match) return false;
+    const n = Number(match[1]);
+    if (n !== next) return false;
+    next += 1;
+    return true;
+  });
 }
 
 export function Articles({ slug }: { slug?: string }) {
@@ -37,6 +48,7 @@ export function Articles({ slug }: { slug?: string }) {
   }
 
   if (article) {
+    const sectionFlags = sectionHeadingFlags(article.body);
     return (
       <article
         className="articles articles--detail"
@@ -62,12 +74,10 @@ export function Articles({ slug }: { slug?: string }) {
         </header>
 
         <div className="articles__body">
-          {article.body.map((paragraph) => (
+          {article.body.map((paragraph, i) => (
             <p
               key={paragraph.slice(0, 48)}
-              className={
-                isSectionHeading(paragraph) ? "articles__section" : undefined
-              }
+              className={sectionFlags[i] ? "articles__section" : undefined}
             >
               {paragraph}
             </p>
