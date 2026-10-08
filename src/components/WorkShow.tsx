@@ -303,8 +303,8 @@ export function WorkShow({
       </div>
     ) : null;
 
-  const webMediaItems: MediaItem[] = (() => {
-    if (id !== "web") return [];
+  const topMediaItems: MediaItem[] = (() => {
+    if (id !== "web" && id !== "performance") return [];
     const fromClients = clients.flatMap((c) => c.media ?? []);
     const visuals = fromClients.filter(
       (m) => mediaIsVideo(m) || m.fit !== "contain",
@@ -313,13 +313,16 @@ export function WorkShow({
     return pageGallery.slice(0, 6);
   })();
 
-  const webMediaTop =
-    webMediaItems.length > 0 ? (
+  const mediaTop =
+    topMediaItems.length > 0 ? (
       <div className="work__proof work__proof--folder">
         <span className="work__proof-label">{copy.proof?.label}</span>
         <div className="work__projects">
-          {webMediaItems.map((item) => (
-            <div key={`${item.src}-${item.title}`} className="work__project work__project--static">
+          {topMediaItems.map((item) => (
+            <div
+              key={`${item.src}-${item.title}`}
+              className="work__project work__project--static"
+            >
               <span className="work__project-media">
                 <ProjectCover item={item} />
               </span>
@@ -386,6 +389,9 @@ export function WorkShow({
         ) : (
           <>
             <header className="work__head">
+              {/* /el/performance/: proof visuals first, then H1 (no title over the media) */}
+              {id === "performance" && guide ? mediaTop : null}
+
               <div className="work__lead">
                 <BoxedTitle text={copy.title} />
 
@@ -399,8 +405,12 @@ export function WorkShow({
                 </div>
               </div>
 
-              {/* /web/: site media at top (like social videos); client cards after cost */}
-              {id === "web" && guide ? webMediaTop : folderProof}
+              {/* /web/: site media at top; social keeps folder under title */}
+              {id === "web" && guide
+                ? mediaTop
+                : id === "performance" && guide
+                  ? null
+                  : folderProof}
               {id === "web" && guide ? null : simpleProof}
               {guide ? null : briefBtn}
             </header>
@@ -409,7 +419,11 @@ export function WorkShow({
                 <ServiceGuide
                   guide={guide}
                   onBrief={onBrief}
-                  afterCost={id === "web" ? folderProof : undefined}
+                  afterCost={
+                    id === "web" || id === "performance"
+                      ? folderProof
+                      : undefined
+                  }
                 />
               </div>
             ) : (
