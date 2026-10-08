@@ -101,7 +101,7 @@ const articles: ArticleSource[] = [
         { section: "9. Τι να ετοιμάσεις πριν ζητήσεις προσφορά" },
         "Τους στόχους σου σε μία πρόταση (π.χ. «θέλω περισσότερα αιτήματα προσφοράς για ανακαινίσεις στα βόρεια προάστια»). Τις υπηρεσίες σου με σειρά προτεραιότητας. 2–3 sites που σου αρέσουν και τι ακριβώς σου αρέσει σε αυτά. 2–3 ανταγωνιστές σου. Ό,τι υλικό έχεις: logo, φωτογραφίες, κείμενα, κριτικές. Πότε θέλεις να είναι έτοιμο και αν σχεδιάζεις διαφημίσεις μετά.",
         "Με αυτά, όποια ομάδα κι αν επιλέξεις μπορεί να σου δώσει μια προσφορά που αντιστοιχεί σε πραγματικό scope και όχι σε μαντεψιά.",
-        "Η omnidot φτιάχνει ιστοσελίδες με SEO για επιχειρήσεις στην Αθήνα και remote, και τις δένει με social media και διαφημίσεις σε ένα σύστημα. Στείλε μας brief με στόχους, links και χρονοδιάγραμμα, και θα σου απαντήσουμε με scope, πακέτο και πρώτα βήματα, χωρίς μακροσκελείς παρουσιάσεις πριν καταλάβουμε τη δουλειά.",
+        "Η omnidot φτιάχνει ιστοσελίδες με SEO για επιχειρήσεις στην Αθήνα και σε όλη την Ελλάδα, και τις δένει με social media και διαφημίσεις σε ένα σύστημα. Στείλε μας brief με στόχους, links και χρονοδιάγραμμα, και θα σου απαντήσουμε με scope, πακέτο και πρώτα βήματα, χωρίς μακροσκελείς παρουσιάσεις πριν καταλάβουμε τη δουλειά.",
       ],
     },
     en: {
@@ -153,7 +153,7 @@ const articles: ArticleSource[] = [
         "If the answers are vague, the final price usually will be too.",
         { section: "9. What to prepare before you ask for a quote" },
         "Your goal in one sentence. Services in priority order. 2–3 sites you like and why. 2–3 competitors. Assets you already have. When you need it live and whether ads come next. With that, any team can quote real scope — not a guess.",
-        "omnidot builds SEO websites for Athens and remote businesses, and ties them to social and ads as one system. Send a brief with goals, links and timeline — we’ll reply with scope, package and first steps, without long decks before we understand the work.",
+        "omnidot builds SEO websites for businesses in Athens and across Greece, and ties them to social and ads as one system. Send a brief with goals, links and timeline — we’ll reply with scope, package and first steps, without long decks before we understand the work.",
       ],
     },
   },

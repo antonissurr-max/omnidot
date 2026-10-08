@@ -317,7 +317,7 @@ export const copy: Record<Locale, Copy> = {
   en: {
     metaTitle: "omnidot. — Marketing Agency Athens | Social, Ads & Web",
     metaDescription:
-      "Athens marketing agency for social media management, content creation, Meta & Google Ads, and SEO websites. Clear packages, remote-friendly, measurable growth.",
+      "Athens marketing agency for social media management, content creation, Meta & Google Ads, and SEO websites. Clear packages, in Athens and across Greece, measurable growth.",
     langLabel: "Language",
     homeAria: "omnidot — home",
     about: "About",
@@ -342,7 +342,7 @@ export const copy: Record<Locale, Copy> = {
     gallery: "Gallery",
     sections: "Sections",
     rights: "All rights reserved.",
-    location: "Athens · Remote",
+    location: "Athens · All of Greece",
     footerMenu: "Menu",
     footerServices: "Services",
     footerContact: "Contact",
@@ -398,7 +398,7 @@ export const copy: Record<Locale, Copy> = {
       },
       {
         q: "Do you only work in Athens?",
-        a: "We're based in Athens and work remote across Greece and abroad. Shoot days are planned where your product or place needs them.",
+        a: "We're based in Athens and work across Greece and abroad. Shoot days are planned where your product or place needs them.",
       },
       {
         q: "How do we start?",
@@ -555,7 +555,7 @@ export const copy: Record<Locale, Copy> = {
         title: "Social Media Management",
         seoTitle: "Social Media Management — Instagram & TikTok | omnidot.",
         seoDescription:
-          "Social media management for Instagram, TikTok, Facebook & LinkedIn: strategy, Reels, community and growth. Athens & remote. From €450/mo.",
+          "Social media management for Instagram, TikTok, Facebook & LinkedIn: strategy, Reels, community and growth. In Athens and across Greece. From €450/mo.",
         meta: [
           { label: "Goal", value: "Steady presence" },
           { label: "Channels", value: "IG · TikTok · LinkedIn" },
@@ -823,7 +823,7 @@ export const copy: Record<Locale, Copy> = {
         title: "Web Development",
         seoTitle: "Web Development & SEO — Athens | omnidot.",
         seoDescription:
-          "Website development and SEO: fast sites, landing pages and Google-ready structure. Landing from €700, multi-page ≈ €700/page. Athens & remote.",
+          "Website development and SEO: fast sites, landing pages and Google-ready structure. Landing from €700, multi-page ≈ €700/page. In Athens and across Greece.",
         meta: [
           { label: "Build", value: "Sites & landings" },
           { label: "SEO", value: "Findable on Google" },
@@ -952,7 +952,7 @@ export const copy: Record<Locale, Copy> = {
   el: {
     metaTitle: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
     metaDescription:
-      "Διαφημιστική στην Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, remote, μετρήσιμη ανάπτυξη.",
+      "Διαφημιστική στην Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, στην Αθήνα και σε όλη την Ελλάδα, μετρήσιμη ανάπτυξη.",
     langLabel: "Γλώσσα",
     homeAria: "omnidot — αρχική",
     about: "Σχετικά",
@@ -977,7 +977,7 @@ export const copy: Record<Locale, Copy> = {
     gallery: "Γκαλερί",
     sections: "Ενότητες",
     rights: "Με επιφύλαξη παντός δικαιώματος.",
-    location: "Αθήνα · Remote",
+    location: "Αθήνα · Όλη η Ελλάδα",
     footerMenu: "Μενού",
     footerServices: "Υπηρεσίες",
     footerContact: "Επικοινωνία",
@@ -1033,7 +1033,7 @@ export const copy: Record<Locale, Copy> = {
       },
       {
         q: "Δουλεύετε μόνο στην Αθήνα;",
-        a: "Βάση Αθήνα, remote σε Ελλάδα και εξωτερικό. Τα γυρίσματα προγραμματίζονται εκεί που χρειάζεται το προϊόν ή ο χώρος σου.",
+        a: "Βάση Αθήνα, συνεργαζόμαστε σε όλη την Ελλάδα και στο εξωτερικό. Τα γυρίσματα προγραμματίζονται εκεί που χρειάζεται το προϊόν ή ο χώρος σου.",
       },
       {
         q: "Πώς ξεκινάμε;",

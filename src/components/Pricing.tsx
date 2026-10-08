@@ -25,18 +25,18 @@ const ORB_MEDIA: Record<
   string,
   { type: "image" | "video"; src: string; poster?: string }
 > = {
-  social: { type: "image", src: "/images/social.jpg" },
+  social: { type: "image", src: "/images/social.webp" },
   content: {
     type: "video",
     src: "/videos/pricing-orb-content.mp4",
-    poster: "/images/content.jpg",
+    poster: "/images/content.webp",
   },
   performance: {
     type: "video",
     src: "/videos/pricing-hero.mp4",
-    poster: "/images/performance.jpg",
+    poster: "/images/performance.webp",
   },
-  web: { type: "image", src: "/images/web.jpg" },
+  web: { type: "image", src: "/images/web.webp" },
 };
 
 export function Pricing({
@@ -172,7 +172,7 @@ export function Pricing({
                             loop
                             playsInline
                             autoPlay
-                            preload="auto"
+                            preload="metadata"
                             title={plan.name}
                           />
                         ) : (

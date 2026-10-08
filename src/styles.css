@@ -5765,3 +5765,28 @@ a.work__project:focus-visible .work__project-name {
     gap: 24px;
   }
 }
+
+
+/* A11y: lift muted label contrast (Lighthouse) without redesigning the look */
+.work__meta span,
+.work__proof-label,
+.legal__eyebrow,
+.legal__meta,
+.articles__eyebrow,
+.articles__meta,
+.case__meta dt,
+.pricing-principles__eyebrow,
+.pricing-faq__eyebrow,
+.notfound__code,
+.cookie__title {
+  opacity: 0.68;
+}
+.cookie__body {
+  opacity: 0.88;
+  font-size: 12px;
+  line-height: 1.4;
+  max-width: 36ch;
+}
+.cookie__title {
+  font-size: 11px;
+}

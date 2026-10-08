@@ -26,7 +26,7 @@ export const site = {
   contactEmail: "contact@omnidot.gr",
   phone: "6970862839",
   whatsapp: "",
-  location: "Athens · Remote",
+  location: "Athens · All of Greece",
   /** Formspree endpoint, e.g. https://formspree.io/f/xxxxxxxx */
   formspreeEndpoint: "https://formspree.io/f/maenvbbb",
   /** GA4 Measurement ID — loaded only after cookie consent */
@@ -89,17 +89,17 @@ export const partners: Partner[] = [
   {
     name: "Nafplio4Sail",
     href: "https://nafplio4sail.com/",
-    logo: "/images/partners/nafplio4sail.png",
+    logo: "/images/partners/nafplio4sail.webp",
   },
   {
     name: "Europatch",
     href: "https://europatch.gr/",
-    logo: "/images/partners/europatch.png",
+    logo: "/images/partners/europatch.webp",
   },
   {
     name: "Pyrgiotis OE",
     href: "https://pyrgiotisoe.com/",
-    logo: "/images/partners/pyrgiotis.png",
+    logo: "/images/partners/pyrgiotis.webp",
   },
 ];
 
@@ -108,10 +108,10 @@ export const pages: {
   kicker: string;
   cover: string;
 }[] = [
-  { id: "social", kicker: "01", cover: "/images/social.jpg" },
-  { id: "content", kicker: "02", cover: "/images/content.jpg" },
-  { id: "performance", kicker: "03", cover: "/images/performance.jpg" },
-  { id: "web", kicker: "04", cover: "/images/web.jpg" },
+  { id: "social", kicker: "01", cover: "/images/social.webp" },
+  { id: "content", kicker: "02", cover: "/images/content.webp" },
+  { id: "performance", kicker: "03", cover: "/images/performance.webp" },
+  { id: "web", kicker: "04", cover: "/images/web.webp" },
 ];
 
 export const pageOrder: PageId[] = pages.map((p) => p.id);

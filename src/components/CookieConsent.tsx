@@ -14,10 +14,28 @@ export function CookieConsent() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setOpen(readConsent() == null);
     const onOpen = () => setOpen(true);
     window.addEventListener(CONSENT_OPEN_EVENT, onOpen);
-    return () => window.removeEventListener(CONSENT_OPEN_EVENT, onOpen);
+
+    // Defer first paint so the banner is never LCP.
+    let idleId = 0;
+    let timer = 0;
+    const showIfNeeded = () => {
+      if (readConsent() == null) setOpen(true);
+    };
+    if (typeof window.requestIdleCallback === "function") {
+      idleId = window.requestIdleCallback(showIfNeeded, { timeout: 2500 });
+    } else {
+      timer = window.setTimeout(showIfNeeded, 1800);
+    }
+
+    return () => {
+      window.removeEventListener(CONSENT_OPEN_EVENT, onOpen);
+      if (idleId && typeof window.cancelIdleCallback === "function") {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timer) window.clearTimeout(timer);
+    };
   }, []);
 
   if (!open) return null;

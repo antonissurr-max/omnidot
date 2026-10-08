@@ -35,16 +35,16 @@ export function Chrome({
   return (
     <header className="chrome">
       <div className="chrome__start">
-        <Link
+        <a
           className="chrome__logo"
-          to={pathFromView({ kind: "index" }, locale)}
+          href={pathFromView({ kind: "index" }, locale)}
           aria-label={t.homeAria}
         >
           <Logo />
           <span className="chrome__word">
             <BrandWord />
           </span>
-        </Link>
+        </a>
 
         <button
           className="chrome__lang"

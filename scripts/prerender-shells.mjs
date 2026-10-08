@@ -46,18 +46,30 @@ const routeDefs = [
     en: {
       title: "omnidot. — Marketing Agency Athens | Social, Ads & Web",
       description:
-        "Athens marketing agency for social media management, content creation, Meta & Google Ads, and SEO websites. Clear packages, remote-friendly, measurable growth.",
+        "Athens marketing agency for social media management, content creation, Meta & Google Ads, and SEO websites. Clear packages, in Athens and across Greece, measurable growth.",
       h1: "omnidot.",
-      body: "Athens marketing agency for web, SEO, social media and performance ads — one partner for brands that want to grow. Founders and local brands, Athens and remote.",
+      body: "Athens marketing agency for web, SEO, social media and performance ads — one partner for brands that want to grow. Founders and local brands, in Athens and across Greece. For founders and local brands that want a clear next step — not another report. From a fast SEO website to social media management and Meta & Google Ads campaigns.",
       story: "",
+      services: [
+        { name: "Social Media Management", href: "/social/", body: "Strategy, publishing, growth and monthly reporting for Instagram, TikTok, Facebook and LinkedIn." },
+        { name: "Content Creation", href: "/content/", body: "Photo, video and Reels from concept to ready-to-post for social, ads and web." },
+        { name: "Performance Marketing", href: "/performance/", body: "Meta Ads and Google Ads with clear cost, creative testing and measurement." },
+        { name: "Web Development", href: "/web/", body: "Fast SEO websites and landing pages that stay yours." },
+      ],
     },
     el: {
       title: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
       description:
-        "Διαφημιστική στην Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, remote, μετρήσιμη ανάπτυξη.",
+        "Διαφημιστική στην Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, στην Αθήνα και σε όλη την Ελλάδα, μετρήσιμη ανάπτυξη.",
       h1: "omnidot.",
-      body: "Διαφημιστική στην Αθήνα για web, SEO, social media και performance ads — ένας συνεργάτης για brands που θέλουν να αναπτυχθούν. Αθήνα και remote.",
+      body: "Διαφημιστική στην Αθήνα για web, SEO, social media και performance ads — ένας συνεργάτης για brands που θέλουν να αναπτυχθούν. Στην Αθήνα και σε όλη την Ελλάδα. Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Από γρήγορη ιστοσελίδα με SEO μέχρι διαχείριση social media και καμπάνιες Meta & Google Ads.",
       story: "",
+      services: [
+        { name: "Διαχείριση Social Media", href: "/el/social/", body: "Στρατηγική, δημοσίευση, ανάπτυξη και μηνιαίο reporting για Instagram, TikTok, Facebook και LinkedIn." },
+        { name: "Δημιουργία Περιεχομένου", href: "/el/content/", body: "Φωτογραφία, video και Reels από concept έως ανάρτηση για social, ads και web." },
+        { name: "Performance Marketing", href: "/el/performance/", body: "Meta Ads και Google Ads με καθαρό κόστος, testing και μέτρηση." },
+        { name: "Κατασκευή Ιστοσελίδας", href: "/el/web/", body: "Γρήγορες ιστοσελίδες με SEO και landing pages που μένουν δικές σου." },
+      ],
     },
     type: "org",
   },
@@ -67,13 +79,13 @@ const routeDefs = [
     elPath: "/el/social/",
     enFile: "social/index.html",
     elFile: "el/social/index.html",
-    image: `${origin}/images/social.jpg`,
+    image: `${origin}/images/social.webp`,
     en: {
       title: "Social Media Management — Instagram & TikTok | omnidot.",
       description:
-        "Social media management for Instagram, TikTok, Facebook & LinkedIn: strategy, Reels, community and growth. Athens & remote. From €450/mo.",
+        "Social media management for Instagram, TikTok, Facebook & LinkedIn: strategy, Reels, community and growth. In Athens and across Greece. From €450/mo.",
       h1: "Social Media Management",
-      body: "Instagram, TikTok, Facebook and LinkedIn management — strategy, publishing, growth and monthly reporting from omnidot. Athens & remote.",
+      body: "Instagram, TikTok, Facebook and LinkedIn management — strategy, publishing, growth and monthly reporting from omnidot. In Athens and across Greece.",
       story:
         "Europatch sells cold asphalt to B2B buyers — a category that rarely goes viral. We built a steady organic presence around real product use and how-to content. In one year: 4.5M Facebook and 2.5M Instagram views, 100% organic.",
       points: [
@@ -217,7 +229,7 @@ const routeDefs = [
     elPath: "/el/content/",
     enFile: "content/index.html",
     elFile: "el/content/index.html",
-    image: `${origin}/images/content.jpg`,
+    image: `${origin}/images/content.webp`,
     en: {
       title: "Content Creation — Photo, Video & Reels | omnidot.",
       description:
@@ -289,7 +301,7 @@ const routeDefs = [
     elPath: "/el/performance/",
     enFile: "performance/index.html",
     elFile: "el/performance/index.html",
-    image: `${origin}/images/performance.jpg`,
+    image: `${origin}/images/performance.webp`,
     en: {
       title: "Meta & Google Ads Management — omnidot. Athens",
       description:
@@ -361,11 +373,11 @@ const routeDefs = [
     elPath: "/el/web/",
     enFile: "web/index.html",
     elFile: "el/web/index.html",
-    image: `${origin}/images/web.jpg`,
+    image: `${origin}/images/web.webp`,
     en: {
       title: "Web Development & SEO — Athens | omnidot.",
       description:
-        "Website development and SEO: fast sites, landing pages and Google-ready structure. Landing from €700, multi-page ≈ €700/page. Athens & remote.",
+        "Website development and SEO: fast sites, landing pages and Google-ready structure. Landing from €700, multi-page ≈ €700/page. In Athens and across Greece.",
       h1: "Web Development",
       body: "Website development and SEO — fast, editorial sites and landing pages built to rank, load quickly and convert.",
       story: "",
@@ -525,6 +537,7 @@ const routeDefs = [
         "About omnidot. — Athens marketing agency for founders and local brands. Contact us for social media, content, Meta & Google Ads, and SEO websites.",
       h1: "About omnidot.",
       body: "Athens marketing agency for founders and local brands. From SEO websites to social media and Meta & Google Ads. Start a brief with omnidot.",
+      extra: "For founders and local brands that want a clear next step — not another report. From a fast SEO website to social media management and Meta & Google Ads campaigns. We don't believe in noise. We believe in data, clean design, and strategies that turn visitors into loyal customers. Contact: info@omnidot.gr · Athens · All of Greece.",
       story: "",
     },
     el: {
@@ -533,6 +546,7 @@ const routeDefs = [
         "Σχετικά με την omnidot. — διαφημιστική στην Αθήνα για founders και τοπικά brands. Επικοινωνία για social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
       h1: "Σχετικά με το omnidot.",
       body: "Διαφημιστική στην Αθήνα για founders και τοπικά brands. Από ιστοσελίδες με SEO μέχρι social media και Meta & Google Ads. Ξεκίνα ένα brief με το omnidot.",
+      extra: "Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Από γρήγορη ιστοσελίδα με SEO μέχρι διαχείριση social media και καμπάνιες Meta & Google Ads. Δεν πιστεύουμε στον θόρυβο. Πιστεύουμε στα δεδομένα, στο καθαρό design και στις στρατηγικές που μετατρέπουν τους επισκέπτες σε πιστούς πελάτες. Επικοινωνία: info@omnidot.gr · Αθήνα · Όλη η Ελλάδα.",
       story: "",
     },
     type: "about",
@@ -549,16 +563,42 @@ const routeDefs = [
       description:
         "Marketing agency pricing in Athens: social media from €450/mo, content packs from €350, Meta & Google Ads from €300/mo, SEO websites from €700. Ad spend separate.",
       h1: "Packages & pricing",
-      body: "Clear marketing agency packages for social, content, ads and web. Ad spend is always separate. Social from €450/mo, content from €350, performance from €300/mo, web from €700.",
+      body: "Clear marketing agency packages for social, content, ads and web. Ad spend is always separate. Social from €450/mo, content from €350, performance from €300/mo, web from €700. Prices in EUR, excl. VAT where applicable. Minimum 3 months on retainers.",
       story: "",
+      plans: [
+        { name: "Social Media Management", price: "From €450 / mo", blurb: "Setup once (€150–350 by platforms), then a monthly package that stays consistent.", items: ["Essential €450–650 · 1 platform · 8–12 posts · 8 basic stories · light community · report", "Standard €750–1,100 · 2 platforms · 12–16 posts/reels · community · report", "Premium €1,200–1,800 · 3 platforms · 16–20 posts/reels · community · report"] },
+        { name: "Content Creation", price: "From €350 / pack", blurb: "Asset packs for feed, ads and web — concept through edit.", items: ["1 platform · 8–12 assets · €350–550", "2 platforms · 12–16 assets + 2–4 videos · €650–1,000", "Shoot day €200."] },
+        { name: "Performance Marketing", price: "From €300 / mo", blurb: "Setup €200 once. Meta & Google management — your ad budget stays yours.", items: ["Ad spend €0–500 → management €300", "Ad spend €500–1,500 → management €500", "Ad spend €1,500+ → by agreement"] },
+        { name: "Web Development", price: "From €700", blurb: "Sites and landings that load fast, rank cleanly, and stay yours.", items: ["Landing page €700–1,200", "4–6 page site ≈ €700 / page", "E-shop — by agreement"] },
+      ],
+      faq: [
+        { q: "Is ad spend included in the monthly fee?", a: "No. Management fees are ours; your Meta or Google ad budget stays yours and is paid directly to the platforms." },
+        { q: "Why a 3-month minimum on retainers?", a: "Social and paid need a learning window. Three months lets us set the system, test creatives and show a clear trend — not a one-week spike." },
+        { q: "Who owns the photos, videos and copy?", a: "You do. After delivery and payment, assets are yours to use on your channels, ads and site." },
+        { q: "Do you only work in Athens?", a: "We're based in Athens and work across Greece and abroad. Shoot days are planned where your product or place needs them." },
+        { q: "How do we start?", a: "Send a brief (goals, links, timeline). We reply with scope, package and first steps — no long decks before we know the job." },
+      ],
     },
     el: {
       title: "Τιμές Διαφημιστικής — Πακέτα | omnidot. Αθήνα",
       description:
         "Τιμές διαφημιστικής στην Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες SEO από €700. Ad spend ξεχωριστά.",
       h1: "Πακέτα & τιμές",
-      body: "Καθαρά πακέτα διαφημιστικής για social, content, ads και web. Το ad spend είναι πάντα ξεχωριστά. Social από €450/μήνα, content από €350, performance από €300/μήνα, web από €700.",
+      body: "Καθαρά πακέτα διαφημιστικής για social, content, ads και web. Το ad spend είναι πάντα ξεχωριστά. Social από €450/μήνα, content από €350, performance από €300/μήνα, web από €700. Τιμές σε ευρώ, χωρίς ΦΠΑ όπου εφαρμόζεται. Ελάχιστο 3 μήνες στα retainers.",
       story: "",
+      plans: [
+        { name: "Διαχείριση Social Media", price: "Από €450 / μήνα", blurb: "Setup μία φορά (€150–350 ανά πλατφόρμες), μετά μηνιαίο πακέτο.", items: ["Essential €450–650 · 1 πλατφόρμα · 8–12 posts · 8 basic stories · light community · report", "Standard €750–1.100 · 2 πλατφόρμες · 12–16 posts/reels · community · report", "Premium €1.200–1.800 · 3 πλατφόρμες · 16–20 posts/reels · community · report"] },
+        { name: "Δημιουργία Περιεχομένου", price: "Από €350 / πακέτο", blurb: "Πακέτα assets για feed, ads και web — από concept έως μοντάζ.", items: ["1 πλατφόρμα · 8–12 assets · €350–550", "2 πλατφόρμες · 12–16 assets + 2–4 videos · €650–1.000", "Γύρισμα €200."] },
+        { name: "Performance Marketing", price: "Από €300 / μήνα", blurb: "Setup €200 μία φορά. Meta & Google — το ad spend μένει δικό σου.", items: ["Ad spend €0–500 → management €300", "Ad spend €500–1.500 → management €500", "Ad spend €1.500+ → κατόπιν συμφωνίας"] },
+        { name: "Ανάπτυξη Ιστοσελίδων", price: "Από €700", blurb: "Sites και landings που φορτώνουν γρήγορα και μένουν δικά σου.", items: ["Landing page €700–1.200", "Site 4–6 σελίδων ≈ €700 / σελίδα", "E-shop — κατόπιν συμφωνίας"] },
+      ],
+      faq: [
+        { q: "Το ad spend περιλαμβάνεται στο μηνιαίο;", a: "Όχι. Τα management fees είναι δικά μας· το Meta ή Google budget μένει δικό σου και πληρώνεται στις πλατφόρμες." },
+        { q: "Γιατί ελάχιστο 3 μήνες στα retainers;", a: "Social και paid χρειάζονται παράθυρο μάθησης. Τρεις μήνες αρκούν για σύστημα, tests και καθαρή τάση — όχι spike μιας εβδομάδας." },
+        { q: "Ποιος κατέχει φωτογραφίες, video και κείμενα;", a: "Εσύ. Μετά την παράδοση και την πληρωμή, τα assets είναι δικά σου." },
+        { q: "Δουλεύετε μόνο στην Αθήνα;", a: "Βάση Αθήνα, συνεργαζόμαστε σε όλη την Ελλάδα και στο εξωτερικό. Τα γυρίσματα προγραμματίζονται εκεί που χρειάζεται το προϊόν ή ο χώρος σου." },
+        { q: "Πώς ξεκινάμε;", a: "Στείλε brief (στόχοι, links, χρονοδιάγραμμα). Απαντάμε με scope, πακέτο και πρώτα βήματα." },
+      ],
     },
     type: "pricing",
   },
@@ -574,7 +614,7 @@ const routeDefs = [
       description:
         "Articles from omnidot. on Meta & Google Ads, social media, SEO websites and marketing for Athens brands.",
       h1: "Articles",
-      body: "Short reads on social, ads, SEO and websites — practical notes from how we work with founders and local brands.",
+      body: "Short reads on social, ads, SEO and websites — practical notes from how we work with founders and local brands. Start with website creation in Athens: what a real build includes, where SEO fits from day one, and what drives the price.",
       story: "",
     },
     el: {
@@ -582,7 +622,7 @@ const routeDefs = [
       description:
         "Άρθρα από την omnidot. για Meta & Google Ads, social media, ιστοσελίδες με SEO και marketing για brands στην Αθήνα.",
       h1: "Άρθρα",
-      body: "Σύντομα κείμενα για social, ads, SEO και ιστοσελίδες — πρακτικές σημειώσεις από τη δουλειά μας με founders και τοπικά brands.",
+      body: "Σύντομα κείμενα για social, ads, SEO και ιστοσελίδες — πρακτικές σημειώσεις από τη δουλειά μας με founders και τοπικά brands. Ξεκίνα από τη δημιουργία ιστοσελίδας στην Αθήνα: τι περιλαμβάνει στην πράξη η κατασκευή, πού μπαίνει το SEO και τι καθορίζει την τιμή.",
       story: "",
     },
     type: "articles",
@@ -595,25 +635,25 @@ const routeDefs = [
     elFile: "el/articles/dimiourgia-istoselidas-athina/index.html",
     image: `${origin}/images/articles/dimiourgia-istoselidas-athina.jpg`,
     en: {
-      title:
-        "Website creation in Athens: what it includes, SEO and price — omnidot.",
+      title: "Website creation in Athens: SEO and price — omnidot.",
       description:
         "What a real website build in Athens includes, where SEO fits from day one, and what drives the price — from omnidot.",
       h1: "Website creation in Athens",
       subtitle:
         "what it actually includes, how it ties to SEO, and what drives the price",
-      body: "A website for a business in Athens has one job: turn whoever finds it into someone who calls, messages or buys. What the build includes, where SEO fits, and what shapes the price.",
+      date: "2026-10-07",
+      body: "Most conversations about a new website start in the wrong place. A website for a business in Athens has one job: turn whoever finds it into someone who calls, messages or buys. This piece explains what building a site actually includes, where SEO fits, what raises or lowers the price, and which questions to ask whoever builds it — even if that isn’t us. Start from the job the site must do. A proper build includes page architecture, copy, design hierarchy, development, SEO foundations, measurement, and launch plus ongoing updates. SEO is built from day one. Landing page from €700–1,200; multi-page ≈ €700/page; e-shop by discussion. omnidot builds SEO websites for businesses in Athens and across Greece.",
       story: "",
     },
     el: {
-      title:
-        "Δημιουργία ιστοσελίδας στην Αθήνα: SEO και τιμή — omnidot.",
+      title: "Δημιουργία ιστοσελίδας στην Αθήνα: SEO και τιμή — omnidot.",
       description:
         "Τι περιλαμβάνει στην πράξη η κατασκευή ιστοσελίδας στην Αθήνα, πώς δένει με το SEO και τι καθορίζει την τιμή — από την omnidot.",
       h1: "Δημιουργία ιστοσελίδας στην Αθήνα",
       subtitle:
         "τι περιλαμβάνει στην πράξη, πώς δένει με το SEO και τι καθορίζει την τιμή",
-      body: "Μια ιστοσελίδα για επιχείρηση στην Αθήνα έχει μία δουλειά: να μετατρέπει όποιον τη βρίσκει σε κάποιον που σε παίρνει τηλέφωνο, σου στέλνει μήνυμα ή αγοράζει. Τι περιλαμβάνει η κατασκευή, πού μπαίνει το SEO και τι καθορίζει την τιμή.",
+      date: "2026-10-07",
+      body: "Οι περισσότερες συζητήσεις για καινούργιο site ξεκινούν από το λάθος σημείο. Μια ιστοσελίδα για επιχείρηση στην Αθήνα έχει μία δουλειά: να μετατρέπει όποιον τη βρίσκει σε κάποιον που σε παίρνει τηλέφωνο, σου στέλνει μήνυμα ή αγοράζει. Σε αυτό το κείμενο εξηγούμε τι πραγματικά περιλαμβάνει η κατασκευή, πού μπαίνει το SEO, τι ανεβάζει ή κατεβάζει την τιμή και ποιες ερωτήσεις αξίζει να κάνεις. Ξεκίνα από τη δουλειά που θα κάνει το site. Μια σωστή κατασκευή περιλαμβάνει δομή σελίδων, κείμενα, σχεδιασμό, ανάπτυξη, βάση SEO, μέτρηση και launch. Το SEO στήνεται από την πρώτη μέρα. Landing page €700–1.200· πολυσέλιδο ≈ €700/σελίδα· e-shop κατόπιν συζήτησης. Η omnidot φτιάχνει ιστοσελίδες με SEO για επιχειρήσεις στην Αθήνα και σε όλη την Ελλάδα.",
       story: "",
     },
     type: "articles",
@@ -630,16 +670,28 @@ const routeDefs = [
       description:
         "Terms of use, privacy policy and cookies for omnidot. — how we process contact data under GDPR.",
       h1: "Website terms, privacy & cookies",
-      body: "How omnidot. processes contact form data under GDPR. Data controller: Antonios Syrianos, sole proprietorship. Contact: info@omnidot.gr.",
+      body: "How omnidot. processes contact form data under GDPR. Data controller: Antonios Syrianos, sole proprietorship. Contact: info@omnidot.gr. Location: Athens · All of Greece.",
       story: "",
+      sections: [
+        { heading: "Who we are", paragraphs: ["omnidot. is operated by Antonios Syrianos, sole proprietorship (VAT 162731235), based in Athens, Greece. Contact: info@omnidot.gr."] },
+        { heading: "What data we collect", paragraphs: ["Through the contact form we may collect your name, email, company and the brief you send. We use this only to reply and discuss a possible collaboration."] },
+        { heading: "Cookies & analytics", paragraphs: ["Essential cookies keep the site working. Analytics and marketing cookies load only after you accept. You can change your choice anytime from the cookie settings link in the footer."] },
+        { heading: "Your rights", paragraphs: ["Under GDPR you can ask for access, correction or deletion of your data by emailing info@omnidot.gr. We aim to reply within one month."] },
+      ],
     },
     el: {
       title: "Όροι χρήσης, πολιτική απορρήτου & cookies - omnidot.",
       description:
         "Όροι χρήσης, πολιτική απορρήτου και cookies του omnidot. — πώς επεξεργαζόμαστε δεδομένα επικοινωνίας βάσει GDPR.",
       h1: "Όροι χρήσης, πολιτική απορρήτου & cookies",
-      body: "Πώς το omnidot. επεξεργάζεται δεδομένα φόρμας επικοινωνίας βάσει GDPR. Υπεύθυνος: Συριανός Αντώνιος, ατομική επιχείρηση. Επικοινωνία: info@omnidot.gr.",
+      body: "Πώς το omnidot. επεξεργάζεται δεδομένα φόρμας επικοινωνίας βάσει GDPR. Υπεύθυνος: Συριανός Αντώνιος, ατομική επιχείρηση. Επικοινωνία: info@omnidot.gr. Τοποθεσία: Αθήνα · Όλη η Ελλάδα.",
       story: "",
+      sections: [
+        { heading: "Ποιοι είμαστε", paragraphs: ["Το omnidot. το λειτουργεί ο Συριανός Αντώνιος, ατομική επιχείρηση (ΑΦΜ 162731235), με έδρα την Αθήνα. Επικοινωνία: info@omnidot.gr."] },
+        { heading: "Τι δεδομένα συλλέγουμε", paragraphs: ["Μέσω της φόρμας επικοινωνίας μπορεί να συλλέξουμε όνομα, email, εταιρεία και το brief που στέλνεις. Τα χρησιμοποιούμε μόνο για να απαντήσουμε και να συζητήσουμε πιθανή συνεργασία."] },
+        { heading: "Cookies & analytics", paragraphs: ["Τα απαραίτητα cookies κρατούν το site σε λειτουργία. Analytics και marketing φορτώνουν μόνο αν αποδεχτείς. Μπορείς να αλλάξεις επιλογή οποιαδήποτε στιγμή από το link ρυθμίσεων cookies στο footer."] },
+        { heading: "Τα δικαιώματά σου", paragraphs: ["Με βάση το GDPR μπορείς να ζητήσεις πρόσβαση, διόρθωση ή διαγραφή των δεδομένων σου στο info@omnidot.gr. Στοχεύουμε σε απάντηση εντός ενός μηνός."] },
+      ],
     },
     type: "privacy",
   },
@@ -665,10 +717,55 @@ function stripPrior(html) {
     .replace(/<main\s+id="prerender">[\s\S]*?<\/main>\s*/gi, "");
 }
 
+function homeUrl(locale) {
+  return locale === "el" ? `${origin}/el/` : `${origin}/`;
+}
+
+function homeLabel(locale) {
+  return locale === "el" ? "Αρχική" : "Home";
+}
+
+function breadcrumbs(locale, crumbs) {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: homeLabel(locale),
+        item: homeUrl(locale),
+      },
+      ...crumbs.map((c, i) => ({
+        "@type": "ListItem",
+        position: i + 2,
+        name: c.name,
+        item: c.url,
+      })),
+    ],
+  };
+}
+
+function withCrumbs(locale, primary, crumbs) {
+  if (!crumbs?.length) {
+    return { "@context": "https://schema.org", ...primary };
+  }
+  const graph = primary["@graph"]
+    ? [...primary["@graph"]]
+    : [{ ...primary }];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [...graph, breadcrumbs(locale, crumbs)],
+  };
+}
+
+function isArticleDetail(def) {
+  return def.enPath.startsWith("/articles/") && def.enPath !== "/articles/";
+}
+
 function jsonLdFor(def, locale) {
   const copy = def[locale];
-  const path = locale === "el" ? def.elPath : def.enPath;
-  const url = `${origin}${path === "/" ? "/" : path}`;
+  const path = withTrailingSlash(locale === "el" ? def.elPath : def.enPath);
+  const url = `${origin}${path}`;
   if (def.type === "org") {
     return {
       "@context": "https://schema.org",
@@ -695,48 +792,110 @@ function jsonLdFor(def, locale) {
     };
   }
   if (def.type === "about") {
-    return {
-      "@context": "https://schema.org",
-      "@type": "AboutPage",
-      name: locale === "el" ? "Σχετικά" : "About",
-      url,
-      isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },
-    };
+    return withCrumbs(
+      locale,
+      {
+        "@type": "AboutPage",
+        name: locale === "el" ? "Σχετικά" : "About",
+        description: copy.description,
+        url,
+        isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },
+      },
+      [{ name: locale === "el" ? "Σχετικά" : "About", url }],
+    );
   }
   if (def.type === "pricing") {
+    const graph = [
+      {
+        "@type": "WebPage",
+        name: locale === "el" ? "Πακέτα & τιμές" : "Packages & pricing",
+        description: copy.description,
+        url,
+        isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },
+      },
+    ];
+    if (copy.faq?.length) {
+      graph.push({
+        "@type": "FAQPage",
+        mainEntity: copy.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      });
+    }
+    return withCrumbs(
+      locale,
+      { "@graph": graph },
+      [{ name: locale === "el" ? "Πακέτα & τιμές" : "Packages & pricing", url }],
+    );
+  }
+  if (isArticleDetail(def)) {
+    const articlesUrl =
+      locale === "el" ? `${origin}/el/articles/` : `${origin}/articles/`;
+    const date = copy.date || "2026-10-07";
     return {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: locale === "el" ? "Πακέτα & τιμές" : "Packages & pricing",
-      description: copy.description,
-      url,
-      isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          headline: copy.subtitle ? `${copy.h1}: ${copy.subtitle}` : copy.h1,
+          description: copy.description,
+          datePublished: date,
+          dateModified: copy.dateModified || date,
+          author: { "@type": "Organization", name: "omnidot", url: origin },
+          publisher: {
+            "@type": "Organization",
+            name: "omnidot",
+            url: origin,
+            logo: {
+              "@type": "ImageObject",
+              url: `${origin}/images/omnidot-logo.svg`,
+            },
+          },
+          mainEntityOfPage: { "@type": "WebPage", "@id": url },
+          inLanguage: locale === "el" ? "el" : "en",
+        },
+        breadcrumbs(locale, [
+          {
+            name: locale === "el" ? "Άρθρα" : "Articles",
+            url: articlesUrl,
+          },
+          { name: copy.h1, url },
+        ]),
+      ],
     };
   }
   if (def.type === "articles") {
-    return {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      name: copy.h1,
-      description: copy.description,
-      url,
-      isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },
-    };
+    return withCrumbs(
+      locale,
+      {
+        "@type": "CollectionPage",
+        name: copy.h1,
+        description: copy.description,
+        url,
+        isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },
+      },
+      [{ name: copy.h1, url }],
+    );
   }
   if (def.type === "privacy") {
-    return {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: copy.h1,
-      description: copy.description,
-      url,
-      isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },
-    };
+    return withCrumbs(
+      locale,
+      {
+        "@type": "WebPage",
+        name: copy.h1,
+        description: copy.description,
+        url,
+        isPartOf: { "@type": "WebSite", name: "omnidot.", url: origin },
+      },
+      [{ name: copy.h1, url }],
+    );
   }
   const serviceLd = {
     "@type": "Service",
     name: def.serviceName[locale],
-    description: (copy.story || copy.body).slice(0, 300),
+    description: (copy.description || copy.body).slice(0, 300),
     provider: {
       "@type": "ProfessionalService",
       name: "omnidot.",
@@ -753,31 +912,29 @@ function jsonLdFor(def, locale) {
     url,
     image: def.image,
   };
-  if (copy.guide?.faq?.length) {
-    return {
-      "@context": "https://schema.org",
-      "@graph": [
-        serviceLd,
-        {
-          "@type": "FAQPage",
-          mainEntity: copy.guide.faq.map((item) => ({
-            "@type": "Question",
-            name: item.q,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: item.aLink
-                ? `${item.a}${item.aLink.label}.`
-                : item.a,
-            },
-          })),
-        },
-      ],
-    };
-  }
-  return {
-    "@context": "https://schema.org",
-    ...serviceLd,
-  };
+  const primary = copy.guide?.faq?.length
+    ? {
+        "@graph": [
+          serviceLd,
+          {
+            "@type": "FAQPage",
+            mainEntity: copy.guide.faq.map((item) => ({
+              "@type": "Question",
+              name: item.q,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.aLink
+                  ? `${item.a}${item.aLink.label}.`
+                  : item.a,
+              },
+            })),
+          },
+        ],
+      }
+    : serviceLd;
+  return withCrumbs(locale, primary, [
+    { name: def.serviceName[locale], url },
+  ]);
 }
 
 function articleRouteDefs() {
@@ -918,9 +1075,29 @@ function crawlCases(cases) {
   return `<section aria-label="Selected work"><ul>${items}</ul></section>`;
 }
 
+function crawlGuideWithCasesAfterCost(guide, cases) {
+  // Insert client cases right after the cost section.
+  const full = crawlGuide(guide);
+  if (!cases?.length) return full;
+  const casesHtml = crawlCases(cases);
+  const costNeedle = guide.costTitle
+    ? `<h2>${escapeHtml(guide.costTitle)}</h2>`
+    : null;
+  if (!costNeedle || !full.includes(costNeedle)) {
+    return `${full}${casesHtml}`;
+  }
+  const idx = full.indexOf(costNeedle);
+  const afterCostClose = full.indexOf("</section>", idx);
+  if (afterCostClose < 0) return `${full}${casesHtml}`;
+  const insertAt = afterCostClose + "</section>".length;
+  return `${full.slice(0, insertAt)}${casesHtml}${full.slice(insertAt)}`;
+}
+
 function crawlBody(def, locale) {
   const copy = def[locale];
   const nav = locale === "el" ? navEl : navEn;
+  const homeHref = locale === "el" ? "/el/" : "/";
+  const homeText = locale === "el" ? "Αρχική" : "Home";
   const links = nav
     .map((item) => `<a href="${item.href}">${escapeHtml(item.label)}</a>`)
     .join(" · ");
@@ -929,29 +1106,92 @@ function crawlBody(def, locale) {
     : "";
   const parts = [
     `<main id="prerender">`,
+    `<header><a href="${homeHref}">${escapeHtml(homeText)} — omnidot.</a></header>`,
     `<h1>${escapeHtml(copy.h1)}</h1>`,
     copy.subtitle ? `<p>${escapeHtml(copy.subtitle)}</p>` : "",
     `<p>${escapeHtml(copy.body)}</p>`,
   ].filter(Boolean);
 
-  // Case folder near the top (same order as on-page guide layouts).
-  if (copy.cases?.length) {
+  // Home: full “what we do” service blurbs.
+  if (def.id === "home" && copy.services?.length) {
+    parts.push(
+      `<section aria-label="${locale === "el" ? "Τι κάνουμε" : "What we do"}"><h2>${
+        locale === "el" ? "Τι κάνουμε" : "What we do"
+      }</h2><ul>${copy.services
+        .map(
+          (s) =>
+            `<li><a href="${escapeAttr(s.href)}"><strong>${escapeHtml(s.name)}</strong></a> — ${escapeHtml(s.body)}</li>`,
+        )
+        .join("")}</ul></section>`,
+    );
+  }
+
+  // Pricing: plans + FAQ in HTML.
+  if (def.id === "pricing") {
+    if (copy.plans?.length) {
+      parts.push(
+        `<section aria-label="Packages"><ul>${copy.plans
+          .map(
+            (plan) =>
+              `<li><h2>${escapeHtml(plan.name)}</h2><p>${escapeHtml(plan.price)}. ${escapeHtml(plan.blurb)}</p><ul>${(plan.items || [])
+                .map((item) => `<li>${escapeHtml(item)}</li>`)
+                .join("")}</ul></li>`,
+          )
+          .join("")}</ul></section>`,
+      );
+    }
+    if (copy.faq?.length) {
+      parts.push(
+        `<section aria-label="FAQ"><h2>FAQ</h2><dl>${copy.faq
+          .map(
+            (item) =>
+              `<dt>${escapeHtml(item.q)}</dt><dd>${escapeHtml(item.a)}</dd>`,
+          )
+          .join("")}</dl></section>`,
+      );
+    }
+  }
+
+  // About: full studio copy.
+  if (def.id === "about" && copy.extra) {
+    parts.push(`<p>${escapeHtml(copy.extra)}</p>`);
+  }
+
+  // Privacy: sections.
+  if (def.id === "privacy" && copy.sections?.length) {
+    for (const section of copy.sections) {
+      parts.push(`<section><h2>${escapeHtml(section.heading)}</h2>`);
+      for (const para of section.paragraphs || []) {
+        parts.push(`<p>${escapeHtml(para)}</p>`);
+      }
+      if (section.bullets?.length) {
+        parts.push(
+          `<ul>${section.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>`,
+        );
+      }
+      parts.push(`</section>`);
+    }
+  }
+
+  const casesAfterCost = def.id === "web" && copy.guide && copy.cases?.length;
+  if (copy.cases?.length && !casesAfterCost) {
     parts.push(crawlCases(copy.cases));
-  } else if (story) {
+  } else if (story && !copy.cases?.length) {
     parts.push(story);
   }
 
-  // Full service guide (all FAQ / section text in HTML for crawlers).
   if (copy.guide) {
-    parts.push(crawlGuide(copy.guide));
-  } else {
-    // Accordion “what we do” bodies — always in prerender HTML (not click-loaded).
+    parts.push(
+      casesAfterCost
+        ? crawlGuideWithCasesAfterCost(copy.guide, copy.cases)
+        : crawlGuide(copy.guide),
+    );
+  } else if (copy.points) {
     parts.push(crawlPoints(copy.points));
   }
 
   parts.push(`<nav aria-label="Services">${links}</nav>`);
 
-  // Plain HTML article links so Google can crawl /articles/ without JS.
   if (def.id === "articles") {
     const prefix = locale === "el" ? "/el" : "";
     const items = articleRouteDefs()
@@ -965,6 +1205,23 @@ function crawlBody(def, locale) {
       .join("");
     parts.push(
       `<nav aria-label="${locale === "el" ? "Άρθρα" : "Articles"}"><ul>${items}</ul></nav>`,
+    );
+  }
+
+  // Article detail: include full body paragraphs from route def when present.
+  if (isArticleDetail(def) && copy.articleBody?.length) {
+    parts.push(
+      copy.articleBody
+        .map((block) => {
+          if (block.type === "h2") return `<h2>${escapeHtml(block.text)}</h2>`;
+          if (block.type === "h3") return `<h3>${escapeHtml(block.text)}</h3>`;
+          if (block.type === "ul" || block.type === "ol") {
+            const tag = block.type;
+            return `<${tag}>${block.items.map((i) => `<li>${escapeHtml(i)}</li>`).join("")}</${tag}>`;
+          }
+          return `<p>${escapeHtml(block.text || block)}</p>`;
+        })
+        .join(""),
     );
   }
 
@@ -1020,7 +1277,7 @@ function patchHtml(html, def, locale) {
     `    <meta property="og:url" content="${canonical}" />`,
     `    <meta name="twitter:title" content="${escapeAttr(copy.title)}" />`,
     `    <meta name="twitter:description" content="${escapeAttr(copy.description)}" />`,
-    `    <script type="application/ld+json">${JSON.stringify(jsonLdFor(def, locale))}</script>`,
+    `    <script id="omnidot-jsonld" type="application/ld+json">${JSON.stringify(jsonLdFor(def, locale))}</script>`,
   ].join("\n");
 
   out = out.replace("</head>", `${headExtras}\n  </head>`);
@@ -1070,6 +1327,7 @@ function sitemapChangefreq(def) {
 }
 
 function writeSitemap() {
+  const buildDate = new Date().toISOString().slice(0, 10);
   const urls = [];
   for (const def of routeDefs) {
     for (const locale of ["en", "el"]) {
@@ -1077,10 +1335,14 @@ function writeSitemap() {
       const loc = absoluteUrl(path);
       const enUrl = absoluteUrl(def.enPath);
       const elUrl = absoluteUrl(def.elPath);
+      const copy = def[locale];
+      const lastmod =
+        copy.dateModified || copy.date || def.lastmod || buildDate;
       urls.push({
         loc,
         enUrl,
         elUrl,
+        lastmod,
         changefreq: sitemapChangefreq(def),
         priority: sitemapPriority(def),
       });
@@ -1091,6 +1353,7 @@ function writeSitemap() {
     .map(
       (entry) => `  <url>
     <loc>${entry.loc}</loc>
+    <lastmod>${entry.lastmod}</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="${entry.enUrl}" />
     <xhtml:link rel="alternate" hreflang="el" href="${entry.elUrl}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="${entry.enUrl}" />
@@ -1125,6 +1388,9 @@ function writeRedirects() {
   }
 
   const lines = [
+    "# Apex host: www → non-www (301), keep path.",
+    "https://www.omnidot.gr/*  https://omnidot.gr/:splat  301",
+    "",
     "# Trailing-slash canonicals — non-slash → slash (301).",
     "# Listed explicitly so asset URLs (e.g. /sitemap.xml) are never rewritten.",
   ];
