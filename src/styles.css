@@ -1673,27 +1673,25 @@ h1.chrome__brand {
 
 .boxed-title {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 0;
+  flex-wrap: wrap;
+  gap: 0.12em 0.28em;
   margin: 0 0 18px;
-  width: max-content;
-  max-width: 100%;
-  padding: 0.18em 0.28em;
-  border: 1.5px solid currentColor;
+  width: auto;
+  max-width: 22ch;
+  padding: 0;
+  border: 0;
   box-sizing: border-box;
-  font-size: clamp(18px, 5.2vw, 48px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.04em;
+  font-size: clamp(28px, 5.5vw, 52px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
   text-transform: uppercase;
 }
 
 .boxed-title__word {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline;
   flex: 0 1 auto;
-  padding: 0 0.12em;
+  padding: 0;
   margin: 0;
   border: 0;
   animation: char-in 0.7s var(--ease) both;
@@ -2901,17 +2899,17 @@ a.work__project:focus-visible .work__project-name {
 }
 
 .work--guide .boxed-title {
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   width: 100%;
-  max-width: 100%;
-  font-size: clamp(10px, 1.55vw, 22px);
-  letter-spacing: 0.02em;
+  max-width: 18ch;
+  font-size: clamp(28px, 4.2vw, 48px);
+  letter-spacing: -0.035em;
 }
 
 .work--guide .boxed-title__word {
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-width: 0;
-  padding: 0.14em 0.12em;
+  padding: 0;
 }
 
 .service-guide {
