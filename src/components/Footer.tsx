@@ -5,6 +5,7 @@ import { useInViewOnce } from "../hooks/useInViewOnce";
 import { formatPhoneDisplay, pages, phoneHref, site, socials } from "../site";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
+import { BrandWord } from "./BrandWord";
 
 function IconPin() {
   return (
@@ -92,7 +93,18 @@ export function Footer() {
       data-chrome-tone="dark"
     >
       <div className="site-foot__inner">
-        <div className="site-foot__col" style={{ "--ri": 0 } as CSSProperties}>
+        <div className="site-foot__brand" style={{ "--ri": 0 } as CSSProperties}>
+          <Link
+            to={pathFromView({ kind: "index" }, locale)}
+            className="site-foot__mark"
+            aria-label={site.brand}
+          >
+            <BrandWord />
+          </Link>
+          <p className="site-foot__tag">{t.footerStudio}</p>
+        </div>
+
+        <div className="site-foot__col" style={{ "--ri": 1 } as CSSProperties}>
           <h3 className="site-foot__heading">{t.footerMenu}</h3>
           <nav className="site-foot__list" aria-label={t.footerMenu}>
             <Link to={pathFromView({ kind: "index" }, locale)}>
@@ -113,7 +125,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="site-foot__col" style={{ "--ri": 1 } as CSSProperties}>
+        <div className="site-foot__col" style={{ "--ri": 2 } as CSSProperties}>
           <h3 className="site-foot__heading">{t.footerServices}</h3>
           <nav className="site-foot__list" aria-label={t.footerServices}>
             {pages.map((page) => (
@@ -127,7 +139,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="site-foot__col" style={{ "--ri": 2 } as CSSProperties}>
+        <div className="site-foot__col" style={{ "--ri": 3 } as CSSProperties}>
           <h3 className="site-foot__heading">{t.footerContact}</h3>
           <ul className="site-foot__contact">
             <li>
@@ -173,7 +185,7 @@ export function Footer() {
         </div>
       </div>
 
-      <p className="site-foot__copy" style={{ "--ri": 3 } as CSSProperties}>
+      <p className="site-foot__copy" style={{ "--ri": 4 } as CSSProperties}>
         © {year} {site.brand}. {t.rights}
       </p>
     </footer>
