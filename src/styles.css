@@ -2325,6 +2325,25 @@ a.work__proof-line:hover {
   letter-spacing: -0.01em;
 }
 
+.service-guide__blocks {
+  display: grid;
+  gap: 22px;
+  max-width: 62ch;
+}
+
+.service-guide__block {
+  display: grid;
+  gap: 8px;
+}
+
+.service-guide__block .service-guide__h3 {
+  margin: 0;
+}
+
+.service-guide__block .service-guide__p {
+  max-width: none;
+}
+
 .service-guide__list {
   margin: 0;
   padding: 0;

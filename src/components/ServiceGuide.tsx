@@ -15,31 +15,53 @@ export function ServiceGuide({
         {guide.cta} ↗
       </button>
 
-      <section className="service-guide__section" aria-labelledby="sg-includes">
-        <h2 id="sg-includes" className="service-guide__h2">
-          {guide.includesTitle}
-        </h2>
-        <ul className="service-guide__list">
-          {guide.includes.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </section>
+      {guide.blocksTitle && guide.blocks?.length ? (
+        <section className="service-guide__section" aria-labelledby="sg-blocks">
+          <h2 id="sg-blocks" className="service-guide__h2">
+            {guide.blocksTitle}
+          </h2>
+          <div className="service-guide__blocks">
+            {guide.blocks.map((block) => (
+              <article key={block.title} className="service-guide__block">
+                <h3 className="service-guide__h3">{block.title}</h3>
+                <p className="service-guide__p">{block.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {guide.includesTitle && guide.includes?.length ? (
+        <section className="service-guide__section" aria-labelledby="sg-includes">
+          <h2 id="sg-includes" className="service-guide__h2">
+            {guide.includesTitle}
+          </h2>
+          <ul className="service-guide__list">
+            {guide.includes.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <section className="service-guide__section" aria-labelledby="sg-audience">
         <h2 id="sg-audience" className="service-guide__h2">
           {guide.audienceTitle}
         </h2>
         <p className="service-guide__p">{guide.audienceBody}</p>
-        <h3 className="service-guide__h3">{guide.platformsTitle}</h3>
-        <ul className="service-guide__list service-guide__list--platforms">
-          {guide.platforms.map((item) => (
-            <li key={item.name}>
-              <strong>{item.name}</strong>
-              {item.detail}
-            </li>
-          ))}
-        </ul>
+        {guide.platformsTitle && guide.platforms?.length ? (
+          <>
+            <h3 className="service-guide__h3">{guide.platformsTitle}</h3>
+            <ul className="service-guide__list service-guide__list--platforms">
+              {guide.platforms.map((item) => (
+                <li key={item.name}>
+                  <strong>{item.name}</strong>
+                  {item.detail}
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
       </section>
 
       <section className="service-guide__section" aria-labelledby="sg-process">
@@ -81,6 +103,17 @@ export function ServiceGuide({
           ))}
         </ol>
       </section>
+
+      {guide.readMoreTitle && guide.readMore ? (
+        <section className="service-guide__section" aria-labelledby="sg-readmore">
+          <h2 id="sg-readmore" className="service-guide__h2">
+            {guide.readMoreTitle}
+          </h2>
+          <a className="service-guide__link" href={guide.readMore.href}>
+            {guide.readMore.label}
+          </a>
+        </section>
+      ) : null}
 
       <section className="service-guide__section" aria-labelledby="sg-related">
         <h2 id="sg-related" className="service-guide__h2">

@@ -393,37 +393,119 @@ const routeDefs = [
       ],
     },
     el: {
-      title: "Κατασκευή Ιστοσελίδας & SEO — Αθήνα | omnidot.",
+      title: "Κατασκευή Ιστοσελίδας στην Αθήνα | omnidot.",
       description:
-        "Κατασκευή ιστοσελίδας και SEO: γρήγορα sites, landing pages και δομή για Google. Landing από €700, multi-page ≈ €700/σελίδα. Αθήνα & remote.",
-      h1: "Ανάπτυξη Ιστοσελίδων",
-      body: "Κατασκευή ιστοσελίδας και SEO — γρήγορα sites και landing pages φτιαγμένα να rankάρουν, να φορτώνουν γρήγορα και να μετατρέπουν.",
+        "Κατασκευή ιστοσελίδας για επιχειρήσεις σε όλη την Ελλάδα: γρήγορα sites, landing pages και σωστή δομή για τη Google. Landing page από €700.",
+      h1: "Κατασκευή Ιστοσελίδας για επιχειρήσεις",
+      body: "Φτιάχνουμε ιστοσελίδες που φορτώνουν γρήγορα, δείχνουν σωστά στο κινητό και είναι στημένες από την αρχή για να τις βρίσκει η Google. Είμαστε στην Αθήνα και συνεργαζόμαστε με founders και επιχειρήσεις σε όλη την Ελλάδα.",
       story: "",
-      points: [
+      cases: [
         {
-          name: "Ιστοσελίδες",
-          detail: "Εταιρικά sites & brand pages",
-          body: "Σχεδιάζουμε και κατασκευάζουμε εταιρικές ιστοσελίδες και brand sites που φορτώνουν γρήγορα, δουλεύουν σωστά σε κινητό και desktop και οδηγούν τον επισκέπτη σε επικοινωνία, προσφορά ή αγορά. Καθαρή δομή σελίδων, δυνατά calls to action και κείμενα γραμμένα ώστε να τα καταλαβαίνουν και οι άνθρωποι και η Google.",
+          client: "dotxi.app",
+          story: "Ιστοσελίδα που φτιάξαμε για τη DotXI — live στο dotxi.app.",
+          href: "https://dotxi.app/",
+          label: "dotxi.app",
         },
         {
-          name: "SEO",
-          detail: "Τεχνικό SEO + περιεχόμενο που rankάρει",
-          body: "Βελτιστοποίηση για μηχανές αναζήτησης από τη βάση: δομή site, title tags, meta descriptions, επικεφαλίδες, εσωτερικά links, Core Web Vitals, schema markup και σελίδες που το Googlebot διαβάζει εύκολα. Συνδυάζουμε τεχνικό SEO με περιεχόμενο για τις λέξεις-κλειδιά που πραγματικά ψάχνουν οι πελάτες σας — και τοπικό SEO όταν εξυπηρετείτε περιοχή ή πόλη.",
-        },
-        {
-          name: "Landing pages",
-          detail: "Σελίδες για καμπάνιες & διαφημίσεις",
-          body: "Ξεχωριστές landing pages για Google Ads, Meta ads και email — μία προσφορά, μία διαδρομή, γρήγορο φόρτωμα. Φτιαγμένες να μετατρέπουν paid traffic και organic search σε leads ή πωλήσεις, με μέτρηση (GA4, pixels) ώστε να βλέπετε ποια καμπάνια και ποια λέξη-κλειδί φέρνουν αποτέλεσμα.",
-        },
-        {
-          name: "Φροντίδα",
-          detail: "Ενημερώσεις, ταχύτητα & συνεχές SEO",
-          body: "Μετά το launch κρατάμε την ιστοσελίδα υγιή: ενημερώσεις περιεχομένου, βελτιώσεις ταχύτητας και απόδοσης, SEO fixes, ασφάλεια και μικρές αλλαγές UX όσο εξελίσσονται προϊόντα και καμπάνιες. Το site είναι κανάλι πωλήσεων, όχι brochure μιας χρήσης.",
+          client: "Πυργιώτης ΟΕ",
+          story:
+            "Ιστοσελίδα με καθαρή διαδρομή προς επικοινωνία — live στο pyrgiotisoe.com.",
+          href: "https://pyrgiotisoe.com/",
+          label: "pyrgiotisoe.com",
         },
       ],
+      guide: {
+        blocksTitle: "Τι φτιάχνουμε",
+        blocks: [
+          {
+            title: "Εταιρικές ιστοσελίδες",
+            body: "Σχεδιάζουμε εταιρικά sites που φορτώνουν γρήγορα, δουλεύουν σωστά σε κινητό και υπολογιστή και οδηγούν τον επισκέπτη σε επικοινωνία, προσφορά ή αγορά. Καθαρή δομή σελίδων και κείμενα που τα καταλαβαίνουν και οι άνθρωποι και η Google.",
+          },
+          {
+            title: "Landing pages",
+            body: "Μία σελίδα για μία προσφορά ή καμπάνια, για Google Ads, Meta ads ή email. Γρήγορο φόρτωμα και μέτρηση (GA4, pixels), ώστε να βλέπεις ποια καμπάνια φέρνει αποτέλεσμα.",
+          },
+          {
+            title: "SEO από τη βάση",
+            body: "Δομή site, τίτλοι και περιγραφές, επικεφαλίδες, εσωτερικά links, ταχύτητα, schema markup και σύνδεση με Google Search Console. Τοπικό SEO όταν εξυπηρετείς συγκεκριμένη περιοχή.",
+          },
+          {
+            title: "Φροντίδα μετά το launch",
+            body: "Ενημερώσεις περιεχομένου, βελτιώσεις ταχύτητας, SEO διορθώσεις, ασφάλεια και μικρές αλλαγές, όσο εξελίσσεται η επιχείρησή σου.",
+          },
+        ],
+        audienceTitle: "Για ποιον είναι",
+        audienceBody:
+          "Για founders που ξεκινούν και χρειάζονται ένα site που πείθει από την πρώτη μέρα, για τοπικές επιχειρήσεις στην Αθήνα που θέλουν να τις βρίσκουν στη Google, και για εταιρείες που το site τους έχει μείνει πίσω και δεν φέρνει επαφές.",
+        processTitle: "Πώς δουλεύουμε",
+        process: [
+          "Γνωριμία: ένα call για την επιχείρηση, τους πελάτες σου και τι πρέπει να κάνει το site.",
+          "Δομή και κείμενα: ποιες σελίδες χρειάζονται και τι λέει η καθεμία.",
+          "Σχέδιο: βλέπεις πώς θα είναι πριν το χτίσουμε.",
+          "Κατασκευή και έλεγχος σε όλες τις συσκευές.",
+          "Ανέβασμα και σύνδεση με τη Google.",
+        ],
+        costTitle: "Πόσο κοστίζει",
+        costBody:
+          "Μια landing page κοστίζει €700–1.200 και ένα site με πολλές σελίδες περίπου €700 ανά σελίδα. Για e-shop η τιμή βγαίνει αφού δούμε τι χρειάζεσαι.",
+        costLinkLabel: "Δες όλα τα πακέτα →",
+        costLinkHref: "/el/pricing/",
+        faqTitle: "Συχνές ερωτήσεις",
+        faq: [
+          {
+            q: "Σε πόσο καιρό είναι έτοιμο το site;",
+            a: "Το χρονοδιάγραμμα κλείνει όταν έχουμε scope. Στο brief μας λες πότε το χρειάζεσαι και απαντάμε με πρώτα βήματα.",
+          },
+          {
+            q: "Θα βγαίνει το site στη Google;",
+            a: "Το στήνουμε σωστά για τη Google από την αρχή και το συνδέουμε με το Search Console. Η θέση στα αποτελέσματα χτίζεται με τον καιρό και κανείς δεν μπορεί να εγγυηθεί την πρώτη θέση.",
+          },
+          {
+            q: "Θα μπορώ να αλλάζω μόνος μου κείμενα και φωτογραφίες;",
+            a: "Μετά την παράδοση και την πληρωμή, τα assets είναι δικά σου. Οι ενημερώσεις περιεχομένου μπορούν να γίνουν από εμάς μετά το launch, όσο εξελίσσεται η επιχείρησή σου.",
+          },
+          {
+            q: "Ποιος γράφει τα κείμενα;",
+            a: "Τα κείμενα μπορούν να τα γράψουμε εμείς ή να δουλέψουμε πάνω σε υλικό που ήδη έχεις — αυτό μπαίνει στο scope πριν ξεκινήσουμε.",
+          },
+          {
+            q: "Δουλεύετε μόνο με επιχειρήσεις στην Αθήνα;",
+            a: "Όχι. Συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα και τα calls γίνονται online.",
+          },
+        ],
+        readMoreTitle: "Διάβασε περισσότερα",
+        readMore: {
+          label:
+            "Δημιουργία ιστοσελίδας στην Αθήνα: τι περιλαμβάνει στην πράξη, πώς δένει με το SEO και τι καθορίζει την τιμή",
+          href: "/el/articles/dimiourgia-istoselidas-athina/",
+        },
+        relatedTitle: "Σχετικές υπηρεσίες",
+        related: [
+          {
+            label: "Διαχείριση Social Media",
+            href: "/el/social/",
+            blurb: "Στρατηγική, περιεχόμενο, community και μηνιαίο reporting.",
+          },
+          {
+            label: "Δημιουργία Περιεχομένου",
+            href: "/el/content/",
+            blurb: "Φωτογραφία, video και Reels από concept έως ανάρτηση.",
+          },
+          {
+            label: "Performance Marketing",
+            href: "/el/performance/",
+            blurb: "Meta Ads και Google Ads με καθαρό κόστος και απόδοση.",
+          },
+        ],
+        finalTitle: "Θες να δούμε τι site χρειάζεται η επιχείρησή σου;",
+        cta: "Κλείσε ένα σύντομο call",
+      },
     },
     type: "service",
-    serviceName: { en: "Web Development", el: "Ανάπτυξη Ιστοσελίδων" },
+    serviceName: {
+      en: "Web Development",
+      el: "Κατασκευή Ιστοσελίδας για επιχειρήσεις",
+    },
   },
   {
     id: "about",
@@ -707,6 +789,16 @@ function crawlPoints(points) {
 function crawlGuide(guide) {
   if (!guide) return "";
   const parts = [];
+  if (guide.blocksTitle && guide.blocks?.length) {
+    parts.push(
+      `<section><h2>${escapeHtml(guide.blocksTitle)}</h2>${guide.blocks
+        .map(
+          (block) =>
+            `<h3>${escapeHtml(block.title)}</h3><p>${escapeHtml(block.body)}</p>`,
+        )
+        .join("")}</section>`,
+    );
+  }
   if (guide.includesTitle && guide.includes?.length) {
     parts.push(
       `<section><h2>${escapeHtml(guide.includesTitle)}</h2><ul>${guide.includes
@@ -732,7 +824,12 @@ function crawlGuide(guide) {
   if (guide.processTitle && guide.process?.length) {
     parts.push(
       `<section><h2>${escapeHtml(guide.processTitle)}</h2><ol>${guide.process
-        .map((item) => `<li>${escapeHtml(item)}</li>`)
+        .map((item) => {
+          if (typeof item === "string") return `<li>${escapeHtml(item)}</li>`;
+          return `<li><strong>${escapeHtml(item.title || "")}</strong>${escapeHtml(
+            item.body || "",
+          )}</li>`;
+        })
         .join("")}</ol></section>`,
     );
   }
@@ -749,8 +846,6 @@ function crawlGuide(guide) {
       }</section>`,
     );
   }
-  // Case proof (Europatch) sits after pricing, before FAQ.
-  if (storyHtml) parts.push(storyHtml);
   if (guide.faqTitle && guide.faq?.length) {
     parts.push(
       `<section><h2>${escapeHtml(guide.faqTitle)}</h2><dl>${guide.faq
@@ -759,6 +854,13 @@ function crawlGuide(guide) {
             `<dt>${escapeHtml(item.q)}</dt><dd>${escapeHtml(item.a)}</dd>`,
         )
         .join("")}</dl></section>`,
+    );
+  }
+  if (guide.readMoreTitle && guide.readMore) {
+    parts.push(
+      `<section><h2>${escapeHtml(guide.readMoreTitle)}</h2><p><a href="${escapeAttr(
+        guide.readMore.href,
+      )}">${escapeHtml(guide.readMore.label)}</a></p></section>`,
     );
   }
   if (guide.relatedTitle && guide.related?.length) {
@@ -783,6 +885,21 @@ function crawlGuide(guide) {
   return parts.join("");
 }
 
+function crawlCases(cases) {
+  if (!cases?.length) return "";
+  const items = cases
+    .map((item) => {
+      const link = item.href
+        ? ` <a href="${escapeAttr(item.href)}">${escapeHtml(item.label || item.href)}</a>`
+        : "";
+      return `<li><strong>${escapeHtml(item.client)}</strong> — ${escapeHtml(
+        item.story || item.value || "",
+      )}${link}</li>`;
+    })
+    .join("");
+  return `<section aria-label="Selected work"><ul>${items}</ul></section>`;
+}
+
 function crawlBody(def, locale) {
   const copy = def[locale];
   const nav = locale === "el" ? navEl : navEn;
@@ -798,13 +915,19 @@ function crawlBody(def, locale) {
     `<p>${escapeHtml(copy.body)}</p>`,
   ];
 
-  // Full Greek social service guide (all FAQ answers in HTML for crawlers).
+  // Case folder near the top (same order as on-page guide layouts).
+  if (copy.cases?.length) {
+    parts.push(crawlCases(copy.cases));
+  } else if (story) {
+    parts.push(story);
+  }
+
+  // Full service guide (all FAQ / section text in HTML for crawlers).
   if (copy.guide) {
-    parts.push(crawlGuide(copy.guide, story));
+    parts.push(crawlGuide(copy.guide));
   } else {
     // Accordion “what we do” bodies — always in prerender HTML (not click-loaded).
     parts.push(crawlPoints(copy.points));
-    parts.push(story);
   }
 
   parts.push(`<nav aria-label="Services">${links}</nav>`);
