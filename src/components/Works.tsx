@@ -112,6 +112,7 @@ export function Works({ dimmed }: { dimmed: boolean }) {
 
       {pages.map((page, i) => {
         const title = t.pages[page.id].title;
+        const tileTitle = t.pages[page.id].tileTitle ?? title;
         return (
           <Link
             key={page.id}
@@ -139,7 +140,7 @@ export function Works({ dimmed }: { dimmed: boolean }) {
                   : {})}
               />
             </span>
-            <span className="tile__title">{title}</span>
+            <span className="tile__title">{tileTitle}</span>
           </Link>
         );
       })}
