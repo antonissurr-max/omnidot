@@ -197,8 +197,11 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
         },
       };
     }
+    const headline = article.subtitle
+      ? `${article.title}: ${article.subtitle}`
+      : article.title;
     return {
-      title: `${article.title} — omnidot.`,
+      title: `${headline} — omnidot.`,
       description: article.excerpt.slice(0, 160),
       path,
       canonical,
@@ -206,7 +209,7 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
       jsonLd: {
         "@context": "https://schema.org",
         "@type": "Article",
-        headline: article.title,
+        headline,
         description: article.excerpt,
         datePublished: article.date,
         author: { "@type": "Organization", name: "omnidot.", url: SITE_ORIGIN },

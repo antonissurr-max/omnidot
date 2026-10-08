@@ -92,6 +92,9 @@ export function Articles({ slug }: { slug?: string }) {
           <h1 id="article-title" className="articles__title">
             {article.title}
           </h1>
+          {article.subtitle ? (
+            <p className="articles__subtitle">{article.subtitle}</p>
+          ) : null}
         </header>
 
         <div className="articles__body">
