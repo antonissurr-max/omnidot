@@ -3592,6 +3592,11 @@ a.work__project:focus-visible .work__project-name {
     padding: 0;
   }
 
+  /* Language toggle only on the homepage (mobile) */
+  .stage:not(.is-index) .chrome__lang {
+    display: none;
+  }
+
   .chrome__start {
     gap: 8px;
   }
