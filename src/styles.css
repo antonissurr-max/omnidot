@@ -1674,7 +1674,7 @@ h1.chrome__brand {
 .boxed-title {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.12em 0.28em;
+  gap: 0.18em 0.28em;
   margin: 0 0 18px;
   width: auto;
   max-width: 22ch;
@@ -2893,30 +2893,45 @@ a.work__project:focus-visible .work__project-name {
   max-width: 920px;
 }
 
-/* Title width drives the meta row — same left edge and περασιά */
+/* Title + meta share the full panel width — H1 one line to the same περασιά */
+.work--guide .work__head {
+  max-width: min(1120px, 100%);
+}
+
 .work--guide .work__lead {
-  width: fit-content;
+  width: 100%;
   max-width: 100%;
 }
 
 .work--guide .boxed-title {
-  flex-wrap: wrap;
-  width: max-content;
-  max-width: min(100%, 26ch);
-  font-size: clamp(28px, 4.2vw, 48px);
-  letter-spacing: -0.035em;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(14px, 2.45vw, 36px);
+  letter-spacing: -0.03em;
+  gap: 0.22em;
 }
 
 .work--guide .boxed-title__word {
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   min-width: 0;
   padding: 0;
+  white-space: nowrap;
 }
 
 .work--guide .work__meta {
-  width: 0;
-  min-width: 100%;
+  width: 100%;
+  min-width: 0;
   max-width: 100%;
+}
+
+@media (max-width: 899px) {
+  .work--guide .boxed-title {
+    flex-wrap: wrap;
+    overflow: visible;
+    font-size: clamp(22px, 6.5vw, 32px);
+  }
 }
 
 .service-guide {
