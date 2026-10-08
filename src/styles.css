@@ -1701,6 +1701,9 @@ h1.chrome__brand {
   margin: 0 0 18px;
   width: max-content;
   max-width: 100%;
+  padding: 0.18em 0.28em;
+  border: 1.5px solid currentColor;
+  box-sizing: border-box;
   font-size: clamp(18px, 5.2vw, 48px);
   font-weight: 700;
   line-height: 1;
@@ -1713,9 +1716,9 @@ h1.chrome__brand {
   align-items: center;
   justify-content: center;
   flex: 0 1 auto;
-  padding: 0.18em 0.28em;
-  margin: -1px 0 0 -1px;
-  border: 1.5px solid currentColor;
+  padding: 0 0.12em;
+  margin: 0;
+  border: 0;
   animation: char-in 0.7s var(--ease) both;
   animation-delay: var(--d, 0ms);
 }
