@@ -1508,35 +1508,12 @@ h1.chrome__brand {
   opacity: 0.72;
 }
 
-/* Mobile home story — off on desktop staircase (hero H1 stays for SEO + desktop) */
-.home-mobile:not(.home-mobile--hero),
+/* Mobile home story — off on desktop staircase (logo + tiles stay) */
+.home-mobile,
 .home-mobile__section,
 .home-mobile__proof,
 .home-mobile__close,
 .tile__kicker-step {
-  display: none;
-}
-
-.home-mobile--hero {
-  display: grid;
-  justify-items: start;
-  width: 100%;
-  box-sizing: border-box;
-  gap: 16px;
-  padding: 28px var(--chrome) 8px;
-  color: var(--navy);
-}
-
-.home-mobile--hero .home-mobile__display {
-  margin: 0;
-  max-width: 22ch;
-  font-size: clamp(28px, 3.6vw, 44px);
-  font-weight: 600;
-  letter-spacing: -0.045em;
-  line-height: 1.08;
-}
-
-.home-mobile--hero .home-mobile__cta-line {
   display: none;
 }
 
@@ -3307,10 +3284,6 @@ a.work__project:focus-visible .work__project-name {
     color: var(--paper);
   }
 
-  .home-mobile--hero .home-mobile__cta-line {
-    display: inline-flex;
-  }
-
   .home-mobile__display {
     margin: 0;
     max-width: 11ch;
@@ -3318,12 +3291,6 @@ a.work__project:focus-visible .work__project-name {
     font-weight: 600;
     letter-spacing: -0.045em;
     line-height: 1.02;
-  }
-
-  .home-mobile--hero .home-mobile__display {
-    max-width: 11ch;
-    font-size: clamp(34px, 11vw, 48px);
-    color: inherit;
   }
 
   .home-mobile__display--sm {
