@@ -1372,6 +1372,11 @@ a.work__project:focus-visible .work__project-name {
   border: 1px solid color-mix(in srgb, var(--paper) 14%, transparent);
 }
 
+.work__project-media--logo {
+  background: #fff;
+  border-color: color-mix(in srgb, var(--paper) 22%, transparent);
+}
+
 .work__project-media img,
 .work__project-media video {
   width: 100%;
@@ -1386,9 +1391,18 @@ a.work__project:focus-visible .work__project-name {
 .work__project-media img.is-contain,
 .work__project-media video.is-contain {
   object-fit: contain;
-  padding: 22%;
+  padding: 18%;
   box-sizing: border-box;
   filter: none;
+}
+
+.work__project-media--logo img.is-contain {
+  /* White tile: PNG marks keep padding; full-bleed cover SVGs fill the square */
+  padding: 16%;
+}
+
+.work__project-media--logo img.is-contain[src$="-cover.svg"] {
+  padding: 0;
 }
 
 .work__project:hover .work__project-media img,

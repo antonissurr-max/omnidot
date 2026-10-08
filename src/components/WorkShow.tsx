@@ -252,7 +252,11 @@ export function WorkShow({
                 : undefined;
             const card = (
               <>
-                <span className="work__project-media">
+                <span
+                  className={`work__project-media${
+                    cover?.fit === "contain" ? " work__project-media--logo" : ""
+                  }`}
+                >
                   {cover ? (
                     <ProjectCover item={cover} />
                   ) : (

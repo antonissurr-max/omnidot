@@ -1583,14 +1583,14 @@ export const copy: Record<Locale, Copy> = {
                 "Ιστοσελίδα για ψηφιακή υπηρεσία, με καθαρή δομή που εξηγεί γρήγορα τι κάνει και οδηγεί τον επισκέπτη στο επόμενο βήμα.",
               links: [{ label: "dotxi.app", href: "https://dotxi.app/" }],
               cover: {
-                src: "/images/partners/dotxi-mark.svg",
+                src: "/images/partners/dotxi-cover.svg",
                 title: "DotXI",
                 detail: "dotxi.app",
                 fit: "contain",
               },
               media: [
                 {
-                  src: "/images/partners/dotxi-mark.svg",
+                  src: "/images/partners/dotxi-cover.svg",
                   title: "DotXI",
                   detail: "dotxi.app",
                   fit: "contain",
