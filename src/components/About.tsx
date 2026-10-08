@@ -49,7 +49,7 @@ export function About({
   onToggleReveal: () => void;
   interest?: PageId;
 }) {
-  const { t, locale } = useLocale();
+  const { t } = useLocale();
   const pageIds = ["social", "content", "performance", "web"] as const;
   const layerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
