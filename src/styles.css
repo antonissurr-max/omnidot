@@ -2277,6 +2277,19 @@ a.work__proof-line:hover {
   max-width: 920px;
 }
 
+/* Longer Greek H1 — keep boxed look, fit the panel width */
+.work--guide .boxed-title {
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(15px, 2.8vw, 28px);
+  letter-spacing: 0.03em;
+}
+
+.work--guide .boxed-title__word {
+  padding: 0.16em 0.22em;
+}
+
 .service-guide {
   display: grid;
   gap: 40px;
