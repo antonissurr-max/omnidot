@@ -2938,6 +2938,10 @@ a.work__project:focus-visible .work__project-name {
   --guide-col: min(1120px, 100%);
 }
 
+.work--guide .work__proof-label {
+  display: none;
+}
+
 /* Body + squares end at --guide-peirasia (right edge of last meta label/value) */
 .work--guide .work__body {
   max-width: var(--guide-peirasia, var(--guide-col));
