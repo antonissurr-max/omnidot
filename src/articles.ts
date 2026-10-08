@@ -18,6 +18,8 @@ export type Article = {
   image: string;
   topic: string;
   title: string;
+  /** Optional dek under the H1 on the detail page */
+  subtitle?: string;
   excerpt: string;
   readMinutes: number;
   body: ArticleBlock[];
@@ -40,8 +42,9 @@ const articles: ArticleSource[] = [
     readMinutes: 14,
     el: {
       topic: "Web & SEO",
-      title:
-        "Δημιουργία ιστοσελίδας στην Αθήνα: τι περιλαμβάνει στην πράξη, πώς δένει με το SEO και τι καθορίζει την τιμή",
+      title: "Δημιουργία ιστοσελίδας στην Αθήνα",
+      subtitle:
+        "τι περιλαμβάνει στην πράξη, πώς δένει με το SEO και τι καθορίζει την τιμή",
       excerpt:
         "Οι περισσότερες συζητήσεις για καινούργιο site ξεκινούν από το λάθος σημείο. Τι περιλαμβάνει πραγματικά η κατασκευή, πού μπαίνει το SEO και τι ανεβάζει την τιμή.",
       body: [
@@ -103,8 +106,9 @@ const articles: ArticleSource[] = [
     },
     en: {
       topic: "Web & SEO",
-      title:
-        "Website creation in Athens: what it actually includes, how it ties to SEO, and what drives the price",
+      title: "Website creation in Athens",
+      subtitle:
+        "what it actually includes, how it ties to SEO, and what drives the price",
       excerpt:
         "Most new-site conversations start in the wrong place. What real website builds include, where SEO fits, and what moves the price up or down.",
       body: [
@@ -166,6 +170,13 @@ function toArticle(source: ArticleSource, locale: Locale): Article {
   };
 }
 
+
+/** Full headline for SEO / share when a subtitle is present. */
+export function articleHeadline(article: Pick<Article, "title" | "subtitle">) {
+  return article.subtitle
+    ? `${article.title}: ${article.subtitle}`
+    : article.title;
+}
 
 export function articleBlockText(block: ArticleBlock): string {
   return typeof block === "string" ? block : block.section;
