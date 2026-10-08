@@ -3537,6 +3537,11 @@ a.work__project:focus-visible .work__project-name {
     background: transparent;
     padding: 6px 10px 6px 0;
   }
+
+  /* Language toggle only on the homepage (mobile ≤899px) */
+  .stage:not(.is-index) .chrome__lang {
+    display: none !important;
+  }
 }
 
 @media (max-width: 399px) {
@@ -3558,11 +3563,6 @@ a.work__project:focus-visible .work__project-name {
     letter-spacing: 0.1em;
     height: var(--chrome-nav-h);
     padding: 0;
-  }
-
-  /* Language toggle only on the homepage (mobile) */
-  .stage:not(.is-index) .chrome__lang {
-    display: none;
   }
 
   .chrome__start {
