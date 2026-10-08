@@ -1,15 +1,17 @@
 ---
-description: Skip screen recordings and heavy walkthrough media unless the user asks
+description: Skip screenshots, recordings, and walkthrough media unless the user asks
 alwaysApply: true
 ---
 
-# No screen recordings by default
+# No screenshots or recordings by default
 
 When making site changes for this project:
 
-- Do **not** start `RecordScreen`, computer-use demo videos, or long walkthrough artifact pipelines unless the user explicitly asks for a recording / video / demo.
-- Do **not** launch `computerUse` solely to produce walkthrough screenshots or proof videos.
+- Do **not** take screenshots (desktop, mobile, or otherwise) unless the user explicitly asks for them.
+- Do **not** start `RecordScreen`, computer-use demo videos, or walkthrough artifact pipelines unless the user explicitly asks for a recording / video / demo / screenshot.
+- Do **not** launch `computerUse` solely to produce screenshots, proof images, or videos.
+- Do **not** put screenshot/video galleries in PR descriptions unless the user asked for visual proof.
 - Make the change, run a quick check (`npm run build`, lint, or a light page open / curl if useful), then commit and move on.
 - Keep the reply short. Skip lengthy testing narration.
 
-Exception: only if the user asks to record, film, or show a video walkthrough.
+Exception: only if the user asks for screenshots, a recording, film, or a visual walkthrough.
