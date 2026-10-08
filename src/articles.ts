@@ -2,15 +2,16 @@ import type { Locale } from "./i18n";
 
 /**
  * How to add an article (chat workflow):
- * 1. User sends title, body (EL and/or EN), topic, optional date, and a thumbnail image.
+ * 1. User sends title, body (EL and/or EN), topic, optional date, and a share image.
  * 2. Save the image under `public/images/articles/<slug>.jpg` (or .png/.webp).
  * 3. Append one entry to `articles` below with `image: "/images/articles/<slug>.jpg"`.
- * 4. List page shows the thumbnail; detail page is text only.
+ * 4. List page is a numbered journal index (no cards); detail page is text only.
+ *    The image is kept for SEO / social share when wired.
  */
 export type Article = {
   slug: string;
   date: string;
-  /** List thumbnail — file under /public/images/articles/ */
+  /** Share / SEO image — file under /public/images/articles/ */
   image: string;
   topic: string;
   title: string;

@@ -294,7 +294,7 @@ export const copy: Record<Locale, Copy> = {
     articlesTitle: "Articles",
     articlesEyebrow: "Notes from the studio",
     articlesLede:
-      "Short reads on social, ads, SEO and websites — practical notes from how we work with founders and local brands.",
+      "Practical notes from the studio — on social, ads, SEO and websites for founders and local brands.",
     articlesRead: "Read",
     articlesBack: "All articles",
     articlesReadTime: "{n} min read",
@@ -929,7 +929,7 @@ export const copy: Record<Locale, Copy> = {
     articlesTitle: "Άρθρα",
     articlesEyebrow: "Σημειώσεις από το στούντιο",
     articlesLede:
-      "Σύντομα κείμενα για social, ads, SEO και ιστοσελίδες — πρακτικές σημειώσεις από τη δουλειά μας με founders και τοπικά brands.",
+      "Πρακτικές σημειώσεις από το στούντιο — για social, ads, SEO και ιστοσελίδες, για founders και τοπικά brands.",
     articlesRead: "Διάβασε",
     articlesBack: "Όλα τα άρθρα",
     articlesReadTime: "{n} λεπτά",
