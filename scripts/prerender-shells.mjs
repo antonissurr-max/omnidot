@@ -212,7 +212,7 @@ const routeDefs = [
     type: "service",
     serviceName: {
       en: "Social Media Management",
-      el: "Διαχείριση Social Media στην Αθήνα",
+      el: "Διαχείριση Social Media για επιχειρήσεις",
     },
   },
   {
