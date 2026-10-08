@@ -9,3 +9,4 @@ dist
 .dev.vars
 .tmp-shots
 *.tsbuildinfo
+scripts/.cache/

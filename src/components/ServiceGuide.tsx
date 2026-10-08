@@ -1,12 +1,16 @@
+import type { ReactNode } from "react";
 import { FactRow } from "./ServicePanel";
 import type { ServiceGuideCopy } from "../i18n";
 
 export function ServiceGuide({
   guide,
   onBrief,
+  afterCost,
 }: {
   guide: ServiceGuideCopy;
   onBrief: () => void;
+  /** Optional block rendered right after the cost section (e.g. client cards on /web/). */
+  afterCost?: ReactNode;
 }) {
   return (
     <div className="service-guide">
@@ -92,6 +96,12 @@ export function ServiceGuide({
           {guide.costLinkLabel}
         </a>
       </section>
+
+      {afterCost ? (
+        <div className="service-guide__section service-guide__after-cost">
+          {afterCost}
+        </div>
+      ) : null}
 
       <section className="service-guide__section" aria-labelledby="sg-faq">
         <h2 id="sg-faq" className="service-guide__h2">

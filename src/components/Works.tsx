@@ -90,7 +90,7 @@ export function Works({ dimmed }: { dimmed: boolean }) {
       aria-label={t.sections}
     >
       <header ref={heroRef} className="home-mobile home-mobile--hero" data-chrome-tone="dark">
-        <h1 className="home-mobile__display">{t.homeMobileHeadline}</h1>
+        <p className="home-mobile__display">{t.homeMobileHeadline}</p>
         <Link
           className="home-mobile__cta-line"
           to={pathFromView({ kind: "about" }, locale)}

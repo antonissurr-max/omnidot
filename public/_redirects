@@ -1,3 +1,6 @@
+# Apex host: www → non-www (301), keep path.
+https://www.omnidot.gr/*  https://omnidot.gr/:splat  301
+
 # Trailing-slash canonicals — non-slash → slash (301).
 # Listed explicitly so asset URLs (e.g. /sitemap.xml) are never rewritten.
 /about  /about/  301

@@ -45,7 +45,7 @@ function RelatedCover({ item }: { item: MediaItem }) {
         loop
         playsInline
         autoPlay
-        preload="auto"
+        preload="metadata"
         aria-hidden="true"
       />
     );

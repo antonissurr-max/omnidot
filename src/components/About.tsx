@@ -12,8 +12,18 @@ function VerseWordView({ word, revealed }: { word: VerseWord; revealed: boolean 
     }
     return (
       <span className="about-verse__word about-verse__word--stay">
-        <span className="about-verse__swap about-verse__swap--open">{word.open}</span>
-        <span className="about-verse__swap about-verse__swap--close">{word.close}</span>
+        <span
+          className="about-verse__swap about-verse__swap--open"
+          aria-hidden={revealed ? true : undefined}
+        >
+          {word.open}
+        </span>
+        <span
+          className="about-verse__swap about-verse__swap--close"
+          aria-hidden={revealed ? undefined : true}
+        >
+          {word.close}
+        </span>
       </span>
     );
   }
@@ -109,7 +119,7 @@ export function About({
               onClick={onToggleReveal}
             />
 
-            <h2 className="about-layer__title">
+            <h1 className="about-layer__title">
               <span className="about-verse" aria-live="polite">
                 {t.aboutVerse.map((row) => (
                   <span
@@ -126,7 +136,7 @@ export function About({
                   </span>
                 ))}
               </span>
-            </h2>
+            </h1>
 
             <p className="about-layer__body">{t.aboutBody}</p>
 
