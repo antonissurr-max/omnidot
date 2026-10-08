@@ -328,21 +328,13 @@ export function WorkShow({
                 </div>
               </div>
 
-              {guide ? null : (
-                <>
-                  {folderProof}
-                  {simpleProof}
-                  {briefBtn}
-                </>
-              )}
+              {folderProof}
+              {simpleProof}
+              {guide ? null : briefBtn}
             </header>
             {guide ? (
               <div className="work__body">
-                <ServiceGuide
-                  guide={guide}
-                  onBrief={onBrief}
-                  proofSlot={folderProof ?? simpleProof}
-                />
+                <ServiceGuide guide={guide} onBrief={onBrief} />
               </div>
             ) : (
               children && <div className="work__body">{children}</div>
