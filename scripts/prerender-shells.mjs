@@ -8,33 +8,38 @@ const origin = "https://omnidot.gr";
 const phone = "+306970862839";
 
 const navEn = [
-  { href: "/social", label: "Social Media Management" },
-  { href: "/content", label: "Content Creation" },
-  { href: "/performance", label: "Performance Marketing" },
-  { href: "/web", label: "Web Development" },
-  { href: "/pricing", label: "Packages & pricing" },
-  { href: "/articles", label: "Articles" },
-  { href: "/about", label: "About / Contact" },
-  { href: "/privacy", label: "Privacy" },
+  { href: "/social/", label: "Social Media Management" },
+  { href: "/content/", label: "Content Creation" },
+  { href: "/performance/", label: "Performance Marketing" },
+  { href: "/web/", label: "Web Development" },
+  { href: "/pricing/", label: "Packages & pricing" },
+  { href: "/articles/", label: "Articles" },
+  { href: "/about/", label: "About / Contact" },
+  { href: "/privacy/", label: "Privacy" },
 ];
 
 const navEl = [
-  { href: "/el/social", label: "Διαχείριση Social Media" },
-  { href: "/el/content", label: "Δημιουργία Περιεχομένου" },
-  { href: "/el/performance", label: "Performance Marketing" },
-  { href: "/el/web", label: "Ανάπτυξη Ιστοσελίδων" },
-  { href: "/el/pricing", label: "Πακέτα & τιμές" },
-  { href: "/el/articles", label: "Άρθρα" },
-  { href: "/el/about", label: "Σχετικά / Επικοινωνία" },
-  { href: "/el/privacy", label: "Απόρρητο" },
+  { href: "/el/social/", label: "Διαχείριση Social Media" },
+  { href: "/el/content/", label: "Δημιουργία Περιεχομένου" },
+  { href: "/el/performance/", label: "Performance Marketing" },
+  { href: "/el/web/", label: "Ανάπτυξη Ιστοσελίδων" },
+  { href: "/el/pricing/", label: "Πακέτα & τιμές" },
+  { href: "/el/articles/", label: "Άρθρα" },
+  { href: "/el/about/", label: "Σχετικά / Επικοινωνία" },
+  { href: "/el/privacy/", label: "Απόρρητο" },
 ];
+
+function withTrailingSlash(path) {
+  if (!path || path === "/") return "/";
+  return path.endsWith("/") ? path : `${path}/`;
+}
 
 /** Keep in sync with src/i18n.ts — build-time crawlable shells. */
 const routeDefs = [
   {
     id: "home",
     enPath: "/",
-    elPath: "/el",
+    elPath: "/el/",
     enFile: "index.html",
     elFile: "el/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
@@ -58,8 +63,8 @@ const routeDefs = [
   },
   {
     id: "social",
-    enPath: "/social",
-    elPath: "/el/social",
+    enPath: "/social/",
+    elPath: "/el/social/",
     enFile: "social/index.html",
     elFile: "el/social/index.html",
     image: `${origin}/images/social.jpg`,
@@ -86,8 +91,8 @@ const routeDefs = [
   },
   {
     id: "content",
-    enPath: "/content",
-    elPath: "/el/content",
+    enPath: "/content/",
+    elPath: "/el/content/",
     enFile: "content/index.html",
     elFile: "el/content/index.html",
     image: `${origin}/images/content.jpg`,
@@ -114,8 +119,8 @@ const routeDefs = [
   },
   {
     id: "performance",
-    enPath: "/performance",
-    elPath: "/el/performance",
+    enPath: "/performance/",
+    elPath: "/el/performance/",
     enFile: "performance/index.html",
     elFile: "el/performance/index.html",
     image: `${origin}/images/performance.jpg`,
@@ -142,8 +147,8 @@ const routeDefs = [
   },
   {
     id: "web",
-    enPath: "/web",
-    elPath: "/el/web",
+    enPath: "/web/",
+    elPath: "/el/web/",
     enFile: "web/index.html",
     elFile: "el/web/index.html",
     image: `${origin}/images/web.jpg`,
@@ -168,8 +173,8 @@ const routeDefs = [
   },
   {
     id: "about",
-    enPath: "/about",
-    elPath: "/el/about",
+    enPath: "/about/",
+    elPath: "/el/about/",
     enFile: "about/index.html",
     elFile: "el/about/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
@@ -193,8 +198,8 @@ const routeDefs = [
   },
   {
     id: "pricing",
-    enPath: "/pricing",
-    elPath: "/el/pricing",
+    enPath: "/pricing/",
+    elPath: "/el/pricing/",
     enFile: "pricing/index.html",
     elFile: "el/pricing/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
@@ -218,8 +223,8 @@ const routeDefs = [
   },
   {
     id: "articles",
-    enPath: "/articles",
-    elPath: "/el/articles",
+    enPath: "/articles/",
+    elPath: "/el/articles/",
     enFile: "articles/index.html",
     elFile: "el/articles/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
@@ -243,8 +248,8 @@ const routeDefs = [
   },
   {
     id: "article-website-athens",
-    enPath: "/articles/dimiourgia-istoselidas-athina",
-    elPath: "/el/articles/dimiourgia-istoselidas-athina",
+    enPath: "/articles/dimiourgia-istoselidas-athina/",
+    elPath: "/el/articles/dimiourgia-istoselidas-athina/",
     enFile: "articles/dimiourgia-istoselidas-athina/index.html",
     elFile: "el/articles/dimiourgia-istoselidas-athina/index.html",
     image: `${origin}/images/articles/dimiourgia-istoselidas-athina.jpg`,
@@ -270,8 +275,8 @@ const routeDefs = [
   },
   {
     id: "privacy",
-    enPath: "/privacy",
-    elPath: "/el/privacy",
+    enPath: "/privacy/",
+    elPath: "/el/privacy/",
     enFile: "privacy/index.html",
     elFile: "el/privacy/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
@@ -406,6 +411,13 @@ function jsonLdFor(def, locale) {
   };
 }
 
+function articleRouteDefs() {
+  return routeDefs.filter(
+    (def) =>
+      def.enPath.startsWith("/articles/") && def.enPath !== "/articles/",
+  );
+}
+
 function crawlBody(def, locale) {
   const copy = def[locale];
   const nav = locale === "el" ? navEl : navEn;
@@ -415,23 +427,42 @@ function crawlBody(def, locale) {
   const story = copy.story
     ? `<p class="prerender-story">${escapeHtml(copy.story)}</p>`
     : "";
-  return [
+  const parts = [
     `<main id="prerender">`,
     `<h1>${escapeHtml(copy.h1)}</h1>`,
     `<p>${escapeHtml(copy.body)}</p>`,
     story,
     `<nav aria-label="Services">${links}</nav>`,
-    `</main>`,
-  ].join("");
+  ];
+
+  // Plain HTML article links so Google can crawl /articles/ without JS.
+  if (def.id === "articles") {
+    const prefix = locale === "el" ? "/el" : "";
+    const items = articleRouteDefs()
+      .map((article) => {
+        const href = withTrailingSlash(
+          `${prefix}/articles/${article.enPath.split("/").filter(Boolean).pop()}`,
+        );
+        const title = article[locale].h1;
+        return `<li><a href="${href}">${escapeHtml(title)}</a></li>`;
+      })
+      .join("");
+    parts.push(
+      `<nav aria-label="${locale === "el" ? "Άρθρα" : "Articles"}"><ul>${items}</ul></nav>`,
+    );
+  }
+
+  parts.push(`</main>`);
+  return parts.join("");
 }
 
 function patchHtml(html, def, locale) {
   const copy = def[locale];
-  const path = locale === "el" ? def.elPath : def.enPath;
+  const path = withTrailingSlash(locale === "el" ? def.elPath : def.enPath);
   const file = locale === "el" ? def.elFile : def.enFile;
-  const canonical = `${origin}${path === "/" ? "/" : path}`;
-  const enUrl = `${origin}${def.enPath === "/" ? "/" : def.enPath}`;
-  const elUrl = `${origin}${def.elPath}`;
+  const canonical = `${origin}${path}`;
+  const enUrl = `${origin}${withTrailingSlash(def.enPath)}`;
+  const elUrl = `${origin}${withTrailingSlash(def.elPath)}`;
   let out = stripPrior(html);
 
   out = out.replace(/<html[^>]*>/, `<html lang="${locale === "el" ? "el" : "en"}">`);
@@ -498,9 +529,101 @@ function patch404(html) {
   out = out.replace("</head>", `${extras}\n  </head>`);
   out = out.replace(
     '<div id="root"></div>',
-    `<main id="prerender"><h1>Page not found</h1><p>This URL isn’t a page on omnidot.</p><nav><a href="/">Home</a> · <a href="/el">Αρχική</a></nav></main>\n    <div id="root"></div>`,
+    `<main id="prerender"><h1>Page not found</h1><p>This URL isn’t a page on omnidot.</p><nav><a href="/">Home</a> · <a href="/el/">Αρχική</a></nav></main>\n    <div id="root"></div>`,
   );
   return out;
+}
+
+function absoluteUrl(path) {
+  return `${origin}${withTrailingSlash(path)}`;
+}
+
+function sitemapPriority(def) {
+  if (def.id === "home") return "1.0";
+  if (def.type === "service" || def.type === "pricing") return "0.9";
+  if (def.type === "about" || def.id === "articles") return "0.8";
+  if (def.enPath.includes("/articles/") && def.enPath !== "/articles/") return "0.7";
+  if (def.type === "privacy") return "0.3";
+  return "0.5";
+}
+
+function sitemapChangefreq(def) {
+  if (def.id === "home") return "weekly";
+  if (def.type === "privacy") return "yearly";
+  return "monthly";
+}
+
+function writeSitemap() {
+  const urls = [];
+  for (const def of routeDefs) {
+    for (const locale of ["en", "el"]) {
+      const path = withTrailingSlash(locale === "el" ? def.elPath : def.enPath);
+      const loc = absoluteUrl(path);
+      const enUrl = absoluteUrl(def.enPath);
+      const elUrl = absoluteUrl(def.elPath);
+      urls.push({
+        loc,
+        enUrl,
+        elUrl,
+        changefreq: sitemapChangefreq(def),
+        priority: sitemapPriority(def),
+      });
+    }
+  }
+
+  const body = urls
+    .map(
+      (entry) => `  <url>
+    <loc>${entry.loc}</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="${entry.enUrl}" />
+    <xhtml:link rel="alternate" hreflang="el" href="${entry.elUrl}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${entry.enUrl}" />
+    <changefreq>${entry.changefreq}</changefreq>
+    <priority>${entry.priority}</priority>
+  </url>`,
+    )
+    .join("\n");
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${body}
+</urlset>
+`;
+
+  writeFileSync(join(dist, "sitemap.xml"), xml, "utf8");
+  writeFileSync(join(root, "public/sitemap.xml"), xml, "utf8");
+  console.log(`sitemap: ${urls.length} URLs`);
+  for (const entry of urls) console.log(`  ${entry.loc}`);
+}
+
+function writeRedirects() {
+  // Explicit non-slash → slash 301s (no wildcards that could touch assets).
+  const barePaths = new Set();
+  for (const def of routeDefs) {
+    for (const path of [def.enPath, def.elPath]) {
+      const slashed = withTrailingSlash(path);
+      if (slashed === "/") continue;
+      barePaths.add(slashed.replace(/\/$/, ""));
+    }
+  }
+
+  const lines = [
+    "# Trailing-slash canonicals — non-slash → slash (301).",
+    "# Listed explicitly so asset URLs (e.g. /sitemap.xml) are never rewritten.",
+  ];
+  for (const bare of [...barePaths].sort()) {
+    lines.push(`${bare}  ${bare}/  301`);
+  }
+  lines.push("");
+  lines.push("# SPA fallback for client-side routes");
+  lines.push("/*    /index.html   200");
+  lines.push("");
+
+  const text = lines.join("\n");
+  writeFileSync(join(dist, "_redirects"), text, "utf8");
+  writeFileSync(join(root, "public/_redirects"), text, "utf8");
+  console.log(`redirects: ${barePaths.size} trailing-slash rules`);
 }
 
 const template = stripPrior(readFileSync(join(dist, "index.html"), "utf8"));
@@ -517,3 +640,6 @@ for (const def of routeDefs) {
 
 writeFileSync(join(dist, "404.html"), patch404(template), "utf8");
 console.log("prerender: 404.html");
+
+writeSitemap();
+writeRedirects();
