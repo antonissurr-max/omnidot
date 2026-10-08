@@ -1353,7 +1353,14 @@ a.work__proof-line:hover {
   background: none;
   color: inherit;
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
+}
+
+a.work__project:hover .work__project-name,
+a.work__project:focus-visible .work__project-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .work__project-media {

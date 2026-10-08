@@ -246,13 +246,12 @@ export function WorkShow({
               media && mediaIsVideo(media) && !media.poster && item.backdrop
                 ? { ...media, poster: item.backdrop }
                 : media;
-            return (
-              <button
-                key={item.client}
-                className="work__project"
-                type="button"
-                onClick={() => setOpenClient(item.client)}
-              >
+            const externalHref =
+              item.cover && item.links?.[0]?.href
+                ? item.links[0].href
+                : undefined;
+            const card = (
+              <>
                 <span className="work__project-media">
                   {cover ? (
                     <ProjectCover item={cover} />
@@ -268,6 +267,29 @@ export function WorkShow({
                     <span className="work__project-value">{t.mediaSoon}</span>
                   ) : null}
                 </span>
+              </>
+            );
+            if (externalHref) {
+              return (
+                <a
+                  key={item.client}
+                  className="work__project"
+                  href={externalHref}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {card}
+                </a>
+              );
+            }
+            return (
+              <button
+                key={item.client}
+                className="work__project"
+                type="button"
+                onClick={() => setOpenClient(item.client)}
+              >
+                {card}
               </button>
             );
           })}
