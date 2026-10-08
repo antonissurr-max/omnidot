@@ -6,6 +6,7 @@ import {
   type MouseEvent as ReactMouseEvent,
 } from "react";
 import { Link } from "react-router-dom";
+import { LazyVideo } from "./LazyVideo";
 import { useInViewOnce } from "../hooks/useInViewOnce";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
@@ -28,7 +29,7 @@ const ORB_MEDIA: Record<
   social: { type: "image", src: "/images/social.webp" },
   content: {
     type: "video",
-    src: "/videos/pricing-orb-content.mp4",
+    src: "/videos/pricing-orb-content-preview.mp4",
     poster: "/images/content.webp",
   },
   performance: {
@@ -127,6 +128,7 @@ export function Pricing({
           <div className="pricing-hero__title-wrap">
             <h1 className="pricing-hero__title">
               <span className="pricing-hero__title-lead">{t.pricingTitleLead}</span>
+              {" "}
               <span className="pricing-hero__title-sub">{t.pricingTitleSub}</span>
             </h1>
           </div>
@@ -165,15 +167,12 @@ export function Pricing({
                     {media ? (
                       <span className="pricing-orb__media" aria-hidden="true">
                         {media.type === "video" ? (
-                          <video
+                          <LazyVideo
                             src={media.src}
                             poster={media.poster}
-                            muted
-                            loop
-                            playsInline
-                            autoPlay
-                            preload="metadata"
                             title={plan.name}
+                            width={540}
+                            height={540}
                           />
                         ) : (
                           <img
@@ -217,12 +216,12 @@ export function Pricing({
               </button>
               <div className="pricing-module__body">
                 <p className="pricing-module__kicker">{t.pricing}</p>
-                <h2
+                <h3
                   id={`pricing-module-title-${openPlan.id}`}
                   className="pricing-module__title"
                 >
                   {openPlan.name}
-                </h2>
+                </h3>
                 <p className="pricing-module__price">{openPlan.price}</p>
                 <p className="pricing-module__blurb">{openPlan.blurb}</p>
                 <ul className="pricing-module__list">
@@ -254,6 +253,24 @@ export function Pricing({
             />
           ) : null}
         </div>
+      </section>
+
+      <section className="pricing-plans" aria-label={t.pricingTitle} data-chrome-tone="dark">
+        <p className="pricing-plans__intro">{t.pricingIntro}</p>
+        {plans.map((plan) => (
+          <section key={plan.id} className="pricing-plans__plan">
+            <h2 className="pricing-plans__name">{plan.name}</h2>
+            <p className="pricing-plans__lede">
+              {plan.price}. {plan.blurb}
+            </p>
+            <ul className="pricing-plans__list">
+              {plan.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            {plan.note ? <p className="pricing-plans__note">{plan.note}</p> : null}
+          </section>
+        ))}
       </section>
 
       <section

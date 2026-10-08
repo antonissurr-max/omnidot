@@ -3,6 +3,7 @@ import { Contact } from "./Contact";
 import { useLocale } from "../locale";
 import type { PageId } from "../types";
 import type { VerseWord } from "../i18n";
+import { site } from "../site";
 
 function VerseWordView({ word, revealed }: { word: VerseWord; revealed: boolean }) {
   if (word.kind === "stay") {
@@ -10,32 +11,27 @@ function VerseWordView({ word, revealed }: { word: VerseWord; revealed: boolean 
     if (same) {
       return <span className="about-verse__word about-verse__word--stay">{word.open}</span>;
     }
+    // Only the active variant is in the DOM (fixes “a A” / «ένα Ένα» dual text).
+    const text = revealed ? word.close! : word.open;
     return (
       <span className="about-verse__word about-verse__word--stay">
         <span
-          className="about-verse__swap about-verse__swap--open"
-          aria-hidden={revealed ? true : undefined}
+          className={`about-verse__swap${revealed ? " about-verse__swap--close" : " about-verse__swap--open"}`}
         >
-          {word.open}
-        </span>
-        <span
-          className="about-verse__swap about-verse__swap--close"
-          aria-hidden={revealed ? undefined : true}
-        >
-          {word.close}
+          {text}
         </span>
       </span>
     );
   }
 
   if (word.kind === "go") {
+    if (revealed) return null;
     return <span className="about-verse__word about-verse__word--go">{word.open}</span>;
   }
 
+  if (!revealed) return null;
   return (
-    <span className="about-verse__word about-verse__word--come" aria-hidden={!revealed}>
-      {word.close}
-    </span>
+    <span className="about-verse__word about-verse__word--come">{word.close}</span>
   );
 }
 
@@ -53,7 +49,7 @@ export function About({
   onToggleReveal: () => void;
   interest?: PageId;
 }) {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
   const pageIds = ["social", "content", "performance", "web"] as const;
   const layerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -119,24 +115,24 @@ export function About({
               onClick={onToggleReveal}
             />
 
-            <h1 className="about-layer__title">
-              <span className="about-verse" aria-live="polite">
-                {t.aboutVerse.map((row) => (
-                  <span
-                    key={row.id}
-                    className={`about-verse__row${row.openOnly ? " about-verse__row--open-only" : ""}`}
-                    style={{
-                      ["--row-open" as string]: String(row.openRow),
-                      ["--row-close" as string]: String(row.closeRow),
-                    }}
-                  >
-                    {row.words.map((word, i) => (
-                      <VerseWordView key={`${row.id}-${i}`} word={word} revealed={revealed} />
-                    ))}
-                  </span>
-                ))}
-              </span>
-            </h1>
+            <h1 className="about-layer__heading">{t.aboutHeading}</h1>
+
+            <p className="about-layer__title about-verse" aria-live="polite">
+              {t.aboutVerse.map((row) => (
+                <span
+                  key={row.id}
+                  className={`about-verse__row${row.openOnly ? " about-verse__row--open-only" : ""}`}
+                  style={{
+                    ["--row-open" as string]: String(row.openRow),
+                    ["--row-close" as string]: String(row.closeRow),
+                  }}
+                >
+                  {row.words.map((word, i) => (
+                    <VerseWordView key={`${row.id}-${i}`} word={word} revealed={revealed} />
+                  ))}
+                </span>
+              ))}
+            </p>
 
             <p className="about-layer__body">{t.aboutBody}</p>
 
@@ -149,6 +145,14 @@ export function About({
                 </li>
               ))}
             </ul>
+
+            <p className="about-layer__contact-line">
+              <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+              {" · "}
+              <a href={`tel:${site.phone.replace(/\D/g, "")}`}>{site.phone}</a>
+              {" · "}
+              {locale === "el" ? "Αθήνα · Όλη η Ελλάδα" : site.location}
+            </p>
           </div>
 
           <Contact tone="paper" interest={interest} />

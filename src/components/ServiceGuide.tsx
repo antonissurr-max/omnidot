@@ -5,16 +5,20 @@ import type { ServiceGuideCopy } from "../i18n";
 export function ServiceGuide({
   guide,
   onBrief,
+  afterIntro,
   afterCost,
 }: {
   guide: ServiceGuideCopy;
   onBrief: () => void;
+  /** Optional block right after intro (e.g. Europatch case on /social/). */
+  afterIntro?: ReactNode;
   /** Optional block rendered right after the cost section (e.g. client cards on /web/). */
   afterCost?: ReactNode;
 }) {
   return (
     <div className="service-guide">
       <p className="service-guide__intro">{guide.intro}</p>
+      {afterIntro}
       <button className="work__brief" type="button" onClick={onBrief}>
         {guide.cta} ↗
       </button>
@@ -58,8 +62,8 @@ export function ServiceGuide({
             <h3 className="service-guide__h3">{guide.platformsTitle}</h3>
             <ul className="service-guide__list service-guide__list--platforms">
               {guide.platforms.map((item) => (
-                <li key={item.name}>
-                  <strong>{item.name}</strong>
+                <li key={item.name || item.detail}>
+                  {item.name ? <strong>{item.name}</strong> : null}
                   {item.detail}
                 </li>
               ))}
@@ -74,12 +78,17 @@ export function ServiceGuide({
         </h2>
         <ol className="service-guide__steps">
           {guide.process.map((step, i) => (
-            <li key={step.title}>
+            <li key={step.title || step.body}>
               <span className="service-guide__step-num">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span>
-                <strong>{step.title}</strong>
+                {step.title ? (
+                  <>
+                    <strong>{step.title.replace(/:\s*$/, "")}</strong>
+                    {step.body ? ": " : null}
+                  </>
+                ) : null}
                 {step.body}
               </span>
             </li>
@@ -117,7 +126,8 @@ export function ServiceGuide({
                 item.aLink ? (
                   <>
                     {item.a}
-                    <a href={item.aLink.href}>{item.aLink.label}</a>.
+                    <a href={item.aLink.href}>{item.aLink.label}</a>
+                    {item.aLink.after ?? "."}
                   </>
                 ) : (
                   item.a

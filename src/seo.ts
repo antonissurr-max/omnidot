@@ -19,18 +19,18 @@ const DEFAULT_OG = `${SITE_ORIGIN}/images/work-omnidot.jpg`;
 const ORG_PHONE = site.phone ? phoneHref(site.phone) : "";
 const JSON_LD_ID = "omnidot-jsonld";
 
-/** Keep in sync with scripts/prerender-shells.mjs titles (≤ ~60 chars). */
-const PAGE_TITLES = {
+/** Shared with scripts/prerender-shells.mjs (≤ ~60 chars). */
+export const PAGE_TITLES = {
   en: {
     home: "omnidot. — Marketing Agency Athens | Social, Ads & Web",
     about: "About & Contact — Marketing Agency Athens | omnidot.",
     pricing: "Marketing Agency Pricing — Packages | omnidot. Athens",
     articles: "Articles — omnidot.",
     privacy: "Website terms, privacy & cookies - omnidot.",
-    social: "Social Media Management — Instagram & TikTok | omnidot.",
-    content: "Content Creation — Photo, Video & Reels | omnidot.",
-    performance: "Meta & Google Ads Management — omnidot. Athens",
-    web: "Web Development & SEO — Athens | omnidot.",
+    social: "Social Media Management in Athens | omnidot.",
+    content: "Content Creation for Social Media | omnidot. Athens",
+    performance: "Google Ads & Meta Ads Management | omnidot. Athens",
+    web: "Website Development in Athens | omnidot.",
     article:
       "Website creation in Athens: SEO and price — omnidot.",
   },
@@ -370,7 +370,7 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
                 acceptedAnswer: {
                   "@type": "Answer",
                   text: item.aLink
-                    ? `${item.a}${item.aLink.label}.`
+                    ? `${item.a}${item.aLink.label}${item.aLink.after ?? "."}`
                     : item.a,
                 },
               })),

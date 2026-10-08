@@ -1508,12 +1508,35 @@ h1.chrome__brand {
   opacity: 0.72;
 }
 
-/* Mobile home story — off on desktop staircase */
-.home-mobile,
+/* Mobile home story — off on desktop staircase (hero H1 stays for SEO + desktop) */
+.home-mobile:not(.home-mobile--hero),
 .home-mobile__section,
 .home-mobile__proof,
 .home-mobile__close,
 .tile__kicker-step {
+  display: none;
+}
+
+.home-mobile--hero {
+  display: grid;
+  justify-items: start;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 16px;
+  padding: 28px var(--chrome) 8px;
+  color: var(--navy);
+}
+
+.home-mobile--hero .home-mobile__display {
+  margin: 0;
+  max-width: 22ch;
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.home-mobile--hero .home-mobile__cta-line {
   display: none;
 }
 
@@ -2918,12 +2941,29 @@ a.work__project:focus-visible .work__project-name {
 }
 
 .service-guide__intro,
-.service-guide__p {
+.service-guide__p,
+.service-guide__case {
   margin: 0;
   max-width: 62ch;
   font-size: 15px;
   line-height: 1.65;
   opacity: 0.88;
+}
+
+.service-guide__cases {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+  max-width: 62ch;
+  font-size: 15px;
+  line-height: 1.65;
+  opacity: 0.88;
+}
+
+.service-guide__cases a {
+  color: inherit;
 }
 
 .service-guide__section {
@@ -3264,6 +3304,10 @@ a.work__project:focus-visible .work__project-name {
     color: var(--paper);
   }
 
+  .home-mobile--hero .home-mobile__cta-line {
+    display: inline-flex;
+  }
+
   .home-mobile__display {
     margin: 0;
     max-width: 11ch;
@@ -3271,6 +3315,12 @@ a.work__project:focus-visible .work__project-name {
     font-weight: 600;
     letter-spacing: -0.045em;
     line-height: 1.02;
+  }
+
+  .home-mobile--hero .home-mobile__display {
+    max-width: 11ch;
+    font-size: clamp(34px, 11vw, 48px);
+    color: inherit;
   }
 
   .home-mobile__display--sm {
@@ -3581,6 +3631,16 @@ a.work__project:focus-visible .work__project-name {
 
 .about-layer__intro {
   position: relative;
+}
+
+.about-layer__heading {
+  margin: 0 0 18px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.55;
 }
 
 .about-layer__spark {
@@ -4467,6 +4527,60 @@ a.work__project:focus-visible .work__project-name {
   .pricing-module__note {
     display: none;
   }
+}
+
+.pricing-plans {
+  position: relative;
+  z-index: 2;
+  padding: clamp(56px, 10vh, 96px) var(--chrome) 32px;
+  background: var(--night);
+  color: var(--paper);
+  display: grid;
+  gap: 36px;
+}
+
+.pricing-plans__intro {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 15px;
+  line-height: 1.55;
+  opacity: 0.82;
+}
+
+.pricing-plans__plan {
+  margin: 0;
+  max-width: 52ch;
+}
+
+.pricing-plans__name {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.pricing-plans__lede {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.pricing-plans__list {
+  margin: 0;
+  padding: 0 0 0 1.1em;
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1.45;
+  opacity: 0.9;
+}
+
+.pricing-plans__note {
+  margin: 10px 0 0;
+  font-size: 13px;
+  opacity: 0.7;
 }
 
 .pricing-principles {

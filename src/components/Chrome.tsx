@@ -26,7 +26,6 @@ export function Chrome({
   const onPricing = view.kind === "pricing";
   const onArticles = view.kind === "articles" || view.kind === "article";
   const onIndex = view.kind === "index";
-  const BrandTag = onIndex ? "h1" : "p";
   const showBrand = onIndex || onAbout || onPricing;
   const onPanelClose = onAbout || onPricing || onArticles;
 
@@ -99,13 +98,13 @@ export function Chrome({
       ) : null}
 
       {showBrand && (
-        <BrandTag className={`chrome__brand${onAbout ? " is-about" : ""}`}>
+        <p className={`chrome__brand${onAbout ? " is-about" : ""}`}>
           <BrandWord
             live={onAbout}
             revealed={aboutRevealed}
             onToggle={onToggleAbout}
           />
-        </BrandTag>
+        </p>
       )}
     </header>
   );

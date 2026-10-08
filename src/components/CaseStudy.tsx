@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import type { MediaItem } from "../site";
 import { ExhibitGallery, mediaIsVideo } from "./ExhibitGallery";
+import { LazyVideo } from "./LazyVideo";
 
 function thumbSrc(item: MediaItem) {
   if (mediaIsVideo(item)) return item.poster ?? item.src;
@@ -15,38 +16,14 @@ function orderSlides(media: MediaItem[]): MediaItem[] {
 }
 
 function RelatedCover({ item }: { item: MediaItem }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (!mediaIsVideo(item)) return;
-    const el = videoRef.current;
-    if (!el) return;
-    const tryPlay = () => {
-      void el.play().catch(() => {
-        /* autoplay may be blocked */
-      });
-    };
-    tryPlay();
-    el.addEventListener("loadeddata", tryPlay);
-    el.addEventListener("canplay", tryPlay);
-    return () => {
-      el.removeEventListener("loadeddata", tryPlay);
-      el.removeEventListener("canplay", tryPlay);
-    };
-  }, [item.src]);
-
   if (mediaIsVideo(item)) {
     return (
-      <video
-        ref={videoRef}
+      <LazyVideo
         src={item.src}
         poster={item.poster}
-        muted
-        loop
-        playsInline
-        autoPlay
-        preload="metadata"
-        aria-hidden="true"
+        title={item.title}
+        width={540}
+        height={960}
       />
     );
   }

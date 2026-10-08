@@ -11,6 +11,24 @@ const phone = "+306970862839";
 /** @type {Awaited<ReturnType<typeof loadArticleModule>>} */
 let articleModule;
 
+
+/** @type {Awaited<ReturnType<typeof loadI18nModule>>} */
+let i18nModule;
+
+async function loadI18nModule() {
+  const outfile = join(root, "scripts/.cache/i18n-prerender.mjs");
+  mkdirSync(dirname(outfile), { recursive: true });
+  await esbuild.build({
+    entryPoints: [join(root, "scripts/i18n-prerender-entry.ts")],
+    bundle: true,
+    format: "esm",
+    platform: "neutral",
+    outfile,
+    logLevel: "silent",
+  });
+  return import(`${pathToFileURL(outfile).href}?t=${Date.now()}`);
+}
+
 async function loadArticleModule() {
   const outfile = join(root, "scripts/.cache/articles-prerender.mjs");
   mkdirSync(dirname(outfile), { recursive: true });
@@ -62,8 +80,8 @@ function withTrailingSlash(path) {
   return path.endsWith("/") ? path : `${path}/`;
 }
 
-/** Keep in sync with src/i18n.ts — build-time crawlable shells. */
-const routeDefs = [
+/** Structural routes — page copy hydrated from src/i18n.ts via esbuild. */
+const routeStructure = [
   {
     id: "home",
     enPath: "/",
@@ -71,34 +89,6 @@ const routeDefs = [
     enFile: "index.html",
     elFile: "el/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
-    en: {
-      title: "omnidot. — Marketing Agency Athens | Social, Ads & Web",
-      description:
-        "Athens marketing agency for social media management, content creation, Meta & Google Ads, and SEO websites. Clear packages, in Athens and across Greece, measurable growth.",
-      h1: "omnidot.",
-      body: "Athens marketing agency for web, SEO, social media and performance ads — one partner for brands that want to grow. Founders and local brands, in Athens and across Greece. For founders and local brands that want a clear next step — not another report. From a fast SEO website to social media management and Meta & Google Ads campaigns.",
-      story: "",
-      services: [
-        { name: "Social Media Management", href: "/social/", body: "Strategy, publishing, growth and monthly reporting for Instagram, TikTok, Facebook and LinkedIn." },
-        { name: "Content Creation", href: "/content/", body: "Photo, video and Reels from concept to ready-to-post for social, ads and web." },
-        { name: "Performance Marketing", href: "/performance/", body: "Meta Ads and Google Ads with clear cost, creative testing and measurement." },
-        { name: "Web Development", href: "/web/", body: "Fast SEO websites and landing pages that stay yours." },
-      ],
-    },
-    el: {
-      title: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
-      description:
-        "Διαφημιστική στην Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, στην Αθήνα και σε όλη την Ελλάδα, μετρήσιμη ανάπτυξη.",
-      h1: "omnidot.",
-      body: "Διαφημιστική στην Αθήνα για web, SEO, social media και performance ads — ένας συνεργάτης για brands που θέλουν να αναπτυχθούν. Στην Αθήνα και σε όλη την Ελλάδα. Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Από γρήγορη ιστοσελίδα με SEO μέχρι διαχείριση social media και καμπάνιες Meta & Google Ads.",
-      story: "",
-      services: [
-        { name: "Διαχείριση Social Media", href: "/el/social/", body: "Στρατηγική, δημοσίευση, ανάπτυξη και μηνιαίο reporting για Instagram, TikTok, Facebook και LinkedIn." },
-        { name: "Δημιουργία Περιεχομένου", href: "/el/content/", body: "Φωτογραφία, video και Reels από concept έως ανάρτηση για social, ads και web." },
-        { name: "Performance Marketing", href: "/el/performance/", body: "Meta Ads και Google Ads με καθαρό κόστος, testing και μέτρηση." },
-        { name: "Κατασκευή Ιστοσελίδας", href: "/el/web/", body: "Γρήγορες ιστοσελίδες με SEO και landing pages που μένουν δικές σου." },
-      ],
-    },
     type: "org",
   },
   {
@@ -108,148 +98,7 @@ const routeDefs = [
     enFile: "social/index.html",
     elFile: "el/social/index.html",
     image: `${origin}/images/social.webp`,
-    en: {
-      title: "Social Media Management — Instagram & TikTok | omnidot.",
-      description:
-        "Social media management for Instagram, TikTok, Facebook & LinkedIn: strategy, Reels, community and growth. In Athens and across Greece. From €450/mo.",
-      h1: "Social Media Management",
-      body: "Instagram, TikTok, Facebook and LinkedIn management — strategy, publishing, growth and monthly reporting from omnidot. In Athens and across Greece.",
-      story:
-        "Europatch sells cold asphalt to B2B buyers — a category that rarely goes viral. We built a steady organic presence around real product use and how-to content. In one year: 4.5M Facebook and 2.5M Instagram views, 100% organic.",
-      points: [
-        {
-          name: "Strategy",
-          detail: "Positioning, pillars, calendar",
-          body: "Social media strategy for Instagram, TikTok, Facebook and LinkedIn: brand voice, content pillars, posting calendar and community rules. We plan what to say, where it lives, and how often — so your social media management is consistent, not random posts.",
-        },
-        {
-          name: "Publishing",
-          detail: "Feed, stories, community",
-          body: "We create and publish feed posts, Reels, Stories and carousels, and we reply in comments and DMs. Copy, visuals and timing stay on-brand so the account feels active and trustworthy to followers and new visitors from search or ads.",
-        },
-        {
-          name: "Growth",
-          detail: "Reels, UGC, collaborations",
-          body: "Growth through short-form video, Reels, user-generated content and creator collaborations. We test formats that expand reach on Instagram and TikTok and bring in people who already care about your category — organic first, ads when it makes sense.",
-        },
-        {
-          name: "Reporting",
-          detail: "Monthly clarity, not vanity",
-          body: "Monthly social media reporting with reach, engagement, saves, profile visits and what to change next. Plain language for founders and marketing leads — useful metrics, clear next steps, no vanity dashboards.",
-        },
-      ],
-    },
-    el: {
-      title: "Διαχείριση Social Media στην Αθήνα | omnidot.",
-      description:
-        "Διαχείριση Instagram, TikTok, Facebook και LinkedIn για επιχειρήσεις σε όλη την Ελλάδα. Στρατηγική, περιεχόμενο, community και μηνιαίο reporting. Από €450/μήνα.",
-      h1: "Διαχείριση Social Media για επιχειρήσεις",
-      body: "Αναλαμβάνουμε τα social της επιχείρησής σου από την αρχή ως το τέλος: στρατηγική, περιεχόμενο, δημοσίευση, απαντήσεις και μηνιαία αναφορά. Είμαστε στην Αθήνα και συνεργαζόμαστε με founders και επιχειρήσεις σε όλη την Ελλάδα, ώστε να έχεις σταθερή παρουσία χωρίς να το κυνηγάς εσύ κάθε μέρα.",
-      story:
-        "Η Europatch πουλάει ψυχρή άσφαλτο σε B2B πελάτες — κατηγορία που σπάνια γίνεται viral online. Χτίσαμε σταθερή οργανική παρουσία γύρω από πραγματική χρήση προϊόντος και how-to περιεχόμενο. Σε έναν χρόνο: 4.5 εκ. views στο Facebook και 2.5 εκ. στο Instagram, 100% organic.",
-      points: [
-        {
-          name: "Στρατηγική",
-          detail: "Θέση, πυλώνες, ημερολόγιο",
-          body: "Στρατηγική social media για Instagram, TikTok, Facebook και LinkedIn: φωνή brand, πυλώνες περιεχομένου, ημερολόγιο δημοσιεύσεων και κανόνες κοινότητας. Ορίζουμε τι λέμε, πού ανεβαίνει και πόσο συχνά — ώστε η διαχείριση social media να είναι σταθερή, όχι τυχαία posts.",
-        },
-        {
-          name: "Δημοσίευση",
-          detail: "Feed, stories, κοινότητα",
-          body: "Δημιουργούμε και ανεβάζουμε feed posts, Reels, Stories και carousels, και απαντάμε σε σχόλια και DMs. Κείμενα, εικόνες και timing μένουν on-brand ώστε ο λογαριασμός να φαίνεται ζωντανός σε followers και σε νέους επισκέπτες από αναζήτηση ή διαφημίσεις.",
-        },
-        {
-          name: "Ανάπτυξη",
-          detail: "Reels, UGC, συνεργασίες",
-          body: "Ανάπτυξη μέσω short video, Reels, user-generated content και συνεργασιών με creators. Δοκιμάζουμε φόρμες που ανοίγουν reach σε Instagram και TikTok και φέρνουν κόσμο που ήδη νοιάζεται για την κατηγορία — πρώτα organic, ads όταν έχει νόημα.",
-        },
-        {
-          name: "Reporting",
-          detail: "Μηνιαία καθαρότητα, όχι vanity",
-          body: "Μηνιαίο social media reporting με reach, engagement, αποθηκεύσεις, επισκέψεις προφίλ και τι αλλάζουμε μετά. Απλή γλώσσα για founders και marketing — χρήσιμα metrics, καθαρά επόμενα βήματα, χωρίς vanity dashboards.",
-        },
-      ],
-      guide: {
-        includesTitle: "Τι περιλαμβάνει κάθε μήνα",
-        includes: [
-          "Στρατηγική και μηνιαίο πρόγραμμα δημοσιεύσεων",
-          "8–20 posts/Reels τον μήνα και stories, ανάλογα με το πακέτο (Essential: 8–12 posts και 8 basic stories · Standard: 12–16 posts/reels · Premium: 16–20 posts/reels)",
-          "Κείμενα, hashtags και προγραμματισμός δημοσιεύσεων",
-          "Απαντήσεις σε σχόλια και μηνύματα ως μέρος του community στο πακέτο",
-          "Μηνιαία αναφορά με το τι δούλεψε και τι αλλάζουμε τον επόμενο μήνα",
-        ],
-        audienceTitle: "Για ποιον είναι",
-        audienceBody:
-          "Για founders που δεν έχουν χρόνο να τρέχουν τα social τους, για τοπικές επιχειρήσεις στην Αθήνα που θέλουν να τις βρίσκουν και να τις εμπιστεύονται, και για B2B εταιρείες που θέλουν σοβαρή, σταθερή παρουσία.",
-        platformsTitle: "Ποια πλατφόρμα σου ταιριάζει",
-        platforms: [
-          "Instagram: για τοπικές επιχειρήσεις, εστίαση, λιανική και brands με εικόνα.",
-          "TikTok: για brands που μπορούν να δείξουν προϊόν ή παρασκήνιο σε σύντομο βίντεο.",
-          "Facebook: για κοινό μεγαλύτερης ηλικίας και τοπικές κοινότητες.",
-          "LinkedIn: για B2B και για founders που χτίζουν το προσωπικό τους προφίλ.",
-        ],
-        processTitle: "Πώς ξεκινάμε",
-        process: [
-          "Γνωριμία: ένα call για την επιχείρηση, τους πελάτες και τους στόχους σου.",
-          "Στρατηγική: ποιες πλατφόρμες, τι περιεχόμενο και με ποιο ύφος.",
-          "Πρόγραμμα: το πρώτο μηνιαίο πλάνο για έγκριση.",
-          "Δημοσιεύσεις: ξεκινάμε να ανεβάζουμε με βάση το εγκεκριμένο πλάνο.",
-        ],
-        costTitle: "Πόσο κοστίζει",
-        costBody:
-          "Η διαχείριση social media ξεκινά από €450 τον μήνα. Η τελική τιμή εξαρτάται από το πακέτο, τον αριθμό πλατφορμών και τον όγκο περιεχομένου.",
-        costLinkLabel: "Δες όλα τα πακέτα →",
-        costLinkHref: "/el/pricing/",
-        faqTitle: "Συχνές ερωτήσεις",
-        faq: [
-          {
-            q: "Υπάρχει ελάχιστη διάρκεια συνεργασίας;",
-            a: "Ναι — minimum 3 μήνες στα retainers.",
-          },
-          {
-            q: "Ποιος φτιάχνει τις φωτογραφίες και τα βίντεο;",
-            a: "Εμείς δημιουργούμε και ανεβάζουμε το περιεχόμενο της διαχείρισης. Το creative μπορεί να μπει στο πακέτο ή να χρεωθεί ανά asset· για ξεχωριστή φωτογράφιση ή βίντεο υπάρχει η υπηρεσία Δημιουργία Περιεχομένου.",
-          },
-          {
-            q: "Σε πόσο καιρό φαίνονται αποτελέσματα;",
-            a: "Τον πρώτο μήνα στήνουμε σταθερή παρουσία. Συνήθως χρειάζονται μερικοί μήνες συνεπούς δουλειάς για να φανεί καθαρή εικόνα.",
-          },
-          {
-            q: "Δουλεύετε μόνο με επιχειρήσεις στην Αθήνα;",
-            a: "Όχι. Συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα και τα calls γίνονται online.",
-          },
-          {
-            q: "Κάνετε και διαφημίσεις στα social;",
-            a: "Ναι. Η διαχείριση διαφημίσεων ξεκινά από €300 τον μήνα και τα χρήματα των διαφημίσεων τα πληρώνει απευθείας η επιχείρηση. Δες τη σελίδα Performance.",
-          },
-        ],
-        relatedTitle: "Σχετικές υπηρεσίες",
-        related: [
-          {
-            label: "Δημιουργία Περιεχομένου",
-            href: "/el/content/",
-            blurb: "Φωτογραφία, video και Reels από concept έως ανάρτηση.",
-          },
-          {
-            label: "Performance Marketing",
-            href: "/el/performance/",
-            blurb: "Meta Ads και Google Ads με καθαρό κόστος και απόδοση.",
-          },
-          {
-            label: "Ανάπτυξη Ιστοσελίδων",
-            href: "/el/web/",
-            blurb: "Γρήγορα sites και landing pages με SEO.",
-          },
-        ],
-        finalTitle: "Θες να δούμε τι χρειάζονται τα social σου;",
-        cta: "Κλείσε ένα σύντομο call",
-      },
-    },
     type: "service",
-    serviceName: {
-      en: "Social Media Management",
-      el: "Διαχείριση Social Media για επιχειρήσεις",
-    },
   },
   {
     id: "content",
@@ -258,170 +107,7 @@ const routeDefs = [
     enFile: "content/index.html",
     elFile: "el/content/index.html",
     image: `${origin}/images/content.webp`,
-    en: {
-      title: "Content Creation — Photo, Video & Reels | omnidot.",
-      description:
-        "Content creation for Instagram Reels, ads and web: photo, video and edit from concept to ready-to-post. Shoot day €200. Packs from €350. Athens.",
-      h1: "Content Creation",
-      body: "Photo, video and Reels content creation — concept, capture, edit and assets ready to post for social, ads and web.",
-      story:
-        "Same Europatch partnership from the content side: how-to reels on the road, product in use, cuts built for feed and Reels. That library powered the organic reach — including one reel to 397.9K.",
-      points: [
-        {
-          name: "Concept",
-          detail: "Ideas, scripts, shot lists",
-          body: "Content creation starts with concept: creative ideas, scripts, shot lists and brand guidelines before the camera rolls. That keeps photo and video production fast and consistent for social media, ads and the website.",
-        },
-        {
-          name: "Capture",
-          detail: "Photo, video, on-site",
-          body: "On-location photography and videography — product, people, space. We shoot for Instagram, TikTok, Facebook ads, Google campaigns and your site so one production day feeds every channel.",
-        },
-        {
-          name: "Edit",
-          detail: "Cuts for feed, ads, web",
-          body: "Editing and post-production for each format: Reels, Stories, feed posts, YouTube cuts, paid ads and web hero videos. Same brand world, right length and aspect ratio for every placement.",
-        },
-        {
-          name: "Assets",
-          detail: "Stills, carousels, motion",
-          body: "A usable content library: stills, carousels, motion graphics, titles and thumbnails ready to post or run as ads — organized files you can actually use.",
-        },
-      ],
-    },
-    el: {
-      title: "Παραγωγή Περιεχομένου για Social Media | omnidot. Αθήνα",
-      description:
-        "Φωτογραφία, video και Reels για social media, διαφημίσεις και ιστοσελίδες, από την ιδέα ως το τελικό αρχείο. Γύρισμα €200, πακέτα από €350.",
-      h1: "Παραγωγή Περιεχομένου για social media και διαφημίσεις",
-      body: "Φτιάχνουμε φωτογραφίες, βίντεο και Reels που είναι έτοιμα για ανάρτηση, διαφήμιση ή την ιστοσελίδα σου. Ξεκινάμε από την ιδέα, γυρίζουμε στον χώρο σου και παραδίδουμε αρχεία στη σωστή διάσταση για κάθε κανάλι. Είμαστε στην Αθήνα και γυρίζουμε όπου χρειάζεται το προϊόν ή ο χώρος σου, σε όλη την Ελλάδα.",
-      story: "",
-      cases: [
-        {
-          client: "Europatch",
-          story:
-            "Ίδια συνεργασία Europatch από την πλευρά της παραγωγής: how-to reels στον δρόμο, προϊόν σε χρήση, cuts για feed και Reels. Concept, γύρισμα και μοντάζ — η βιβλιοθήκη που μετά έφερε οργανική εμβέλεια.",
-          value: "How-to Reels · προϊόν σε χρήση · ready-to-post cuts",
-        },
-        {
-          client: "N4Sails",
-          story:
-            "Nafplio for Sails — lifestyle Reels για καταμαράν: dive shots, οικογενειακές στιγμές και guest stories για Instagram. Πλήρης παραγωγή περιεχομένου που πουλάει το αίσθημα του να είσαι πάνω στο σκάφος.",
-          value: "Lifestyle Reels · Ναύπλιο · ready-to-post",
-        },
-      ],
-      points: [
-        {
-          name: "Ιδέα και σενάριο",
-          detail: "Πριν γυρίσει κάμερα",
-          body: "Πριν γυρίσει κάμερα, ετοιμάζουμε ιδέες, σενάρια και λίστα λήψεων. Έτσι η μέρα του γυρίσματος είναι γρήγορη και το υλικό βγαίνει συνεπές.",
-        },
-        {
-          name: "Φωτογράφιση και βίντεο",
-          detail: "Στον χώρο σου",
-          body: "Γυρίζουμε στον χώρο σου προϊόν, ανθρώπους και περιβάλλον, για Instagram, TikTok, διαφημίσεις και το site, ώστε μία μέρα γυρίσματος να τροφοδοτεί όλα τα κανάλια.",
-        },
-        {
-          name: "Μοντάζ",
-          detail: "Σωστό μήκος και διάσταση",
-          body: "Reels, stories, posts, διαφημίσεις και βίντεο για το site, με σωστό μήκος και διάσταση για κάθε σημείο που θα ανέβει.",
-        },
-        {
-          name: "Έτοιμα αρχεία",
-          detail: "Τακτοποιημένα για χρήση",
-          body: "Φωτογραφίες, carousels, motion graphics, τίτλοι και thumbnails, τακτοποιημένα ώστε να τα βρίσκεις και να τα χρησιμοποιείς.",
-        },
-      ],
-      guide: {
-        blocksTitle: "Τι κάνουμε",
-        blocks: [
-          {
-            title: "Ιδέα και σενάριο",
-            body: "Πριν γυρίσει κάμερα, ετοιμάζουμε ιδέες, σενάρια και λίστα λήψεων. Έτσι η μέρα του γυρίσματος είναι γρήγορη και το υλικό βγαίνει συνεπές.",
-          },
-          {
-            title: "Φωτογράφιση και βίντεο",
-            body: "Γυρίζουμε στον χώρο σου προϊόν, ανθρώπους και περιβάλλον, για Instagram, TikTok, διαφημίσεις και το site, ώστε μία μέρα γυρίσματος να τροφοδοτεί όλα τα κανάλια.",
-          },
-          {
-            title: "Μοντάζ",
-            body: "Reels, stories, posts, διαφημίσεις και βίντεο για το site, με σωστό μήκος και διάσταση για κάθε σημείο που θα ανέβει.",
-          },
-          {
-            title: "Έτοιμα αρχεία",
-            body: "Φωτογραφίες, carousels, motion graphics, τίτλοι και thumbnails, τακτοποιημένα ώστε να τα βρίσκεις και να τα χρησιμοποιείς.",
-          },
-        ],
-        audienceTitle: "Για ποιον είναι",
-        audienceBody:
-          "Για επιχειρήσεις που θέλουν social χωρίς stock φωτογραφίες, για brands που τρέχουν διαφημίσεις και χρειάζονται συνεχώς νέο υλικό, και για όσους φτιάχνουν site και θέλουν πραγματικές φωτογραφίες από τον χώρο, την ομάδα και τα προϊόντα τους.",
-        processTitle: "Πώς δουλεύουμε",
-        process: [
-          "Γνωριμία: τι θέλεις να δείξεις, πού θα ανέβει και για ποιον.",
-          "Ιδέες και λίστα λήψεων για έγκριση.",
-          "Γύρισμα στον χώρο σου.",
-          "Μοντάζ και επεξεργασία.",
-          "Παράδοση έτοιμων αρχείων για κάθε κανάλι.",
-        ],
-        costTitle: "Πόσο κοστίζει",
-        costBody:
-          "Ένα γύρισμα κοστίζει €200 και τα πακέτα περιεχομένου ξεκινούν από €350. Η τελική τιμή εξαρτάται από τις μέρες γυρίσματος, τον αριθμό των τελικών βίντεο και φωτογραφιών και το μοντάζ που χρειάζεται.",
-        costLinkLabel: "Δες όλα τα πακέτα →",
-        costLinkHref: "/el/pricing/",
-        faqTitle: "Συχνές ερωτήσεις",
-        faq: [
-          {
-            q: "Πόσο κοστίζει ένα γύρισμα;",
-            a: "Ένα γύρισμα κοστίζει €200 και τα πακέτα ξεκινούν από €350, ανάλογα με το πόσο υλικό χρειάζεσαι.",
-          },
-          {
-            q: "Σε ποιον ανήκουν οι φωτογραφίες και τα βίντεο;",
-            a: "Σε εσένα. Μετά την παράδοση και την πληρωμή, μπορείς να τα χρησιμοποιείς στα social, στις διαφημίσεις και στο site σου.",
-          },
-          {
-            q: "Γυρίζετε και εκτός Αθήνας;",
-            a: "Ναι. Είμαστε στην Αθήνα και γυρίζουμε όπου χρειάζεται το προϊόν ή ο χώρος σου, σε όλη την Ελλάδα.",
-          },
-          {
-            q: "Πόσο υλικό βγαίνει από ένα γύρισμα;",
-            a: "Εξαρτάται από τον στόχο. Το σχεδιάζουμε από πριν με λίστα λήψεων, ώστε από μία μέρα να βγαίνει υλικό για posts, Reels και διαφημίσεις.",
-          },
-          {
-            q: "Μπορεί το περιεχόμενο να μπει στη μηνιαία διαχείριση των social;",
-            a: "Ναι. Μπορεί να μπει στο πακέτο της διαχείρισης ή να χρεωθεί χωριστά ανά γύρισμα. Δες τη ",
-            aLink: {
-              label: "Διαχείριση Social Media",
-              href: "/el/social/",
-            },
-          },
-        ],
-        relatedTitle: "Σχετικές υπηρεσίες",
-        related: [
-          {
-            label: "Διαχείριση Social Media",
-            href: "/el/social/",
-            blurb: "Στρατηγική, περιεχόμενο, community και μηνιαίο reporting.",
-          },
-          {
-            label: "Performance Marketing",
-            href: "/el/performance/",
-            blurb: "Meta Ads και Google Ads με καθαρό κόστος και απόδοση.",
-          },
-          {
-            label: "Κατασκευή Ιστοσελίδας",
-            href: "/el/web/",
-            blurb: "Γρήγορα sites και landing pages με SEO.",
-          },
-        ],
-        finalTitle: "Θες να δούμε τι περιεχόμενο χρειάζεται το brand σου;",
-        cta: "Κλείσε ένα σύντομο call",
-      },
-    },
     type: "service",
-    serviceName: {
-      en: "Content Creation",
-      el: "Παραγωγή Περιεχομένου για social media και διαφημίσεις",
-    },
   },
   {
     id: "performance",
@@ -430,167 +116,7 @@ const routeDefs = [
     enFile: "performance/index.html",
     elFile: "el/performance/index.html",
     image: `${origin}/images/performance.webp`,
-    en: {
-      title: "Meta & Google Ads Management — omnidot. Athens",
-      description:
-        "Performance marketing with Meta Ads and Google Ads. Setup €200 once, management from €300/mo. Your ad spend stays yours. Conversion-focused for Greek brands.",
-      h1: "Performance Marketing",
-      body: "Meta Ads and Google Ads management with clear cost, return and next moves. Setup once, then monthly optimization.",
-      story:
-        "Pyrgiotis OE needed paid acquisition a founder could read without a deck. We ran Meta and Google with tight creative tests and a clean landing path. In 30 days on Meta: 1,791 landing-page views at €0.08 each on €148 spend — plus Google search at 3.23% CTR.",
-      points: [
-        {
-          name: "Meta & Google",
-          detail: "Acquisition that compounds",
-          body: "Performance marketing on Meta Ads (Facebook & Instagram) and Google Ads: campaigns for traffic, leads and sales. Account structure, audiences, keywords and budgets built so you can grow when something clearly works — paid social and search together.",
-        },
-        {
-          name: "Creative testing",
-          detail: "Iterate what converts",
-          body: "Ongoing A/B tests on hooks, creatives, copy and offers. We keep ads that convert, pause the rest, and refresh weekly so CPA and ROAS improve from data — not from one big launch.",
-        },
-        {
-          name: "Funnel setup",
-          detail: "Landing → lead → sale",
-          body: "Ads need a clean path after the click: landing page, form, thank-you flow and conversion tracking (pixels, GA4, Google Ads tags). We align creative, landing and CRM follow-up so interest becomes a customer.",
-        },
-        {
-          name: "Analytics",
-          detail: "ROAS, CPA, clear next steps",
-          body: "Clear reporting on spend, CPA, ROAS, CTR and conversions — in language a founder can use. Each week: what to keep, kill or scale. If a metric does not change a decision, we do not parade it.",
-        },
-      ],
-    },
-    el: {
-      title: "Διαχείριση Google Ads & Meta Ads | omnidot. Αθήνα",
-      description:
-        "Διαχείριση διαφημίσεων σε Google, Facebook και Instagram με στόχο επαφές και πωλήσεις. Setup €200 μία φορά, διαχείριση από €300/μήνα. Το budget μένει δικό σου.",
-      h1: "Διαχείριση Google Ads και Meta Ads",
-      body: "Στήνουμε και τρέχουμε διαφημίσεις σε Google, Facebook και Instagram που φέρνουν επαφές και πωλήσεις, όχι απλώς κλικ. Δοκιμάζουμε, κρατάμε ό,τι δουλεύει και σου δείχνουμε καθαρά τι πήρες για τα χρήματά σου. Είμαστε στην Αθήνα και συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα.",
-      story: "",
-      cases: [
-        {
-          client: "Πυργιώτης ΟΕ",
-          story:
-            "Ο Πυργιώτης ΟΕ ήθελε διαφημίσεις που να καταλαβαίνει εύκολα ο ιδιοκτήτης — χωρίς μακροσκελή παρουσίαση. Τρέξαμε Meta και Google, δοκιμάζοντας λίγες εικόνες/κείμενα και καθαρή διαδρομή προς την ιστοσελίδα. Σε 30 ημέρες στο Meta: 1.791 επισκέψεις στη σελίδα με €0,08 η καθεμία και συνολικά €148 — και στο Google, το 3,23% όσων είδαν την αγγελία πάτησαν.",
-          value: "Meta €0,08 CPLV · Google 3,23% CTR · 30 ημέρες",
-        },
-      ],
-      points: [
-        {
-          name: "Meta Ads και Google Ads",
-          detail: "Επισκέψεις, επαφές, πωλήσεις",
-          body: "Καμπάνιες για επισκέψεις, επαφές και πωλήσεις σε Facebook, Instagram και Google. Στήνουμε σωστά λογαριασμούς, κοινό, λέξεις-κλειδιά και budget, ώστε να μεγαλώνουμε μόνο ό,τι δουλεύει.",
-        },
-        {
-          name: "Δοκιμές διαφημίσεων",
-          detail: "Κρατάμε ό,τι φέρνει αποτέλεσμα",
-          body: "Δοκιμάζουμε συνεχώς διαφορετικές εικόνες, βίντεο, κείμενα και προσφορές. Κρατάμε ό,τι φέρνει αποτέλεσμα και σταματάμε τα υπόλοιπα.",
-        },
-        {
-          name: "Από το κλικ στον πελάτη",
-          detail: "Landing → φόρμα → μέτρηση",
-          body: "Landing page, φόρμα, σελίδα ευχαριστίας και σωστή μέτρηση (pixel, GA4, Google Ads tags), ώστε το ενδιαφέρον να γίνεται πελάτης και να ξέρουμε από πού ήρθε.",
-        },
-        {
-          name: "Καθαρές αναφορές",
-          detail: "Spend, επαφές, κόστος",
-          body: "Πόσα ξοδεύτηκαν, πόσες επαφές ή πωλήσεις ήρθαν και πόσο κόστισε η καθεμία, σε απλή γλώσσα. Κάθε εβδομάδα αποφασίζουμε τι κρατάμε, τι κόβουμε και τι μεγαλώνουμε.",
-        },
-      ],
-      guide: {
-        blocksTitle: "Τι κάνουμε",
-        blocks: [
-          {
-            title: "Meta Ads και Google Ads",
-            body: "Καμπάνιες για επισκέψεις, επαφές και πωλήσεις σε Facebook, Instagram και Google. Στήνουμε σωστά λογαριασμούς, κοινό, λέξεις-κλειδιά και budget, ώστε να μεγαλώνουμε μόνο ό,τι δουλεύει.",
-          },
-          {
-            title: "Δοκιμές διαφημίσεων",
-            body: "Δοκιμάζουμε συνεχώς διαφορετικές εικόνες, βίντεο, κείμενα και προσφορές. Κρατάμε ό,τι φέρνει αποτέλεσμα και σταματάμε τα υπόλοιπα.",
-          },
-          {
-            title: "Από το κλικ στον πελάτη",
-            body: "Landing page, φόρμα, σελίδα ευχαριστίας και σωστή μέτρηση (pixel, GA4, Google Ads tags), ώστε το ενδιαφέρον να γίνεται πελάτης και να ξέρουμε από πού ήρθε.",
-          },
-          {
-            title: "Καθαρές αναφορές",
-            body: "Πόσα ξοδεύτηκαν, πόσες επαφές ή πωλήσεις ήρθαν και πόσο κόστισε η καθεμία, σε απλή γλώσσα. Κάθε εβδομάδα αποφασίζουμε τι κρατάμε, τι κόβουμε και τι μεγαλώνουμε.",
-          },
-        ],
-        audienceTitle: "Για ποιον είναι",
-        audienceBody:
-          "Για τοπικές επιχειρήσεις που θέλουν τηλεφωνήματα και ραντεβού, για e-shops που θέλουν πωλήσεις, και για founders που θέλουν να δοκιμάσουν μια νέα υπηρεσία ή προσφορά γρήγορα, πριν επενδύσουν περισσότερα.",
-        platformsTitle: "Google ή Meta;",
-        platforms: [
-          "Google Ads: όταν ο κόσμος ήδη ψάχνει αυτό που πουλάς.",
-          "Meta Ads (Facebook, Instagram): όταν θέλεις να σε μάθει κόσμος που δεν σε ψάχνει ακόμα.",
-          "Συχνά τα δύο μαζί δουλεύουν καλύτερα.",
-        ],
-        processTitle: "Πώς δουλεύουμε",
-        process: [
-          "Γνωριμία: στόχος, πελάτες, budget.",
-          "Setup: λογαριασμοί, μέτρηση και πρώτες καμπάνιες.",
-          "Δοκιμές τις πρώτες εβδομάδες.",
-          "Κρατάμε ό,τι δουλεύει και μεγαλώνουμε το budget εκεί.",
-          "Εβδομαδιαία αναφορά και αποφάσεις.",
-        ],
-        costTitle: "Πόσο κοστίζει",
-        costBody:
-          "Το setup κοστίζει €200 μία φορά και η διαχείριση ξεκινά από €300 τον μήνα. Τα χρήματα των διαφημίσεων τα πληρώνεις εσύ απευθείας στη Google ή στη Meta και είναι ξεχωριστά από την αμοιβή μας.",
-        costLinkLabel: "Δες όλα τα πακέτα →",
-        costLinkHref: "/el/pricing/",
-        faqTitle: "Συχνές ερωτήσεις",
-        faq: [
-          {
-            q: "Πόσα χρήματα πρέπει να βάλω στις διαφημίσεις;",
-            a: "Το budget το συμφωνούμε μαζί, ανάλογα με τον στόχο και την αγορά σου. Ξεκινάμε με ποσό που αρκεί για δοκιμές και το μεγαλώνουμε μόνο όταν φανεί τι δουλεύει.",
-          },
-          {
-            q: "Υπάρχει ελάχιστη διάρκεια συνεργασίας;",
-            a: "Ναι, 3 μήνες. Οι διαφημίσεις χρειάζονται χρόνο για να μάθουν και να δοκιμάσουμε, ώστε να φανεί καθαρή εικόνα.",
-          },
-          {
-            q: "Σε πόσο καιρό φαίνονται αποτελέσματα;",
-            a: "Τα πρώτα στοιχεία φαίνονται από τις πρώτες εβδομάδες. Για σταθερή εικόνα χρειάζονται συνήθως μερικές εβδομάδες δοκιμών.",
-          },
-          {
-            q: "Σε ποιον ανήκει ο διαφημιστικός λογαριασμός;",
-            a: "Σε εσένα. Οι λογαριασμοί και τα δεδομένα μένουν στο όνομά σου και εμείς δουλεύουμε με πρόσβαση.",
-          },
-          {
-            q: "Φτιάχνετε και τις εικόνες και τα βίντεο των διαφημίσεων;",
-            a: "Ναι, μέσα από τη Δημιουργία Περιεχομένου. Μπορούμε να δουλέψουμε και με υλικό που έχεις ήδη.",
-          },
-        ],
-        relatedTitle: "Σχετικές υπηρεσίες",
-        related: [
-          {
-            label: "Διαχείριση Social Media",
-            href: "/el/social/",
-            blurb: "Στρατηγική, περιεχόμενο, community και μηνιαίο reporting.",
-          },
-          {
-            label: "Δημιουργία Περιεχομένου",
-            href: "/el/content/",
-            blurb: "Φωτογραφία, video και Reels από concept έως ανάρτηση.",
-          },
-          {
-            label: "Κατασκευή Ιστοσελίδας",
-            href: "/el/web/",
-            blurb: "Γρήγορα sites και landing pages με SEO.",
-          },
-        ],
-        finalTitle:
-          "Θες να δούμε αν οι διαφημίσεις ταιριάζουν στην επιχείρησή σου;",
-        cta: "Κλείσε ένα σύντομο call",
-      },
-    },
     type: "service",
-    serviceName: {
-      en: "Performance Marketing",
-      el: "Διαχείριση Google Ads και Meta Ads",
-    },
   },
   {
     id: "web",
@@ -599,155 +125,7 @@ const routeDefs = [
     enFile: "web/index.html",
     elFile: "el/web/index.html",
     image: `${origin}/images/web.webp`,
-    en: {
-      title: "Web Development & SEO — Athens | omnidot.",
-      description:
-        "Website development and SEO: fast sites, landing pages and Google-ready structure. Landing from €700, multi-page ≈ €700/page. In Athens and across Greece.",
-      h1: "Web Development",
-      body: "Website development and SEO — fast, editorial sites and landing pages built to rank, load quickly and convert.",
-      story: "",
-      points: [
-        {
-          name: "Websites",
-          detail: "Corporate sites & brand pages",
-          body: "We design and build corporate websites and brand sites that load fast, look clean on mobile and desktop, and guide visitors to contact, quote or purchase. Clear information architecture, strong calls to action, and pages written so Google and people can both understand what you offer.",
-        },
-        {
-          name: "SEO",
-          detail: "Technical SEO + content that ranks",
-          body: "Search engine optimization from the ground up: site structure, title tags, meta descriptions, headings, internal links, Core Web Vitals, schema markup and crawlable pages. We combine technical SEO with content for the keywords your customers actually search — local SEO included when you serve a place or region.",
-        },
-        {
-          name: "Landing pages",
-          detail: "Campaign & ads landing pages",
-          body: "Dedicated landing pages for Google Ads, Meta ads and email campaigns — one offer, one path, fast load. Built to turn paid traffic and organic search into leads or sales, with tracking (GA4, pixels) so you see which campaign and keyword convert.",
-        },
-        {
-          name: "Care",
-          detail: "Updates, speed & ongoing SEO",
-          body: "After launch we keep the site healthy: content updates, performance and speed fixes, SEO improvements, security and small UX changes as campaigns and products evolve. A website is a channel, not a one-off brochure.",
-        },
-      ],
-    },
-    el: {
-      title: "Κατασκευή Ιστοσελίδας στην Αθήνα | omnidot.",
-      description:
-        "Κατασκευή ιστοσελίδας για επιχειρήσεις σε όλη την Ελλάδα: γρήγορα sites, landing pages και σωστή δομή για τη Google. Landing page από €700.",
-      h1: "Κατασκευή Ιστοσελίδας για επιχειρήσεις",
-      body: "Φτιάχνουμε ιστοσελίδες που φορτώνουν γρήγορα, δείχνουν σωστά στο κινητό και είναι στημένες από την αρχή για να τις βρίσκει η Google. Είμαστε στην Αθήνα και συνεργαζόμαστε με founders και επιχειρήσεις σε όλη την Ελλάδα.",
-      story: "",
-      cases: [
-        {
-          client: "dotxi.app",
-          story:
-            "Ιστοσελίδα για ψηφιακή υπηρεσία, με καθαρή δομή που εξηγεί γρήγορα τι κάνει και οδηγεί τον επισκέπτη στο επόμενο βήμα.",
-          href: "https://dotxi.app/",
-          label: "dotxi.app",
-        },
-        {
-          client: "Πυργιώτης ΟΕ",
-          story:
-            "Εταιρική ιστοσελίδα που παρουσιάζει την επιχείρηση και τις υπηρεσίες της και διευκολύνει την επικοινωνία με νέους πελάτες.",
-          href: "https://pyrgiotisoe.com/",
-          label: "pyrgiotisoe.com",
-        },
-      ],
-      guide: {
-        blocksTitle: "Τι φτιάχνουμε",
-        blocks: [
-          {
-            title: "Εταιρικές ιστοσελίδες",
-            body: "Σχεδιάζουμε εταιρικά sites που φορτώνουν γρήγορα, δουλεύουν σωστά σε κινητό και υπολογιστή και οδηγούν τον επισκέπτη σε επικοινωνία, προσφορά ή αγορά. Καθαρή δομή σελίδων και κείμενα που τα καταλαβαίνουν και οι άνθρωποι και η Google.",
-          },
-          {
-            title: "Landing pages",
-            body: "Μία σελίδα για μία προσφορά ή καμπάνια, για Google Ads, Meta ads ή email. Γρήγορο φόρτωμα και μέτρηση (GA4, pixels), ώστε να βλέπεις ποια καμπάνια φέρνει αποτέλεσμα.",
-          },
-          {
-            title: "SEO από τη βάση",
-            body: "Δομή site, τίτλοι και περιγραφές, επικεφαλίδες, εσωτερικά links, ταχύτητα, schema markup και σύνδεση με Google Search Console. Τοπικό SEO όταν εξυπηρετείς συγκεκριμένη περιοχή.",
-          },
-          {
-            title: "Φροντίδα μετά το launch",
-            body: "Ενημερώσεις περιεχομένου, βελτιώσεις ταχύτητας, SEO διορθώσεις, ασφάλεια και μικρές αλλαγές, όσο εξελίσσεται η επιχείρησή σου.",
-          },
-        ],
-        audienceTitle: "Για ποιον είναι",
-        audienceBody:
-          "Για founders που ξεκινούν και χρειάζονται ένα site που πείθει από την πρώτη μέρα, για τοπικές επιχειρήσεις στην Αθήνα που θέλουν να τις βρίσκουν στη Google, και για εταιρείες που το site τους έχει μείνει πίσω και δεν φέρνει επαφές.",
-        processTitle: "Πώς δουλεύουμε",
-        process: [
-          "Γνωριμία: ένα call για την επιχείρηση, τους πελάτες σου και τι πρέπει να κάνει το site.",
-          "Δομή και κείμενα: ποιες σελίδες χρειάζονται και τι λέει η καθεμία.",
-          "Σχέδιο: βλέπεις πώς θα είναι πριν το χτίσουμε.",
-          "Κατασκευή και έλεγχος σε όλες τις συσκευές.",
-          "Ανέβασμα και σύνδεση με τη Google.",
-        ],
-        costTitle: "Πόσο κοστίζει",
-        costBody:
-          "Μια landing page κοστίζει €700–1.200 και ένα site με πολλές σελίδες περίπου €700 ανά σελίδα. Για e-shop η τιμή βγαίνει αφού δούμε τι χρειάζεσαι.",
-        costLinkLabel: "Δες όλα τα πακέτα →",
-        costLinkHref: "/el/pricing/",
-        faqTitle: "Συχνές ερωτήσεις",
-        faq: [
-          {
-            q: "Σε πόσο καιρό είναι έτοιμο το site;",
-            a: "Μια landing page είναι συνήθως έτοιμη μέσα σε λίγες εβδομάδες, ενώ ένα εταιρικό site με περισσότερες σελίδες θέλει λίγο περισσότερο. Τον ακριβή χρόνο τον συμφωνούμε από την αρχή, ανάλογα με τις σελίδες και το πόσο γρήγορα έχουμε τα κείμενα και τις φωτογραφίες.",
-          },
-          {
-            q: "Θα βγαίνει το site στη Google;",
-            a: "Το στήνουμε σωστά για τη Google από την αρχή και το συνδέουμε με το Search Console. Η θέση στα αποτελέσματα χτίζεται με τον καιρό και κανείς δεν μπορεί να εγγυηθεί την πρώτη θέση.",
-          },
-          {
-            q: "Θα μπορώ να αλλάζω μόνος μου κείμενα και φωτογραφίες;",
-            a: "Αν θέλεις να κάνεις αλλαγές μόνος σου, το στήνουμε έτσι από την αρχή. Διαφορετικά, τις αλλαγές τις αναλαμβάνουμε εμείς μέσα από τη φροντίδα μετά το launch.",
-          },
-          {
-            q: "Ποιος γράφει τα κείμενα;",
-            a: "Τα γράφουμε μαζί. Εσύ μας δίνεις τις πληροφορίες για την επιχείρηση και εμείς τα δουλεύουμε ώστε να είναι καθαρά για τον επισκέπτη και σωστά για τη Google. Αν χρειάζεσαι και φωτογραφίες ή βίντεο, υπάρχει η υπηρεσία ",
-            aLink: {
-              label: "Δημιουργία Περιεχομένου",
-              href: "/el/content/",
-            },
-          },
-          {
-            q: "Δουλεύετε μόνο με επιχειρήσεις στην Αθήνα;",
-            a: "Όχι. Συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα και τα calls γίνονται online.",
-          },
-        ],
-        readMoreTitle: "Διάβασε περισσότερα",
-        readMore: {
-          label:
-            "Δημιουργία ιστοσελίδας στην Αθήνα: τι περιλαμβάνει στην πράξη, πώς δένει με το SEO και τι καθορίζει την τιμή",
-          href: "/el/articles/dimiourgia-istoselidas-athina/",
-        },
-        relatedTitle: "Σχετικές υπηρεσίες",
-        related: [
-          {
-            label: "Διαχείριση Social Media",
-            href: "/el/social/",
-            blurb: "Στρατηγική, περιεχόμενο, community και μηνιαίο reporting.",
-          },
-          {
-            label: "Δημιουργία Περιεχομένου",
-            href: "/el/content/",
-            blurb: "Φωτογραφία, video και Reels από concept έως ανάρτηση.",
-          },
-          {
-            label: "Performance Marketing",
-            href: "/el/performance/",
-            blurb: "Meta Ads και Google Ads με καθαρό κόστος και απόδοση.",
-          },
-        ],
-        finalTitle: "Θες να δούμε τι site χρειάζεται η επιχείρησή σου;",
-        cta: "Κλείσε ένα σύντομο call",
-      },
-    },
     type: "service",
-    serviceName: {
-      en: "Web Development",
-      el: "Κατασκευή Ιστοσελίδας για επιχειρήσεις",
-    },
   },
   {
     id: "about",
@@ -756,24 +134,6 @@ const routeDefs = [
     enFile: "about/index.html",
     elFile: "el/about/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
-    en: {
-      title: "About & Contact — Marketing Agency Athens | omnidot.",
-      description:
-        "About omnidot. — Athens marketing agency for founders and local brands. Contact us for social media, content, Meta & Google Ads, and SEO websites.",
-      h1: "About omnidot.",
-      body: "Athens marketing agency for founders and local brands. From SEO websites to social media and Meta & Google Ads. Start a brief with omnidot.",
-      extra: "For founders and local brands that want a clear next step — not another report. From a fast SEO website to social media management and Meta & Google Ads campaigns. We don't believe in noise. We believe in data, clean design, and strategies that turn visitors into loyal customers. Contact: info@omnidot.gr · Athens · All of Greece.",
-      story: "",
-    },
-    el: {
-      title: "Σχετικά & Επικοινωνία — Διαφημιστική στην Αθήνα | omnidot.",
-      description:
-        "Σχετικά με την omnidot. — διαφημιστική στην Αθήνα για founders και τοπικά brands. Επικοινωνία για social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
-      h1: "Σχετικά με το omnidot.",
-      body: "Διαφημιστική στην Αθήνα για founders και τοπικά brands. Από ιστοσελίδες με SEO μέχρι social media και Meta & Google Ads. Ξεκίνα ένα brief με το omnidot.",
-      extra: "Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Από γρήγορη ιστοσελίδα με SEO μέχρι διαχείριση social media και καμπάνιες Meta & Google Ads. Δεν πιστεύουμε στον θόρυβο. Πιστεύουμε στα δεδομένα, στο καθαρό design και στις στρατηγικές που μετατρέπουν τους επισκέπτες σε πιστούς πελάτες. Επικοινωνία: info@omnidot.gr · Αθήνα · Όλη η Ελλάδα.",
-      story: "",
-    },
     type: "about",
   },
   {
@@ -783,48 +143,6 @@ const routeDefs = [
     enFile: "pricing/index.html",
     elFile: "el/pricing/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
-    en: {
-      title: "Marketing Agency Pricing — Packages | omnidot. Athens",
-      description:
-        "Marketing agency pricing in Athens: social media from €450/mo, content packs from €350, Meta & Google Ads from €300/mo, SEO websites from €700. Ad spend separate.",
-      h1: "Packages & pricing",
-      body: "Clear marketing agency packages for social, content, ads and web. Ad spend is always separate. Social from €450/mo, content from €350, performance from €300/mo, web from €700. Prices in EUR, excl. VAT where applicable. Minimum 3 months on retainers.",
-      story: "",
-      plans: [
-        { name: "Social Media Management", price: "From €450 / mo", blurb: "Setup once (€150–350 by platforms), then a monthly package that stays consistent.", items: ["Essential €450–650 · 1 platform · 8–12 posts · 8 basic stories · light community · report", "Standard €750–1,100 · 2 platforms · 12–16 posts/reels · community · report", "Premium €1,200–1,800 · 3 platforms · 16–20 posts/reels · community · report"] },
-        { name: "Content Creation", price: "From €350 / pack", blurb: "Asset packs for feed, ads and web — concept through edit.", items: ["1 platform · 8–12 assets · €350–550", "2 platforms · 12–16 assets + 2–4 videos · €650–1,000", "Shoot day €200."] },
-        { name: "Performance Marketing", price: "From €300 / mo", blurb: "Setup €200 once. Meta & Google management — your ad budget stays yours.", items: ["Ad spend €0–500 → management €300", "Ad spend €500–1,500 → management €500", "Ad spend €1,500+ → by agreement"] },
-        { name: "Web Development", price: "From €700", blurb: "Sites and landings that load fast, rank cleanly, and stay yours.", items: ["Landing page €700–1,200", "4–6 page site ≈ €700 / page", "E-shop — by agreement"] },
-      ],
-      faq: [
-        { q: "Is ad spend included in the monthly fee?", a: "No. Management fees are ours; your Meta or Google ad budget stays yours and is paid directly to the platforms." },
-        { q: "Why a 3-month minimum on retainers?", a: "Social and paid need a learning window. Three months lets us set the system, test creatives and show a clear trend — not a one-week spike." },
-        { q: "Who owns the photos, videos and copy?", a: "You do. After delivery and payment, assets are yours to use on your channels, ads and site." },
-        { q: "Do you only work in Athens?", a: "We're based in Athens and work across Greece and abroad. Shoot days are planned where your product or place needs them." },
-        { q: "How do we start?", a: "Send a brief (goals, links, timeline). We reply with scope, package and first steps — no long decks before we know the job." },
-      ],
-    },
-    el: {
-      title: "Τιμές Διαφημιστικής — Πακέτα | omnidot. Αθήνα",
-      description:
-        "Τιμές διαφημιστικής στην Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες SEO από €700. Ad spend ξεχωριστά.",
-      h1: "Πακέτα & τιμές",
-      body: "Καθαρά πακέτα διαφημιστικής για social, content, ads και web. Το ad spend είναι πάντα ξεχωριστά. Social από €450/μήνα, content από €350, performance από €300/μήνα, web από €700. Τιμές σε ευρώ, χωρίς ΦΠΑ όπου εφαρμόζεται. Ελάχιστο 3 μήνες στα retainers.",
-      story: "",
-      plans: [
-        { name: "Διαχείριση Social Media", price: "Από €450 / μήνα", blurb: "Setup μία φορά (€150–350 ανά πλατφόρμες), μετά μηνιαίο πακέτο.", items: ["Essential €450–650 · 1 πλατφόρμα · 8–12 posts · 8 basic stories · light community · report", "Standard €750–1.100 · 2 πλατφόρμες · 12–16 posts/reels · community · report", "Premium €1.200–1.800 · 3 πλατφόρμες · 16–20 posts/reels · community · report"] },
-        { name: "Δημιουργία Περιεχομένου", price: "Από €350 / πακέτο", blurb: "Πακέτα assets για feed, ads και web — από concept έως μοντάζ.", items: ["1 πλατφόρμα · 8–12 assets · €350–550", "2 πλατφόρμες · 12–16 assets + 2–4 videos · €650–1.000", "Γύρισμα €200."] },
-        { name: "Performance Marketing", price: "Από €300 / μήνα", blurb: "Setup €200 μία φορά. Meta & Google — το ad spend μένει δικό σου.", items: ["Ad spend €0–500 → management €300", "Ad spend €500–1.500 → management €500", "Ad spend €1.500+ → κατόπιν συμφωνίας"] },
-        { name: "Ανάπτυξη Ιστοσελίδων", price: "Από €700", blurb: "Sites και landings που φορτώνουν γρήγορα και μένουν δικά σου.", items: ["Landing page €700–1.200", "Site 4–6 σελίδων ≈ €700 / σελίδα", "E-shop — κατόπιν συμφωνίας"] },
-      ],
-      faq: [
-        { q: "Το ad spend περιλαμβάνεται στο μηνιαίο;", a: "Όχι. Τα management fees είναι δικά μας· το Meta ή Google budget μένει δικό σου και πληρώνεται στις πλατφόρμες." },
-        { q: "Γιατί ελάχιστο 3 μήνες στα retainers;", a: "Social και paid χρειάζονται παράθυρο μάθησης. Τρεις μήνες αρκούν για σύστημα, tests και καθαρή τάση — όχι spike μιας εβδομάδας." },
-        { q: "Ποιος κατέχει φωτογραφίες, video και κείμενα;", a: "Εσύ. Μετά την παράδοση και την πληρωμή, τα assets είναι δικά σου." },
-        { q: "Δουλεύετε μόνο στην Αθήνα;", a: "Βάση Αθήνα, συνεργαζόμαστε σε όλη την Ελλάδα και στο εξωτερικό. Τα γυρίσματα προγραμματίζονται εκεί που χρειάζεται το προϊόν ή ο χώρος σου." },
-        { q: "Πώς ξεκινάμε;", a: "Στείλε brief (στόχοι, links, χρονοδιάγραμμα). Απαντάμε με scope, πακέτο και πρώτα βήματα." },
-      ],
-    },
     type: "pricing",
   },
   {
@@ -834,22 +152,6 @@ const routeDefs = [
     enFile: "articles/index.html",
     elFile: "el/articles/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
-    en: {
-      title: "Articles — omnidot.",
-      description:
-        "Articles from omnidot. on Meta & Google Ads, social media, SEO websites and marketing for Athens brands.",
-      h1: "Articles",
-      body: "Short reads on social, ads, SEO and websites — practical notes from how we work with founders and local brands. Start with website creation in Athens: what a real build includes, where SEO fits from day one, and what drives the price.",
-      story: "",
-    },
-    el: {
-      title: "Άρθρα — omnidot.",
-      description:
-        "Άρθρα από την omnidot. για Meta & Google Ads, social media, ιστοσελίδες με SEO και marketing για brands στην Αθήνα.",
-      h1: "Άρθρα",
-      body: "Σύντομα κείμενα για social, ads, SEO και ιστοσελίδες — πρακτικές σημειώσεις από τη δουλειά μας με founders και τοπικά brands. Ξεκίνα από τη δημιουργία ιστοσελίδας στην Αθήνα: τι περιλαμβάνει στην πράξη η κατασκευή, πού μπαίνει το SEO και τι καθορίζει την τιμή.",
-      story: "",
-    },
     type: "articles",
   },
   {
@@ -859,28 +161,6 @@ const routeDefs = [
     enFile: "articles/dimiourgia-istoselidas-athina/index.html",
     elFile: "el/articles/dimiourgia-istoselidas-athina/index.html",
     image: `${origin}/images/articles/dimiourgia-istoselidas-athina.jpg`,
-    en: {
-      title: "Website creation in Athens: SEO and price — omnidot.",
-      description:
-        "What a real website build in Athens includes, where SEO fits from day one, and what drives the price — from omnidot.",
-      h1: "Website creation in Athens",
-      subtitle:
-        "what it actually includes, how it ties to SEO, and what drives the price",
-      date: "2026-10-07",
-      body: "Most conversations about a new website start in the wrong place. A website for a business in Athens has one job: turn whoever finds it into someone who calls, messages or buys. This piece explains what building a site actually includes, where SEO fits, what raises or lowers the price, and which questions to ask whoever builds it — even if that isn’t us. Start from the job the site must do. A proper build includes page architecture, copy, design hierarchy, development, SEO foundations, measurement, and launch plus ongoing updates. SEO is built from day one. Landing page from €700–1,200; multi-page ≈ €700/page; e-shop by discussion. omnidot builds SEO websites for businesses in Athens and across Greece.",
-      story: "",
-    },
-    el: {
-      title: "Δημιουργία ιστοσελίδας στην Αθήνα: SEO και τιμή — omnidot.",
-      description:
-        "Τι περιλαμβάνει στην πράξη η κατασκευή ιστοσελίδας στην Αθήνα, πώς δένει με το SEO και τι καθορίζει την τιμή — από την omnidot.",
-      h1: "Δημιουργία ιστοσελίδας στην Αθήνα",
-      subtitle:
-        "τι περιλαμβάνει στην πράξη, πώς δένει με το SEO και τι καθορίζει την τιμή",
-      date: "2026-10-07",
-      body: "Οι περισσότερες συζητήσεις για καινούργιο site ξεκινούν από το λάθος σημείο. Μια ιστοσελίδα για επιχείρηση στην Αθήνα έχει μία δουλειά: να μετατρέπει όποιον τη βρίσκει σε κάποιον που σε παίρνει τηλέφωνο, σου στέλνει μήνυμα ή αγοράζει. Σε αυτό το κείμενο εξηγούμε τι πραγματικά περιλαμβάνει η κατασκευή, πού μπαίνει το SEO, τι ανεβάζει ή κατεβάζει την τιμή και ποιες ερωτήσεις αξίζει να κάνεις. Ξεκίνα από τη δουλειά που θα κάνει το site. Μια σωστή κατασκευή περιλαμβάνει δομή σελίδων, κείμενα, σχεδιασμό, ανάπτυξη, βάση SEO, μέτρηση και launch. Το SEO στήνεται από την πρώτη μέρα. Landing page €700–1.200· πολυσέλιδο ≈ €700/σελίδα· e-shop κατόπιν συζήτησης. Η omnidot φτιάχνει ιστοσελίδες με SEO για επιχειρήσεις στην Αθήνα και σε όλη την Ελλάδα.",
-      story: "",
-    },
     type: "articles",
   },
   {
@@ -890,37 +170,171 @@ const routeDefs = [
     enFile: "privacy/index.html",
     elFile: "el/privacy/index.html",
     image: `${origin}/images/work-omnidot.jpg`,
-    en: {
-      title: "Website terms, privacy & cookies - omnidot.",
-      description:
-        "Terms of use, privacy policy and cookies for omnidot. — how we process contact data under GDPR.",
-      h1: "Website terms, privacy & cookies",
-      body: "How omnidot. processes contact form data under GDPR. Data controller: Antonios Syrianos, sole proprietorship. Contact: info@omnidot.gr. Location: Athens · All of Greece.",
-      story: "",
-      sections: [
-        { heading: "Who we are", paragraphs: ["omnidot. is operated by Antonios Syrianos, sole proprietorship (VAT 162731235), based in Athens, Greece. Contact: info@omnidot.gr."] },
-        { heading: "What data we collect", paragraphs: ["Through the contact form we may collect your name, email, company and the brief you send. We use this only to reply and discuss a possible collaboration."] },
-        { heading: "Cookies & analytics", paragraphs: ["Essential cookies keep the site working. Analytics and marketing cookies load only after you accept. You can change your choice anytime from the cookie settings link in the footer."] },
-        { heading: "Your rights", paragraphs: ["Under GDPR you can ask for access, correction or deletion of your data by emailing info@omnidot.gr. We aim to reply within one month."] },
-      ],
-    },
-    el: {
-      title: "Όροι χρήσης, πολιτική απορρήτου & cookies - omnidot.",
-      description:
-        "Όροι χρήσης, πολιτική απορρήτου και cookies του omnidot. — πώς επεξεργαζόμαστε δεδομένα επικοινωνίας βάσει GDPR.",
-      h1: "Όροι χρήσης, πολιτική απορρήτου & cookies",
-      body: "Πώς το omnidot. επεξεργάζεται δεδομένα φόρμας επικοινωνίας βάσει GDPR. Υπεύθυνος: Συριανός Αντώνιος, ατομική επιχείρηση. Επικοινωνία: info@omnidot.gr. Τοποθεσία: Αθήνα · Όλη η Ελλάδα.",
-      story: "",
-      sections: [
-        { heading: "Ποιοι είμαστε", paragraphs: ["Το omnidot. το λειτουργεί ο Συριανός Αντώνιος, ατομική επιχείρηση (ΑΦΜ 162731235), με έδρα την Αθήνα. Επικοινωνία: info@omnidot.gr."] },
-        { heading: "Τι δεδομένα συλλέγουμε", paragraphs: ["Μέσω της φόρμας επικοινωνίας μπορεί να συλλέξουμε όνομα, email, εταιρεία και το brief που στέλνεις. Τα χρησιμοποιούμε μόνο για να απαντήσουμε και να συζητήσουμε πιθανή συνεργασία."] },
-        { heading: "Cookies & analytics", paragraphs: ["Τα απαραίτητα cookies κρατούν το site σε λειτουργία. Analytics και marketing φορτώνουν μόνο αν αποδεχτείς. Μπορείς να αλλάξεις επιλογή οποιαδήποτε στιγμή από το link ρυθμίσεων cookies στο footer."] },
-        { heading: "Τα δικαιώματά σου", paragraphs: ["Με βάση το GDPR μπορείς να ζητήσεις πρόσβαση, διόρθωση ή διαγραφή των δεδομένων σου στο info@omnidot.gr. Στοχεύουμε σε απάντηση εντός ενός μηνός."] },
-      ],
-    },
     type: "privacy",
   },
 ];
+
+/** @type {typeof routeStructure} */
+let routeDefs = routeStructure;
+
+function serviceCases(page, id) {
+  const clients = page.proof?.clients;
+  if (!clients?.length) {
+    if (page.proof?.client && page.proof?.story) {
+      return [
+        {
+          client: page.proof.client,
+          story: page.proof.story,
+          value: page.proof.value,
+          href: page.proof.links?.[0]?.href,
+          label: page.proof.links?.[0]?.label,
+        },
+      ];
+    }
+    return [];
+  }
+  return clients.map((c) => ({
+    client: c.client,
+    story: c.story,
+    value: c.value,
+    href: c.links?.[0]?.href,
+    label: c.links?.[0]?.label,
+  }));
+}
+
+function localeShell(locale, def) {
+  const t = i18nModule.copy[locale];
+  const titles = i18nModule.PAGE_TITLES[locale];
+
+  if (def.id === "home") {
+    const services = ["social", "content", "performance", "web"].map((id) => {
+      const page = t.pages[id];
+      const href = locale === "el" ? `/el/${id}/` : `/${id}/`;
+      const blurb =
+        page.serviceGuide?.intro?.slice(0, 140) ||
+        page.points?.[0]?.body?.slice(0, 140) ||
+        "";
+      return {
+        name: page.title,
+        href,
+        body: blurb,
+      };
+    });
+    return {
+      title: titles.home,
+      description: t.metaDescription,
+      h1: t.homeMobileHeadline,
+      body: t.aboutSub,
+      story: "",
+      services,
+    };
+  }
+
+  if (def.id === "about") {
+    return {
+      title: titles.about,
+      description: t.aboutSeoDescription,
+      h1: t.aboutHeading,
+      body: i18nModule.verseOpenText(t.aboutVerse),
+      extra: t.aboutBody,
+      story: "",
+      services: ["social", "content", "performance", "web"].map((id) => ({
+        name: t.pages[id].title,
+        href: locale === "el" ? `/el/${id}/` : `/${id}/`,
+      })),
+    };
+  }
+
+  if (def.id === "pricing") {
+    return {
+      title: titles.pricing,
+      description: t.pricingSeoDescription,
+      h1: t.pricingTitle,
+      body: t.pricingIntro,
+      story: "",
+      plans: t.pricingPlans,
+      principlesTitle: t.pricingPrinciplesTitle,
+      principles: t.pricingPrinciples,
+      faqTitle: t.pricingFaqTitle,
+      faq: t.pricingFaq,
+    };
+  }
+
+  if (def.type === "service") {
+    const page = t.pages[def.id];
+    const cases = serviceCases(page, def.id);
+    const story =
+      def.id === "social" && cases[0]?.story ? cases[0].story : "";
+    return {
+      title: titles[def.id] || page.seoTitle,
+      description: page.seoDescription,
+      h1: page.title,
+      body: page.serviceGuide?.intro || page.points?.[0]?.body || "",
+      story,
+      // Social uses a single story paragraph after intro; content has showcase only.
+      cases:
+        def.id === "content" || def.id === "social"
+          ? []
+          : cases,
+      guide: page.serviceGuide,
+      points: page.points,
+      serviceName: page.title,
+    };
+  }
+
+  if (def.id === "articles") {
+    return {
+      title: titles.articles,
+      description: t.articlesSeoDescription,
+      h1: t.articlesTitle,
+      body: t.articlesLede,
+      story: "",
+    };
+  }
+
+  if (def.id === "privacy") {
+    return {
+      title: titles.privacy,
+      description: t.privacySeoDescription,
+      h1: t.privacyTitle,
+      body: t.privacyDisclaimer,
+      story: "",
+      sections: t.privacySections,
+    };
+  }
+
+  if (isArticleDetail(def)) {
+    // Titles filled later from article module; keep stubs for path wiring.
+    return {
+      title: titles.article,
+      description: "",
+      h1: "",
+      body: "",
+      story: "",
+    };
+  }
+
+  return { title: "", description: "", h1: "", body: "", story: "" };
+}
+
+function hydrateRouteDefs() {
+  routeDefs = routeStructure.map((def) => {
+    if (isArticleDetail(def)) {
+      return {
+        ...def,
+        en: localeShell("en", def),
+        el: localeShell("el", def),
+      };
+    }
+    const en = localeShell("en", def);
+    const el = localeShell("el", def);
+    const out = { ...def, en, el };
+    if (def.type === "service") {
+      out.serviceName = { en: en.h1, el: el.h1 };
+    }
+    return out;
+  });
+}
 
 function escapeHtml(value) {
   return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -1205,7 +619,7 @@ function jsonLdFor(def, locale) {
               acceptedAnswer: {
                 "@type": "Answer",
                 text: item.aLink
-                  ? `${item.a}${item.aLink.label}.`
+                  ? `${item.a}${item.aLink.label}${item.aLink.after ?? "."}`
                   : item.a,
               },
             })),
@@ -1267,7 +681,15 @@ function crawlGuide(guide) {
     if (guide.platformsTitle && guide.platforms?.length) {
       parts.push(
         `<h3>${escapeHtml(guide.platformsTitle)}</h3><ul>${guide.platforms
-          .map((item) => `<li>${escapeHtml(item)}</li>`)
+          .map((item) => {
+            if (typeof item === "string") return `<li>${escapeHtml(item)}</li>`;
+            const name = (item.name || "").replace(/:\s*$/, "");
+            const detail = item.detail || "";
+            if (name) {
+              return `<li><strong>${escapeHtml(name)}: </strong>${escapeHtml(detail)}</li>`;
+            }
+            return `<li>${escapeHtml(detail)}</li>`;
+          })
           .join("")}</ul>`,
       );
     }
@@ -1278,9 +700,13 @@ function crawlGuide(guide) {
       `<section><h2>${escapeHtml(guide.processTitle)}</h2><ol>${guide.process
         .map((item) => {
           if (typeof item === "string") return `<li>${escapeHtml(item)}</li>`;
-          return `<li><strong>${escapeHtml(item.title || "")}</strong>${escapeHtml(
-            item.body || "",
-          )}</li>`;
+          const title = (item.title || "").replace(/:\s*$/, "");
+          const body = item.body || "";
+          if (title && body) {
+            return `<li><strong>${escapeHtml(title)}</strong>: ${escapeHtml(body)}</li>`;
+          }
+          if (title) return `<li><strong>${escapeHtml(title)}</strong></li>`;
+          return `<li>${escapeHtml(body)}</li>`;
         })
         .join("")}</ol></section>`,
     );
@@ -1305,7 +731,7 @@ function crawlGuide(guide) {
               (item) =>
             `<dt>${escapeHtml(item.q)}</dt><dd>${escapeHtml(item.a)}${
               item.aLink
-                ? `<a href="${escapeAttr(item.aLink.href)}">${escapeHtml(item.aLink.label)}</a>.`
+                ? `<a href="${escapeAttr(item.aLink.href)}">${escapeHtml(item.aLink.label)}</a>${escapeHtml(item.aLink.after ?? ".")}`
                 : ""
             }</dd>`,
         )
@@ -1475,23 +901,34 @@ function crawlBody(def, locale) {
     );
   }
 
-  // Pricing: plans + FAQ in HTML.
+  // Pricing: plans + principles + FAQ in HTML.
   if (def.id === "pricing") {
     if (copy.plans?.length) {
       parts.push(
-        `<section aria-label="Packages"><ul>${copy.plans
+        `<section aria-label="Packages">${copy.plans
           .map(
             (plan) =>
-              `<li><h2>${escapeHtml(plan.name)}</h2><p>${escapeHtml(plan.price)}. ${escapeHtml(plan.blurb)}</p><ul>${(plan.items || [])
+              `<section><h2>${escapeHtml(plan.name)}</h2><p>${escapeHtml(plan.price)}. ${escapeHtml(plan.blurb)}</p><ul>${(plan.items || [])
                 .map((item) => `<li>${escapeHtml(item)}</li>`)
-                .join("")}</ul></li>`,
+                .join("")}</ul>${
+                  plan.note ? `<p>${escapeHtml(plan.note)}</p>` : ""
+                }</section>`,
           )
+          .join("")}</section>`,
+      );
+    }
+    if (copy.principles?.length) {
+      parts.push(
+        `<section><h2>${escapeHtml(copy.principlesTitle || "Our principles")}</h2><ul>${copy.principles
+          .map((line) => `<li>${escapeHtml(line)}</li>`)
           .join("")}</ul></section>`,
       );
     }
     if (copy.faq?.length) {
       parts.push(
-        `<section aria-label="FAQ"><h2>FAQ</h2><dl>${copy.faq
+        `<section aria-label="FAQ"><h2>${escapeHtml(
+          copy.faqTitle || "FAQ",
+        )}</h2><dl>${copy.faq
           .map(
             (item) =>
               `<dt>${escapeHtml(item.q)}</dt><dd>${escapeHtml(item.a)}</dd>`,
@@ -1501,9 +938,26 @@ function crawlBody(def, locale) {
     }
   }
 
-  // About: full studio copy.
-  if (def.id === "about" && copy.extra) {
-    parts.push(`<p>${escapeHtml(copy.extra)}</p>`);
+  // About: verse (body) already emitted; then aboutBody + service links + contact.
+  if (def.id === "about") {
+    if (copy.extra) {
+      parts.push(`<p>${escapeHtml(copy.extra)}</p>`);
+    }
+    if (copy.services?.length) {
+      parts.push(
+        `<ul>${copy.services
+          .map(
+            (s) =>
+              `<li><a href="${escapeAttr(s.href)}">${escapeHtml(s.name)}</a></li>`,
+          )
+          .join("")}</ul>`,
+      );
+    }
+    const contact =
+      locale === "el"
+        ? "info@omnidot.gr · Αθήνα · Όλη η Ελλάδα"
+        : "info@omnidot.gr · Athens · All of Greece";
+    parts.push(`<p>${escapeHtml(contact)}</p>`);
   }
 
   // Privacy: sections.
@@ -1761,6 +1215,8 @@ function writeRedirects() {
 }
 
 async function main() {
+  i18nModule = await loadI18nModule();
+  hydrateRouteDefs();
   articleModule = await loadArticleModule();
   const template = stripPrior(readFileSync(join(dist, "index.html"), "utf8"));
 

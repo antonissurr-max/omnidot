@@ -1,3 +1,4 @@
+import { enServiceGuides } from "./enServiceGuides";
 import type { MediaItem } from "./site";
 import type { PageId } from "./types";
 
@@ -36,13 +37,17 @@ export type ServiceGuideCopy = {
   platformsTitle?: string;
   platforms?: { name: string; detail: string }[];
   processTitle: string;
-  process: { title: string; body: string }[];
+  process: { title?: string; body: string }[];
   costTitle: string;
   costBody: string;
   costLinkLabel: string;
   costLinkHref: string;
   faqTitle: string;
-  faq: { q: string; a: string; aLink?: { label: string; href: string } }[];
+  faq: {
+    q: string;
+    a: string;
+    aLink?: { label: string; href: string; after?: string };
+  }[];
   readMoreTitle?: string;
   readMore?: { label: string; href: string };
   relatedTitle: string;
@@ -114,6 +119,7 @@ export type Copy = {
   revealShort: string;
   revealFull: string;
   aboutSub: string;
+  aboutHeading: string;
   aboutBody: string;
   landingLede: string;
   startBrief: string;
@@ -123,6 +129,7 @@ export type Copy = {
   pricingTitleLead: string;
   pricingTitleSub: string;
   pricingLede: string;
+  pricingIntro: string;
   pricingNote: string;
   pricingCta: string;
   pricingSetup: string;
@@ -269,7 +276,7 @@ const aboutVerseEn: VerseRow[] = [
     openRow: 5,
     closeRow: 1,
     openOnly: true,
-    words: [{ kind: "stay", open: "and measurable ROI" }],
+    words: [{ kind: "stay", open: "with measurable ROI." }],
   },
 ];
 
@@ -320,7 +327,7 @@ const aboutVerseEl: VerseRow[] = [
     openRow: 5,
     closeRow: 1,
     openOnly: true,
-    words: [{ kind: "stay", open: "και μετρήσιμο ROI" }],
+    words: [{ kind: "stay", open: "με μετρήσιμο ROI." }],
   },
 ];
 
@@ -328,7 +335,7 @@ export const copy: Record<Locale, Copy> = {
   en: {
     metaTitle: "omnidot. — Marketing Agency Athens | Social, Ads & Web",
     metaDescription:
-      "Athens marketing agency for social media management, content creation, Meta & Google Ads, and SEO websites. Clear packages, in Athens and across Greece, measurable growth.",
+      "Marketing agency in Athens for businesses across Greece: social media management, content creation, Meta & Google Ads and SEO websites.",
     langLabel: "Language",
     homeAria: "omnidot — home",
     about: "About",
@@ -377,6 +384,7 @@ export const copy: Record<Locale, Copy> = {
     revealFull: "Show full message",
     aboutSub:
       "Athens marketing agency for web, SEO, social media and performance ads — one partner for brands that want to grow.",
+    aboutHeading: "About omnidot.",
     aboutBody:
       "For founders and local brands that want a clear next step — not another report. From a fast SEO website to social media management and Meta & Google Ads campaigns. We don't believe in noise. We believe in data, clean design, and strategies that turn visitors into loyal customers.",
     landingLede: "Athens · pick a service or start a brief",
@@ -388,6 +396,8 @@ export const copy: Record<Locale, Copy> = {
     pricingTitleSub: "& pricing",
     pricingLede:
       "Clear marketing agency packages for social, content, ads and web. Ad spend is always separate. Scope is written down before we start.",
+    pricingIntro:
+      "Clear marketing agency packages for social, content, ads and web. Ad spend is always separate. Social from €450/mo, content from €350, performance from €300/mo, web from €700. Prices in EUR, excl. VAT where applicable. Minimum 3 months on retainers.",
     pricingNote:
       "Prices in EUR, excl. VAT where applicable. Minimum 3 months on retainers. Creative production can be bundled or billed per asset.",
     pricingCta: "Start a brief",
@@ -404,7 +414,7 @@ export const copy: Record<Locale, Copy> = {
       "Personal by design — we listen, adapt and build around your real needs.",
     ],
     pricingFaqEyebrow: "FAQ",
-    pricingFaqTitle: "Before you brief us",
+    pricingFaqTitle: "Frequently asked questions",
     pricingFaq: [
       {
         q: "Is ad spend included in the monthly fee?",
@@ -482,7 +492,7 @@ export const copy: Record<Locale, Copy> = {
         ],
       },
     ],
-    homeMobileHeadline: "Agency in Athens for web, SEO, social and ads.",
+    homeMobileHeadline: "Marketing agency in Athens for web, SEO, social and ads",
     homeMobileAboutTitle: "One partner. Four crafts.",
     homeMobileAboutBody:
       "Web, SEO, social and performance — built as one system for founders who want the next move, not another deck.",
@@ -522,7 +532,7 @@ export const copy: Record<Locale, Copy> = {
       "Terms of use, privacy policy and cookies for omnidot. — how we process contact data under GDPR.",
     cookieTitle: "Cookies & analytics",
     cookieBody:
-      "We use essential cookies to run the site. With your OK we’ll also use analytics/marketing tags to measure visits and campaigns. You can change this anytime.",
+      "Essential cookies run the site; with your OK we also use analytics to measure visits.",
     cookieAccept: "Accept",
     cookieReject: "Essential only",
     cookieSettings: "Cookies",
@@ -574,10 +584,10 @@ export const copy: Record<Locale, Copy> = {
     ],
     pages: {
       social: {
-        title: "Social Media Management",
-        seoTitle: "Social Media Management — Instagram & TikTok | omnidot.",
+        title: "Social Media Management for businesses",
+        seoTitle: "Social Media Management in Athens | omnidot.",
         seoDescription:
-          "Social media management for Instagram, TikTok, Facebook & LinkedIn: strategy, Reels, community and growth. In Athens and across Greece. From €450/mo.",
+          "Social media management in Athens for businesses across Greece: Instagram, TikTok, Facebook and LinkedIn, strategy and monthly reports. From €450/month.",
         meta: [
           { label: "Goal", value: "Steady presence" },
           { label: "Channels", value: "IG · TikTok · LinkedIn" },
@@ -590,7 +600,7 @@ export const copy: Record<Locale, Copy> = {
           clients: [
             {
               client: "Europatch",
-              backdrop: "/images/europatch-backdrop.jpg",
+              backdrop: "/images/europatch-backdrop.webp",
               did: "Social media, Reels, organic content",
               story:
                 "Europatch sells cold asphalt to B2B buyers — a category that rarely goes viral. We built a steady organic presence around real product use and how-to content. In one year: 4.5M Facebook and 2.5M Instagram views, 100% organic.",
@@ -600,10 +610,18 @@ export const copy: Record<Locale, Copy> = {
                 "Reel 397.9K · Facebook post 120.8K",
                 "Last month: 96% of views from non-followers",
               ],
+              cover: {
+                src: "/videos/europatch/timeline-1-preview.mp4",
+                kind: "video",
+                poster: "/images/europatch-backdrop.webp",
+                title: "Europatch reel",
+                detail: "How-to on the road",
+              },
               media: [
                 {
                   src: "/videos/europatch/timeline-1.mp4",
                   kind: "video",
+                  poster: "/images/europatch-backdrop.webp",
                   title: "Europatch reel",
                   detail: "How-to on the road",
                 },
@@ -641,7 +659,7 @@ export const copy: Record<Locale, Copy> = {
             },
             {
               client: "N4Sails",
-              backdrop: "/images/n4sails-backdrop.jpg",
+              backdrop: "/images/n4sails-backdrop.webp",
               did: "Instagram management, organic Reels",
               story:
                 "Nafplio for Sails — we ran the Instagram account around summer catamaran stories. Publishing rhythm, Reels placement and organic reach — not ad spend — so the feed sells the feeling of being on board.",
@@ -651,10 +669,18 @@ export const copy: Record<Locale, Copy> = {
                 "Grid of top-performing organic cuts",
                 "Reach built without paid boost",
               ],
+              cover: {
+                src: "/videos/n4sails/escape-summer-story-preview.mp4",
+                kind: "video",
+                poster: "/images/n4sails-backdrop.webp",
+                title: "Escape summer story",
+                detail: "Dive into Nafplio blue",
+              },
               media: [
                 {
                   src: "/videos/n4sails/escape-summer-story.mp4",
                   kind: "video",
+                  poster: "/images/n4sails-backdrop.webp",
                   title: "Escape summer story",
                   detail: "Dive into Nafplio blue",
                 },
@@ -689,12 +715,13 @@ export const copy: Record<Locale, Copy> = {
             body: "Monthly social media reporting with reach, engagement, saves, profile visits and what to change next. Plain language for founders and marketing leads — useful metrics, clear next steps, no vanity dashboards.",
           },
         ],
+        serviceGuide: enServiceGuides.social,
       },
       content: {
-        title: "Content Creation",
-        seoTitle: "Content Creation — Photo, Video & Reels | omnidot.",
+        title: "Content Creation for social media and ads",
+        seoTitle: "Content Creation for Social Media | omnidot. Athens",
         seoDescription:
-          "Content creation for Instagram Reels, ads and web: photo, video and edit from concept to ready-to-post. Shoot day €200. Packs from €350. Athens.",
+          "Photo, video and Reels for social media, ads and websites, from idea to final file. Based in Athens. Shoot day €200, packages from €350.",
         meta: [
           { label: "Formats", value: "Photo · Video · Still" },
           { label: "Look", value: "Clean & editorial" },
@@ -707,7 +734,7 @@ export const copy: Record<Locale, Copy> = {
           clients: [
             {
               client: "Europatch",
-              backdrop: "/images/europatch-backdrop.jpg",
+              backdrop: "/images/europatch-backdrop.webp",
               did: "Content creation, Reels, how-to video",
               story:
                 "Same Europatch partnership from the production side: how-to reels on the road, product in use, cuts built for feed and Reels. Concept, shoot and edit — the library that later drove organic reach.",
@@ -717,10 +744,18 @@ export const copy: Record<Locale, Copy> = {
                 "Cuts sized for Reels and feed",
                 "One production line feeding every channel",
               ],
+              cover: {
+                src: "/videos/europatch/timeline-1-preview.mp4",
+                kind: "video",
+                poster: "/images/europatch-backdrop.webp",
+                title: "Europatch reel",
+                detail: "How-to on the road",
+              },
               media: [
                 {
                   src: "/videos/europatch/timeline-1.mp4",
                   kind: "video",
+                  poster: "/images/europatch-backdrop.webp",
                   title: "Europatch reel",
                   detail: "How-to on the road",
                 },
@@ -734,7 +769,7 @@ export const copy: Record<Locale, Copy> = {
             },
             {
               client: "N4Sails",
-              backdrop: "/images/n4sails-backdrop.jpg",
+              backdrop: "/images/n4sails-backdrop.webp",
               did: "Lifestyle Reels, guest stories, edit",
               story:
                 "Nafplio for Sails — lifestyle Reels for catamaran escapes: dive shots, family moments, and guest stories cut for Instagram. Full content production that sells the feeling of being on board.",
@@ -744,10 +779,18 @@ export const copy: Record<Locale, Copy> = {
                 "Dive, deck and onboard lifestyle cuts",
                 "Edited for Instagram Reels length",
               ],
+              cover: {
+                src: "/videos/n4sails/escape-summer-story-preview.mp4",
+                kind: "video",
+                poster: "/images/n4sails-backdrop.webp",
+                title: "Escape summer story",
+                detail: "Dive into Nafplio blue",
+              },
               media: [
                 {
                   src: "/videos/n4sails/escape-summer-story.mp4",
                   kind: "video",
+                  poster: "/images/n4sails-backdrop.webp",
                   title: "Escape summer story",
                   detail: "Dive into Nafplio blue",
                 },
@@ -795,12 +838,13 @@ export const copy: Record<Locale, Copy> = {
             body: "A usable content library: stills, carousels, motion graphics, titles and thumbnails ready to post or run as ads — organized files you can actually use.",
           },
         ],
+        serviceGuide: enServiceGuides.content,
       },
       performance: {
-        title: "Performance Marketing",
-        seoTitle: "Meta & Google Ads Management — omnidot. Athens",
+        title: "Google Ads and Meta Ads management for businesses",
+        seoTitle: "Google Ads & Meta Ads Management | omnidot. Athens",
         seoDescription:
-          "Performance marketing with Meta Ads and Google Ads. Setup €200 once, management from €300/mo. Your ad spend stays yours. Conversion-focused for Greek brands.",
+          "Google, Facebook and Instagram ads that bring leads and sales. Based in Athens. Setup €200 one-off, management from €300/month. Ad budget stays yours.",
         meta: [
           { label: "Goal", value: "Conversion growth" },
           { label: "Channels", value: "Meta · Google" },
@@ -809,13 +853,31 @@ export const copy: Record<Locale, Copy> = {
         ],
         proof: {
           label: "Selected",
-          client: "Pyrgiotis OE",
-          story:
-            "Pyrgiotis OE wanted ads a business owner could follow without a long presentation. We ran Meta and Google, testing a few creatives and a clear path to the website. In 30 days on Meta: 1,791 page visits at €0.08 each on €148 total — and on Google search, 3.23% of people who saw the ad clicked.",
-          value: "Meta €0.08 CPLV · Google 3.23% CTR · 30 days",
-          notes: [
-            "Meta Ads — 1,791 landing page views · €0.08 · €148 · 30 days",
-            "Google Ads — 298 clicks · 9.24K impressions · 3.23% CTR",
+          value: "",
+          clients: [
+            {
+              client: "Pyrgiotis OE",
+              did: "Meta Ads and Google Ads",
+              story:
+                "Pyrgiotis OE wanted ads a business owner could follow without a long presentation. We ran Meta and Google, testing a few creatives and a clear path to the website. In 30 days on Meta: 1,791 page visits at €0.08 each on €148 total — and on Google search, 3.23% of people who saw the ad clicked.",
+              value: "Meta €0.08 CPLV · Google 3.23% CTR · 30 days",
+              notes: [
+                "Meta Ads — 1,791 landing page views · €0.08 · €148 · 30 days",
+                "Google Ads — 298 clicks · 9.24K impressions · 3.23% CTR",
+              ],
+              media: [
+                {
+                  src: "/images/proof-pyrgiotis-meta.png",
+                  title: "Pyrgiotis OE — Meta Ads",
+                  detail: "1,791 LPV · €0.08 · €148",
+                },
+                {
+                  src: "/images/proof-pyrgiotis-google.png",
+                  title: "Pyrgiotis OE — Google Ads",
+                  detail: "298 clicks · 3.23% CTR",
+                },
+              ],
+            },
           ],
         },
         points: [
@@ -840,12 +902,13 @@ export const copy: Record<Locale, Copy> = {
             body: "Clear reporting on spend, CPA, ROAS, CTR and conversions — in language a founder can use. Each week: what to keep, kill or scale. If a metric does not change a decision, we do not parade it.",
           },
         ],
+        serviceGuide: enServiceGuides.performance,
       },
       web: {
-        title: "Web Development",
-        seoTitle: "Web Development & SEO — Athens | omnidot.",
+        title: "Website Development for businesses",
+        seoTitle: "Website Development in Athens | omnidot.",
         seoDescription:
-          "Website development and SEO: fast sites, landing pages and Google-ready structure. Landing from €700, multi-page ≈ €700/page. In Athens and across Greece.",
+          "Website development in Athens for businesses across Greece: fast sites, landing pages and a structure Google understands. Landing pages from €700.",
         meta: [
           { label: "Build", value: "Sites & landings" },
           { label: "SEO", value: "Findable on Google" },
@@ -928,6 +991,7 @@ export const copy: Record<Locale, Copy> = {
             body: "After launch we keep the site healthy: content updates, performance and speed fixes, SEO improvements, security and small UX changes as campaigns and products evolve. A website is a channel, not a one-off brochure.",
           },
         ],
+        serviceGuide: enServiceGuides.web,
       },
     },
     performanceFacts: [
@@ -1020,7 +1084,7 @@ export const copy: Record<Locale, Copy> = {
   el: {
     metaTitle: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
     metaDescription:
-      "Διαφημιστική στην Αθήνα για διαχείριση social media, παραγωγή περιεχομένου, Meta & Google Ads και ιστοσελίδες με SEO. Καθαρά πακέτα, στην Αθήνα και σε όλη την Ελλάδα, μετρήσιμη ανάπτυξη.",
+      "Διαφημιστική στην Αθήνα για επιχειρήσεις σε όλη την Ελλάδα: διαχείριση social media, περιεχόμενο, Google & Meta Ads και ιστοσελίδες με SEO.",
     langLabel: "Γλώσσα",
     homeAria: "omnidot — αρχική",
     about: "Σχετικά",
@@ -1069,6 +1133,7 @@ export const copy: Record<Locale, Copy> = {
     revealFull: "Πλήρες μήνυμα",
     aboutSub:
       "Διαφημιστική στην Αθήνα για web, SEO, social media και performance ads — ένας συνεργάτης για brands που θέλουν να αναπτυχθούν.",
+    aboutHeading: "Σχετικά με το omnidot.",
     aboutBody:
       "Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Από γρήγορη ιστοσελίδα με SEO μέχρι διαχείριση social media και καμπάνιες Meta & Google Ads. Δεν πιστεύουμε στον θόρυβο. Πιστεύουμε στα δεδομένα, στο καθαρό design και στις στρατηγικές που μετατρέπουν τους επισκέπτες σε πιστούς πελάτες.",
     landingLede: "Αθήνα · διάλεξε υπηρεσία ή ξεκίνα brief",
@@ -1080,6 +1145,8 @@ export const copy: Record<Locale, Copy> = {
     pricingTitleSub: "& τιμές",
     pricingLede:
       "Καθαρά πακέτα διαφημιστικής για social, content, ads και web. Το ad spend μένει πάντα δικό σας. Το scope γράφεται πριν ξεκινήσουμε.",
+    pricingIntro:
+      "Καθαρά πακέτα διαφημιστικής για social, content, ads και web. Το ad spend είναι πάντα ξεχωριστά. Social από €450/μήνα, content από €350, performance από €300/μήνα, web από €700. Τιμές σε ευρώ, χωρίς ΦΠΑ όπου εφαρμόζεται. Ελάχιστο 3 μήνες στα retainers.",
     pricingNote:
       "Τιμές σε €, χωρίς ΦΠΑ όπου εφαρμόζεται. Minimum 3 μήνες στα retainers. Το creative μπορεί να μπει στο πακέτο ή ανά asset.",
     pricingCta: "Ξεκίνα brief",
@@ -1096,7 +1163,7 @@ export const copy: Record<Locale, Copy> = {
       "Personal by design — ακούμε, προσαρμοζόμαστε και χτίζουμε γύρω από τις πραγματικές σου ανάγκες.",
     ],
     pricingFaqEyebrow: "FAQ",
-    pricingFaqTitle: "Πριν το brief",
+    pricingFaqTitle: "Συχνές ερωτήσεις",
     pricingFaq: [
       {
         q: "Το ad spend περιλαμβάνεται στο μηνιαίο;",
@@ -1174,7 +1241,7 @@ export const copy: Record<Locale, Copy> = {
         ],
       },
     ],
-    homeMobileHeadline: "Διαφημιστική στην Αθήνα για web, SEO, social και ads.",
+    homeMobileHeadline: "Διαφημιστική στην Αθήνα για web, SEO, social και ads",
     homeMobileAboutTitle: "Ένας συνεργάτης. Τέσσερα crafts.",
     homeMobileAboutBody:
       "Web, SEO, social και performance — σαν ένα σύστημα για founders που θέλουν την επόμενη κίνηση, όχι άλλο deck.",
@@ -1214,7 +1281,7 @@ export const copy: Record<Locale, Copy> = {
       "Όροι χρήσης, πολιτική απορρήτου και cookies του omnidot. — πώς επεξεργαζόμαστε δεδομένα επικοινωνίας βάσει GDPR.",
     cookieTitle: "Cookies & analytics",
     cookieBody:
-      "Χρησιμοποιούμε απαραίτητα cookies για να λειτουργεί το site. Με την αποδοχή σου θα χρησιμοποιούμε και analytics/marketing tags για επισκεψιμότητα και καμπάνιες. Μπορείς να το αλλάξεις οποιαδήποτε στιγμή.",
+      "Απαραίτητα cookies για το site· με αποδοχή χρησιμοποιούμε και analytics για επισκεψιμότητα.",
     cookieAccept: "Αποδοχή",
     cookieReject: "Μόνο απαραίτητα",
     cookieSettings: "Cookies",
@@ -1282,8 +1349,15 @@ export const copy: Record<Locale, Copy> = {
           clients: [
             {
               client: "Europatch",
-              backdrop: "/images/europatch-backdrop.jpg",
+              backdrop: "/images/europatch-backdrop.webp",
               did: "Social media, Reels, οργανικό content",
+              cover: {
+                src: "/videos/europatch/timeline-1-preview.mp4",
+                kind: "video",
+                poster: "/images/europatch-backdrop.webp",
+                title: "Europatch reel",
+                detail: "How-to on the road",
+              },
               story:
                 "Η Europatch πουλάει ψυχρή άσφαλτο σε B2B πελάτες — κατηγορία που σπάνια γίνεται viral online. Χτίσαμε σταθερή οργανική παρουσία γύρω από πραγματική χρήση προϊόντος και how-to περιεχόμενο. Σε έναν χρόνο: 4.5 εκ. views στο Facebook και 2.5 εκ. στο Instagram, 100% organic.",
               value: "4.5 εκ. Facebook · 2.5 εκ. Instagram · 100% organic · 1 χρόνος",
@@ -1333,8 +1407,15 @@ export const copy: Record<Locale, Copy> = {
             },
             {
               client: "N4Sails",
-              backdrop: "/images/n4sails-backdrop.jpg",
+              backdrop: "/images/n4sails-backdrop.webp",
               did: "Διαχείριση Instagram, οργανικά Reels",
+              cover: {
+                src: "/videos/n4sails/escape-summer-story-preview.mp4",
+                kind: "video",
+                poster: "/images/n4sails-backdrop.webp",
+                title: "Escape summer story",
+                detail: "Dive into Nafplio blue",
+              },
               story:
                 "Nafplio for Sails — τρέξαμε τον λογαριασμό Instagram γύρω από καλοκαιρινές ιστορίες καταμαράν. Ρυθμός δημοσίευσης, τοποθέτηση Reels και οργανική εμβέλεια — όχι ad spend — ώστε το feed να πουλάει το αίσθημα του να είσαι πάνω στο σκάφος.",
               value: "Οργανική εμβέλεια Instagram · lifestyle Reels",
@@ -1504,8 +1585,15 @@ export const copy: Record<Locale, Copy> = {
           clients: [
             {
               client: "Europatch",
-              backdrop: "/images/europatch-backdrop.jpg",
+              backdrop: "/images/europatch-backdrop.webp",
               did: "Content creation, Reels, how-to video",
+              cover: {
+                src: "/videos/europatch/timeline-1-preview.mp4",
+                kind: "video",
+                poster: "/images/europatch-backdrop.webp",
+                title: "Europatch reel",
+                detail: "How-to στον δρόμο",
+              },
               story:
                 "Ίδια συνεργασία Europatch από την πλευρά της παραγωγής: how-to reels στον δρόμο, προϊόν σε χρήση, cuts για feed και Reels. Concept, γύρισμα και μοντάζ — η βιβλιοθήκη που μετά έφερε οργανική εμβέλεια.",
               value: "How-to Reels · προϊόν σε χρήση · ready-to-post cuts",
@@ -1531,8 +1619,15 @@ export const copy: Record<Locale, Copy> = {
             },
             {
               client: "N4Sails",
-              backdrop: "/images/n4sails-backdrop.jpg",
+              backdrop: "/images/n4sails-backdrop.webp",
               did: "Lifestyle Reels, guest stories, μοντάζ",
+              cover: {
+                src: "/videos/n4sails/escape-summer-story-preview.mp4",
+                kind: "video",
+                poster: "/images/n4sails-backdrop.webp",
+                title: "Escape summer story",
+                detail: "Dive into Nafplio blue",
+              },
               story:
                 "Nafplio for Sails — lifestyle Reels για καταμαράν: dive shots, οικογενειακές στιγμές και guest stories για Instagram. Πλήρης παραγωγή περιεχομένου που πουλάει το αίσθημα του να είσαι πάνω στο σκάφος.",
               value: "Lifestyle Reels · Ναύπλιο · ready-to-post",
@@ -1621,24 +1716,20 @@ export const copy: Record<Locale, Copy> = {
           processTitle: "Πώς δουλεύουμε",
           process: [
             {
-              title: "Γνωριμία: ",
+              title: "Γνωριμία",
               body: "τι θέλεις να δείξεις, πού θα ανέβει και για ποιον.",
             },
             {
-              title: "Ιδέες: ",
-              body: "και λίστα λήψεων για έγκριση.",
+              body: "Ιδέες και λίστα λήψεων για έγκριση.",
             },
             {
-              title: "Γύρισμα: ",
-              body: "στον χώρο σου.",
+              body: "Γύρισμα στον χώρο σου.",
             },
             {
-              title: "Μοντάζ: ",
-              body: "και επεξεργασία.",
+              body: "Μοντάζ και επεξεργασία.",
             },
             {
-              title: "Παράδοση: ",
-              body: "έτοιμων αρχείων για κάθε κανάλι.",
+              body: "Παράδοση έτοιμων αρχείων για κάθε κανάλι.",
             },
           ],
           costTitle: "Πόσο κοστίζει",
@@ -1794,31 +1885,28 @@ export const copy: Record<Locale, Copy> = {
                 "όταν θέλεις να σε μάθει κόσμος που δεν σε ψάχνει ακόμα.",
             },
             {
-              name: "Συχνά: ",
-              detail: "τα δύο μαζί δουλεύουν καλύτερα.",
+              name: "",
+              detail: "Συχνά τα δύο μαζί δουλεύουν καλύτερα.",
             },
           ],
           processTitle: "Πώς δουλεύουμε",
           process: [
             {
-              title: "Γνωριμία: ",
+              title: "Γνωριμία",
               body: "στόχος, πελάτες, budget.",
             },
             {
-              title: "Setup: ",
+              title: "Setup",
               body: "λογαριασμοί, μέτρηση και πρώτες καμπάνιες.",
             },
             {
-              title: "Δοκιμές: ",
-              body: "τις πρώτες εβδομάδες.",
+              body: "Δοκιμές τις πρώτες εβδομάδες.",
             },
             {
-              title: "Scale: ",
-              body: "κρατάμε ό,τι δουλεύει και μεγαλώνουμε το budget εκεί.",
+              body: "Κρατάμε ό,τι δουλεύει και μεγαλώνουμε το budget εκεί.",
             },
             {
-              title: "Αναφορά: ",
-              body: "εβδομαδιαία αναφορά και αποφάσεις.",
+              body: "Εβδομαδιαία αναφορά και αποφάσεις.",
             },
           ],
           costTitle: "Πόσο κοστίζει",

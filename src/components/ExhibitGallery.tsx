@@ -42,8 +42,6 @@ function ExhibitMedia({
   }, [active, item.src, near]);
 
   if (isVideo(item)) {
-    // Far slides: keep a live video element ready (no poster image)
-    const playNow = active || near;
     return (
       <video
         ref={videoRef}
@@ -52,8 +50,7 @@ function ExhibitMedia({
         muted
         loop
         playsInline
-        autoPlay={playNow}
-        preload={active ? "auto" : near ? "metadata" : "none"}
+        preload={active ? "metadata" : "none"}
         title={item.title}
         aria-label={`${item.title}${item.detail ? ` — ${item.detail}` : ""}`}
       />

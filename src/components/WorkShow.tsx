@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { BoxedTitle } from "./BoxedTitle";
 import { CaseStudy } from "./CaseStudy";
+import { LazyVideo } from "./LazyVideo";
 import { ServiceGuide } from "./ServiceGuide";
 import { mediaIsVideo } from "./ExhibitGallery";
 import { pageOrder, type MediaItem, type PageId } from "../site";
@@ -45,40 +46,17 @@ function clientCover(
 }
 
 function ProjectCover({ item }: { item: MediaItem }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const contain = item.fit === "contain";
-
-  useEffect(() => {
-    if (!mediaIsVideo(item)) return;
-    const el = videoRef.current;
-    if (!el) return;
-    const tryPlay = () => {
-      void el.play().catch(() => {
-        /* autoplay may be blocked */
-      });
-    };
-    tryPlay();
-    el.addEventListener("loadeddata", tryPlay);
-    el.addEventListener("canplay", tryPlay);
-    return () => {
-      el.removeEventListener("loadeddata", tryPlay);
-      el.removeEventListener("canplay", tryPlay);
-    };
-  }, [item.src]);
 
   if (mediaIsVideo(item)) {
     return (
-      <video
-        ref={videoRef}
+      <LazyVideo
         className={contain ? "is-contain" : undefined}
         src={item.src}
         poster={item.poster}
-        muted
-        loop
-        playsInline
-        autoPlay
-        preload="metadata"
-        aria-hidden="true"
+        width={540}
+        height={960}
+        title={item.title}
       />
     );
   }
@@ -374,7 +352,41 @@ export function WorkShow({
             </header>
             {guide ? (
               <div className="work__body">
-                <ServiceGuide guide={guide} onBrief={onBrief} />
+                <ServiceGuide
+                  guide={guide}
+                  onBrief={onBrief}
+                  afterIntro={
+                    id === "social" && clients[0]?.story ? (
+                      <p className="service-guide__case">
+                        <strong>{clients[0].client}</strong>
+                        {" — "}
+                        {clients[0].story}
+                      </p>
+                    ) : null
+                  }
+                  afterCost={
+                    (id === "performance" || id === "web") &&
+                    clients.some((c) => c.story) ? (
+                      <ul className="service-guide__cases">
+                        {clients.map((c) => (
+                          <li key={c.client}>
+                            <strong>{c.client}</strong>
+                            {" — "}
+                            {c.story}
+                            {c.links?.map((link) => (
+                              <span key={link.href}>
+                                {" "}
+                                <a href={link.href} target="_blank" rel="noreferrer">
+                                  {link.label}
+                                </a>
+                              </span>
+                            ))}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null
+                  }
+                />
               </div>
             ) : (
               children && <div className="work__body">{children}</div>
