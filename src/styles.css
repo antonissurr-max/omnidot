@@ -4695,10 +4695,15 @@ a.work__proof-line:hover {
   margin-top: 0.55em;
 }
 
+.facts__item.is-open .facts__hit {
+  padding-bottom: 0;
+}
+
 .facts__body {
   display: grid;
   grid-template-rows: 0fr;
   margin: 0;
+  padding: 0 calc(1.25rem + 10px) 0 calc(2.5rem + 10px);
   font-size: 13px;
   line-height: 1.6;
   letter-spacing: 0.01em;
@@ -4709,7 +4714,8 @@ a.work__proof-line:hover {
   transition:
     grid-template-rows 0.35s var(--ease),
     opacity 0.25s ease,
-    margin 0.35s var(--ease);
+    margin 0.35s var(--ease),
+    padding 0.35s var(--ease);
 }
 
 .facts__body > span {
@@ -4718,9 +4724,16 @@ a.work__proof-line:hover {
   overflow: hidden;
 }
 
+.facts__body a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .facts__item.is-open .facts__body {
   grid-template-rows: 1fr;
   margin-top: 10px;
+  padding-bottom: 14px;
   opacity: 0.72;
 }
 

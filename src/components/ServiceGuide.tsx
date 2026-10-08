@@ -99,7 +99,21 @@ export function ServiceGuide({
         </h2>
         <ol className="facts facts--on-dark">
           {guide.faq.map((item, i) => (
-            <FactRow key={item.q} index={i + 1} title={item.q} body={item.a} />
+            <FactRow
+              key={item.q}
+              index={i + 1}
+              title={item.q}
+              body={
+                item.aLink ? (
+                  <>
+                    {item.a}
+                    <a href={item.aLink.href}>{item.aLink.label}</a>.
+                  </>
+                ) : (
+                  item.a
+                )
+              }
+            />
           ))}
         </ol>
       </section>

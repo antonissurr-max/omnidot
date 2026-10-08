@@ -268,7 +268,9 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
                 name: item.q,
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: item.a,
+                  text: item.aLink
+                    ? `${item.a}${item.aLink.label}.`
+                    : item.a,
                 },
               })),
             },
