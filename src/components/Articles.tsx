@@ -7,6 +7,11 @@ import {
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
 
+/** Numbered section titles in the body (e.g. "1. Ξεκίνα από…") */
+function isSectionHeading(paragraph: string) {
+  return /^\d+\.\s+\S/.test(paragraph);
+}
+
 export function Articles({ slug }: { slug?: string }) {
   const { locale, t } = useLocale();
   const articles = articlesFor(locale);
@@ -57,7 +62,14 @@ export function Articles({ slug }: { slug?: string }) {
 
         <div className="articles__body">
           {article.body.map((paragraph) => (
-            <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+            <p
+              key={paragraph.slice(0, 48)}
+              className={
+                isSectionHeading(paragraph) ? "articles__section" : undefined
+              }
+            >
+              {paragraph}
+            </p>
           ))}
         </div>
 

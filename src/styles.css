@@ -741,20 +741,41 @@ h1.chrome__brand {
 }
 
 /* Articles — editorial index + detail */
+.stage.is-articles {
+  background:
+    radial-gradient(
+      ellipse 90% 42% at 50% -8%,
+      color-mix(in srgb, var(--steel) 14%, transparent),
+      transparent 72%
+    ),
+    var(--paper);
+}
+
 .articles {
   position: relative;
   z-index: 40;
+  width: min(46rem, 100%);
   max-width: 46rem;
   min-height: 70vh;
+  margin: 0 auto;
   padding: 120px var(--chrome) 80px;
+  box-sizing: border-box;
 }
 
 .articles--detail {
-  max-width: 40rem;
+  width: min(42rem, 100%);
+  max-width: 42rem;
+  text-align: center;
+  padding-top: clamp(112px, 16vh, 152px);
+  padding-bottom: clamp(72px, 10vh, 112px);
 }
 
 .articles__head {
   margin-bottom: 36px;
+}
+
+.articles--detail .articles__head {
+  margin-bottom: clamp(40px, 6vw, 56px);
 }
 
 .articles__eyebrow {
@@ -765,6 +786,16 @@ h1.chrome__brand {
   opacity: 0.45;
 }
 
+.articles--detail .articles__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.2em 0.65em;
+  margin-bottom: 18px;
+  letter-spacing: 0.18em;
+  opacity: 0.5;
+}
+
 .articles__title {
   margin: 0 0 12px;
   font-size: clamp(28px, 4vw, 42px);
@@ -772,6 +803,15 @@ h1.chrome__brand {
   letter-spacing: -0.03em;
   line-height: 1.12;
   color: inherit;
+}
+
+.articles--detail .articles__title {
+  margin: 0 auto;
+  max-width: 18em;
+  font-size: clamp(30px, 4.6vw, 48px);
+  letter-spacing: -0.035em;
+  line-height: 1.14;
+  text-wrap: balance;
 }
 
 .articles__lede {
@@ -896,8 +936,41 @@ h1.chrome__brand {
   margin: 0 0 16px;
 }
 
+.articles--detail .articles__body {
+  gap: 0;
+  font-size: clamp(16px, 1.35vw, 18px);
+  line-height: 1.75;
+  letter-spacing: 0.005em;
+  opacity: 0.88;
+}
+
+.articles--detail .articles__body p {
+  margin: 0 auto 1.35em;
+  max-width: 34rem;
+  text-wrap: pretty;
+}
+
+.articles--detail .articles__body p.articles__section {
+  margin: 2.5em auto 0.9em;
+  max-width: 28rem;
+  font-size: clamp(18px, 2.1vw, 23px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  opacity: 1;
+  text-wrap: balance;
+}
+
+.articles--detail .articles__body p.articles__section:first-child {
+  margin-top: 0;
+}
+
 .articles__back {
   margin: 36px 0 0;
+}
+
+.articles--detail .articles__back {
+  margin-top: clamp(48px, 8vw, 72px);
 }
 
 .articles__back a {
