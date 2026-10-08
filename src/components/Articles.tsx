@@ -2,15 +2,12 @@ import { Link } from "react-router-dom";
 import {
   articleBySlug,
   articlesFor,
+  articleBlockText,
   formatArticleDate,
+  isArticleSection,
 } from "../articles";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
-
-/** Numbered section titles in the body (e.g. "1. Ξεκίνα από…") */
-function isSectionHeading(paragraph: string) {
-  return /^\d+\.\s+\S/.test(paragraph);
-}
 
 export function Articles({ slug }: { slug?: string }) {
   const { locale, t } = useLocale();
@@ -62,16 +59,17 @@ export function Articles({ slug }: { slug?: string }) {
         </header>
 
         <div className="articles__body">
-          {article.body.map((paragraph) => (
-            <p
-              key={paragraph.slice(0, 48)}
-              className={
-                isSectionHeading(paragraph) ? "articles__section" : undefined
-              }
-            >
-              {paragraph}
-            </p>
-          ))}
+          {article.body.map((block) => {
+            const text = articleBlockText(block);
+            return (
+              <p
+                key={text.slice(0, 48)}
+                className={isArticleSection(block) ? "articles__section" : undefined}
+              >
+                {text}
+              </p>
+            );
+          })}
         </div>
 
         <p className="articles__back">
