@@ -704,7 +704,7 @@ function crawlPoints(points) {
   return `<section aria-label="What we do"><ol>${items}</ol></section>`;
 }
 
-function crawlGuide(guide, storyHtml = "") {
+function crawlGuide(guide) {
   if (!guide) return "";
   const parts = [];
   if (guide.includesTitle && guide.includes?.length) {

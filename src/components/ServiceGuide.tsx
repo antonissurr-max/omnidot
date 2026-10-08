@@ -1,16 +1,12 @@
-import type { ReactNode } from "react";
 import { FactRow } from "./ServicePanel";
 import type { ServiceGuideCopy } from "../i18n";
 
 export function ServiceGuide({
   guide,
   onBrief,
-  proofSlot,
 }: {
   guide: ServiceGuideCopy;
   onBrief: () => void;
-  /** Case folder — after pricing, before FAQ */
-  proofSlot?: ReactNode;
 }) {
   return (
     <div className="service-guide">
@@ -74,8 +70,6 @@ export function ServiceGuide({
           {guide.costLinkLabel}
         </a>
       </section>
-
-      {proofSlot}
 
       <section className="service-guide__section" aria-labelledby="sg-faq">
         <h2 id="sg-faq" className="service-guide__h2">
