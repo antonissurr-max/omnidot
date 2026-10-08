@@ -2987,7 +2987,7 @@ a.work__project:focus-visible .work__project-name {
     width: var(--guide-peirasia, 100%);
     grid-template-columns: var(--guide-card, calc((70% - 14px) / 2))
       var(--guide-card, calc((70% - 14px) / 2));
-    justify-content: space-between;
+    justify-content: space-evenly;
     column-gap: 0;
   }
 }
