@@ -6008,8 +6008,8 @@ a.work__project:focus-visible .work__project-name {
   }
 
   .tile__title {
-    font-size: clamp(9px, calc(var(--tile-size) * 0.034), 12px);
-    letter-spacing: 0.04em;
+    font-size: clamp(8px, calc(var(--tile-size) * 0.03), 11px);
+    letter-spacing: 0.03em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

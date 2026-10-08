@@ -204,6 +204,8 @@ export type Copy = {
     PageId,
     {
       title: string;
+      /** Shorter label under homepage craft tiles (optional). */
+      tileTitle?: string;
       seoTitle?: string;
       seoDescription: string;
       meta: { label: string; value: string }[];
@@ -719,6 +721,7 @@ export const copy: Record<Locale, Copy> = {
       },
       content: {
         title: "Content Creation for social media and ads",
+        tileTitle: "Content Creation",
         seoTitle: "Content Creation for Social Media | omnidot. Athens",
         seoDescription:
           "Photo, video and Reels for social media, ads and websites, from idea to final file. Based in Athens. Shoot day €200, packages from €350.",
@@ -1570,6 +1573,7 @@ export const copy: Record<Locale, Copy> = {
       },
       content: {
         title: "Παραγωγή Περιεχομένου για social media και διαφημίσεις",
+        tileTitle: "Παραγωγή Περιεχομένου",
         seoTitle: "Παραγωγή Περιεχομένου για Social Media | omnidot. Αθήνα",
         seoDescription:
           "Φωτογραφία, video και Reels για social media, διαφημίσεις και ιστοσελίδες, από την ιδέα ως το τελικό αρχείο. Γύρισμα €200, πακέτα από €350.",
