@@ -1105,6 +1105,7 @@ h1.chrome__brand {
   margin: 0 0 2em;
   max-width: 68ch;
   border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  scroll-margin-top: 5.5rem;
 }
 
 .articles__toc-toggle {
@@ -1136,11 +1137,15 @@ h1.chrome__brand {
   content: "–";
 }
 
+.articles__toc {
+  scroll-margin-top: 5.5rem;
+}
+
 .articles__toc-list {
   display: none;
   margin: 0;
-  padding: 0 1.1em 1em 2.2em;
-  list-style: decimal;
+  padding: 0 1.1em 1em;
+  list-style: none;
 }
 
 .articles__toc-list.is-open {
@@ -1463,8 +1468,9 @@ h1.chrome__brand {
 
   .articles__rail ol {
     margin: 0;
-    padding: 0 0 0 1.1em;
-    list-style: decimal;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
   }
 
   .articles__rail li {
