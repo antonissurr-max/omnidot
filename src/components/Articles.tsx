@@ -2,26 +2,12 @@ import { Link } from "react-router-dom";
 import {
   articleBySlug,
   articlesFor,
+  articleBlockText,
   formatArticleDate,
+  isArticleSection,
 } from "../articles";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
-
-/**
- * Mark only top-level article sections (1., 2., 3. … in order).
- * Nested lists that restart at 1. inside a section stay body text.
- */
-function sectionHeadingFlags(body: string[]): boolean[] {
-  let next = 1;
-  return body.map((paragraph) => {
-    const match = paragraph.match(/^(\d+)\.\s+\S/);
-    if (!match) return false;
-    const n = Number(match[1]);
-    if (n !== next) return false;
-    next += 1;
-    return true;
-  });
-}
 
 export function Articles({ slug }: { slug?: string }) {
   const { locale, t } = useLocale();
@@ -48,7 +34,6 @@ export function Articles({ slug }: { slug?: string }) {
   }
 
   if (article) {
-    const sectionFlags = sectionHeadingFlags(article.body);
     return (
       <article
         className="articles articles--detail"
@@ -74,14 +59,17 @@ export function Articles({ slug }: { slug?: string }) {
         </header>
 
         <div className="articles__body">
-          {article.body.map((paragraph, i) => (
-            <p
-              key={paragraph.slice(0, 48)}
-              className={sectionFlags[i] ? "articles__section" : undefined}
-            >
-              {paragraph}
-            </p>
-          ))}
+          {article.body.map((block) => {
+            const text = articleBlockText(block);
+            return (
+              <p
+                key={text.slice(0, 48)}
+                className={isArticleSection(block) ? "articles__section" : undefined}
+              >
+                {text}
+              </p>
+            );
+          })}
         </div>
 
         <p className="articles__back">
