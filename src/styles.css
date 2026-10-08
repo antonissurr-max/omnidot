@@ -2892,17 +2892,23 @@ a.work__project:focus-visible .work__project-name {
   max-width: 920px;
 }
 
-/* Longer Greek H1 — keep boxed look, fit the panel width */
+/* Longer Greek H1 — one row, scale to panel width */
+.work--guide .work__lead {
+  width: 100%;
+}
+
 .work--guide .boxed-title {
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   width: 100%;
   max-width: 100%;
-  font-size: clamp(15px, 2.8vw, 28px);
-  letter-spacing: 0.03em;
+  font-size: clamp(10px, 1.55vw, 22px);
+  letter-spacing: 0.02em;
 }
 
 .work--guide .boxed-title__word {
-  padding: 0.16em 0.22em;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0.14em 0.12em;
 }
 
 .service-guide {
