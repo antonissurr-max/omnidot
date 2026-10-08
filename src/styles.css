@@ -2893,15 +2893,16 @@ a.work__project:focus-visible .work__project-name {
   max-width: 920px;
 }
 
-/* Longer Greek H1 — one row, scale to panel width */
+/* Title width drives the meta row — same left edge and περασιά */
 .work--guide .work__lead {
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
 }
 
 .work--guide .boxed-title {
   flex-wrap: wrap;
-  width: 100%;
-  max-width: 18ch;
+  width: max-content;
+  max-width: min(100%, 26ch);
   font-size: clamp(28px, 4.2vw, 48px);
   letter-spacing: -0.035em;
 }
@@ -2910,6 +2911,12 @@ a.work__project:focus-visible .work__project-name {
   flex: 0 1 auto;
   min-width: 0;
   padding: 0;
+}
+
+.work--guide .work__meta {
+  width: 0;
+  min-width: 100%;
+  max-width: 100%;
 }
 
 .service-guide {
