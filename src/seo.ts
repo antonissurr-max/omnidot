@@ -1,4 +1,4 @@
-import { articleBySlug, articlesFor } from "./articles";
+import { articleBySlug, articleHeadline, articlesFor } from "./articles";
 import { copy, type Locale } from "./i18n";
 import { phoneHref, site } from "./site";
 import { pages } from "./site";
@@ -272,6 +272,7 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
         },
       };
     }
+    const headline = articleHeadline(article);
     const articlesPath = pathFromView({ kind: "articles" }, locale);
     const logoUrl = `${SITE_ORIGIN}/images/omnidot-logo.svg`;
     return {
@@ -287,12 +288,10 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
         "@graph": [
           {
             "@type": "BlogPosting",
-            headline: article.subtitle
-              ? `${article.title}: ${article.subtitle}`
-              : article.title,
+            headline,
             description: article.excerpt,
             datePublished: article.date,
-            dateModified: article.date,
+            dateModified: article.dateModified ?? article.date,
             author: {
               "@type": "Organization",
               name: "omnidot",
@@ -307,6 +306,9 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
             mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
             inLanguage: locale === "el" ? "el" : "en",
             articleSection: article.topic,
+            image: article.image.startsWith("http")
+              ? article.image
+              : `${SITE_ORIGIN}${article.image}`,
           },
           breadcrumbLd([
             homeCrumb(locale),

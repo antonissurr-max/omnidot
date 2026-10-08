@@ -1,11 +1,39 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import * as esbuild from "esbuild";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
 const origin = "https://omnidot.gr";
 const phone = "+306970862839";
+
+/** @type {Awaited<ReturnType<typeof loadArticleModule>>} */
+let articleModule;
+
+async function loadArticleModule() {
+  const outfile = join(root, "scripts/.cache/articles-prerender.mjs");
+  mkdirSync(dirname(outfile), { recursive: true });
+  await esbuild.build({
+    entryPoints: [join(root, "scripts/article-prerender-entry.ts")],
+    bundle: true,
+    format: "esm",
+    platform: "neutral",
+    outfile,
+    logLevel: "silent",
+  });
+  return import(`${pathToFileURL(outfile).href}?t=${Date.now()}`);
+}
+
+function isArticleDetail(def) {
+  return (
+    def.enPath.startsWith("/articles/") && def.enPath !== "/articles/"
+  );
+}
+
+function articleSlugFromDef(def) {
+  return def.enPath.split("/").filter(Boolean).pop();
+}
 
 const navEn = [
   { href: "/social/", label: "Social Media Management" },
@@ -758,10 +786,6 @@ function withCrumbs(locale, primary, crumbs) {
   };
 }
 
-function isArticleDetail(def) {
-  return def.enPath.startsWith("/articles/") && def.enPath !== "/articles/";
-}
-
 function jsonLdFor(def, locale) {
   const copy = def[locale];
   const path = withTrailingSlash(locale === "el" ? def.elPath : def.enPath);
@@ -865,6 +889,66 @@ function jsonLdFor(def, locale) {
         ]),
       ],
     };
+  }
+  if (def.type === "articles" && isArticleDetail(def) && articleModule) {
+    const slug = articleSlugFromDef(def);
+    const article = articleModule.articleBySlug(locale, slug);
+    if (article) {
+      const headline = articleModule.articleHeadline(article);
+      const homePath = locale === "el" ? "/el/" : "/";
+      const articlesPath = locale === "el" ? "/el/articles/" : "/articles/";
+      const logoUrl = `${origin}/images/omnidot-logo.svg`;
+      return {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BlogPosting",
+            headline,
+            description: article.excerpt,
+            datePublished: article.date,
+            dateModified: article.dateModified ?? article.date,
+            author: {
+              "@type": "Organization",
+              name: "omnidot",
+              url: origin,
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "omnidot",
+              url: origin,
+              logo: { "@type": "ImageObject", url: logoUrl },
+            },
+            mainEntityOfPage: { "@type": "WebPage", "@id": url },
+            inLanguage: locale === "el" ? "el" : "en",
+            articleSection: article.topic,
+            image: `${origin}${article.image}`,
+          },
+          {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: locale === "el" ? "Αρχική" : "Home",
+                item: `${origin}${homePath}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: locale === "el" ? "Άρθρα" : "Articles",
+                item: `${origin}${articlesPath}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: article.title,
+                item: url,
+              },
+            ],
+          },
+        ],
+      };
+    }
   }
   if (def.type === "articles") {
     return withCrumbs(
@@ -1093,7 +1177,75 @@ function crawlGuideWithCasesAfterCost(guide, cases) {
   return `${full.slice(0, insertAt)}${casesHtml}${full.slice(insertAt)}`;
 }
 
+function crawlArticleDetail(def, locale) {
+  if (!articleModule) return "";
+  const slug = articleSlugFromDef(def);
+  const article = articleModule.articleBySlug(locale, slug);
+  if (!article) return "";
+  const prefix = locale === "el" ? "/el" : "";
+  const others = articleModule
+    .articlesFor(locale)
+    .filter((item) => item.slug !== article.slug);
+  return articleModule.articleDetailPrerenderHtml({
+    title: article.title,
+    subtitle: article.subtitle,
+    topic: article.topic,
+    date: article.date,
+    dateModified: article.dateModified,
+    dateLabel: articleModule.formatArticleDate(locale, article.date),
+    dateModifiedLabel: article.dateModified
+      ? articleModule.formatArticleDate(locale, article.dateModified)
+      : undefined,
+    readTime:
+      locale === "el"
+        ? `${article.readMinutes} λεπτά`
+        : `${article.readMinutes} min read`,
+    takeaways: article.takeaways,
+    body: article.body,
+    relatedServices: article.relatedServices,
+    moreArticles: others.map((item) => ({
+      title: item.title,
+      topic: item.topic,
+      excerpt: item.excerpt,
+      href: withTrailingSlash(`${prefix}/articles/${item.slug}`),
+    })),
+    copy: {
+      publishedLabel: locale === "el" ? "Δημοσιεύτηκε" : "Published",
+      updatedLabel: locale === "el" ? "Ενημερώθηκε" : "Updated",
+      glanceLabel: locale === "el" ? "Με μια ματιά" : "At a glance",
+      tocLabel: locale === "el" ? "Περιεχόμενα" : "Contents",
+      priceCta: locale === "el" ? "Δες πακέτα & τιμές" : "See packages & pricing",
+      midCtaTitle:
+        locale === "el"
+          ? "Θες να δούμε τι χρειάζεται η επιχείρησή σου;"
+          : "Want to see what your business needs?",
+      midCta: locale === "el" ? "Κλείσε ένα σύντομο call" : "Book a short call",
+      midCtaHref: withTrailingSlash(`${prefix}/about`),
+      endCtaTitle:
+        locale === "el"
+          ? "Θες να δούμε τι χρειάζεται η επιχείρησή σου;"
+          : "Want to see what your business needs?",
+      endCta: locale === "el" ? "Κλείσε ένα σύντομο call" : "Book a short call",
+      endCtaHref: withTrailingSlash(`${prefix}/about`),
+      relatedServicesLabel:
+        locale === "el" ? "Σχετικές υπηρεσίες" : "Related services",
+      moreArticlesLabel:
+        locale === "el" ? "Περισσότερα άρθρα" : "More articles",
+      backLabel: locale === "el" ? "Όλα τα άρθρα" : "All articles",
+      articlesIndexHref: withTrailingSlash(`${prefix}/articles`),
+      homeLabel: locale === "el" ? "Αρχική" : "Home",
+      homeHref: withTrailingSlash(prefix || "/"),
+      articlesLabel: locale === "el" ? "Άρθρα" : "Articles",
+    },
+  });
+}
+
 function crawlBody(def, locale) {
+  if (isArticleDetail(def)) {
+    const html = crawlArticleDetail(def, locale);
+    if (html) return html;
+  }
+
   const copy = def[locale];
   const nav = locale === "el" ? navEl : navEn;
   const homeHref = locale === "el" ? "/el/" : "/";
@@ -1408,20 +1560,28 @@ function writeRedirects() {
   console.log(`redirects: ${barePaths.size} trailing-slash rules`);
 }
 
-const template = stripPrior(readFileSync(join(dist, "index.html"), "utf8"));
+async function main() {
+  articleModule = await loadArticleModule();
+  const template = stripPrior(readFileSync(join(dist, "index.html"), "utf8"));
 
-for (const def of routeDefs) {
-  for (const locale of ["en", "el"]) {
-    const { file, html } = patchHtml(template, def, locale);
-    const outPath = join(dist, file);
-    mkdirSync(dirname(outPath), { recursive: true });
-    writeFileSync(outPath, html, "utf8");
-    console.log(`prerender: ${file}`);
+  for (const def of routeDefs) {
+    for (const locale of ["en", "el"]) {
+      const { file, html } = patchHtml(template, def, locale);
+      const outPath = join(dist, file);
+      mkdirSync(dirname(outPath), { recursive: true });
+      writeFileSync(outPath, html, "utf8");
+      console.log(`prerender: ${file}`);
+    }
   }
+
+  writeFileSync(join(dist, "404.html"), patch404(template), "utf8");
+  console.log("prerender: 404.html");
+
+  writeSitemap();
+  writeRedirects();
 }
 
-writeFileSync(join(dist, "404.html"), patch404(template), "utf8");
-console.log("prerender: 404.html");
-
-writeSitemap();
-writeRedirects();
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
