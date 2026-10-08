@@ -853,11 +853,57 @@ export const copy: Record<Locale, Copy> = {
           { label: "Ownership", value: "Stays yours" },
         ],
         proof: {
-          label: "Some of our websites",
+          label: "Selected",
           value: "",
-          links: [
-            { label: "dotxi.app", href: "https://dotxi.app/" },
-            { label: "pyrgiotisoe.com", href: "https://pyrgiotisoe.com/" },
+          clients: [
+            {
+              client: "dotxi.app",
+              did: "Website build",
+              story:
+                "A site for a digital product with a clear structure that explains what it does and guides the visitor to the next step.",
+              value:
+                "A site for a digital product with a clear structure that explains what it does and guides the visitor to the next step.",
+              links: [{ label: "dotxi.app", href: "https://dotxi.app/" }],
+              cover: {
+                src: "/images/partners/dotxi-cover.svg",
+                title: "DotXI",
+                detail: "dotxi.app",
+                fit: "contain",
+              },
+              media: [
+                {
+                  src: "/images/partners/dotxi-cover.svg",
+                  title: "DotXI",
+                  detail: "dotxi.app",
+                  fit: "contain",
+                },
+              ],
+            },
+            {
+              client: "Pyrgiotis OE",
+              did: "Website build",
+              story:
+                "A corporate site that presents the business and its services and makes it easy for new clients to get in touch.",
+              value:
+                "A corporate site that presents the business and its services and makes it easy for new clients to get in touch.",
+              links: [
+                { label: "pyrgiotisoe.com", href: "https://pyrgiotisoe.com/" },
+              ],
+              cover: {
+                src: "/images/partners/pyrgiotis.png",
+                title: "Pyrgiotis OE",
+                detail: "pyrgiotisoe.com",
+                fit: "contain",
+              },
+              media: [
+                {
+                  src: "/images/partners/pyrgiotis.png",
+                  title: "Pyrgiotis OE",
+                  detail: "pyrgiotisoe.com",
+                  fit: "contain",
+                },
+              ],
+            },
           ],
         },
         points: [
@@ -1632,7 +1678,6 @@ export const copy: Record<Locale, Copy> = {
             },
             {
               client: "Πυργιώτης ΟΕ",
-              backdrop: "/images/work-pyrgiotis-home.jpg",
               did: "Κατασκευή ιστοσελίδας",
               story:
                 "Εταιρική ιστοσελίδα που παρουσιάζει την επιχείρηση και τις υπηρεσίες της και διευκολύνει την επικοινωνία με νέους πελάτες.",
@@ -1649,19 +1694,10 @@ export const copy: Record<Locale, Copy> = {
               },
               media: [
                 {
-                  src: "/images/work-pyrgiotis-home.jpg",
-                  title: "Πυργιώτης ΟΕ — home",
-                  detail: "pyrgiotisoe.com",
-                },
-                {
-                  src: "/images/work-pyrgiotis-office.jpg",
-                  title: "Πυργιώτης ΟΕ — office",
-                  detail: "pyrgiotisoe.com",
-                },
-                {
-                  src: "/images/work-pyrgiotis-check.jpg",
+                  src: "/images/partners/pyrgiotis.png",
                   title: "Πυργιώτης ΟΕ",
                   detail: "pyrgiotisoe.com",
+                  fit: "contain",
                 },
               ],
             },
@@ -1825,23 +1861,7 @@ export const copy: Record<Locale, Copy> = {
         body: "Σύντομη εβδομαδιαία ανάγνωση: κρατάμε, κόβουμε ή μεγαλώνουμε. Όχι decks 40 σελίδων.",
       },
     ],
-    webWork: [
-      {
-        src: "/images/work-pyrgiotis-home.jpg",
-        title: "Πυργιώτης ΟΕ — home",
-        detail: "pyrgiotisoe.com",
-      },
-      {
-        src: "/images/work-pyrgiotis-office.jpg",
-        title: "Πυργιώτης ΟΕ — office",
-        detail: "pyrgiotisoe.com",
-      },
-      {
-        src: "/images/work-pyrgiotis-check.jpg",
-        title: "Πυργιώτης ΟΕ",
-        detail: "pyrgiotisoe.com",
-      },
-    ],
+    webWork: [],
     socialWork: [
       {
         src: "/images/proof-europatch-all.png",

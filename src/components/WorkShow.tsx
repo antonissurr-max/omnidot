@@ -303,38 +303,6 @@ export function WorkShow({
       </div>
     ) : null;
 
-  const webMediaItems: MediaItem[] = (() => {
-    if (id !== "web") return [];
-    const fromClients = clients.flatMap((c) => c.media ?? []);
-    const visuals = fromClients.filter(
-      (m) => mediaIsVideo(m) || m.fit !== "contain",
-    );
-    if (visuals.length) return visuals.slice(0, 6);
-    return pageGallery.slice(0, 6);
-  })();
-
-  const webMediaTop =
-    webMediaItems.length > 0 ? (
-      <div className="work__proof work__proof--folder">
-        <span className="work__proof-label">{copy.proof?.label}</span>
-        <div className="work__projects">
-          {webMediaItems.map((item) => (
-            <div key={`${item.src}-${item.title}`} className="work__project work__project--static">
-              <span className="work__project-media">
-                <ProjectCover item={item} />
-              </span>
-              <span className="work__project-copy">
-                <span className="work__project-name">{item.title}</span>
-                {item.detail ? (
-                  <span className="work__project-value">{item.detail}</span>
-                ) : null}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    ) : null;
-
   const simpleProof =
     !isFolder && copy.proof ? (
       <div className="work__proof">
@@ -399,18 +367,13 @@ export function WorkShow({
                 </div>
               </div>
 
-              {/* /web/: site media at top (like social videos); client cards after cost */}
-              {id === "web" && guide ? webMediaTop : folderProof}
-              {id === "web" && guide ? null : simpleProof}
+              {folderProof}
+              {simpleProof}
               {guide ? null : briefBtn}
             </header>
             {guide ? (
               <div className="work__body">
-                <ServiceGuide
-                  guide={guide}
-                  onBrief={onBrief}
-                  afterCost={id === "web" ? folderProof : undefined}
-                />
+                <ServiceGuide guide={guide} onBrief={onBrief} />
               </div>
             ) : (
               children && <div className="work__body">{children}</div>
