@@ -1533,9 +1533,14 @@ h1.chrome__brand {
   animation: none;
 }
 
-/* First home tile is LCP — never start at opacity 0 or wait for tile-in. */
+/*
+ * First home tile is LCP. Chrome skips opacity:0, so sit on the tile-in start
+ * frame at opacity 0.01 (same transform) before ready, then run tile-in-lcp.
+ */
 .tile.tile--0 {
-  opacity: 1;
+  opacity: 0.01;
+  transform: translateY(28px) scaleY(0.12);
+  transform-origin: 50% 100%;
   animation: none;
 }
 
@@ -1546,8 +1551,7 @@ h1.chrome__brand {
 }
 
 .stage.is-ready .tile.tile--0 {
-  opacity: 1;
-  animation: none;
+  animation-name: tile-in-lcp;
 }
 
 .tile:nth-of-type(odd) {
@@ -1607,6 +1611,18 @@ h1.chrome__brand {
 @keyframes tile-in {
   from {
     opacity: 0;
+    transform: translateY(28px) scaleY(0.12);
+    transform-origin: 50% 100%;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes tile-in-lcp {
+  from {
+    opacity: 0.01;
     transform: translateY(28px) scaleY(0.12);
     transform-origin: 50% 100%;
   }
@@ -6273,6 +6289,11 @@ a.work__project:focus-visible .work__project-name {
 
   .stage.is-ready .tile {
     opacity: 1 !important;
+  }
+
+  .tile.tile--0 {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .about-verse__row--open-only {
