@@ -354,6 +354,9 @@ export function WorkShow({
         ) : (
           <>
             <header className="work__head">
+              {/* /el/content/: Europatch + N4Sails showcase first, then H1 */}
+              {id === "content" && guide ? folderProof : null}
+
               <div className="work__lead">
                 <BoxedTitle text={copy.title} />
 
@@ -367,8 +370,8 @@ export function WorkShow({
                 </div>
               </div>
 
-              {/* One case folder card (social / performance) — click opens CaseStudy */}
-              {folderProof}
+              {/* social / performance / web: folder under title; content already shown above */}
+              {id === "content" && guide ? null : folderProof}
               {simpleProof}
               {guide ? null : briefBtn}
             </header>
