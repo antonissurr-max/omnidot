@@ -6145,10 +6145,10 @@ a.work__project:focus-visible .work__project-name {
 /* Short laptops only: slightly smaller tiles; gaps still track tile-size */
 @media (min-width: 900px) and (max-height: 780px) {
   .works {
-    --tile-size: clamp(148px, min(13.5vw, 18vh), 210px);
+    --tile-size: clamp(132px, min(12vw, 17vh), 200px);
     --tile-gap-sm: calc(var(--tile-size) * 0.06);
-    --tile-gap-lg: calc(var(--tile-size) * 1.18);
-    --tile-mid: calc(var(--tile-size) * 0.4);
+    --tile-gap-lg: calc(var(--tile-size) * 1.12);
+    --tile-mid: calc(var(--tile-size) * 0.42);
   }
 }
 
