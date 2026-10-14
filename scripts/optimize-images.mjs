@@ -16,6 +16,7 @@ const TARGETS = [
   "content.jpg",
   "performance.jpg",
   "web.jpg",
+  "seo.jpg",
   "hero.jpg",
   "work-omnidot.jpg",
   "europatch.jpg",

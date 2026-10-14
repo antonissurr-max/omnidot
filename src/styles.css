@@ -3513,7 +3513,7 @@ a.work__project:focus-visible .work__project-name {
     animation: none;
   }
 
-  .works > .tile--3 {
+  .works > .tile--4 {
     padding-bottom: 40px;
   }
 
@@ -4386,7 +4386,8 @@ a.work__project:focus-visible .work__project-name {
 .pricing-orb--blue .pricing-orb__ring,
 .pricing-orb--pink .pricing-orb__ring,
 .pricing-orb--green .pricing-orb__ring,
-.pricing-orb--sand .pricing-orb__ring {
+.pricing-orb--sand .pricing-orb__ring,
+.pricing-orb--slate .pricing-orb__ring {
   background: var(--slate);
   color: var(--paper);
 }
@@ -6043,19 +6044,20 @@ a.work__project:focus-visible .work__project-name {
     min-height: 100dvh;
     padding: 0;
     /* One scale unit: gaps stay proportional to tiles as the viewport changes.
-       gap-lg must exceed tile-size so Content and Performance do not overlap
-       (clear gap between them = gap-lg - tile-size). */
-    --tile-size: clamp(200px, min(18.5vw, 26vh), 360px);
+       gap-lg must exceed tile-size so mid tiles do not overlap
+       (clear gap between them = gap-lg - tile-size). Five tiles: slightly
+       smaller unit + taller composition so nothing clips the brand/footer. */
+    --tile-size: clamp(168px, min(15.5vw, 22vh), 300px);
     --tile-gap-sm: calc(var(--tile-size) * 0.06);
-    --tile-gap-lg: calc(var(--tile-size) * 1.22);
-    --tile-mid: calc(var(--tile-size) * 0.48);
+    --tile-gap-lg: calc(var(--tile-size) * 1.18);
+    --tile-mid: calc(var(--tile-size) * 0.44);
     --tile-comp-w: calc(
-      var(--tile-size) * 3 + var(--tile-gap-sm) * 2 + var(--tile-gap-lg)
+      var(--tile-size) * 3.15 + var(--tile-gap-sm) * 2 + var(--tile-gap-lg)
     );
-    --tile-comp-h: calc(var(--tile-mid) * 2 + var(--tile-size) + 2.4em);
+    --tile-comp-h: calc(var(--tile-mid) * 3.15 + var(--tile-size) + 2.4em);
     --tile-origin-x: calc((100vw - var(--tile-comp-w)) / 2);
     --tile-origin-y: calc(
-      (100dvh - var(--tile-comp-h)) / 2 - var(--tile-mid) * 0.35
+      (100dvh - var(--tile-comp-h)) / 2 - var(--tile-mid) * 0.28
     );
   }
 
@@ -6078,21 +6080,21 @@ a.work__project:focus-visible .work__project-name {
   }
 
   /*
-   * Vertical order: 1 → 2 → 4 → 3
-   * 1 & 2 shifted down · 3 & 4 shifted up · top of 3 = middle of 2
+   * Vertical order: 1 → 2 → 4 → 3 → 5
+   * Staggered zig-zag; fifth tile sits under the right cluster.
    */
   .tile:nth-of-type(1) {
-    top: calc(var(--tile-origin-y) + var(--tile-mid) * 0.5);
+    top: calc(var(--tile-origin-y) + var(--tile-mid) * 0.35);
     left: var(--tile-origin-x);
   }
 
   .tile:nth-of-type(2) {
-    top: calc(var(--tile-origin-y) + var(--tile-mid) * 1.5);
+    top: calc(var(--tile-origin-y) + var(--tile-mid) * 1.25);
     left: calc(var(--tile-origin-x) + var(--tile-size) + var(--tile-gap-sm));
   }
 
   .tile:nth-of-type(3) {
-    top: calc(var(--tile-origin-y) + var(--tile-mid) * 2.5);
+    top: calc(var(--tile-origin-y) + var(--tile-mid) * 2.15);
     left: calc(
       var(--tile-origin-x) + var(--tile-size) + var(--tile-gap-sm) +
         var(--tile-gap-lg)
@@ -6100,10 +6102,18 @@ a.work__project:focus-visible .work__project-name {
   }
 
   .tile:nth-of-type(4) {
-    top: calc(var(--tile-origin-y) + var(--tile-mid) * 2);
+    top: calc(var(--tile-origin-y) + var(--tile-mid) * 1.7);
     left: calc(
       var(--tile-origin-x) + var(--tile-size) * 2 + var(--tile-gap-sm) * 2 +
         var(--tile-gap-lg)
+    );
+  }
+
+  .tile:nth-of-type(5) {
+    top: calc(var(--tile-origin-y) + var(--tile-mid) * 3.05);
+    left: calc(
+      var(--tile-origin-x) + var(--tile-size) * 1.55 + var(--tile-gap-sm) +
+        var(--tile-gap-lg) * 0.55
     );
   }
 
@@ -6135,10 +6145,10 @@ a.work__project:focus-visible .work__project-name {
 /* Short laptops only: slightly smaller tiles; gaps still track tile-size */
 @media (min-width: 900px) and (max-height: 780px) {
   .works {
-    --tile-size: clamp(168px, min(16vw, 22vh), 230px);
+    --tile-size: clamp(148px, min(13.5vw, 18vh), 210px);
     --tile-gap-sm: calc(var(--tile-size) * 0.06);
-    --tile-gap-lg: calc(var(--tile-size) * 1.22);
-    --tile-mid: calc(var(--tile-size) * 0.42);
+    --tile-gap-lg: calc(var(--tile-size) * 1.18);
+    --tile-mid: calc(var(--tile-size) * 0.4);
   }
 }
 

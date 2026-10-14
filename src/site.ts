@@ -60,7 +60,7 @@ export function formatPhoneDisplay(phone: string) {
   return phone;
 }
 
-export type PageId = "social" | "content" | "performance" | "web";
+export type PageId = "social" | "content" | "performance" | "web" | "seo";
 
 export type MediaItem = {
   src: string;
@@ -112,6 +112,7 @@ export const pages: {
   { id: "content", kicker: "02", cover: "/images/content.webp" },
   { id: "performance", kicker: "03", cover: "/images/performance.webp" },
   { id: "web", kicker: "04", cover: "/images/web.webp" },
+  { id: "seo", kicker: "05", cover: "/images/seo.webp" },
 ];
 
 export const pageOrder: PageId[] = pages.map((p) => p.id);

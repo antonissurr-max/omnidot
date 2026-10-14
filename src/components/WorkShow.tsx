@@ -113,7 +113,9 @@ export function WorkShow({
             ? t.performanceWork
             : id === "web"
               ? t.webWork
-              : [];
+              : id === "seo"
+                ? []
+                : [];
   const clients = resolveClients(copy.proof);
   const isFolder = clients.length > 0;
   const [lightbox, setLightbox] = useState(false);

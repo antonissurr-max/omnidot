@@ -2,7 +2,7 @@ import type { ServiceGuideCopy } from "./i18n";
 
 /** English serviceGuide blocks — single source for React + prerender. */
 export const enServiceGuides: Record<
-  "social" | "content" | "performance" | "web",
+  "social" | "content" | "performance" | "web" | "seo",
   ServiceGuideCopy
 > = {
   social: {
@@ -394,5 +394,105 @@ export const enServiceGuides: Record<
       },
     ],
     finalTitle: "Want to see what kind of website your business needs?",
+  },
+  seo: {
+    intro:
+      "SEO is the work of showing up on Google when someone searches for what you do. AEO is the next step: making it possible for ChatGPT and Google's AI Mode to recommend you when people ask them. We handle both every month. We're based in Athens and work with businesses across Greece.",
+    cta: "Book a short call",
+    blocksTitle: "What they mean in practice",
+    blocks: [
+      {
+        title: "SEO: getting found on Google",
+        body: "Proper titles and descriptions, pages that answer what customers search for, a fast site and an up-to-date Google Business Profile. That's what decides whether you show up in results and on the map.",
+      },
+      {
+        title: "AEO: getting recommended by AI",
+        body: "AI tools build answers from what they find written clearly. So we put the answer first, with concrete prices, areas and steps, and keep your business details identical everywhere.",
+      },
+    ],
+    includesTitle: "Packages",
+    includes: [
+      "Local SEO & AEO, from €300/mo: Google Business Profile management (posts, photos, review replies), monthly site checks and fixes, consistent name, address and phone across directories, a monthly check of whether ChatGPT and Google recommend you, and a monthly report with Search Console numbers.",
+      "SEO & AEO with content, from €600/mo: everything above, plus 2 articles a month written for search and AI answers, and improved or new service pages.",
+      "Initial site audit: €200 one-off.",
+    ],
+    audienceTitle: "Who it's for",
+    audienceBody:
+      "Local businesses and professionals whose customers search Google first, like offices, clinics, engineers, shops and restaurants. Also anyone who already has a site that nobody finds.",
+    processTitle: "How we start",
+    process: [
+      {
+        title: "Intro: ",
+        body: "a call about your business, areas and customers.",
+      },
+      {
+        title: "Audit: ",
+        body: "we review your site, Google Business Profile and where you show up today, and give you a priority list.",
+      },
+      {
+        title: "Fixes: ",
+        body: "we start with what moves the needle most: titles, service pages, business details.",
+      },
+      {
+        title: "Every month: ",
+        body: "Google Business Profile, checks, content if your package includes it, and a report.",
+      },
+    ],
+    costTitle: "What it costs",
+    costBody:
+      "Local SEO & AEO starts at €300/mo and the content package at €600/mo. The initial audit is €200 one-off, with a 3-month minimum. No one can guarantee a specific Google ranking or a mention in AI answers, and that includes us. What we can do is show you every month what we did and what changed.",
+    costLinkLabel: "See all packages →",
+    costLinkHref: "/pricing/",
+    faqTitle: "Frequently asked questions",
+    faq: [
+      {
+        q: "What is AEO?",
+        a: "Answer Engine Optimization: making it possible for ChatGPT, Google's AI Mode and similar tools to mention your business in their answers. In practice it's good SEO, with answers written clearly and your details consistent everywhere.",
+      },
+      {
+        q: "How long until I see results?",
+        a: "First changes in Search Console usually show within a few weeks. A steady picture takes 3 to 6 months of consistent work, which is why the minimum is 3 months.",
+      },
+      {
+        q: "Do I need a website from you too?",
+        a: "No. We work on the site you already have, as long as we can make changes. If the site is holding you back, we'll tell you. For a new site, see ",
+        aLink: { label: "Web Development", href: "/web/" },
+      },
+      {
+        q: "What's in the monthly report?",
+        a: "Clicks, impressions and queries from Search Console, what we changed on the site and Google Business Profile, whether ChatGPT and Google recommend you for key questions, and the plan for next month.",
+      },
+      {
+        q: "Do you guarantee first position?",
+        a: "No. Anyone who guarantees a Google ranking or an AI mention isn't telling the truth. We commit to the work and to clear numbers every month.",
+      },
+    ],
+    readMoreTitle: "Read more",
+    readMore: {
+      label:
+        "How to build a website that brings in customers in Athens →",
+      href: "/articles/dimiourgia-istoselidas-athina/",
+    },
+    relatedTitle: "Related services",
+    related: [
+      {
+        label: "Web Development",
+        href: "/web/",
+        blurb:
+          "Fast sites and landing pages, built right for SEO from day one.",
+      },
+      {
+        label: "Content Creation",
+        href: "/content/",
+        blurb: "Photos and video for your Google Business Profile and social.",
+      },
+      {
+        label: "Social Media Management",
+        href: "/social/",
+        blurb:
+          "A steady social presence that also helps branded searches.",
+      },
+    ],
+    finalTitle: "Want to see where people find you today?",
   },
 };

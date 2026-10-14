@@ -3,7 +3,13 @@ import type { PageId, View } from "./types";
 
 export const SITE_ORIGIN = "https://omnidot.gr";
 
-export const PAGE_IDS: PageId[] = ["social", "content", "performance", "web"];
+export const PAGE_IDS: PageId[] = [
+  "social",
+  "content",
+  "performance",
+  "web",
+  "seo",
+];
 
 /** Ensure a path uses the trailing-slash canonical form (root stays `/`). */
 export function withTrailingSlash(path: string): string {

@@ -11,6 +11,7 @@ const interestIds: (PageId | "full")[] = [
   "content",
   "performance",
   "web",
+  "seo",
   "full",
 ];
 

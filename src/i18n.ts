@@ -397,9 +397,9 @@ export const copy: Record<Locale, Copy> = {
     pricingTitleLead: "Packages",
     pricingTitleSub: "& pricing",
     pricingLede:
-      "Clear marketing agency packages for social, content, ads and web. Ad spend is always separate. Scope is written down before we start.",
+      "Clear marketing agency packages for social, content, ads, web and SEO. Ad spend is always separate. Scope is written down before we start.",
     pricingIntro:
-      "Clear marketing agency packages for social, content, ads and web. Ad spend is always separate. Social from €450/mo, content from €350, performance from €300/mo, web from €700. Prices in EUR, excl. VAT where applicable. Minimum 3 months on retainers.",
+      "Clear marketing agency packages for social, content, ads, web and SEO. Ad spend is always separate. Social from €450/mo, content from €350, performance from €300/mo, web from €700, SEO & AEO from €300/mo. Prices in EUR, excl. VAT where applicable. Minimum 3 months on retainers.",
     pricingNote:
       "Prices in EUR, excl. VAT where applicable. Minimum 3 months on retainers. Creative production can be bundled or billed per asset.",
     pricingCta: "Start a brief",
@@ -440,7 +440,7 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     pricingSeoDescription:
-      "Marketing agency pricing in Athens: social media from €450/mo, content from €350, Meta & Google Ads from €300/mo, websites from €700. Ad spend separate.",
+      "Marketing agency pricing in Athens: social from €450/mo, content from €350, ads from €300/mo, web from €700, SEO & AEO from €300/mo. Ad spend separate.",
     aboutSeoDescription:
       "About omnidot., a marketing agency in Athens for founders and local brands: social media, content, Meta & Google Ads and SEO websites. Get in touch.",
     mediaSoon: "Media soon",
@@ -493,9 +493,21 @@ export const copy: Record<Locale, Copy> = {
           "E-shop — by agreement",
         ],
       },
+      {
+        id: "seo",
+        name: "SEO & AEO",
+        price: "From €300 / mo",
+        blurb:
+          "Initial audit €200 once. Local SEO, Google Business Profile and AEO, reported monthly.",
+        items: [
+          "Local SEO & AEO · GBP · site fixes · directories · AI check · report · from €300/mo",
+          "SEO & AEO with content · all of the above + 2 articles/mo + service pages · from €600/mo",
+        ],
+        note: "No one can guarantee rankings or AI mentions.",
+      },
     ],
     homeMobileHeadline: "Marketing agency in Athens for web, SEO, social and ads",
-    homeMobileAboutTitle: "One partner. Four crafts.",
+    homeMobileAboutTitle: "One partner. Five crafts.",
     homeMobileAboutBody:
       "Web, SEO, social and performance — built as one system for founders who want the next move, not another deck.",
     homeMobileServicesTitle: "What we ship",
@@ -996,6 +1008,42 @@ export const copy: Record<Locale, Copy> = {
         ],
         serviceGuide: enServiceGuides.web,
       },
+      seo: {
+        title: "SEO & AEO for businesses",
+        tileTitle: "SEO & AEO",
+        seoTitle: "SEO & AEO Services in Athens | omnidot.",
+        seoDescription:
+          "Local SEO, Google Business Profile and AEO, so customers find you on Google and ChatGPT and Google AI Mode can recommend you. From €300/mo.",
+        meta: [
+          { label: "Goal", value: "Get found" },
+          { label: "Channels", value: "Google · Maps · AI" },
+          { label: "You get", value: "Fixes + report" },
+          { label: "Engagement", value: "Monthly" },
+        ],
+        points: [
+          {
+            name: "Local SEO",
+            detail: "Google & Maps",
+            body: "Pages, titles and Google Business Profile set up so people searching for what you do nearby can find you.",
+          },
+          {
+            name: "AEO",
+            detail: "ChatGPT & AI Mode",
+            body: "Clear answers and concrete facts on your site, so AI tools have something they can recommend.",
+          },
+          {
+            name: "Content",
+            detail: "Articles & pages",
+            body: "Articles and service pages written around the questions your customers actually ask.",
+          },
+          {
+            name: "Reporting",
+            detail: "Monthly",
+            body: "Search Console numbers and what we change next month.",
+          },
+        ],
+        serviceGuide: enServiceGuides.seo,
+      },
     },
     performanceFacts: [
       {
@@ -1147,9 +1195,9 @@ export const copy: Record<Locale, Copy> = {
     pricingTitleLead: "Πακέτα",
     pricingTitleSub: "& τιμές",
     pricingLede:
-      "Καθαρά πακέτα διαφημιστικής για social, content, ads και web. Το ad spend μένει πάντα δικό σας. Το scope γράφεται πριν ξεκινήσουμε.",
+      "Καθαρά πακέτα διαφημιστικής για social, content, ads, web και SEO. Το ad spend μένει πάντα δικό σας. Το scope γράφεται πριν ξεκινήσουμε.",
     pricingIntro:
-      "Καθαρά πακέτα διαφημιστικής για social, content, ads και web. Το ad spend είναι πάντα ξεχωριστά. Social από €450/μήνα, content από €350, performance από €300/μήνα, web από €700. Τιμές σε ευρώ, χωρίς ΦΠΑ όπου εφαρμόζεται. Ελάχιστο 3 μήνες στα retainers.",
+      "Καθαρά πακέτα διαφημιστικής για social, content, ads, web και SEO. Το ad spend είναι πάντα ξεχωριστά. Social από €450/μήνα, content από €350, performance από €300/μήνα, web από €700, SEO & AEO από €300/μήνα. Τιμές σε ευρώ, χωρίς ΦΠΑ όπου εφαρμόζεται. Ελάχιστο 3 μήνες στα retainers.",
     pricingNote:
       "Τιμές σε €, χωρίς ΦΠΑ όπου εφαρμόζεται. Minimum 3 μήνες στα retainers. Το creative μπορεί να μπει στο πακέτο ή ανά asset.",
     pricingCta: "Ξεκίνα brief",
@@ -1190,7 +1238,7 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     pricingSeoDescription:
-      "Τιμές διαφημιστικής στην Αθήνα: social media από €450/μήνα, content από €350, Meta & Google Ads από €300/μήνα, ιστοσελίδες από €700. Ad spend ξεχωριστά.",
+      "Τιμές διαφημιστικής στην Αθήνα: social από €450/μήνα, content από €350, ads από €300/μήνα, web από €700, SEO & AEO από €300/μήνα. Ad spend ξεχωριστά.",
     aboutSeoDescription:
       "Σχετικά με την omnidot., διαφημιστική στην Αθήνα για founders και τοπικά brands: social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
     mediaSoon: "Media σύντομα",
@@ -1243,9 +1291,21 @@ export const copy: Record<Locale, Copy> = {
           "E-shop — κατόπιν συνεννόησης",
         ],
       },
+      {
+        id: "seo",
+        name: "SEO & AEO",
+        price: "Από €300 / μήνα",
+        blurb:
+          "Αρχικός έλεγχος €200 εφάπαξ. Τοπικό SEO, Google Business Profile και AEO, με μηνιαία αναφορά.",
+        items: [
+          "Τοπικό SEO & AEO · GBP · διορθώσεις site · κατάλογοι · έλεγχος στα AI · αναφορά · από €300/μήνα",
+          "SEO & AEO με περιεχόμενο · όλα τα παραπάνω + 2 άρθρα/μήνα + σελίδες υπηρεσιών · από €600/μήνα",
+        ],
+        note: "Κανείς δεν εγγυάται θέσεις ή εμφάνιση στα AI.",
+      },
     ],
     homeMobileHeadline: "Διαφημιστική στην Αθήνα για web, SEO, social και ads",
-    homeMobileAboutTitle: "Ένας συνεργάτης. Τέσσερα crafts.",
+    homeMobileAboutTitle: "Ένας συνεργάτης. Πέντε crafts.",
     homeMobileAboutBody:
       "Web, SEO, social και performance — σαν ένα σύστημα για founders που θέλουν την επόμενη κίνηση, όχι άλλο deck.",
     homeMobileServicesTitle: "Τι παραδίδουμε",
@@ -2156,6 +2216,144 @@ export const copy: Record<Locale, Copy> = {
             },
           ],
           finalTitle: "Θες να δούμε τι site χρειάζεται η επιχείρησή σου;",
+        },
+      },
+      // [ΕΓΚΡΙΣΗ] Πυργιώτης ΟΕ (σύμβουλοι μηχανικοί, pyrgiotisoe.com): με τεχνικές διορθώσεις και editorial στα κείμενα, το site ανέβηκε από 76 σε 94/100 στον εσωτερικό μας έλεγχο SEO.
+      // EN: Pyrgiotis OE (consulting engineers): technical fixes and a copy edit took the site from 76 to 94/100 on our internal SEO audit.
+      seo: {
+        title: "SEO & AEO για επιχειρήσεις",
+        tileTitle: "SEO & AEO",
+        seoTitle: "SEO & AEO για επιχειρήσεις στην Αθήνα | omnidot.",
+        seoDescription:
+          "Τοπικό SEO, Google Business Profile και AEO, για να σε βρίσκουν στη Google και να σε προτείνουν το ChatGPT και το AI Mode. Από €300/μήνα.",
+        meta: [
+          { label: "Στόχος", value: "Να σε βρίσκουν" },
+          { label: "Κανάλια", value: "Google · Maps · AI" },
+          { label: "Παίρνεις", value: "Διορθώσεις + αναφορά" },
+          { label: "Συνεργασία", value: "Μηνιαία" },
+        ],
+        points: [
+          {
+            name: "Τοπικό SEO",
+            detail: "Google & Maps",
+            body: "Σελίδες, τίτλοι και Google Business Profile στημένα ώστε να σε βρίσκουν όσοι ψάχνουν αυτό που κάνεις στην περιοχή σου.",
+          },
+          {
+            name: "AEO",
+            detail: "ChatGPT & AI Mode",
+            body: "Καθαρές απαντήσεις και συγκεκριμένα στοιχεία στο site, ώστε τα AI εργαλεία να μπορούν να σε προτείνουν.",
+          },
+          {
+            name: "Περιεχόμενο",
+            detail: "Άρθρα & σελίδες",
+            body: "Άρθρα και σελίδες υπηρεσιών γραμμένα για τις ερωτήσεις που κάνουν πραγματικά οι πελάτες σου.",
+          },
+          {
+            name: "Αναφορά",
+            detail: "Κάθε μήνα",
+            body: "Νούμερα από το Search Console και τι αλλάζουμε τον επόμενο μήνα.",
+          },
+        ],
+        serviceGuide: {
+          intro:
+            "Το SEO είναι η δουλειά για να εμφανίζεσαι στη Google όταν κάποιος ψάχνει αυτό που κάνεις. Το AEO είναι το επόμενο βήμα: να μπορούν το ChatGPT και το AI Mode της Google να σε προτείνουν όταν τους ζητούν σύσταση. Αναλαμβάνουμε και τα δύο κάθε μήνα, με έδρα στην Αθήνα και πελάτες σε όλη την Ελλάδα.",
+          cta: "Κλείσε ένα σύντομο call",
+          blocksTitle: "Τι σημαίνουν στην πράξη",
+          blocks: [
+            {
+              title: "SEO: να σε βρίσκουν στη Google",
+              body: "Σωστοί τίτλοι και περιγραφές, σελίδες που απαντούν σε αυτό που ψάχνει ο πελάτης, γρήγορο site και ενημερωμένο Google Business Profile. Αυτά κρίνουν αν θα βγεις στα αποτελέσματα και στον χάρτη.",
+            },
+            {
+              title: "AEO: να σε προτείνουν τα AI",
+              body: "Τα AI εργαλεία συνθέτουν απαντήσεις από ό,τι βρίσκουν γραμμένο καθαρά. Γι' αυτό βάζουμε την απάντηση πρώτη, με συγκεκριμένες τιμές, περιοχές και βήματα, και φροντίζουμε τα στοιχεία σου να είναι ίδια παντού.",
+            },
+          ],
+          includesTitle: "Τα πακέτα",
+          includes: [
+            "Τοπικό SEO & AEO, από €300/μήνα: διαχείριση Google Business Profile (posts, φωτογραφίες, απαντήσεις σε κριτικές), μηνιαίος έλεγχος και διορθώσεις στο site, ίδια στοιχεία (όνομα, διεύθυνση, τηλέφωνο) σε καταλόγους, μηνιαίος έλεγχος στο ChatGPT και στη Google για το αν σε προτείνουν, μηνιαία αναφορά με νούμερα από το Search Console.",
+            "SEO & AEO με περιεχόμενο, από €600/μήνα: όλα τα παραπάνω, και επιπλέον 2 άρθρα τον μήνα γραμμένα για αναζητήσεις και απαντήσεις AI και βελτίωση των σελίδων υπηρεσιών ή νέες σελίδες.",
+            "Αρχικός έλεγχος του site: €200 εφάπαξ.",
+          ],
+          audienceTitle: "Για ποιον είναι",
+          audienceBody:
+            "Για τοπικές επιχειρήσεις και επαγγελματίες που οι πελάτες τους ψάχνουν πρώτα στη Google, όπως γραφεία, ιατρεία, μηχανικοί, καταστήματα και εστίαση. Και για όποιον έχει ήδη site αλλά δεν τον βρίσκει κανείς.",
+          processTitle: "Πώς ξεκινάμε",
+          process: [
+            {
+              title: "Γνωριμία: ",
+              body: "ένα call για την επιχείρηση, τις περιοχές και τους πελάτες σου.",
+            },
+            {
+              title: "Αρχικός έλεγχος: ",
+              body: "ελέγχουμε το site, το Google Business Profile και το πού εμφανίζεσαι σήμερα, και σου δίνουμε λίστα με προτεραιότητες.",
+            },
+            {
+              title: "Διορθώσεις: ",
+              body: "ξεκινάμε από ό,τι έχει τη μεγαλύτερη επίδραση: τίτλους, σελίδες υπηρεσιών και στοιχεία επιχείρησης.",
+            },
+            {
+              title: "Κάθε μήνα: ",
+              body: "Google Business Profile, έλεγχοι, περιεχόμενο αν το έχει το πακέτο, και αναφορά.",
+            },
+          ],
+          costTitle: "Πόσο κοστίζει",
+          costBody:
+            "Το τοπικό SEO & AEO ξεκινά από €300 τον μήνα και το πακέτο με περιεχόμενο από €600 τον μήνα. Ο αρχικός έλεγχος κοστίζει €200 εφάπαξ και η ελάχιστη συνεργασία είναι 3 μήνες. Κανείς δεν μπορεί να εγγυηθεί συγκεκριμένη θέση στη Google ή εμφάνιση στις απαντήσεις των AI, ούτε εμείς. Μπορούμε όμως να σου δείχνουμε κάθε μήνα τι κάναμε και τι άλλαξε.",
+          costLinkLabel: "Δες όλα τα πακέτα →",
+          costLinkHref: "/el/pricing/",
+          faqTitle: "Συχνές ερωτήσεις",
+          faq: [
+            {
+              q: "Τι είναι το AEO;",
+              a: "Answer Engine Optimization: η δουλειά για να μπορούν το ChatGPT, το AI Mode της Google και παρόμοια εργαλεία να αναφέρουν την επιχείρησή σου στις απαντήσεις τους. Στην πράξη είναι καλό SEO, με την απάντηση γραμμένη καθαρά και τα στοιχεία σου ίδια παντού.",
+            },
+            {
+              q: "Σε πόσο καιρό φαίνονται αποτελέσματα;",
+              a: "Οι πρώτες αλλαγές στο Search Console φαίνονται συνήθως μέσα σε λίγες εβδομάδες. Για σταθερή εικόνα χρειάζονται 3 με 6 μήνες συνεχούς δουλειάς, και γι' αυτό η ελάχιστη συνεργασία είναι 3 μήνες.",
+            },
+            {
+              q: "Χρειάζομαι και site από εσάς;",
+              a: "Όχι. Δουλεύουμε με το site που ήδη έχεις, αρκεί να έχουμε πρόσβαση για αλλαγές. Αν το site σε κρατάει πίσω, θα σου το πούμε. Για νέο site δες την ",
+              aLink: { label: "Ανάπτυξη Ιστοσελίδων", href: "/el/web/" },
+            },
+            {
+              q: "Τι περιλαμβάνει η μηνιαία αναφορά;",
+              a: "Κλικ, εμφανίσεις και αναζητήσεις από το Search Console, τι αλλάξαμε στο site και στο Google Business Profile, το αν σε προτείνουν το ChatGPT και η Google σε βασικές ερωτήσεις, και τι κάνουμε τον επόμενο μήνα.",
+            },
+            {
+              q: "Μου εγγυάστε πρώτη θέση;",
+              a: "Όχι. Όποιος εγγυάται θέση στη Google ή εμφάνιση στα AI δεν λέει την αλήθεια. Εμείς δεσμευόμαστε για τη δουλειά και για καθαρά νούμερα κάθε μήνα.",
+            },
+          ],
+          readMoreTitle: "Διάβασε περισσότερα",
+          readMore: {
+            label:
+              "Πώς να φτιάξεις ιστοσελίδα που φέρνει πελάτες στην Αθήνα →",
+            href: "/el/articles/dimiourgia-istoselidas-athina/",
+          },
+          relatedTitle: "Σχετικές υπηρεσίες",
+          related: [
+            {
+              label: "Ανάπτυξη Ιστοσελίδων",
+              href: "/el/web/",
+              blurb:
+                "Γρήγορα sites και landing pages, στημένα σωστά για SEO από την αρχή.",
+            },
+            {
+              label: "Δημιουργία Περιεχομένου",
+              href: "/el/content/",
+              blurb:
+                "Φωτογραφίες και βίντεο για το Google Business Profile και τα social.",
+            },
+            {
+              label: "Διαχείριση Social Media",
+              href: "/el/social/",
+              blurb:
+                "Σταθερή παρουσία στα social, που βοηθά και στις αναζητήσεις με το όνομά σου.",
+            },
+          ],
+          finalTitle: "Θες να δούμε πού σε βρίσκουν σήμερα;",
         },
       },
     },

@@ -39,6 +39,7 @@ export const PAGE_TITLES = {
     content: "Content Creation for Social Media | omnidot. Athens",
     performance: "Google Ads & Meta Ads Management | omnidot. Athens",
     web: "Website Development in Athens | omnidot.",
+    seo: "SEO & AEO Services in Athens | omnidot.",
   },
   el: {
     home: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
@@ -50,6 +51,7 @@ export const PAGE_TITLES = {
     content: "Παραγωγή Περιεχομένου για Social Media | omnidot. Αθήνα",
     performance: "Διαχείριση Google Ads & Meta Ads | omnidot. Αθήνα",
     web: "Κατασκευή Ιστοσελίδας στην Αθήνα | omnidot.",
+    seo: "SEO & AEO για επιχειρήσεις στην Αθήνα | omnidot.",
   },
 } as const;
 

@@ -50,7 +50,7 @@ export function About({
   interest?: PageId;
 }) {
   const { t } = useLocale();
-  const pageIds = ["social", "content", "performance", "web"] as const;
+  const pageIds = ["social", "content", "performance", "web", "seo"] as const;
   const layerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [spark] = useState(() => {

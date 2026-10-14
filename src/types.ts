@@ -1,4 +1,4 @@
-export type PageId = "social" | "content" | "performance" | "web";
+export type PageId = "social" | "content" | "performance" | "web" | "seo";
 
 export type View =
   | { kind: "index" }

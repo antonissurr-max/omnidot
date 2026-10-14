@@ -12,14 +12,15 @@ import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
 import type { PageId } from "../types";
 
-const DOT_TONES = ["blue", "pink", "green", "sand"] as const;
+const DOT_TONES = ["blue", "pink", "green", "sand", "slate"] as const;
 
-/** Center-based coords (%). Top pair closer in, bottom pair wider. */
+/** Center-based coords (%). Five orbs: top pair, center, bottom pair. */
 const LAYOUT = [
-  { x: 28, y: 28, s: 1 },
-  { x: 72, y: 28, s: 1 },
-  { x: 22, y: 72, s: 1 },
-  { x: 78, y: 72, s: 1 },
+  { x: 24, y: 26, s: 1 },
+  { x: 76, y: 26, s: 1 },
+  { x: 50, y: 50, s: 1 },
+  { x: 22, y: 76, s: 1 },
+  { x: 78, y: 76, s: 1 },
 ] as const;
 
 const ORB_MEDIA: Record<
@@ -38,6 +39,7 @@ const ORB_MEDIA: Record<
     poster: "/images/performance.webp",
   },
   web: { type: "image", src: "/images/web.webp" },
+  seo: { type: "image", src: "/images/seo.webp" },
 };
 
 export function Pricing({

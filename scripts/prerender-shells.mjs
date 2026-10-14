@@ -58,6 +58,7 @@ const navEn = [
   { href: "/content/", label: "Content Creation" },
   { href: "/performance/", label: "Performance Marketing" },
   { href: "/web/", label: "Web Development" },
+  { href: "/seo/", label: "SEO & AEO" },
   { href: "/pricing/", label: "Packages & pricing" },
   { href: "/articles/", label: "Articles" },
   { href: "/about/", label: "About / Contact" },
@@ -69,6 +70,7 @@ const navEl = [
   { href: "/el/content/", label: "Δημιουργία Περιεχομένου" },
   { href: "/el/performance/", label: "Performance Marketing" },
   { href: "/el/web/", label: "Ανάπτυξη Ιστοσελίδων" },
+  { href: "/el/seo/", label: "SEO & AEO" },
   { href: "/el/pricing/", label: "Πακέτα & τιμές" },
   { href: "/el/articles/", label: "Άρθρα" },
   { href: "/el/about/", label: "Σχετικά / Επικοινωνία" },
@@ -125,6 +127,15 @@ const routeStructure = [
     enFile: "web/index.html",
     elFile: "el/web/index.html",
     image: `${origin}/images/web.webp`,
+    type: "service",
+  },
+  {
+    id: "seo",
+    enPath: "/seo/",
+    elPath: "/el/seo/",
+    enFile: "seo/index.html",
+    elFile: "el/seo/index.html",
+    image: `${origin}/images/seo.webp`,
     type: "service",
   },
   {
@@ -211,7 +222,7 @@ function localeShell(locale, def) {
   const titles = i18nModule.PAGE_TITLES[locale];
 
   if (def.id === "home") {
-    const services = ["social", "content", "performance", "web"].map((id) => {
+    const services = ["social", "content", "performance", "web", "seo"].map((id) => {
       const page = t.pages[id];
       const href = locale === "el" ? `/el/${id}/` : `/${id}/`;
       const blurb =
@@ -242,7 +253,7 @@ function localeShell(locale, def) {
       body: i18nModule.verseOpenText(t.aboutVerse),
       extra: t.aboutBody,
       story: "",
-      services: ["social", "content", "performance", "web"].map((id) => ({
+      services: ["social", "content", "performance", "web", "seo"].map((id) => ({
         name: t.pages[id].title,
         href: locale === "el" ? `/el/${id}/` : `/${id}/`,
       })),
