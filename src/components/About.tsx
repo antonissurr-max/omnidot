@@ -136,6 +136,16 @@ export function About({
 
             <p className="about-layer__body">{t.aboutBody}</p>
 
+            <section className="about-layer__section">
+              <h2 className="about-layer__section-title">{t.aboutHowHeading}</h2>
+              <p className="about-layer__body">{t.aboutHowBody}</p>
+            </section>
+
+            <section className="about-layer__section">
+              <h2 className="about-layer__section-title">{t.aboutWhoHeading}</h2>
+              <p className="about-layer__body">{t.aboutWhoBody}</p>
+            </section>
+
             <ul className="about-layer__links">
               {pageIds.map((id) => (
                 <li key={id}>
@@ -146,13 +156,19 @@ export function About({
               ))}
             </ul>
 
-            <p className="about-layer__contact-line">
-              <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
-              {" · "}
-              <a href={`tel:${site.phone.replace(/\D/g, "")}`}>{site.phone}</a>
-              {" · "}
-              {t.location}
-            </p>
+            <section className="about-layer__section">
+              <h2 className="about-layer__section-title">
+                {t.aboutContactHeading}
+              </h2>
+              <p className="about-layer__body">{t.aboutContactBody}</p>
+              <p className="about-layer__contact-line">
+                <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+                {" · "}
+                <a href={`tel:${site.phone.replace(/\D/g, "")}`}>{site.phone}</a>
+                {" · "}
+                {t.location}
+              </p>
+            </section>
           </div>
 
           <Contact tone="paper" interest={interest} />

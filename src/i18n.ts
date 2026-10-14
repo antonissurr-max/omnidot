@@ -121,6 +121,12 @@ export type Copy = {
   aboutSub: string;
   aboutHeading: string;
   aboutBody: string;
+  aboutHowHeading: string;
+  aboutHowBody: string;
+  aboutWhoHeading: string;
+  aboutWhoBody: string;
+  aboutContactHeading: string;
+  aboutContactBody: string;
   landingLede: string;
   startBrief: string;
   contactUs: string;
@@ -354,7 +360,7 @@ export const copy: Record<Locale, Copy> = {
     articlesTitle: "Articles",
     articlesEyebrow: "Notes from the studio",
     articlesLede:
-      "Short reads on social, ads, SEO and websites — practical notes from how we work with founders and local brands.",
+      "Short reads on Meta and Google ads, social media, SEO and websites — written for businesses in Athens and across Greece. Practical notes from how we plan, ship and report, not generic marketing theory. Start with a topic below, or skim for the next move on your channels and site. New pieces land here as we publish them.",
     articlesRead: "Read",
     articlesBack: "All articles",
     articlesReadTime: "{n} min read",
@@ -397,6 +403,15 @@ export const copy: Record<Locale, Copy> = {
     aboutHeading: "About omnidot.",
     aboutBody:
       "For founders and local brands that want a clear next step — not another report. From a fast SEO website to social media management and Meta & Google Ads campaigns. We don't believe in noise. We believe in data, clean design, and strategies that turn visitors into loyal customers.",
+    aboutHowHeading: "How we work",
+    aboutHowBody:
+      "We start with a short brief: goals, links, timeline. Then we agree scope and price before any work begins. You talk to the person doing the work — strategy, content, ads or the site — not a long chain of account managers. Retainer work runs on a clear monthly rhythm: plan, ship, report, adjust.",
+    aboutWhoHeading: "Who we work with",
+    aboutWhoBody:
+      "We work with a small number of clients at a time. Founders, local brands and small teams in Athens and across Greece who want one partner for web, social and performance — not five freelancers and a new deck every month. If the fit is wrong, we say so early.",
+    aboutContactHeading: "Contact",
+    aboutContactBody:
+      "Send a brief or email us. We reply with next steps, not a long pitch. Based in Athens; we work across Greece.",
     landingLede: "Athens · pick a service or start a brief",
     startBrief: "Start a brief",
     contactUs: "Contact us",
@@ -448,9 +463,9 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     pricingSeoDescription:
-      "Marketing agency pricing in Athens: social from €450/mo, content from €350, ads from €300/mo, web from €700, SEO & AEO from €300/mo. Ad spend separate.",
+      "Athens marketing pricing: social from €450/mo, content from €350, ads from €300/mo, web from €700, SEO & AEO from €300/mo. Ad spend separate.",
     aboutSeoDescription:
-      "About omnidot., a marketing agency in Athens for founders and local brands: social media, content, Meta & Google Ads and SEO websites. Get in touch.",
+      "About omnidot., a marketing agency in Athens: social media, content, Meta and Google Ads, and SEO websites for founders and local brands.",
     mediaSoon: "Media soon",
     caseCompany: "Company",
     caseTask: "Task",
@@ -646,7 +661,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Social Media",
         seoTitle: "Social Media Management in Athens | omnidot.",
         seoDescription:
-          "Social media management in Athens for businesses across Greece: Instagram, TikTok, Facebook and LinkedIn, strategy and monthly reports. From €450/month.",
+          "Social media management in Athens: Instagram, TikTok, Facebook and LinkedIn — strategy and monthly reports. From €450/month.",
         meta: [
           { label: "Goal", value: "Steady presence" },
           { label: "Channels", value: "IG · TikTok · LinkedIn" },
@@ -905,7 +920,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Google & Meta Ads",
         seoTitle: "Google Ads & Meta Ads Management | omnidot. Athens",
         seoDescription:
-          "Google, Facebook and Instagram ads that bring leads and sales. Based in Athens. Setup €200 one-off, management from €300/month. Ad budget stays yours.",
+          "Google, Facebook and Instagram ads for leads and sales. Athens-based. Setup €200, management from €300/month. Ad budget stays yours.",
         meta: [
           { label: "Goal", value: "Conversion growth" },
           { label: "Channels", value: "Meta · Google" },
@@ -970,7 +985,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Websites",
         seoTitle: "Website Development in Athens | omnidot.",
         seoDescription:
-          "Website development in Athens for businesses across Greece: fast sites, landing pages and a structure Google understands. Landing pages from €700.",
+          "Website development in Athens: fast sites, landing pages and a structure Google understands. Landing pages from €700.",
         meta: [
           { label: "Build", value: "Sites & landings" },
           { label: "SEO", value: "Findable on Google" },
@@ -1191,7 +1206,7 @@ export const copy: Record<Locale, Copy> = {
     articlesTitle: "Άρθρα",
     articlesEyebrow: "Σημειώσεις από το στούντιο",
     articlesLede:
-      "Σύντομα κείμενα για social, ads, SEO και ιστοσελίδες — πρακτικές σημειώσεις από τη δουλειά μας με founders και τοπικά brands.",
+      "Σύντομα κείμενα για Meta και Google ads, social media, SEO και ιστοσελίδες — για επιχειρήσεις στην Αθήνα και σε όλη την Ελλάδα. Πρακτικές σημειώσεις από το πώς σχεδιάζουμε, παραδίδουμε και κάνουμε report, όχι γενική θεωρία marketing. Διάλεξε θέμα παρακάτω ή δες τι χρειάζεται στα κανάλια και το site σου. Νέα κείμενα μπαίνουν εδώ όσο τα δημοσιεύουμε από τη δουλειά στο στούντιο.",
     articlesRead: "Διάβασε",
     articlesBack: "Όλα τα άρθρα",
     articlesReadTime: "{n} λεπτά",
@@ -1234,6 +1249,15 @@ export const copy: Record<Locale, Copy> = {
     aboutHeading: "Σχετικά με το omnidot.",
     aboutBody:
       "Για founders και τοπικά brands που θέλουν καθαρό επόμενο βήμα — όχι άλλη αναφορά. Από γρήγορη ιστοσελίδα με SEO μέχρι διαχείριση social media και καμπάνιες Meta & Google Ads. Δεν πιστεύουμε στον θόρυβο. Πιστεύουμε στα δεδομένα, στο καθαρό design και στις στρατηγικές που μετατρέπουν τους επισκέπτες σε πιστούς πελάτες.",
+    aboutHowHeading: "Πώς δουλεύουμε",
+    aboutHowBody:
+      "Ξεκινάμε με σύντομο brief: στόχοι, links, χρονοδιάγραμμα. Μετά συμφωνούμε scope και τιμή πριν ξεκινήσει οποιαδήποτε δουλειά. Μιλάς με αυτόν που κάνει τη δουλειά — strategy, content, ads ή το site — όχι με αλυσίδα account managers. Στα retainers κρατάμε καθαρό μηνιαίο ρυθμό: πλάνο, παράδοση, report, προσαρμογή.",
+    aboutWhoHeading: "Με ποιους δουλεύουμε",
+    aboutWhoBody:
+      "Δουλεύουμε με λίγους πελάτες τη φορά. Founders, τοπικά brands και μικρές ομάδες στην Αθήνα και σε όλη την Ελλάδα που θέλουν έναν συνεργάτη για web, social και performance — όχι πέντε freelancers και νέο deck κάθε μήνα. Αν δεν ταιριάζουμε, το λέμε νωρίς.",
+    aboutContactHeading: "Επικοινωνία",
+    aboutContactBody:
+      "Στείλε brief ή email. Απαντάμε με επόμενα βήματα, όχι μακρύ pitch. Έδρα Αθήνα· δουλεύουμε σε όλη την Ελλάδα.",
     landingLede: "Αθήνα · διάλεξε υπηρεσία ή ξεκίνα brief",
     startBrief: "Ξεκίνα ένα brief",
     contactUs: "Επικοινωνία",
@@ -1285,9 +1309,9 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     pricingSeoDescription:
-      "Τιμές διαφημιστικής στην Αθήνα: social από €450/μήνα, content από €350, ads από €300/μήνα, web από €700, SEO & AEO από €300/μήνα. Ad spend ξεχωριστά.",
+      "Τιμές στην Αθήνα: social από €450/μήνα, content από €350, ads από €300/μήνα, web από €700, SEO & AEO από €300/μήνα. Ad spend ξεχωριστά.",
     aboutSeoDescription:
-      "Σχετικά με την omnidot., διαφημιστική στην Αθήνα για founders και τοπικά brands: social media, content, Meta & Google Ads και ιστοσελίδες με SEO.",
+      "Σχετικά με την omnidot., διαφημιστική στην Αθήνα: social media, content, Meta και Google Ads, και ιστοσελίδες με SEO για founders και brands.",
     mediaSoon: "Media σύντομα",
     caseCompany: "Εταιρεία",
     caseTask: "Υπηρεσία",

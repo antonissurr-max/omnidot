@@ -31,7 +31,7 @@ const JSON_LD_ID = "omnidot-jsonld";
 export const PAGE_TITLES = {
   en: {
     home: "omnidot. — Marketing Agency Athens | Social, Ads & Web",
-    about: "About & Contact — Marketing Agency Athens | omnidot.",
+    about: "About / Contact — Marketing Agency Athens | omnidot.",
     pricing: "Marketing Agency Pricing — Packages | omnidot. Athens",
     articles: "Articles on marketing, social and web | omnidot. Athens",
     privacy: "Website terms, privacy & cookies - omnidot.",
@@ -43,7 +43,7 @@ export const PAGE_TITLES = {
   },
   el: {
     home: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
-    about: "Σχετικά & Επικοινωνία — Διαφημιστική στην Αθήνα | omnidot.",
+    about: "Σχετικά / Επικοινωνία — Διαφημιστική Αθήνα | omnidot.",
     pricing: "Τιμές Διαφημιστικής — Πακέτα | omnidot. Αθήνα",
     articles: "Άρθρα για marketing, social και web | omnidot. Αθήνα",
     privacy: "Όροι χρήσης, πολιτική απορρήτου & cookies - omnidot.",

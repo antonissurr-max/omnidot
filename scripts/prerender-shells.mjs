@@ -245,6 +245,11 @@ function localeShell(locale, def) {
       body: i18nModule.verseOpenText(t.aboutVerse),
       extra: t.aboutBody,
       story: "",
+      aboutSections: [
+        { heading: t.aboutHowHeading, body: t.aboutHowBody },
+        { heading: t.aboutWhoHeading, body: t.aboutWhoBody },
+        { heading: t.aboutContactHeading, body: t.aboutContactBody },
+      ],
       services: ["social", "content", "performance", "web", "seo"].map((id) => ({
         name: t.pages[id].title,
         href: locale === "el" ? `/el/${id}/` : `/${id}/`,
@@ -891,6 +896,11 @@ function crawlArticleDetail(def, locale) {
   });
 }
 
+/** Cloudflare Scrape Shield: keep emails readable for crawlers when obfuscation is on. */
+function emailOff(html) {
+  return `<!--email_off-->${html}<!--/email_off-->`;
+}
+
 function crawlBody(def, locale) {
   if (isArticleDetail(def)) {
     const html = crawlArticleDetail(def, locale);
@@ -967,10 +977,17 @@ function crawlBody(def, locale) {
     }
   }
 
-  // About: verse (body) already emitted; then aboutBody + service links + contact.
+  // About: verse (body) already emitted; then aboutBody + sections + service links + contact.
   if (def.id === "about") {
     if (copy.extra) {
       parts.push(`<p>${escapeHtml(copy.extra)}</p>`);
+    }
+    if (copy.aboutSections?.length) {
+      for (const section of copy.aboutSections) {
+        parts.push(
+          `<section><h2>${escapeHtml(section.heading)}</h2><p>${escapeHtml(section.body)}</p></section>`,
+        );
+      }
     }
     if (copy.services?.length) {
       parts.push(
@@ -982,11 +999,11 @@ function crawlBody(def, locale) {
           .join("")}</ul>`,
       );
     }
-    const contact =
+    const contactInner =
       locale === "el"
-        ? "info@omnidot.gr · Αθήνα"
-        : "info@omnidot.gr · Athens";
-    parts.push(`<p>${escapeHtml(contact)}</p>`);
+        ? `<a href="mailto:info@omnidot.gr">info@omnidot.gr</a> · Αθήνα`
+        : `<a href="mailto:info@omnidot.gr">info@omnidot.gr</a> · Athens`;
+    parts.push(`<p>${emailOff(contactInner)}</p>`);
   }
 
   // Privacy: sections.
@@ -994,7 +1011,14 @@ function crawlBody(def, locale) {
     for (const section of copy.sections) {
       parts.push(`<section><h2>${escapeHtml(section.heading)}</h2>`);
       for (const para of section.paragraphs || []) {
-        parts.push(`<p>${escapeHtml(para)}</p>`);
+        const escaped = escapeHtml(para);
+        parts.push(
+          `<p>${
+            /info@omnidot\.gr|mailto:/i.test(para)
+              ? emailOff(escaped)
+              : escaped
+          }</p>`,
+        );
       }
       if (section.bullets?.length) {
         parts.push(
@@ -1169,8 +1193,12 @@ function patchHtml(html, def, locale) {
     );
   }
 
+  const jsonLd = JSON.stringify(jsonLdFor(def, locale));
+  const jsonLdTag = `    <script id="omnidot-jsonld" type="application/ld+json">${jsonLd}</script>`;
   headExtras.push(
-    `    <script id="omnidot-jsonld" type="application/ld+json">${JSON.stringify(jsonLdFor(def, locale))}</script>`,
+    /info@omnidot\.gr|@omnidot\.gr/i.test(jsonLd)
+      ? emailOff(jsonLdTag)
+      : jsonLdTag,
   );
 
   out = out.replace("</head>", `${headExtras.join("\n")}\n  </head>`);

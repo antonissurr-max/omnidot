@@ -473,11 +473,10 @@ const articles: ArticleSource[] = [
     el: {
       topic: "Social Media",
       title:
-        "Meta One για επιχειρήσεις: αξίζει να πληρώσεις για links στο Instagram και το Facebook;",
-      seoTitle:
-        "Meta One για επιχειρήσεις: links σε Instagram & Facebook — omnidot.",
+        "Meta One: αξίζει να πληρώσεις για links σε Instagram/Facebook;",
+      seoTitle: "Meta One: links σε Instagram & Facebook | omnidot.",
       seoDescription:
-        "Μετά το Meta One, τα clickable links σε Instagram και Facebook δεν είναι αυτονόητα. Τι άλλαξε, τι κοστίζει και αν αξίζει για μικρή επιχείρηση.",
+        "Μετά το Meta One, τα links σε Instagram και Facebook δεν είναι αυτονόητα. Τι άλλαξε, τι κοστίζει και αν αξίζει για μικρή επιχείρηση.",
       excerpt:
         "Από τα μέσα Σεπτεμβρίου η Meta πουλάει συνδρομές Meta One για επιχειρήσεις, και τα clickable links σε posts δεν είναι πια αυτονόητα. Δεν χρειάζεται να πληρώσεις αμέσως — μέτρα τι φέρνουν τα links σου.",
       takeaways: [
@@ -682,11 +681,10 @@ const articles: ArticleSource[] = [
     en: {
       topic: "Social Media",
       title:
-        "Meta One for businesses: is it worth paying for links on Instagram and Facebook?",
-      seoTitle:
-        "Meta One for businesses: Instagram & Facebook links — omnidot.",
+        "Meta One: is it worth paying for links on Instagram and Facebook?",
+      seoTitle: "Meta One links on Instagram & Facebook | omnidot.",
       seoDescription:
-        "After Meta One, clickable links on Instagram and Facebook aren’t automatic. What changed, what it costs, and whether it’s worth it for a small business.",
+        "After Meta One, Instagram and Facebook links aren’t automatic. What changed, what it costs, and if it’s worth it for a small business.",
       excerpt:
         "Since mid-September Meta has been selling Meta One subscriptions for businesses, and clickable links in posts are no longer a given. You don’t need to pay right away — measure what your links bring in.",
       takeaways: [
