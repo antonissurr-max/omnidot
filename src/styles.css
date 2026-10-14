@@ -6045,19 +6045,19 @@ a.work__project:focus-visible .work__project-name {
     padding: 0;
     /* One scale unit: gaps stay proportional to tiles as the viewport changes.
        gap-lg must exceed tile-size so mid tiles do not overlap
-       (clear gap between them = gap-lg - tile-size). Five tiles: slightly
-       smaller unit + taller composition so nothing clips the brand/footer. */
-    --tile-size: clamp(168px, min(15.5vw, 22vh), 300px);
+       (clear gap between them = gap-lg - tile-size). Five tiles in a
+       staggered row: SEO sits above-right of Web, near Social’s height. */
+    --tile-size: clamp(148px, min(13.5vw, 20vh), 260px);
     --tile-gap-sm: calc(var(--tile-size) * 0.06);
-    --tile-gap-lg: calc(var(--tile-size) * 1.18);
-    --tile-mid: calc(var(--tile-size) * 0.44);
+    --tile-gap-lg: calc(var(--tile-size) * 1.12);
+    --tile-mid: calc(var(--tile-size) * 0.48);
     --tile-comp-w: calc(
-      var(--tile-size) * 3.15 + var(--tile-gap-sm) * 2 + var(--tile-gap-lg)
+      var(--tile-size) * 4 + var(--tile-gap-sm) * 3 + var(--tile-gap-lg)
     );
-    --tile-comp-h: calc(var(--tile-mid) * 3.15 + var(--tile-size) + 2.4em);
+    --tile-comp-h: calc(var(--tile-mid) * 2.5 + var(--tile-size) + 2.4em);
     --tile-origin-x: calc((100vw - var(--tile-comp-w)) / 2);
     --tile-origin-y: calc(
-      (100dvh - var(--tile-comp-h)) / 2 - var(--tile-mid) * 0.28
+      (100dvh - var(--tile-comp-h)) / 2 - var(--tile-mid) * 0.3
     );
   }
 
@@ -6080,21 +6080,21 @@ a.work__project:focus-visible .work__project-name {
   }
 
   /*
-   * Vertical order: 1 → 2 → 4 → 3 → 5
-   * Staggered zig-zag; fifth tile sits under the right cluster.
+   * Stagger: 1 Social → 2 Content → 4 Web → 3 Performance → 5 SEO
+   * SEO is above-right of Web, a step below Social’s height.
    */
   .tile:nth-of-type(1) {
-    top: calc(var(--tile-origin-y) + var(--tile-mid) * 0.35);
+    top: calc(var(--tile-origin-y) + var(--tile-mid) * 0.5);
     left: var(--tile-origin-x);
   }
 
   .tile:nth-of-type(2) {
-    top: calc(var(--tile-origin-y) + var(--tile-mid) * 1.25);
+    top: calc(var(--tile-origin-y) + var(--tile-mid) * 1.5);
     left: calc(var(--tile-origin-x) + var(--tile-size) + var(--tile-gap-sm));
   }
 
   .tile:nth-of-type(3) {
-    top: calc(var(--tile-origin-y) + var(--tile-mid) * 2.15);
+    top: calc(var(--tile-origin-y) + var(--tile-mid) * 2.5);
     left: calc(
       var(--tile-origin-x) + var(--tile-size) + var(--tile-gap-sm) +
         var(--tile-gap-lg)
@@ -6102,7 +6102,7 @@ a.work__project:focus-visible .work__project-name {
   }
 
   .tile:nth-of-type(4) {
-    top: calc(var(--tile-origin-y) + var(--tile-mid) * 1.7);
+    top: calc(var(--tile-origin-y) + var(--tile-mid) * 2);
     left: calc(
       var(--tile-origin-x) + var(--tile-size) * 2 + var(--tile-gap-sm) * 2 +
         var(--tile-gap-lg)
@@ -6110,10 +6110,10 @@ a.work__project:focus-visible .work__project-name {
   }
 
   .tile:nth-of-type(5) {
-    top: calc(var(--tile-origin-y) + var(--tile-mid) * 3.05);
+    top: calc(var(--tile-origin-y) + var(--tile-mid) * 0.85);
     left: calc(
-      var(--tile-origin-x) + var(--tile-size) * 1.55 + var(--tile-gap-sm) +
-        var(--tile-gap-lg) * 0.55
+      var(--tile-origin-x) + var(--tile-size) * 3 + var(--tile-gap-sm) * 3 +
+        var(--tile-gap-lg)
     );
   }
 
