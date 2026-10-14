@@ -1292,6 +1292,12 @@ function writeRedirects() {
     lines.push(`${bare}  ${bare}/  301`);
   }
   lines.push("");
+  lines.push(
+    "# Static files (llms.txt, sitemap.xml, robots.txt, assets) are served as-is",
+  );
+  lines.push(
+    "# before this fallback — do not rewrite /llms.txt to index.html.",
+  );
   lines.push("# SPA fallback for client-side routes");
   lines.push("/*    /index.html   200");
   lines.push("");

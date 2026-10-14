@@ -27,5 +27,7 @@ https://www.omnidot.gr/*  https://omnidot.gr/:splat  301
 /social  /social/  301
 /web  /web/  301
 
+# Static files (llms.txt, sitemap.xml, robots.txt, assets) are served as-is
+# before this fallback — do not rewrite /llms.txt to index.html.
 # SPA fallback for client-side routes
 /*    /index.html   200
