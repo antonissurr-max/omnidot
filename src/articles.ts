@@ -462,6 +462,430 @@ const articles: ArticleSource[] = [
       ],
     },
   },
+  {
+    slug: "meta-one-links",
+    date: "2026-10-14",
+    image: "/images/articles/meta-one-links.jpg",
+    readMinutes: 9,
+    el: {
+      topic: "Social Media",
+      title:
+        "Meta One για επιχειρήσεις: αξίζει να πληρώσεις για links στο Instagram και το Facebook;",
+      seoTitle:
+        "Meta One για επιχειρήσεις: links σε Instagram & Facebook — omnidot.",
+      seoDescription:
+        "Μετά το Meta One, τα clickable links σε Instagram και Facebook δεν είναι αυτονόητα. Τι άλλαξε, τι κοστίζει και αν αξίζει για μικρή επιχείρηση.",
+      excerpt:
+        "Από τα μέσα Σεπτεμβρίου η Meta πουλάει συνδρομές Meta One για επιχειρήσεις, και τα clickable links σε posts δεν είναι πια αυτονόητα. Δεν χρειάζεται να πληρώσεις αμέσως — μέτρα τι φέρνουν τα links σου.",
+      takeaways: [
+        "Δεν χρειάζεται να πληρώσεις αμέσως· πρώτα μέτρα τι φέρνουν τα links.",
+        "Στο Instagram, clickable links σε posts θέλουν Meta One Advanced ή μεγαλύτερο.",
+        "Στο Facebook, πολλές σελίδες έχουν έως 2 posts με link τον μήνα χωρίς συνδρομή.",
+        "Με λίγα links τον μήνα, η σελίδα που ανοίγει μετράει περισσότερο.",
+      ],
+      relatedServices: [
+        {
+          label: "Διαχείριση Social Media",
+          href: "/el/social/",
+          blurb: "Στρατηγική, περιεχόμενο, community και μηνιαίο reporting.",
+        },
+        {
+          label: "Κατασκευή Ιστοσελίδας",
+          href: "/el/web/",
+          blurb: "Landing pages και sites που φορτώνουν γρήγορα και πουλάνε.",
+        },
+        {
+          label: "Performance Marketing",
+          href: "/el/performance/",
+          blurb: "Meta Ads και Google Ads με καθαρό κόστος και απόδοση.",
+        },
+      ],
+      body: [
+        p(
+          "Από τα μέσα Σεπτεμβρίου η Meta πουλάει συνδρομές Meta One για επιχειρήσεις, και τα clickable links σε posts δεν είναι πια αυτονόητα. Στο Instagram ανοίγουν μόνο με πληρωμένο πακέτο. Στο Facebook, όσες σελίδες βλέπουν το νέο όριο έχουν δύο posts με link τον μήνα χωρίς συνδρομή.",
+        ),
+        p(
+          "Το σύντομο συμπέρασμα: δεν χρειάζεται να πληρώσεις αμέσως. Μέτρα τι φέρνουν τα links σου και φρόντισε να καταλήγουν σε σελίδα που δουλεύει.",
+        ),
+        h2("Τι άλλαξε τον Σεπτέμβριο του 2026"),
+        p(
+          "Στις 15 Σεπτεμβρίου 2026 η Meta ανακοίνωσε το Meta One, μια συνδρομητική υπηρεσία που προσθέτει λειτουργίες πάνω από τις δωρεάν εφαρμογές της [1]. Η εταιρεία γράφει ότι η βασική χρήση σε Instagram, Facebook, WhatsApp και Meta AI μένει δωρεάν.",
+        ),
+        p(
+          "Υπάρχουν πακέτα για ιδιώτες και ξεχωριστά για creators και επιχειρήσεις, όπως κατέγραψε και το TechCrunch [8]. Εδώ μας ενδιαφέρουν μόνο τα δεύτερα. Σύμφωνα με τη σελίδα της Meta για επιχειρήσεις, η τιμή είναι ανά προφίλ: κάθε πακέτο καλύπτει έναν λογαριασμό [2].",
+        ),
+        p(
+          "Η ίδια σελίδα αναφέρει ότι οι δυνατότητες του Meta Verified περνούν σταδιακά στο Meta One. Για όσους έχουν ήδη Meta Verified, προς το παρόν δεν αλλάζει τίποτα [2].",
+        ),
+        p(
+          "Για την Ελλάδα, το κρίσιμο είναι η διάθεση. Η ανακοίνωση μιλά για σταδιακή διάθεση σε όλο τον κόσμο, με πακέτα, τιμές και παροχές που διαφέρουν ανά περιοχή, εφαρμογή και λογαριασμό [1]. Το Help Center της Meta, όμως, περιγράφει ακόμα το Meta One ως υπηρεσία σε περιορισμένη δοκιμή, που δεν είναι διαθέσιμη παντού [4]. Ο αξιόπιστος έλεγχος γίνεται μέσα από την εφαρμογή, στον λογαριασμό σου.",
+        ),
+        h2("Τα 4 πακέτα για επιχειρήσεις, απλά"),
+        p(
+          "Οι τιμές σε δολάρια προέρχονται από τη Meta [1] [2]. Οι τιμές σε ευρώ προέρχονται από δημοσιεύματα για την ευρωπαϊκή τιμολόγηση, όπως του FreakUnboxer και του Search Engine Watch [7] [9], και δεν τις βρήκαμε σε σελίδα της Meta. Ελέγξτε την τρέχουσα τιμή για τον λογαριασμό σας μέσα στην εφαρμογή.",
+        ),
+        {
+          type: "table",
+          caption: "Πακέτα Meta One για επιχειρήσεις",
+          headers: ["Πακέτο", "Τιμή τον μήνα", "Τι μετράει για μικρή επιχείρηση"],
+          rows: [
+            [
+              "Essential",
+              "από $14,99 (σύμφωνα με δημοσιεύματα, από €16,99 στην Ευρώπη)",
+              "Verified badge, προστασία από πλαστά προφίλ, verified channel στο WhatsApp Business, περισσότερες απαντήσεις από το Meta Business Agent. Δεν δίνει links σε posts.",
+            ],
+            [
+              "Advanced",
+              "από $49,99 (σύμφωνα με δημοσιεύματα, από €54,99)",
+              "Links σε οργανικά posts και Reels, προγραμματισμός Stories έως 30 ημέρες πριν, εξαγωγή analytics, πρόσβαση ομάδας στο Instagram χωρίς κοινό κωδικό.",
+            ],
+            [
+              "Expert",
+              "από περίπου $149 (σύμφωνα με δημοσιεύματα, από €169)",
+              "Υψηλότερα όρια και ανθρώπινη υποστήριξη λογαριασμού, για ομάδες με πολλά posts.",
+            ],
+            [
+              "Max",
+              "από περίπου $499 (σύμφωνα με δημοσιεύματα, από €549)",
+              "Τα υψηλότερα όρια, για ομάδες που δουλεύουν σε μεγάλη κλίμακα.",
+            ],
+          ],
+        },
+        p(
+          "Το Meta Business Agent είναι εργαλείο AI που απαντά σε μηνύματα πελατών στο WhatsApp Business. Ξεκινά δωρεάν και η συνδρομή δίνει περισσότερες απαντήσεις [2].",
+        ),
+        p(
+          "Για τα Expert και Max, η ανακοίνωση γράφει $149 και $499, ενώ το Help Center του Facebook γράφει $149,99 και $499,99 [3]. Γι' αυτό τα αναφέρουμε ως «περίπου». Για τις περισσότερες μικρές επιχειρήσεις, αυτά τα δύο πακέτα δεν χρειάζονται.",
+        ),
+        h2("Links: τι ισχύει τώρα σε Instagram και Facebook"),
+        p(
+          "Instagram. Η Meta επιβεβαιώνει ότι το Advanced περιλαμβάνει links σε οργανικά posts και Reels, χωρίς να δίνει αριθμό στην ανακοίνωσή της [2]. Τα όρια τα δημοσίευσε το Social Media Today: σύμφωνα με το site, το Advanced δίνει links σε 4 posts και 4 Reels τον μήνα, το Expert σε 8 και 8 και το Max σε 12 και 12 [5]. Το link στο bio μένει δωρεάν.",
+        ),
+        p(
+          "Facebook. Στις 17 Σεπτεμβρίου το Social Media Today έγραψε ότι περισσότερες σελίδες βλέπουν ειδοποίηση για όριο δύο posts με link τον μήνα, αν δεν πληρώνουν [6]. Σύμφωνα με το ίδιο δημοσίευμα, η Meta δοκίμαζε τέτοιο όριο σε ορισμένες σελίδες από τον Δεκέμβριο του 2025, και οι σελίδες εκδοτών εξαιρούνται.",
+        ),
+        p(
+          "Το Help Center του Facebook περιγράφει πλέον τους κανόνες [3]. Αν η σελίδα σου βλέπει το όριο, μπορείς να βάλεις links σε έως 2 οργανικά posts ή σχόλια τον μήνα. Με Essential το όριο μένει 2, με Advanced γίνεται 8, με Expert 20 και με Max δεν υπάρχει όριο.",
+        ),
+        p("Κατά τη Meta, στο όριο δεν μετράνε:"),
+        {
+          type: "ul",
+          items: [
+            "επιπλέον links στα σχόλια ενός post που έχει ήδη link,",
+            "links προς Facebook, Instagram, WhatsApp και Threads,",
+            "links συνεργατών μέσω του affiliate προγράμματος του Facebook,",
+            "links σε διαφημίσεις.",
+          ],
+        },
+        p(
+          "Το δωρεάν όριο ξεκινά από την αρχή την 1η κάθε μήνα. Με Meta One ξεκινά από την αρχή στην ημερομηνία ανανέωσης της συνδρομής. Ό,τι δεν χρησιμοποιήσεις δεν μεταφέρεται [3].",
+        ),
+        p(
+          "Το όριο δεν ισχύει απαραίτητα σε κάθε σελίδα. Κοίτα αν σου εμφανίστηκε η ειδοποίηση.",
+        ),
+        p(
+          "Για πλαίσιο: σύμφωνα με το Social Media Today, με βάση την έκθεση Widely Viewed Content της Meta για το α' τρίμηνο 2026, το 98,7% των προβολών posts στο Facebook στις ΗΠΑ αφορούσε posts χωρίς εξωτερικό link [6]. Το στοιχείο αφορά τις ΗΠΑ, όχι την Ελλάδα. Δείχνει όμως ότι τα posts με link είχαν ήδη μικρή προβολή, άρα το όριο ίσως αλλάζει λιγότερα απ' όσα φαίνεται.",
+        ),
+        h2("Αξίζει για τη δική σου επιχείρηση; Ένας γρήγορος έλεγχος"),
+        p(
+          "Δεν υπάρχει μία απάντηση για όλους. Απάντησε για τον δικό σου λογαριασμό.",
+        ),
+        {
+          type: "ul",
+          items: [
+            "Πόσα posts με link έβαλες τον τελευταίο μήνα; Αν ήταν δύο ή λιγότερα, το όριο του Facebook σχεδόν δεν σε αγγίζει.",
+            "Φέρνουν αυτά τα links επισκέψεις ή μηνύματα; Αν δεν το ξέρεις, πρόσθεσε παραμέτρους UTM στα links και δες τα αποτελέσματα στο analytics της ιστοσελίδας σου, όχι μόνο τα clicks που δείχνει η πλατφόρμα.",
+            "Πουλάς ή κλείνεις ραντεβού από το Instagram; Τότε τα links του Advanced μπορεί να αξίζουν. Κράτησέ τα για τα σημαντικά: νέο προϊόν, προσφορά με ημερομηνία λήξης, κρατήσεις.",
+            "Απαντάς σε πολλά μηνύματα στο WhatsApp; Τότε το Essential μπορεί να έχει νόημα για το Business Agent, όχι για τα links.",
+            "Δουλεύουν πολλοί άνθρωποι στον ίδιο λογαριασμό; Η πρόσβαση ομάδας του Advanced βοηθά.",
+            "Τι θα κόστιζε μια διαφήμιση στη θέση της συνδρομής; Σύγκρινε το κόστος του Advanced με την προώθηση του καλύτερου post με link. Τα links στις διαφημίσεις δεν μετράνε στο όριο.",
+            "Μπορείς να δοκιμάσεις σε ένα προφίλ; Επειδή η τιμή είναι ανά προφίλ, δοκίμασε σε έναν λογαριασμό για δύο με τρεις μήνες πριν βάλεις συνδρομή παντού.",
+          ],
+        },
+        h2("Τα links έγιναν λίγα. Η σελίδα που ανοίγει μετράει περισσότερο"),
+        p(
+          "Η πρακτική αλλαγή είναι ότι τα links έγιναν σπάνια. Με δύο έως οκτώ links τον μήνα, κάθε click πρέπει να καταλήγει κάπου που δουλεύει: σε σελίδα που φορτώνει γρήγορα στο κινητό, με ένα μήνυμα και ένα κουμπί για κλήση, κράτηση, αγορά ή φόρμα.",
+        ),
+        p(
+          "Ένα link προς την αρχική σελίδα συνήθως πάει χαμένο. Καλύτερα μία σελίδα για μία προσφορά ή υπηρεσία.",
+        ),
+        p(
+          "Το link στο bio μένει δωρεάν. Η Meta προσθέτει και μια σελίδα συνδέσμων στο προφίλ του Instagram, με έως 20 links, ως μέρος του Meta One [2].",
+        ),
+        p(
+          "Όταν ένα post δεν έχει link, γράψε το όνομα του site ή «στείλε μήνυμα». Αυτό ζητά ένα βήμα παραπάνω, άρα το site πρέπει να βρίσκεται εύκολα.",
+        ),
+        p(
+          "Στο omnidot φτιάχνουμε και τα social και τις ιστοσελίδες, οπότε βλέπουμε και τις δύο άκρες: το post και τη σελίδα που ανοίγει μετά. Οι ιστοσελίδες και τα landing pages ξεκινούν από €700. Δείτε περισσότερα στη σελίδα κατασκευής ιστοσελίδων.",
+        ),
+        h2("Τι αλλάζει στη διαχείριση των social"),
+        p(
+          "Τα links μπαίνουν πλέον στο μηνιαίο πλάνο από την αρχή: αποφασίζεις ποια δύο, τέσσερα ή οκτώ posts παίρνουν link.",
+        ),
+        p(
+          "Τα υπόλοιπα posts έχουν άλλο στόχο: να χτίσουν εμπιστοσύνη, να απαντήσουν σε ερωτήσεις, να κρατήσουν την επιχείρηση στη μνήμη του κοινού. Γι' αυτό το μηνιαίο report δεν πρέπει να τα κρίνει μόνο με βάση τα clicks.",
+        ),
+        p(
+          "Αν ο πελάτης βάλει πακέτο Meta One, αυτό είναι κόστος της πλατφόρμας, όπως το ad spend: το βλέπει χωριστά και δεν «χάνεται» μέσα στη μηνιαία αμοιβή.",
+        ),
+        p(
+          "Στο omnidot η διαχείριση social ξεκινά από €450 τον μήνα, το content από €350 και το performance από €300 τον μήνα, με το ad spend πάντα ξεχωριστά. Δείτε τις τιμές και την υπηρεσία social media.",
+        ),
+        h2("Συχνές ερωτήσεις"),
+        h3("Τι είναι το Meta One για επιχειρήσεις;"),
+        p(
+          "Συνδρομή της Meta από τις 15 Σεπτεμβρίου 2026 με επιπλέον εργαλεία σε Instagram, Facebook και WhatsApp. Η βασική χρήση των εφαρμογών μένει δωρεάν [1].",
+        ),
+        h3("Πρέπει να πληρώσω για να βάλω link σε post στο Instagram;"),
+        p(
+          "Ναι, για clickable link μέσα σε post ή Reel χρειάζεται Meta One Advanced ή μεγαλύτερο πακέτο [2]. Το link στο bio μένει δωρεάν.",
+        ),
+        h3("Πόσα posts με link μπορώ να κάνω στο Facebook χωρίς συνδρομή;"),
+        p(
+          "Αν η σελίδα σου έχει το όριο, δύο τον μήνα, σε posts ή σχόλια. Το όριο ξεκινά από την αρχή την 1η κάθε μήνα [3].",
+        ),
+        h3("Αξίζει το Meta One για μικρή επιχείρηση;"),
+        p(
+          "Εξαρτάται από το πόσα links στέλνεις και αν φέρνουν πελάτες. Για τις περισσότερες, πρώτα μετράς και μετά πληρώνεις για ένα προφίλ.",
+        ),
+        h3("Υπάρχει το Meta One στην Ελλάδα και πόσο κοστίζει;"),
+        p(
+          "Η Meta μιλά για σταδιακή διάθεση παγκοσμίως, αλλά το Help Center της το περιγράφει ακόμα ως περιορισμένη δοκιμή [4], οπότε ελέγχεις στην εφαρμογή. Σύμφωνα με δημοσιεύματα, στην Ευρώπη το Essential ξεκινά από €16,99 και το Advanced από €54,99 τον μήνα [9]. Ελέγξτε την τελική τιμή στην εφαρμογή.",
+        ),
+        h3("Τι γίνεται με το Meta Verified;"),
+        p(
+          "Η Meta το ενσωματώνει στο Meta One. Όσοι το έχουν ήδη δεν χρειάζεται να κάνουν κάτι τώρα [2].",
+        ),
+        p(
+          "Θες να δούμε μαζί αν τα links σου φέρνουν πελάτες και πού πρέπει να καταλήγουν; Πες μας για τη σελίδα σου. Αν δεν έχεις ακόμα site, δες πώς δουλεύουμε τις ιστοσελίδες.",
+        ),
+        h2("Πηγές"),
+        {
+          type: "ol",
+          items: [
+            "«Introducing Meta One: A Subscription Service With More Features and AI to Create, Connect, and Stand Out», Meta Newsroom, 15 Σεπτεμβρίου 2026 (ενημέρωση 16 Σεπτεμβρίου 2026). https://about.fb.com/news/2026/09/introducing-meta-one-subscription-service-more-features-ai/",
+            "«Introducing Meta One plans for businesses», Meta for Business, 15 Σεπτεμβρίου 2026. https://www.facebook.com/business/news/introducing-meta-one-plans-for-businesses",
+            "«About links in organic Facebook Page posts and comments», Facebook Help Center, χωρίς ημερομηνία, ελέγχθηκε 5 Οκτωβρίου 2026. https://www.facebook.com/help/1929252614431792",
+            "«About Meta One plans», Meta Help Center, χωρίς ημερομηνία, ελέγχθηκε 5 Οκτωβρίου 2026. https://www.meta.com/help/subscriptions/960854640235758/",
+            "«Meta launches Meta One for Business add-on packages», Social Media Today (Andrew Hutchinson), 15 Σεπτεμβρίου 2026. https://www.socialmediatoday.com/news/meta-launches-meta-one-for-business-add-on-packages/830469/",
+            "«Facebook Pages get charged for link posts», Social Media Today (Andrew Hutchinson), 17 Σεπτεμβρίου 2026. https://www.socialmediatoday.com/news/facebook-pages-get-charged-for-link-posts/830743/",
+            "«Meta One turns Instagram post links into a paid feature», Search Engine Watch (Radu Tyrsina), 17 Σεπτεμβρίου 2026. https://searchenginewatch.com/meta-one-turns-instagram-post-links-into-a-paid-feature/",
+            "«Meta expands subscription push with new AI-focused plans», TechCrunch (Sarah Perez), 15 Σεπτεμβρίου 2026. https://techcrunch.com/2026/09/15/meta-expands-subscription-push-with-new-ai-focused-plans/",
+            "«Meta One: 50+ λειτουργίες από 2,49€ τον μήνα», FreakUnboxer (Μάριος Βίγκλας), 17 Σεπτεμβρίου 2026. https://freakunboxer.gr/2026/09/meta-one-times-instagram-whatsapp-facebook/",
+          ],
+        },
+      ],
+    },
+    en: {
+      topic: "Social Media",
+      title:
+        "Meta One for businesses: is it worth paying for links on Instagram and Facebook?",
+      seoTitle:
+        "Meta One for businesses: Instagram & Facebook links — omnidot.",
+      seoDescription:
+        "After Meta One, clickable links on Instagram and Facebook aren’t automatic. What changed, what it costs, and whether it’s worth it for a small business.",
+      excerpt:
+        "Since mid-September Meta has been selling Meta One subscriptions for businesses, and clickable links in posts are no longer a given. You don’t need to pay right away — measure what your links bring in.",
+      takeaways: [
+        "You don’t need to pay right away; measure what your links deliver first.",
+        "On Instagram, clickable links in posts need Meta One Advanced or higher.",
+        "On Facebook, many Pages get up to 2 link posts a month without a subscription.",
+        "With fewer links each month, the page that opens matters more.",
+      ],
+      relatedServices: [
+        {
+          label: "Social Media Management",
+          href: "/social/",
+          blurb: "Strategy, content, community and monthly reporting.",
+        },
+        {
+          label: "Website Development",
+          href: "/web/",
+          blurb: "Landing pages and sites that load fast and convert.",
+        },
+        {
+          label: "Performance Marketing",
+          href: "/performance/",
+          blurb: "Meta Ads and Google Ads with clear cost and return.",
+        },
+      ],
+      body: [
+        p(
+          "Since mid-September Meta has been selling Meta One subscriptions for businesses, and clickable links in posts are no longer a given. On Instagram they open only with a paid plan. On Facebook, Pages that see the new limit get two link posts a month without a subscription.",
+        ),
+        p(
+          "The short takeaway: you don’t need to pay right away. Measure what your links bring in, and make sure they land on a page that works.",
+        ),
+        h2("What changed in September 2026"),
+        p(
+          "On 15 September 2026 Meta announced Meta One, a subscription that adds features on top of its free apps [1]. The company says basic use of Instagram, Facebook, WhatsApp and Meta AI stays free.",
+        ),
+        p(
+          "There are plans for individuals and separate ones for creators and businesses, as TechCrunch also reported [8]. Here we care only about the business plans. According to Meta’s business page, pricing is per profile: each plan covers one account [2].",
+        ),
+        p(
+          "The same page says Meta Verified features are gradually moving into Meta One. For anyone who already has Meta Verified, nothing changes for now [2].",
+        ),
+        p(
+          "For Greece, availability is the key question. The announcement talks about a gradual worldwide rollout, with plans, prices and benefits that differ by region, app and account [1]. Meta’s Help Center still describes Meta One as a limited trial that isn’t available everywhere [4]. The reliable check is inside the app, on your account.",
+        ),
+        h2("The 4 business plans, simply"),
+        p(
+          "Dollar prices come from Meta [1] [2]. Euro prices come from coverage of European pricing, such as FreakUnboxer and Search Engine Watch [7] [9], and we did not find them on a Meta page. Check the current price for your account inside the app.",
+        ),
+        {
+          type: "table",
+          caption: "Meta One plans for businesses",
+          headers: ["Plan", "Monthly price", "What matters for a small business"],
+          rows: [
+            [
+              "Essential",
+              "from $14.99 (per reports, from €16.99 in Europe)",
+              "Verified badge, protection from fake profiles, verified WhatsApp Business channel, more replies from Meta Business Agent. Does not include links in posts.",
+            ],
+            [
+              "Advanced",
+              "from $49.99 (per reports, from €54.99)",
+              "Links in organic posts and Reels, Stories scheduling up to 30 days ahead, analytics export, Instagram team access without a shared password.",
+            ],
+            [
+              "Expert",
+              "from about $149 (per reports, from €169)",
+              "Higher limits and human account support, for teams that post a lot.",
+            ],
+            [
+              "Max",
+              "from about $499 (per reports, from €549)",
+              "The highest limits, for teams working at large scale.",
+            ],
+          ],
+        },
+        p(
+          "Meta Business Agent is an AI tool that replies to customer messages on WhatsApp Business. It starts free and the subscription adds more replies [2].",
+        ),
+        p(
+          "For Expert and Max, the announcement says $149 and $499, while Facebook Help Center says $149.99 and $499.99 [3]. That is why we say “about.” For most small businesses, those two plans are not needed.",
+        ),
+        h2("Links: what applies now on Instagram and Facebook"),
+        p(
+          "Instagram. Meta confirms Advanced includes links in organic posts and Reels, without giving a number in its announcement [2]. Social Media Today published the limits: according to the site, Advanced gives links on 4 posts and 4 Reels a month, Expert 8 and 8, and Max 12 and 12 [5]. The link in bio stays free.",
+        ),
+        p(
+          "Facebook. On 17 September Social Media Today wrote that more Pages are seeing a notice about a limit of two link posts a month if they don’t pay [6]. According to the same report, Meta had been testing such a limit on some Pages since December 2025, and publisher Pages are excluded.",
+        ),
+        p(
+          "Facebook Help Center now describes the rules [3]. If your Page sees the limit, you can put links in up to 2 organic posts or comments a month. With Essential the limit stays 2, with Advanced it becomes 8, with Expert 20, and with Max there is no limit.",
+        ),
+        p("According to Meta, these do not count toward the limit:"),
+        {
+          type: "ul",
+          items: [
+            "extra links in the comments of a post that already has a link,",
+            "links to Facebook, Instagram, WhatsApp and Threads,",
+            "partner links through Facebook’s affiliate programme,",
+            "links in ads.",
+          ],
+        },
+        p(
+          "The free allowance resets on the 1st of each month. With Meta One it resets on the subscription renewal date. Unused links do not roll over [3].",
+        ),
+        p(
+          "The limit does not necessarily apply to every Page. Check whether you have seen the notice.",
+        ),
+        p(
+          "For context: according to Social Media Today, citing Meta’s Widely Viewed Content report for Q1 2026, 98.7% of post views on Facebook in the US were of posts without an external link [6]. That figure is for the US, not Greece. It does show that posts with links already had little reach, so the limit may change less than it seems.",
+        ),
+        h2("Is it worth it for your business? A quick check"),
+        p(
+          "There is no single answer for everyone. Answer for your own account.",
+        ),
+        {
+          type: "ul",
+          items: [
+            "How many link posts did you publish last month? If it was two or fewer, Facebook’s limit barely touches you.",
+            "Do those links bring visits or messages? If you don’t know, add UTM parameters and check results in your website analytics — not only the clicks the platform shows.",
+            "Do you sell or book appointments from Instagram? Then Advanced links may be worth it. Save them for what matters: a new product, a time-limited offer, bookings.",
+            "Do you answer a lot of WhatsApp messages? Then Essential may make sense for Business Agent, not for links.",
+            "Do several people work on the same account? Advanced team access helps.",
+            "What would an ad cost instead of the subscription? Compare Advanced with boosting your best link post. Links in ads do not count toward the limit.",
+            "Can you test on one profile? Because pricing is per profile, try one account for two to three months before subscribing everywhere.",
+          ],
+        },
+        h2("Links got scarce. The page that opens matters more"),
+        p(
+          "The practical change is that links became scarce. With two to eight links a month, every click must land somewhere that works: a page that loads fast on mobile, with one message and one button for a call, booking, purchase or form.",
+        ),
+        p(
+          "A link to the homepage is usually wasted. Better: one page for one offer or service.",
+        ),
+        p(
+          "The link in bio stays free. Meta is also adding a links page on the Instagram profile, with up to 20 links, as part of Meta One [2].",
+        ),
+        p(
+          "When a post has no link, write the site name or “send a message.” That asks for an extra step, so the site must be easy to find.",
+        ),
+        p(
+          "At omnidot we build both social and websites, so we see both ends: the post and the page that opens after. Websites and landing pages start from €700. See more on our website development page.",
+        ),
+        h2("What changes in social media management"),
+        p(
+          "Links now go into the monthly plan from the start: you decide which two, four or eight posts get a link.",
+        ),
+        p(
+          "The other posts have a different job: build trust, answer questions, keep the business in people’s minds. That is why the monthly report should not judge them only by clicks.",
+        ),
+        p(
+          "If the client takes a Meta One plan, that is a platform cost, like ad spend: they see it separately and it does not get lost inside the monthly fee.",
+        ),
+        p(
+          "At omnidot social media management starts from €450 a month, content from €350 and performance from €300 a month, with ad spend always separate. See pricing and our social media service.",
+        ),
+        h2("Frequently asked questions"),
+        h3("What is Meta One for businesses?"),
+        p(
+          "A Meta subscription from 15 September 2026 with extra tools on Instagram, Facebook and WhatsApp. Basic use of the apps stays free [1].",
+        ),
+        h3("Do I have to pay to put a link in an Instagram post?"),
+        p(
+          "Yes — for a clickable link inside a post or Reel you need Meta One Advanced or a higher plan [2]. The link in bio stays free.",
+        ),
+        h3("How many link posts can I make on Facebook without a subscription?"),
+        p(
+          "If your Page has the limit, two a month, in posts or comments. The allowance resets on the 1st of each month [3].",
+        ),
+        h3("Is Meta One worth it for a small business?"),
+        p(
+          "It depends on how many links you send and whether they bring customers. For most, measure first, then pay for one profile.",
+        ),
+        h3("Is Meta One available in Greece, and what does it cost?"),
+        p(
+          "Meta talks about a gradual worldwide rollout, but its Help Center still describes it as a limited trial [4], so you check in the app. Per reports, in Europe Essential starts from €16.99 and Advanced from €54.99 a month [9]. Check the final price in the app.",
+        ),
+        h3("What happens to Meta Verified?"),
+        p(
+          "Meta is folding it into Meta One. Anyone who already has it does not need to do anything now [2].",
+        ),
+        p(
+          "Want to look together at whether your links bring customers and where they should land? Tell us about your Page. If you don’t have a site yet, see how we build websites.",
+        ),
+        h2("Sources"),
+        {
+          type: "ol",
+          items: [
+            "“Introducing Meta One: A Subscription Service With More Features and AI to Create, Connect, and Stand Out”, Meta Newsroom, 15 September 2026 (updated 16 September 2026). https://about.fb.com/news/2026/09/introducing-meta-one-subscription-service-more-features-ai/",
+            "“Introducing Meta One plans for businesses”, Meta for Business, 15 September 2026. https://www.facebook.com/business/news/introducing-meta-one-plans-for-businesses",
+            "“About links in organic Facebook Page posts and comments”, Facebook Help Center, undated, checked 5 October 2026. https://www.facebook.com/help/1929252614431792",
+            "“About Meta One plans”, Meta Help Center, undated, checked 5 October 2026. https://www.meta.com/help/subscriptions/960854640235758/",
+            "“Meta launches Meta One for Business add-on packages”, Social Media Today (Andrew Hutchinson), 15 September 2026. https://www.socialmediatoday.com/news/meta-launches-meta-one-for-business-add-on-packages/830469/",
+            "“Facebook Pages get charged for link posts”, Social Media Today (Andrew Hutchinson), 17 September 2026. https://www.socialmediatoday.com/news/facebook-pages-get-charged-for-link-posts/830743/",
+            "“Meta One turns Instagram post links into a paid feature”, Search Engine Watch (Radu Tyrsina), 17 September 2026. https://searchenginewatch.com/meta-one-turns-instagram-post-links-into-a-paid-feature/",
+            "“Meta expands subscription push with new AI-focused plans”, TechCrunch (Sarah Perez), 15 September 2026. https://techcrunch.com/2026/09/15/meta-expands-subscription-push-with-new-ai-focused-plans/",
+            "“Meta One: 50+ features from €2.49 a month”, FreakUnboxer (Marios Viglas), 17 September 2026. https://freakunboxer.gr/2026/09/meta-one-times-instagram-whatsapp-facebook/",
+          ],
+        },
+      ],
+    },
+  },
 ];
 
 function toArticle(source: ArticleSource, locale: Locale): Article {
@@ -508,7 +932,9 @@ export function articleSeo(article: Article): {
 }
 
 export function articlesFor(locale: Locale): Article[] {
-  return articles.map((item) => toArticle(item, locale));
+  return articles
+    .map((item) => toArticle(item, locale))
+    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 }
 
 export function articleSlugs(): string[] {
