@@ -1050,6 +1050,30 @@ h1.chrome__brand {
   font-weight: 650;
 }
 
+.articles--detail .articles__body a.articles__ext,
+.articles--detail .articles__body a.articles__cite {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent);
+  transition: text-decoration-color 160ms ease, opacity 160ms ease;
+}
+
+.articles--detail .articles__body a.articles__ext:hover,
+.articles--detail .articles__body a.articles__cite:hover {
+  text-decoration-color: color-mix(in srgb, var(--ink) 75%, transparent);
+}
+
+.articles--detail .articles__body a.articles__cite {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.articles--detail .articles__points li[id^="source-"] {
+  scroll-margin-top: 5.5rem;
+}
+
 .articles--detail .articles__points,
 .articles--detail .articles__bullets {
   margin: 0 0 1.5em;

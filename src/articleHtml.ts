@@ -2,7 +2,9 @@
 
 import {
   type ArticleBlock,
+  isSourcesHeading,
   midCtaAfterIndex,
+  parseInlineParts,
   splitLeadIn,
 } from "./articleBlocks";
 
@@ -14,13 +16,36 @@ function escapeHtml(value: string): string {
     .replace(/"/g, "&quot;");
 }
 
-function paragraphHtml(text: string): string {
-  const lead = splitLeadIn(text);
-  if (!lead) return `<p>${escapeHtml(text)}</p>`;
-  return `<p><strong>${escapeHtml(lead.lead)}</strong> ${escapeHtml(lead.rest)}</p>`;
+function inlineHtml(text: string): string {
+  return parseInlineParts(text)
+    .map((part) => {
+      if (part.type === "url") {
+        const href = escapeHtml(part.href);
+        return `<a class="articles__ext" href="${href}" target="_blank" rel="noopener noreferrer">${href}</a>`;
+      }
+      if (part.type === "cite") {
+        return `<a class="articles__cite" href="#source-${part.n}">${escapeHtml(part.value)}</a>`;
+      }
+      return escapeHtml(part.value);
+    })
+    .join("");
 }
 
-function blockToHtml(block: ArticleBlock, priceCta: string): string {
+function richTextHtml(text: string): string {
+  const lead = splitLeadIn(text);
+  if (!lead) return inlineHtml(text);
+  return `<strong>${inlineHtml(lead.lead)}</strong> ${inlineHtml(lead.rest)}`;
+}
+
+function paragraphHtml(text: string): string {
+  return `<p>${richTextHtml(text)}</p>`;
+}
+
+function blockToHtml(
+  block: ArticleBlock,
+  priceCta: string,
+  sourceList = false,
+): string {
   switch (block.type) {
     case "p":
       return paragraphHtml(block.text);
@@ -30,23 +55,22 @@ function blockToHtml(block: ArticleBlock, priceCta: string): string {
       return `<h3 id="${escapeHtml(block.id)}">${escapeHtml(block.text)}</h3>`;
     case "ol":
       return `<ol>${block.items
-        .map((item) => {
-          const lead = splitLeadIn(item);
-          if (!lead) return `<li>${escapeHtml(item)}</li>`;
-          return `<li><strong>${escapeHtml(lead.lead)}</strong> ${escapeHtml(lead.rest)}</li>`;
+        .map((item, i) => {
+          const id = sourceList ? ` id="source-${i + 1}"` : "";
+          return `<li${id}>${richTextHtml(item)}</li>`;
         })
         .join("")}</ol>`;
     case "ul":
-      return `<ul>${block.items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+      return `<ul>${block.items.map((item) => `<li>${richTextHtml(item)}</li>`).join("")}</ul>`;
     case "checklist":
       return `<ul class="articles__check">${block.items
         .map(
           (item) =>
-            `<li><span aria-hidden="true">✓</span> ${escapeHtml(item)}</li>`,
+            `<li><span aria-hidden="true">✓</span> ${richTextHtml(item)}</li>`,
         )
         .join("")}</ul>`;
     case "callout":
-      return `<aside class="articles__callout articles__callout--${block.tone ?? "info"}"><p>${escapeHtml(block.text)}</p></aside>`;
+      return `<aside class="articles__callout articles__callout--${block.tone ?? "info"}"><p>${richTextHtml(block.text)}</p></aside>`;
     case "table": {
       const caption = block.caption
         ? `<caption>${escapeHtml(block.caption)}</caption>`
@@ -60,8 +84,8 @@ function blockToHtml(block: ArticleBlock, priceCta: string): string {
             `<tr>${row
               .map((cell, i) =>
                 i === 0
-                  ? `<th scope="row">${escapeHtml(cell)}</th>`
-                  : `<td>${escapeHtml(cell)}</td>`,
+                  ? `<th scope="row">${richTextHtml(cell)}</th>`
+                  : `<td>${richTextHtml(cell)}</td>`,
               )
               .join("")}</tr>`,
         )
@@ -131,8 +155,14 @@ export function articleDetailPrerenderHtml(input: {
 
   const renderBlocks = (blocks: ArticleBlock[], indexOffset: number) => {
     const parts: string[] = [];
+    let nextOlIsSources = false;
     blocks.forEach((block, i) => {
-      parts.push(blockToHtml(block, copy.priceCta));
+      if (block.type === "h2" && isSourcesHeading(block.text)) {
+        nextOlIsSources = true;
+      }
+      const sourceList = block.type === "ol" && nextOlIsSources;
+      if (sourceList) nextOlIsSources = false;
+      parts.push(blockToHtml(block, copy.priceCta, sourceList));
       if (indexOffset + i === after) {
         parts.push(
           `<aside class="articles__cta"><p>${escapeHtml(copy.midCtaTitle)}</p><a href="${escapeHtml(copy.midCtaHref)}">${escapeHtml(copy.midCta)}</a></aside>`,

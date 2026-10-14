@@ -4,13 +4,16 @@ import {
   slugifyHeading,
 } from "./articleBlocks";
 
-export type { ArticleBlock } from "./articleBlocks";
+export type { ArticleBlock, InlinePart } from "./articleBlocks";
 export {
   extractH2s,
+  isSourcesHeading,
   midCtaAfterIndex,
+  parseInlineParts,
   plainTextFromBlocks,
-  splitLeadIn,
   slugifyHeading,
+  splitLeadIn,
+  splitUrlToken,
 } from "./articleBlocks";
 
 /**

@@ -5,19 +5,58 @@ import {
   articlesFor,
   extractH2s,
   formatArticleDate,
+  isSourcesHeading,
   midCtaAfterIndex,
+  parseInlineParts,
   splitLeadIn,
   type ArticleBlock,
 } from "../articles";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
 
-function ParagraphText({ text }: { text: string }) {
-  const lead = splitLeadIn(text);
-  if (!lead) return <>{text}</>;
+function InlineParts({ text }: { text: string }) {
   return (
     <>
-      <strong className="articles__lead">{lead.lead}</strong> {lead.rest}
+      {parseInlineParts(text).map((part, i) => {
+        if (part.type === "url") {
+          return (
+            <a
+              key={`u-${i}-${part.href}`}
+              className="articles__ext"
+              href={part.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {part.value}
+            </a>
+          );
+        }
+        if (part.type === "cite") {
+          return (
+            <a
+              key={`c-${i}-${part.n}`}
+              className="articles__cite"
+              href={`#source-${part.n}`}
+            >
+              {part.value}
+            </a>
+          );
+        }
+        return <span key={`t-${i}`}>{part.value}</span>;
+      })}
+    </>
+  );
+}
+
+function ParagraphText({ text }: { text: string }) {
+  const lead = splitLeadIn(text);
+  if (!lead) return <InlineParts text={text} />;
+  return (
+    <>
+      <strong className="articles__lead">
+        <InlineParts text={lead.lead} />
+      </strong>{" "}
+      <InlineParts text={lead.rest} />
     </>
   );
 }
@@ -25,9 +64,11 @@ function ParagraphText({ text }: { text: string }) {
 function BlockView({
   block,
   priceCta,
+  sourceList,
 }: {
   block: ArticleBlock;
   priceCta: string;
+  sourceList?: boolean;
 }) {
   switch (block.type) {
     case "p":
@@ -43,8 +84,11 @@ function BlockView({
     case "ol":
       return (
         <ol className="articles__points">
-          {block.items.map((item) => (
-            <li key={item.slice(0, 48)}>
+          {block.items.map((item, i) => (
+            <li
+              key={item.slice(0, 48)}
+              id={sourceList ? `source-${i + 1}` : undefined}
+            >
               <ParagraphText text={item} />
             </li>
           ))}
@@ -54,7 +98,9 @@ function BlockView({
       return (
         <ul className="articles__bullets">
           {block.items.map((item) => (
-            <li key={item.slice(0, 48)}>{item}</li>
+            <li key={item.slice(0, 48)}>
+              <ParagraphText text={item} />
+            </li>
           ))}
         </ul>
       );
@@ -66,7 +112,9 @@ function BlockView({
               <span className="articles__check-mark" aria-hidden="true">
                 ✓
               </span>
-              <span>{item}</span>
+              <span>
+                <ParagraphText text={item} />
+              </span>
             </li>
           ))}
         </ul>
@@ -76,7 +124,9 @@ function BlockView({
         <aside
           className={`articles__callout articles__callout--${block.tone ?? "info"}`}
         >
-          <p>{block.text}</p>
+          <p>
+            <ParagraphText text={block.text} />
+          </p>
         </aside>
       );
     case "table":
@@ -99,10 +149,12 @@ function BlockView({
                   {row.map((cell, ci) =>
                     ci === 0 ? (
                       <th key={ci} scope="row">
-                        {cell}
+                        <ParagraphText text={cell} />
                       </th>
                     ) : (
-                      <td key={ci}>{cell}</td>
+                      <td key={ci}>
+                        <ParagraphText text={cell} />
+                      </td>
                     ),
                   )}
                 </tr>
@@ -239,12 +291,19 @@ function ArticleBody({
   aboutHref: string;
 }) {
   const nodes: ReactNode[] = [];
+  let nextOlIsSources = false;
   blocks.forEach((block, i) => {
+    if (block.type === "h2" && isSourcesHeading(block.text)) {
+      nextOlIsSources = true;
+    }
+    const sourceList = block.type === "ol" && nextOlIsSources;
+    if (sourceList) nextOlIsSources = false;
     nodes.push(
       <BlockView
         key={`${block.type}-${indexOffset + i}`}
         block={block}
         priceCta={priceCta}
+        sourceList={sourceList}
       />,
     );
     if (indexOffset + i === midAfter) {

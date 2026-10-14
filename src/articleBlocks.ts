@@ -46,6 +46,62 @@ export function splitLeadIn(
   return { lead: `${lead}.`, rest: match[2] };
 }
 
+/** True for the Sources / Πηγές heading that owns citation targets. */
+export function isSourcesHeading(text: string): boolean {
+  const normalized = text.trim().toLowerCase();
+  return normalized === "sources" || normalized === "πηγές";
+}
+
+export type InlinePart =
+  | { type: "text"; value: string }
+  | { type: "url"; href: string; value: string }
+  | { type: "cite"; n: number; value: string };
+
+const INLINE_TOKEN_RE =
+  /(\[(\d+)\])|(https?:\/\/[^\s<>"'\[\]{}|\\^`]+)/g;
+
+/** Peel trailing punctuation that usually sits outside the URL. */
+export function splitUrlToken(raw: string): { href: string; trailing: string } {
+  let href = raw;
+  let trailing = "";
+  while (href.length > 1 && /[.,;:!?]$/.test(href)) {
+    trailing = `${href.slice(-1)}${trailing}`;
+    href = href.slice(0, -1);
+  }
+  const opens = (href.match(/\(/g) || []).length;
+  const closes = (href.match(/\)/g) || []).length;
+  if (href.endsWith(")") && closes > opens) {
+    trailing = `)${trailing}`;
+    href = href.slice(0, -1);
+  }
+  return { href, trailing };
+}
+
+/** Split plain article copy into text / URL / [n] citation parts. */
+export function parseInlineParts(text: string): InlinePart[] {
+  const parts: InlinePart[] = [];
+  let last = 0;
+  for (const match of text.matchAll(INLINE_TOKEN_RE)) {
+    const index = match.index ?? 0;
+    if (index > last) {
+      parts.push({ type: "text", value: text.slice(last, index) });
+    }
+    if (match[1]) {
+      parts.push({ type: "cite", n: Number(match[2]), value: match[1] });
+      last = index + match[0].length;
+      continue;
+    }
+    const { href, trailing } = splitUrlToken(match[0]);
+    parts.push({ type: "url", href, value: href });
+    if (trailing) parts.push({ type: "text", value: trailing });
+    last = index + match[0].length;
+  }
+  if (last < text.length) {
+    parts.push({ type: "text", value: text.slice(last) });
+  }
+  return parts.length ? parts : [{ type: "text", value: text }];
+}
+
 export function extractH2s(
   body: ArticleBlock[],
 ): { id: string; text: string }[] {
