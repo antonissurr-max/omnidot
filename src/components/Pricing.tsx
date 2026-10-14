@@ -14,13 +14,13 @@ import type { PageId } from "../types";
 
 const DOT_TONES = ["blue", "pink", "green", "sand", "slate"] as const;
 
-/** Center-based coords (%). Five orbs: top pair, center, bottom pair. */
+/** Center-based coords (%). Top pair, mid sides, SEO centered under the title. */
 const LAYOUT = [
   { x: 24, y: 26, s: 1 },
   { x: 76, y: 26, s: 1 },
-  { x: 50, y: 50, s: 1 },
-  { x: 22, y: 76, s: 1 },
-  { x: 78, y: 76, s: 1 },
+  { x: 18, y: 58, s: 1 },
+  { x: 82, y: 58, s: 1 },
+  { x: 50, y: 80, s: 1 },
 ] as const;
 
 const ORB_MEDIA: Record<
