@@ -4402,16 +4402,37 @@ a.work__project:focus-visible .work__project-name {
   z-index: 4;
 }
 
+/*
+ * First pricing orb is LCP. Chrome skips opacity:0, so sit on the
+ * pricing-orb-in-lcp start frame at opacity 0.01 before is-ready.
+ */
+.pricing-orb:first-child {
+  opacity: 0.01;
+  transform: translate(-50%, -50%) scale(0.78);
+}
+
 .pricing-page.is-ready .pricing-orb {
   opacity: 1;
   animation: pricing-orb-in var(--motion-in-slow) var(--ease) backwards;
   animation-delay: calc(0.22s + var(--oi, 0) * var(--stagger));
 }
 
+.pricing-page.is-ready .pricing-orb:first-child {
+  animation-name: pricing-orb-in-lcp;
+  animation-delay: 0s;
+}
+
 @keyframes pricing-orb-in {
   from {
     opacity: 0;
     filter: blur(10px);
+    transform: translate(-50%, -50%) scale(0.78);
+  }
+}
+
+@keyframes pricing-orb-in-lcp {
+  from {
+    opacity: 0.01;
     transform: translate(-50%, -50%) scale(0.78);
   }
 }
@@ -4431,6 +4452,12 @@ a.work__project:focus-visible .work__project-name {
   from {
     opacity: 0;
     filter: blur(8px);
+  }
+}
+
+@keyframes pricing-orb-in-mobile-lcp {
+  from {
+    opacity: 0.01;
   }
 }
 
@@ -5118,6 +5145,11 @@ a.work__project:focus-visible .work__project-name {
     transform: none !important;
   }
 
+  .pricing-orb:first-child {
+    opacity: 0.01;
+    transform: none !important;
+  }
+
   /* Lone last orb (5th in a 2-col grid) — center, same size */
   .pricing-orb:last-child:nth-child(odd) {
     grid-column: 1 / -1;
@@ -5132,9 +5164,19 @@ a.work__project:focus-visible .work__project-name {
     transform: none !important;
   }
 
+  .pricing-page.is-ready .pricing-orb:first-child {
+    animation-name: pricing-orb-in-mobile-lcp;
+    animation-delay: 0s;
+  }
+
   .pricing-page.is-ready .pricing-orb__ring {
     animation: pricing-ring-pop var(--motion-in) var(--ease) backwards;
     animation-delay: calc(0.2s + var(--oi, 0) * var(--stagger));
+  }
+
+  /* LCP orb: no ring blur/pop — keeps the image paintable immediately */
+  .pricing-page.is-ready .pricing-orb:first-child .pricing-orb__ring {
+    animation: none;
   }
 
   @keyframes pricing-ring-pop {

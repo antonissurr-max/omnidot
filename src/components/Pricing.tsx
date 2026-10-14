@@ -190,7 +190,9 @@ export function Pricing({
                   <span className="pricing-orb__ring">
                     {media ? (
                       <span className="pricing-orb__media" aria-hidden="true">
-                        {media.type === "video" && !preferOrbPoster ? (
+                        {media.type === "video" &&
+                        !preferOrbPoster &&
+                        index >= 2 ? (
                           <LazyVideo
                             src={media.src}
                             poster={media.poster}
@@ -206,7 +208,7 @@ export function Pricing({
                                 : media.src
                             }
                             alt=""
-                            loading={index <= 1 ? "eager" : "lazy"}
+                            loading={index < 2 ? "eager" : "lazy"}
                             decoding="async"
                             {...(index === 0
                               ? { fetchPriority: "high" as const }
