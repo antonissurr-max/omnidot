@@ -164,6 +164,14 @@ export type Copy = {
   homeMobileProofKicker: string;
   homeMobileProofStory: string;
   homeMobileClose: string;
+  homeSeoTitle: string;
+  homeSeoIntro: string;
+  homeSeoServices: { id: PageId; name: string; line: string }[];
+  homeSeoOutroLead: string;
+  homeSeoPricingLabel: string;
+  homeSeoOutroMid: string;
+  homeSeoContactLabel: string;
+  homeSeoOutroEnd: string;
   aboutVerse: VerseRow[];
   contactThanks: string;
   contactError: string;
@@ -337,7 +345,7 @@ export const copy: Record<Locale, Copy> = {
   en: {
     metaTitle: "omnidot. — Marketing Agency Athens | Social, Ads & Web",
     metaDescription:
-      "Marketing agency in Athens for businesses across Greece: social media management, content creation, Meta & Google Ads and SEO websites.",
+      "Websites, social media management and SEO for businesses. Based in Athens, working across Greece. See services and pricing.",
     langLabel: "Language",
     homeAria: "omnidot — home",
     about: "About",
@@ -515,6 +523,42 @@ export const copy: Record<Locale, Copy> = {
     homeMobileProofStory:
       "Europatch — cold asphalt for B2B. Steady organic content turned a quiet category into 4.5M Facebook and 2.5M Instagram views in a year, with zero ads.",
     homeMobileClose: "Ready when you are.",
+    homeSeoTitle:
+      "Websites, social media and SEO for businesses in Athens",
+    homeSeoIntro:
+      "omnidot. is a small marketing team based in Athens, working with businesses across Greece. We build the site, run the social channels and make sure people can find you on Google. We take on a few clients at a time, agree on prices before we start, and you talk directly to the person doing the work.",
+    homeSeoServices: [
+      {
+        id: "web",
+        name: "Websites",
+        line: "Fast sites and landing pages, set up properly for Google. Landing pages €700–1,200.",
+      },
+      {
+        id: "social",
+        name: "Social media management",
+        line: "Instagram, Facebook, TikTok and LinkedIn, with a plan, content and a monthly report. From €450/mo.",
+      },
+      {
+        id: "seo",
+        name: "SEO & AEO",
+        line: "Google Business Profile, site fixes, and a check on whether ChatGPT and Google recommend you. From €300/mo.",
+      },
+      {
+        id: "content",
+        name: "Content creation",
+        line: "Photos, video and Reels for your feed, ads and site. From €350 per pack.",
+      },
+      {
+        id: "performance",
+        name: "Google & Meta Ads",
+        line: "€200 one-off setup, then management from €300/mo. Your ad budget stays yours.",
+      },
+    ],
+    homeSeoOutroLead: "All packages are on the ",
+    homeSeoPricingLabel: "pricing page",
+    homeSeoOutroMid: ". For something specific, ",
+    homeSeoContactLabel: "send us a message",
+    homeSeoOutroEnd: ".",
     aboutVerse: aboutVerseEn,
     contactThanks: "Thanks — we'll get back with next steps.",
     contactError: "Something went wrong — please try again or email us directly.",
@@ -1135,7 +1179,7 @@ export const copy: Record<Locale, Copy> = {
   el: {
     metaTitle: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
     metaDescription:
-      "Διαφημιστική στην Αθήνα για επιχειρήσεις σε όλη την Ελλάδα: διαχείριση social media, περιεχόμενο, Google & Meta Ads και ιστοσελίδες με SEO.",
+      "Ιστοσελίδες, διαχείριση social media και SEO για επιχειρήσεις. Έδρα στην Αθήνα, συνεργασίες σε όλη την Ελλάδα. Δες υπηρεσίες και τιμές.",
     langLabel: "Γλώσσα",
     homeAria: "omnidot — αρχική",
     about: "Σχετικά",
@@ -1313,6 +1357,42 @@ export const copy: Record<Locale, Copy> = {
     homeMobileProofStory:
       "Europatch — ψυχρή άσφαλτος για B2B. Σταθερό organic content έκανε μια ήσυχη κατηγορία να φτάσει 4.5 εκ. views στο Facebook και 2.5 εκ. στο Instagram σε έναν χρόνο, χωρίς διαφημίσεις.",
     homeMobileClose: "Όποτε είσαι έτοιμος.",
+    homeSeoTitle:
+      "Ιστοσελίδες, social media και SEO για επιχειρήσεις στην Αθήνα",
+    homeSeoIntro:
+      "Το omnidot. είναι μικρή ομάδα marketing με έδρα στην Αθήνα και συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα. Φτιάχνουμε το site, τρέχουμε τα social και φροντίζουμε να σε βρίσκουν στη Google. Δουλεύουμε με λίγους πελάτες τη φορά, με ξεκάθαρες τιμές από την αρχή, και μιλάς απευθείας με αυτόν που κάνει τη δουλειά.",
+    homeSeoServices: [
+      {
+        id: "web",
+        name: "Ιστοσελίδες",
+        line: "Γρήγορα sites και landing pages, στημένα σωστά για τη Google. Landing page €700–1.200.",
+      },
+      {
+        id: "social",
+        name: "Διαχείριση social media",
+        line: "Instagram, Facebook, TikTok και LinkedIn, με πρόγραμμα, περιεχόμενο και μηνιαία αναφορά. Από €450/μήνα.",
+      },
+      {
+        id: "seo",
+        name: "SEO & AEO",
+        line: "Google Business Profile, διορθώσεις στο site και έλεγχος για το αν σε προτείνουν το ChatGPT και η Google. Από €300/μήνα.",
+      },
+      {
+        id: "content",
+        name: "Δημιουργία περιεχομένου",
+        line: "Φωτογραφίες, βίντεο και Reels για το feed, τις διαφημίσεις και το site. Από €350 ανά πακέτο.",
+      },
+      {
+        id: "performance",
+        name: "Διαφημίσεις Google & Meta",
+        line: "Στήσιμο €200 μία φορά και διαχείριση από €300/μήνα. Το budget των διαφημίσεων μένει δικό σου.",
+      },
+    ],
+    homeSeoOutroLead: "Όλα τα πακέτα είναι στις ",
+    homeSeoPricingLabel: "τιμές",
+    homeSeoOutroMid: ". Για κάτι πιο συγκεκριμένο, ",
+    homeSeoContactLabel: "στείλε μας ένα μήνυμα",
+    homeSeoOutroEnd: ".",
     aboutVerse: aboutVerseEl,
     contactThanks: "Ευχαριστούμε — θα επιστρέψουμε με τα επόμενα βήματα.",
     contactError: "Κάτι πήγε στραβά — δοκίμασε ξανά ή στείλε μας απευθείας email.",

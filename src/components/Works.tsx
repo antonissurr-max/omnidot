@@ -90,7 +90,7 @@ export function Works({ dimmed }: { dimmed: boolean }) {
       aria-label={t.sections}
     >
       <header ref={heroRef} className="home-mobile home-mobile--hero" data-chrome-tone="dark">
-        <h1 className="home-mobile__display">{t.homeMobileHeadline}</h1>
+        <p className="home-mobile__display">{t.homeMobileHeadline}</p>
         <Link
           className="home-mobile__cta-line"
           to={pathFromView({ kind: "about" }, locale)}
@@ -144,6 +144,36 @@ export function Works({ dimmed }: { dimmed: boolean }) {
           </Link>
         );
       })}
+
+      <section className="home-seo" aria-labelledby="home-seo-title">
+        <h1 id="home-seo-title" className="home-seo__title">
+          {t.homeSeoTitle}
+        </h1>
+        <p className="home-seo__intro">{t.homeSeoIntro}</p>
+        <ul className="home-seo__list">
+          {t.homeSeoServices.map((s) => (
+            <li key={s.id} className="home-seo__row">
+              <h2 className="home-seo__name">
+                <Link to={pathFromView({ kind: "page", id: s.id }, locale)}>
+                  {s.name}
+                </Link>
+              </h2>
+              <p className="home-seo__line">{s.line}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="home-seo__outro">
+          {t.homeSeoOutroLead}
+          <Link to={pathFromView({ kind: "pricing" }, locale)}>
+            {t.homeSeoPricingLabel}
+          </Link>
+          {t.homeSeoOutroMid}
+          <Link to={pathFromView({ kind: "about" }, locale)}>
+            {t.homeSeoContactLabel}
+          </Link>
+          {t.homeSeoOutroEnd}
+        </p>
+      </section>
 
       <footer className="home-mobile home-mobile--close" data-chrome-tone="dark">
         <h2 className="home-mobile__display home-mobile__display--sm">

@@ -222,26 +222,18 @@ function localeShell(locale, def) {
   const titles = i18nModule.PAGE_TITLES[locale];
 
   if (def.id === "home") {
-    const services = ["social", "content", "performance", "web", "seo"].map((id) => {
-      const page = t.pages[id];
-      const href = locale === "el" ? `/el/${id}/` : `/${id}/`;
-      const blurb =
-        page.serviceGuide?.intro?.slice(0, 140) ||
-        page.points?.[0]?.body?.slice(0, 140) ||
-        "";
-      return {
-        name: page.title,
-        href,
-        body: blurb,
-      };
-    });
     return {
       title: titles.home,
       description: t.metaDescription,
-      h1: t.homeMobileHeadline,
-      body: t.aboutSub,
+      h1: t.homeSeoTitle,
+      body: t.homeSeoIntro,
       story: "",
-      services,
+      services: t.homeSeoServices,
+      homeSeoOutroLead: t.homeSeoOutroLead,
+      homeSeoPricingLabel: t.homeSeoPricingLabel,
+      homeSeoOutroMid: t.homeSeoOutroMid,
+      homeSeoContactLabel: t.homeSeoContactLabel,
+      homeSeoOutroEnd: t.homeSeoOutroEnd,
     };
   }
 
@@ -923,17 +915,18 @@ function crawlBody(def, locale) {
     `<p>${escapeHtml(copy.body)}</p>`,
   ].filter(Boolean);
 
-  // Home: full “what we do” service blurbs.
+  // Home: quiet SEO section (same copy as React .home-seo).
   if (def.id === "home" && copy.services?.length) {
+    const pricingHref = locale === "el" ? "/el/pricing/" : "/pricing/";
+    const aboutHref = locale === "el" ? "/el/about/" : "/about/";
     parts.push(
-      `<section aria-label="${locale === "el" ? "Τι κάνουμε" : "What we do"}"><h2>${
-        locale === "el" ? "Τι κάνουμε" : "What we do"
-      }</h2><ul>${copy.services
-        .map(
-          (s) =>
-            `<li><a href="${escapeAttr(s.href)}"><strong>${escapeHtml(s.name)}</strong></a> — ${escapeHtml(s.body)}</li>`,
-        )
-        .join("")}</ul></section>`,
+      `<ul>${copy.services
+        .map((s) => {
+          const href = locale === "el" ? `/el/${s.id}/` : `/${s.id}/`;
+          return `<li><h2><a href="${escapeAttr(href)}">${escapeHtml(s.name)}</a></h2><p>${escapeHtml(s.line)}</p></li>`;
+        })
+        .join("")}</ul>`,
+      `<p>${escapeHtml(copy.homeSeoOutroLead || "")}<a href="${escapeAttr(pricingHref)}">${escapeHtml(copy.homeSeoPricingLabel || "")}</a>${escapeHtml(copy.homeSeoOutroMid || "")}<a href="${escapeAttr(aboutHref)}">${escapeHtml(copy.homeSeoContactLabel || "")}</a>${escapeHtml(copy.homeSeoOutroEnd || "")}</p>`,
     );
   }
 
