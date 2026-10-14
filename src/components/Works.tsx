@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
+import { useInViewOnce } from "../hooks/useInViewOnce";
 import { pages } from "../site";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
@@ -8,6 +9,10 @@ export function Works({ dimmed }: { dimmed: boolean }) {
   const { locale, t } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
   const heroRef = useRef<HTMLElement>(null);
+  const { ref: seoRef, visible: seoVisible } = useInViewOnce<HTMLElement>(
+    0.18,
+    "0px 0px -8% 0px",
+  );
 
   useEffect(() => {
     const root = sectionRef.current;
@@ -145,7 +150,11 @@ export function Works({ dimmed }: { dimmed: boolean }) {
         );
       })}
 
-      <section className="home-seo" aria-labelledby="home-seo-title">
+      <section
+        ref={seoRef}
+        className={`home-seo${seoVisible ? " is-visible" : ""}`}
+        aria-labelledby="home-seo-title"
+      >
         <div className="home-seo__inner">
           <div className="home-seo__head">
             <h1 id="home-seo-title" className="home-seo__title">
@@ -154,8 +163,12 @@ export function Works({ dimmed }: { dimmed: boolean }) {
             <p className="home-seo__intro">{t.homeSeoIntro}</p>
           </div>
           <ul className="home-seo__list">
-            {t.homeSeoServices.map((s) => (
-              <li key={s.id} className="home-seo__row">
+            {t.homeSeoServices.map((s, i) => (
+              <li
+                key={s.id}
+                className="home-seo__row"
+                style={{ "--ri": i } as CSSProperties}
+              >
                 <h2 className="home-seo__name">
                   <Link to={pathFromView({ kind: "page", id: s.id }, locale)}>
                     {s.name}

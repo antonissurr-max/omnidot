@@ -1627,6 +1627,45 @@ h1.chrome__brand {
   opacity: 0.72;
 }
 
+.home-seo__title,
+.home-seo__intro,
+.home-seo__row,
+.home-seo__outro {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.95s var(--ease),
+    transform 0.95s var(--ease);
+}
+
+.home-seo__title {
+  transition-delay: 0.06s;
+}
+
+.home-seo__intro {
+  transition-delay: 0.14s;
+}
+
+.home-seo__row {
+  transition-delay: calc(0.22s + var(--ri, 0) * 0.1s);
+}
+
+.home-seo__outro {
+  transition-delay: calc(0.3s + 5 * 0.1s);
+}
+
+.home-seo.is-visible .home-seo__title,
+.home-seo.is-visible .home-seo__row {
+  opacity: 1;
+  transform: none;
+}
+
+.home-seo.is-visible .home-seo__intro,
+.home-seo.is-visible .home-seo__outro {
+  opacity: 0.72;
+  transform: none;
+}
+
 @media (max-width: 1100px) {
   .home-seo__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3711,9 +3750,12 @@ a.work__project:focus-visible .work__project-name {
     color: inherit;
   }
 
-  .home-seo__intro,
-  .home-seo__line,
-  .home-seo__outro {
+  .home-seo.is-visible .home-seo__intro,
+  .home-seo.is-visible .home-seo__outro {
+    opacity: 0.78;
+  }
+
+  .home-seo__line {
     opacity: 0.78;
   }
 
@@ -6182,12 +6224,19 @@ a.work__project:focus-visible .work__project-name {
 
   /* Absolute tiles don't take flow space. Use padding (not margin) so
      the quiet SEO block clears the first viewport without collapsing
-     through .works and landing on top of the staircase. */
+     through .works and landing on top of the staircase.
+     pointer-events:none on the padded shell so tiles stay clickable;
+     re-enable on the inner content for service / pricing links. */
   .home-seo {
     position: relative;
     z-index: 1;
     margin: 0;
     padding: calc(100dvh + 10vh) var(--chrome) 12vh;
+    pointer-events: none;
+  }
+
+  .home-seo__inner {
+    pointer-events: auto;
   }
 
   .works__intro {
@@ -6476,6 +6525,10 @@ a.work__project:focus-visible .work__project-name {
   .partners__list > li,
   .site-foot__col,
   .site-foot__copy,
+  .home-seo__title,
+  .home-seo__intro,
+  .home-seo__row,
+  .home-seo__outro,
   .exhibit__frame {
     animation: none !important;
     transition: none !important;
@@ -6495,12 +6548,21 @@ a.work__project:focus-visible .work__project-name {
   .partners__list > li,
   .site-foot__col,
   .site-foot__copy,
+  .home-seo__title,
+  .home-seo__intro,
+  .home-seo__row,
+  .home-seo__outro,
   .work__head,
   .work__exhibit,
   .work__body {
     opacity: 1 !important;
     filter: none !important;
     transform: none !important;
+  }
+
+  .home-seo__intro,
+  .home-seo__outro {
+    opacity: 0.72 !important;
   }
 
   .pricing-principles.is-visible .pricing-principles__eyebrow,
