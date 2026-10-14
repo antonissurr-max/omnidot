@@ -58,12 +58,25 @@ export function Pricing({
   const { locale, t } = useLocale();
   const plans = t.pricingPlans;
   const [openId, setOpenId] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  // Match first client paint to viewport so mobile never mounts LazyVideo (CLS 0).
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 799px)").matches
+      : false,
+  );
+  const [saveData, setSaveData] = useState(() =>
+    typeof navigator !== "undefined" &&
+    Boolean(
+      (navigator as Navigator & { connection?: { saveData?: boolean } })
+        .connection?.saveData,
+    ),
+  );
   const { ref: bottomRef, visible: revealBottom } = useInViewOnce<HTMLElement>(
     0.18,
     "0px 0px -8% 0px",
   );
   const openPlan = openId ? plans.find((p) => p.id === openId) : null;
+  const preferOrbPoster = isMobile || saveData;
 
   const closeModule = useCallback(() => setOpenId(null), []);
 
@@ -81,6 +94,15 @@ export function Pricing({
     sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    setSaveData(
+      Boolean(
+        (navigator as Navigator & { connection?: { saveData?: boolean } })
+          .connection?.saveData,
+      ),
+    );
   }, []);
 
   useEffect(() => {
@@ -168,7 +190,7 @@ export function Pricing({
                   <span className="pricing-orb__ring">
                     {media ? (
                       <span className="pricing-orb__media" aria-hidden="true">
-                        {media.type === "video" ? (
+                        {media.type === "video" && !preferOrbPoster ? (
                           <LazyVideo
                             src={media.src}
                             poster={media.poster}
@@ -178,10 +200,17 @@ export function Pricing({
                           />
                         ) : (
                           <img
-                            src={media.src}
+                            src={
+                              media.type === "video"
+                                ? (media.poster ?? media.src)
+                                : media.src
+                            }
                             alt=""
-                            loading="lazy"
+                            loading={index <= 1 ? "eager" : "lazy"}
                             decoding="async"
+                            {...(index === 0
+                              ? { fetchPriority: "high" as const }
+                              : {})}
                           />
                         )}
                       </span>

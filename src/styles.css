@@ -1616,6 +1616,7 @@ h1.chrome__brand {
 
 .home-seo h2.home-seo__name a,
 .home-seo__outro a {
+  color: inherit;
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
@@ -4367,7 +4368,7 @@ a.work__project:focus-visible .work__project-name {
 }
 
 .pricing-hero__title-sub {
-  color: color-mix(in srgb, var(--navy) 42%, transparent);
+  color: color-mix(in srgb, var(--navy) 55%, var(--paper));
   font-weight: 400;
 }
 
@@ -5115,6 +5116,13 @@ a.work__project:focus-visible .work__project-name {
     aspect-ratio: 1;
     opacity: 0;
     transform: none !important;
+  }
+
+  /* Lone last orb (5th in a 2-col grid) — center, same size */
+  .pricing-orb:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 12px) / 2) !important;
   }
 
   .pricing-page.is-ready .pricing-orb {

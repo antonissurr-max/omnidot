@@ -643,6 +643,7 @@ export const copy: Record<Locale, Copy> = {
     pages: {
       social: {
         title: "Social Media Management for businesses",
+        tileTitle: "Social Media",
         seoTitle: "Social Media Management in Athens | omnidot.",
         seoDescription:
           "Social media management in Athens for businesses across Greece: Instagram, TikTok, Facebook and LinkedIn, strategy and monthly reports. From €450/month.",
@@ -901,6 +902,7 @@ export const copy: Record<Locale, Copy> = {
       },
       performance: {
         title: "Google Ads and Meta Ads management for businesses",
+        tileTitle: "Google & Meta Ads",
         seoTitle: "Google Ads & Meta Ads Management | omnidot. Athens",
         seoDescription:
           "Google, Facebook and Instagram ads that bring leads and sales. Based in Athens. Setup €200 one-off, management from €300/month. Ad budget stays yours.",
@@ -965,6 +967,7 @@ export const copy: Record<Locale, Copy> = {
       },
       web: {
         title: "Website Development for businesses",
+        tileTitle: "Websites",
         seoTitle: "Website Development in Athens | omnidot.",
         seoDescription:
           "Website development in Athens for businesses across Greece: fast sites, landing pages and a structure Google understands. Landing pages from €700.",
@@ -1477,6 +1480,7 @@ export const copy: Record<Locale, Copy> = {
     pages: {
       social: {
         title: "Διαχείριση Social Media για επιχειρήσεις",
+        tileTitle: "Διαχείριση Social Media",
         seoTitle: "Διαχείριση Social Media στην Αθήνα | omnidot.",
         seoDescription:
           "Διαχείριση Instagram, TikTok, Facebook και LinkedIn στην Αθήνα: στρατηγική, περιεχόμενο, community και reporting. Από €450/μήνα.",
@@ -1931,6 +1935,7 @@ export const copy: Record<Locale, Copy> = {
       },
       performance: {
         title: "Διαχείριση Google Ads και Meta Ads",
+        tileTitle: "Google & Meta Ads",
         seoTitle: "Διαχείριση Google Ads & Meta Ads | omnidot. Αθήνα",
         seoDescription:
           "Διαχείριση διαφημίσεων Google, Facebook και Instagram στην Αθήνα. Setup €200 μία φορά, διαχείριση από €300/μήνα. Το budget μένει δικό σου.",
@@ -2105,6 +2110,7 @@ export const copy: Record<Locale, Copy> = {
       },
       web: {
         title: "Κατασκευή Ιστοσελίδας για επιχειρήσεις",
+        tileTitle: "Κατασκευή Ιστοσελίδας",
         seoTitle: "Κατασκευή Ιστοσελίδας στην Αθήνα | omnidot.",
         seoDescription:
           "Κατασκευή ιστοσελίδας για επιχειρήσεις σε όλη την Ελλάδα: γρήγορα sites, landing pages και σωστή δομή για τη Google. Landing page από €700.",

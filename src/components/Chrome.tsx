@@ -52,7 +52,9 @@ export function Chrome({
             const next = locale === "en" ? "el" : "en";
             navigate(pathForLocale(location.pathname, location.search, next));
           }}
-          aria-label={t.langLabel}
+          aria-label={
+            locale === "en" ? `EN — ${t.langLabel}` : `EL — ${t.langLabel}`
+          }
         >
           {locale === "en" ? "EN" : "EL"}
         </button>

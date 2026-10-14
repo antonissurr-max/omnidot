@@ -1151,10 +1151,14 @@ function patchHtml(html, def, locale) {
     }
   }
 
-  // Max one LCP image preload per page (home / social / content only).
+  // Max one LCP image preload per page (home / pricing / social / content).
   if (def.id === "home") {
     headExtras.push(
       `    <link rel="preload" as="image" href="/images/social.webp" imagesrcset="${escapeAttr(HOME_TILE_SRCSET)}" imagesizes="${escapeAttr(HOME_TILE_SIZES)}" fetchpriority="high" />`,
+    );
+  } else if (def.id === "pricing") {
+    headExtras.push(
+      `    <link rel="preload" as="image" href="/images/social.webp" fetchpriority="high" />`,
     );
   } else if (
     (def.id === "social" || def.id === "content") &&

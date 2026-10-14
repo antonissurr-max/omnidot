@@ -350,6 +350,19 @@ for (const rel of files) {
       console.log("  FAIL service preload not a -540.webp poster");
       failed = true;
     }
+  } else if (
+    rel === "pricing/index.html" ||
+    rel === "el/pricing/index.html"
+  ) {
+    if (highPreloads.length !== 1) {
+      console.log(
+        `  FAIL pricing image preload count=${highPreloads.length} (want 1)`,
+      );
+      failed = true;
+    } else if (!/\/images\/social\.webp/i.test(highPreloads[0])) {
+      console.log("  FAIL pricing preload not pointing at /images/social.webp");
+      failed = true;
+    }
   } else if (preloads.length > 0) {
     console.log(`  FAIL unexpected image preload on ${rel}`);
     failed = true;
