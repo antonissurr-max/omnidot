@@ -6137,13 +6137,14 @@ a.work__project:focus-visible .work__project-name {
     );
   }
 
-  /* Absolute tiles don't take flow space — park the quiet SEO block
-     under the first viewport so the staircase stays unchanged. */
+  /* Absolute tiles don't take flow space. Use padding (not margin) so
+     the quiet SEO block clears the first viewport without collapsing
+     through .works and landing on top of the staircase. */
   .home-seo {
     position: relative;
     z-index: 1;
-    margin: 100dvh auto 0;
-    padding: 0 2.4vw 12vh;
+    margin: 0 auto;
+    padding: 100dvh 2.4vw 12vh 2.4vw;
   }
 
   .works__intro {
