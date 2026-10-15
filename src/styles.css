@@ -4379,6 +4379,10 @@ a.work__project:focus-visible .work__project-name {
   background: var(--paper);
   /* Shared scale unit: orbs + title. 22vh keeps side pairs clear on short laptops. */
   --pricing-scale: clamp(120px, min(20vw, 22vh), 280px);
+}
+
+/* Only ease scale after first paint — avoids a 200px→target grow on load. */
+.pricing-page.is-ready .pricing-pin {
   transition: --pricing-scale 0.45s var(--ease);
 }
 
@@ -4410,12 +4414,12 @@ a.work__project:focus-visible .work__project-name {
   line-height: 0.95;
   color: var(--navy);
   opacity: 0;
-  transition: font-size 0.45s var(--ease);
 }
 
 .pricing-page.is-ready .pricing-hero__title {
   opacity: 1;
   animation: pricing-rise-in var(--motion-in) var(--ease) 0.08s both;
+  transition: font-size 0.45s var(--ease);
 }
 
 .pricing-hero__title-lead {
@@ -4473,9 +4477,8 @@ a.work__project:focus-visible .work__project-name {
   animation-delay: calc(0.22s + var(--oi, 0) * var(--stagger));
 }
 
+/* Omnichannel (first orb): same entrance as siblings, not a flat LCP fade. */
 .pricing-page.is-ready .pricing-orb:first-child {
-  animation-name: pricing-orb-in-lcp;
-  animation-delay: 0s;
   transform: translate(-50%, -50%);
 }
 
@@ -4484,13 +4487,6 @@ a.work__project:focus-visible .work__project-name {
     opacity: 0;
     filter: blur(10px);
     transform: translate(-50%, -50%) scale(0.92);
-  }
-}
-
-@keyframes pricing-orb-in-lcp {
-  from {
-    opacity: 0.01;
-    transform: translate(-50%, -50%);
   }
 }
 
@@ -5337,6 +5333,16 @@ a.work__project:focus-visible .work__project-name {
     font-size: clamp(34px, 11vw, 48px);
   }
 
+  .pricing-page.is-mobile .pricing-pin {
+    transition: none;
+  }
+
+  .pricing-page.is-mobile.is-ready .pricing-hero__title {
+    transition: none;
+    animation-duration: 0.55s;
+    animation-delay: 0s;
+  }
+
   .pricing-page.is-mobile .pricing-hero__title-wrap {
     opacity: 1;
     transform: none;
@@ -5385,32 +5391,30 @@ a.work__project:focus-visible .work__project-name {
     width: calc((100% - 12px) / 2) !important;
   }
 
+  /* Fast mobile entrance — snappy stagger so all six orbs land quickly. */
   .pricing-page.is-ready .pricing-orb {
     opacity: 1;
-    animation: pricing-orb-in-mobile var(--motion-in) var(--ease) backwards;
-    animation-delay: calc(0.2s + var(--oi, 0) * var(--stagger));
+    animation: pricing-orb-in-mobile 0.55s var(--ease) backwards;
+    animation-delay: calc(0.04s + var(--oi, 0) * 0.05s);
     transform: none !important;
   }
 
-  .pricing-page.is-ready .pricing-orb:first-child {
-    animation-name: pricing-orb-in-mobile-lcp;
-    animation-delay: 0s;
-  }
-
   .pricing-page.is-ready .pricing-orb__ring {
-    animation: pricing-ring-pop var(--motion-in) var(--ease) backwards;
-    animation-delay: calc(0.2s + var(--oi, 0) * var(--stagger));
-  }
-
-  /* LCP orb: no ring blur/pop — keeps the image paintable immediately */
-  .pricing-page.is-ready .pricing-orb:first-child .pricing-orb__ring {
-    animation: none;
+    animation: pricing-ring-pop 0.55s var(--ease) backwards;
+    animation-delay: calc(0.04s + var(--oi, 0) * 0.05s);
   }
 
   @keyframes pricing-ring-pop {
     from {
       transform: scale(0.92);
       filter: blur(4px);
+    }
+  }
+
+  @keyframes pricing-orb-in-mobile {
+    from {
+      opacity: 0;
+      filter: blur(6px);
     }
   }
 
