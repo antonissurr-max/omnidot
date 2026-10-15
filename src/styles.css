@@ -4367,7 +4367,8 @@ a.work__project:focus-visible .work__project-name {
   z-index: 1;
   min-height: 100svh;
   width: 100%;
-  overflow: hidden;
+  /* Visible so the bottom SEO orb isn’t clipped by the pin edge. */
+  overflow: visible;
   background: var(--paper);
 }
 
@@ -4425,9 +4426,9 @@ a.work__project:focus-visible .work__project-name {
   position: absolute;
   left: var(--ox);
   top: var(--oy);
-  /* Full size on large screens (same 23vw / 280px ceiling as before).
-     vmin only kicks in on short/narrow viewports so orbs shrink together. */
-  width: calc(clamp(140px, min(23vw, 28vmin), 280px) * var(--os));
+  /* Full size on large screens (23vw / 280px). 25vh caps diameter on short
+     screens so vertical % gaps between side orbs stay clear. */
+  width: calc(clamp(140px, min(23vw, 25vh), 280px) * var(--os));
   aspect-ratio: 1;
   padding: 0;
   border: 0;
