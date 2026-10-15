@@ -4377,6 +4377,9 @@ a.work__project:focus-visible .work__project-name {
   z-index: 6;
   display: grid;
   place-items: center;
+  /* Keep the title above the bottom SEO orb on short laptop viewports. */
+  padding-bottom: min(26vh, 220px);
+  box-sizing: border-box;
   pointer-events: none;
   transition: color 0.45s var(--ease);
 }
@@ -4438,6 +4441,17 @@ a.work__project:focus-visible .work__project-name {
     transform 0.95s var(--ease),
     filter 0.65s var(--ease);
   z-index: 4;
+}
+
+/* Short laptops: smaller orbs so the SEO circle clears “& pricing”. */
+@media (min-width: 800px) and (max-height: 860px) {
+  .pricing-orb {
+    width: calc(clamp(150px, 17vw, 210px) * var(--os));
+  }
+
+  .pricing-hero__title-wrap {
+    padding-bottom: min(30vh, 200px);
+  }
 }
 
 /*
