@@ -240,9 +240,7 @@ export function Pricing({
                   <span className="pricing-orb__ring">
                     {media ? (
                       <span className="pricing-orb__media" aria-hidden="true">
-                        {media.type === "video" &&
-                        !preferOrbPoster &&
-                        index >= 2 ? (
+                        {media.type === "video" && !preferOrbPoster ? (
                           <LazyVideo
                             src={media.src}
                             poster={media.poster}
