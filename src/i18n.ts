@@ -163,6 +163,18 @@ export type Copy = {
     items: string[];
     note?: string;
   }[];
+  /** Pricing-only package — not in service nav, sitemap service list, or FAQ schema. */
+  pricingOmnichannel: {
+    id: "omnichannel";
+    name: string;
+    subtitle: string;
+    body: string;
+    includesHeading: string;
+    items: string[];
+    howHeading: string;
+    howBody: string;
+    cta: string;
+  };
   homeMobileHeadline: string;
   homeMobileAboutTitle: string;
   homeMobileAboutBody: string;
@@ -529,6 +541,24 @@ export const copy: Record<Locale, Copy> = {
         note: "No one can guarantee rankings or AI mentions.",
       },
     ],
+    pricingOmnichannel: {
+      id: "omnichannel",
+      name: "Omnichannel",
+      subtitle: "Your whole presence, from one team.",
+      body: "For businesses that want every channel covered without coordinating three different partners. We take on the site, social media, SEO and ads together, so they work toward the same goal.",
+      includesHeading: "What it can include",
+      items: [
+        "Website build or a refresh of the one you have",
+        "Social media management and content creation",
+        "Local SEO & AEO, so people find you on Google and in AI answers",
+        "Ads management (Meta, Google)",
+        "One monthly report for everything together",
+      ],
+      howHeading: "How we work",
+      howBody:
+        "There is no off-the-shelf package. We talk about your business, decide which channels you need, and agree on a plan and a price that fit you.",
+      cta: "Book a conversation",
+    },
     homeMobileHeadline: "Marketing agency in Athens for web, SEO, social and ads",
     homeMobileAboutTitle: "One partner. Five crafts.",
     homeMobileAboutBody:
@@ -1375,6 +1405,24 @@ export const copy: Record<Locale, Copy> = {
         note: "Κανείς δεν εγγυάται θέσεις ή εμφάνιση στα AI.",
       },
     ],
+    pricingOmnichannel: {
+      id: "omnichannel",
+      name: "Omnichannel",
+      subtitle: "Όλη η παρουσία σου, από μία ομάδα.",
+      body: "Για επιχειρήσεις που θέλουν να καλύπτονται όλα τα κανάλια χωρίς να συντονίζουν τρεις διαφορετικούς συνεργάτες. Αναλαμβάνουμε μαζί το site, τα social media, το SEO και τις διαφημίσεις, ώστε να δουλεύουν προς τον ίδιο στόχο.",
+      includesHeading: "Τι μπορεί να περιλαμβάνει",
+      items: [
+        "Ιστοσελίδα ή ανανέωση της υπάρχουσας",
+        "Διαχείριση social media και δημιουργία περιεχομένου",
+        "Local SEO & AEO, ώστε να σε βρίσκουν στο Google και στις απαντήσεις AI",
+        "Διαχείριση διαφημίσεων (Meta, Google)",
+        "Μία μηνιαία αναφορά για όλα μαζί",
+      ],
+      howHeading: "Πώς δουλεύουμε",
+      howBody:
+        "Δεν υπάρχει έτοιμο πακέτο. Μιλάμε για την επιχείρησή σου, ορίζουμε ποια κανάλια χρειάζονται και συμφωνούμε σε ένα πλάνο και μια τιμή που ταιριάζουν σε εσένα.",
+      cta: "Κλείσε μια συζήτηση",
+    },
     homeMobileHeadline: "Διαφημιστική στην Αθήνα για web, SEO, social και ads",
     homeMobileAboutTitle: "Ένας συνεργάτης. Πέντε crafts.",
     homeMobileAboutBody:

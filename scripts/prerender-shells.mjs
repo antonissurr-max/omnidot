@@ -265,6 +265,7 @@ function localeShell(locale, def) {
       body: t.pricingIntro,
       story: "",
       plans: t.pricingPlans,
+      omnichannel: t.pricingOmnichannel,
       principlesTitle: t.pricingPrinciplesTitle,
       principles: t.pricingPrinciples,
       faqTitle: t.pricingFaqTitle,
@@ -940,7 +941,8 @@ function crawlBody(def, locale) {
     );
   }
 
-  // Pricing: plans + principles + FAQ in HTML.
+  // Pricing: plans + Omnichannel (separate) + principles + FAQ in HTML.
+  // Omnichannel is not folded into plans (keeps FAQ/schema driven only by pricingPlans).
   if (def.id === "pricing") {
     if (copy.plans?.length) {
       parts.push(
@@ -954,6 +956,15 @@ function crawlBody(def, locale) {
                 }</section>`,
           )
           .join("")}</section>`,
+      );
+    }
+    if (copy.omnichannel) {
+      const o = copy.omnichannel;
+      const aboutHref = locale === "el" ? "/el/about/" : "/about/";
+      parts.push(
+        `<section aria-labelledby="pricing-omni-title"><h2 id="pricing-omni-title">${escapeHtml(o.name)}</h2><p>${escapeHtml(o.subtitle)}</p><p>${escapeHtml(o.body)}</p><h3>${escapeHtml(o.includesHeading)}</h3><ul>${(o.items || [])
+          .map((item) => `<li>${escapeHtml(item)}</li>`)
+          .join("")}</ul><h3>${escapeHtml(o.howHeading)}</h3><p>${escapeHtml(o.howBody)}</p><p><a href="${escapeAttr(aboutHref)}">${escapeHtml(o.cta)}</a></p></section>`,
       );
     }
     if (copy.principles?.length) {

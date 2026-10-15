@@ -13,15 +13,22 @@ import { pathFromView } from "../routing";
 import type { PageId } from "../types";
 
 const DOT_TONES = ["blue", "pink", "green", "sand", "slate"] as const;
+const OMNI_ID = "omnichannel" as const;
 
-/** Center-based coords (%). Top pair, mid sides, SEO under the title (clear of it). */
+/**
+ * Center-based coords (%). Top pair, mid sides, SEO under the title.
+ * Omnichannel sits separately above the title (see OMNI_LAYOUT).
+ */
 const LAYOUT = [
-  { x: 24, y: 26, s: 1 },
-  { x: 76, y: 26, s: 1 },
-  { x: 18, y: 58, s: 1 },
-  { x: 82, y: 58, s: 1 },
-  { x: 50, y: 86, s: 1 },
+  { x: 18, y: 36, s: 1 },
+  { x: 82, y: 36, s: 1 },
+  { x: 16, y: 64, s: 1 },
+  { x: 84, y: 64, s: 1 },
+  { x: 50, y: 88, s: 1 },
 ] as const;
+
+/** Centered above the Packages & pricing title. */
+const OMNI_LAYOUT = { x: 50, y: 14, s: 0.95 } as const;
 
 const ORB_MEDIA: Record<
   string,
@@ -40,6 +47,7 @@ const ORB_MEDIA: Record<
   },
   web: { type: "image", src: "/images/web.webp" },
   seo: { type: "image", src: "/images/seo.webp" },
+  omnichannel: { type: "image", src: "/images/omnichannel.webp" },
 };
 
 export function Pricing({
@@ -57,6 +65,7 @@ export function Pricing({
 }) {
   const { locale, t } = useLocale();
   const plans = t.pricingPlans;
+  const omni = t.pricingOmnichannel;
   const [openId, setOpenId] = useState<string | null>(null);
   // Match first client paint to viewport so mobile never mounts LazyVideo (CLS 0).
   const [isMobile, setIsMobile] = useState(() =>
@@ -76,6 +85,7 @@ export function Pricing({
     "0px 0px -8% 0px",
   );
   const openPlan = openId ? plans.find((p) => p.id === openId) : null;
+  const omniOpen = openId === OMNI_ID;
   const preferOrbPoster = isMobile || saveData;
 
   const closeModule = useCallback(() => setOpenId(null), []);
@@ -139,6 +149,8 @@ export function Pricing({
     closeModule();
   };
 
+  const omniDimmed = openId != null && !omniOpen;
+
   return (
     <div
       className={`pricing-page${exiting ? " is-exit" : ""}${ready ? " is-ready" : ""}${
@@ -158,6 +170,44 @@ export function Pricing({
           </div>
 
           <div className="pricing-field" aria-hidden={openId ? true : undefined}>
+            <button
+              type="button"
+              data-pricing-dot
+              className={`pricing-orb pricing-orb--omni${omniOpen ? " is-open" : ""}${
+                omniDimmed ? " is-dimmed" : ""
+              }`}
+              style={
+                {
+                  "--ox": `${OMNI_LAYOUT.x}%`,
+                  "--oy": `${OMNI_LAYOUT.y}%`,
+                  "--os": OMNI_LAYOUT.s,
+                  "--oi": 0,
+                } as CSSProperties
+              }
+              onClick={(e) => {
+                e.stopPropagation();
+                setOpenId(OMNI_ID);
+              }}
+              aria-expanded={omniOpen}
+              aria-controls={`pricing-module-${OMNI_ID}`}
+            >
+              <span className="pricing-orb__ring">
+                <span className="pricing-orb__media" aria-hidden="true">
+                  <img
+                    src={ORB_MEDIA.omnichannel.src}
+                    alt=""
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                  />
+                </span>
+                <span className="pricing-orb__shade" aria-hidden="true" />
+                <span className="pricing-orb__copy">
+                  <span className="pricing-orb__name">{omni.name}</span>
+                </span>
+              </span>
+            </button>
+
             {plans.map((plan, index) => {
               const layout = LAYOUT[index % LAYOUT.length];
               const tone = DOT_TONES[index % DOT_TONES.length];
@@ -177,7 +227,7 @@ export function Pricing({
                       "--ox": `${layout.x}%`,
                       "--oy": `${layout.y}%`,
                       "--os": layout.s,
-                      "--oi": index,
+                      "--oi": index + 1,
                     } as CSSProperties
                   }
                   onClick={(e) => {
@@ -210,9 +260,6 @@ export function Pricing({
                             alt=""
                             loading={index < 2 ? "eager" : "lazy"}
                             decoding="async"
-                            {...(index === 0
-                              ? { fetchPriority: "high" as const }
-                              : {})}
                           />
                         )}
                       </span>
@@ -227,6 +274,56 @@ export function Pricing({
               );
             })}
           </div>
+
+          {omniOpen ? (
+            <div
+              className="pricing-module"
+              data-pricing-module
+              data-chrome-tone="light"
+              id={`pricing-module-${OMNI_ID}`}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`pricing-module-title-${OMNI_ID}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="pricing-module__close"
+                onClick={closeModule}
+                aria-label={t.close}
+              >
+                ×
+              </button>
+              <div className="pricing-module__body pricing-module__body--omni">
+                <p className="pricing-module__kicker">{t.pricing}</p>
+                <h3
+                  id={`pricing-module-title-${OMNI_ID}`}
+                  className="pricing-module__title"
+                >
+                  {omni.name}
+                </h3>
+                <p className="pricing-module__subtitle">{omni.subtitle}</p>
+                <p className="pricing-module__blurb">{omni.body}</p>
+                <p className="pricing-module__includes">{omni.includesHeading}</p>
+                <ul className="pricing-module__list">
+                  {omni.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <p className="pricing-module__includes">{omni.howHeading}</p>
+                <p className="pricing-module__blurb pricing-module__blurb--tight">
+                  {omni.howBody}
+                </p>
+                <button
+                  type="button"
+                  className="pricing-module__cta"
+                  onClick={() => onBrief()}
+                >
+                  {omni.cta} ↗
+                </button>
+              </div>
+            </div>
+          ) : null}
 
           {openPlan ? (
             <div
@@ -304,6 +401,32 @@ export function Pricing({
             {plan.note ? <p className="pricing-plans__note">{plan.note}</p> : null}
           </section>
         ))}
+      </section>
+
+      <section
+        className="pricing-omni"
+        aria-labelledby="pricing-omni-title"
+        data-chrome-tone="dark"
+      >
+        <h2 id="pricing-omni-title" className="pricing-omni__name">
+          {omni.name}
+        </h2>
+        <p className="pricing-omni__subtitle">{omni.subtitle}</p>
+        <p className="pricing-omni__body">{omni.body}</p>
+        <h3 className="pricing-omni__subhead">{omni.includesHeading}</h3>
+        <ul className="pricing-omni__list">
+          {omni.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <h3 className="pricing-omni__subhead">{omni.howHeading}</h3>
+        <p className="pricing-omni__body">{omni.howBody}</p>
+        <Link
+          className="pricing-omni__cta"
+          to={pathFromView({ kind: "about" }, locale)}
+        >
+          {omni.cta} ↗
+        </Link>
       </section>
 
       <section
