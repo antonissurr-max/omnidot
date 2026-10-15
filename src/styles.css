@@ -4378,8 +4378,8 @@ a.work__project:focus-visible .work__project-name {
   display: grid;
   place-items: center;
   /* Clear the top Omnichannel orb and the bottom SEO orb on laptops. */
-  padding-top: min(18vh, 160px);
-  padding-bottom: min(24vh, 200px);
+  padding-top: min(16vh, 140px);
+  padding-bottom: min(20vh, 170px);
   box-sizing: border-box;
   pointer-events: none;
   transition: color 0.45s var(--ease);
@@ -4464,6 +4464,8 @@ a.work__project:focus-visible .work__project-name {
 .pricing-page.is-ready .pricing-orb:first-child {
   animation-name: pricing-orb-in-lcp;
   animation-delay: 0s;
+  /* Drop the pre-ready LCP scale(0.78) so Omnichannel matches other orb sizes. */
+  transform: translate(-50%, -50%);
 }
 
 @keyframes pricing-orb-in {

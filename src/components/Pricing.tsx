@@ -24,11 +24,11 @@ const LAYOUT = [
   { x: 82, y: 38, s: 1 },
   { x: 16, y: 65, s: 1 },
   { x: 84, y: 65, s: 1 },
-  { x: 50, y: 90, s: 1 },
+  { x: 50, y: 84, s: 1 },
 ] as const;
 
 /** Centered above the Packages & pricing title. */
-const OMNI_LAYOUT = { x: 50, y: 12, s: 1 } as const;
+const OMNI_LAYOUT = { x: 50, y: 16, s: 1 } as const;
 
 const ORB_MEDIA: Record<
   string,
