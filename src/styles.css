@@ -4370,6 +4370,8 @@ a.work__project:focus-visible .work__project-name {
   /* Visible so the bottom SEO orb isn’t clipped by the pin edge. */
   overflow: visible;
   background: var(--paper);
+  /* Shared scale unit: orbs + title. 22vh keeps side pairs clear on short laptops. */
+  --pricing-scale: clamp(120px, min(20vw, 22vh), 280px);
 }
 
 .pricing-hero__title-wrap {
@@ -4394,7 +4396,8 @@ a.work__project:focus-visible .work__project-name {
   text-align: center;
   font-family: inherit;
   font-weight: 400;
-  font-size: clamp(42px, 7vw, 84px);
+  /* Tracks orb diameter so the title shrinks with the circles. */
+  font-size: calc(var(--pricing-scale) * 0.26);
   letter-spacing: -0.04em;
   line-height: 0.95;
   color: var(--navy);
@@ -4426,9 +4429,7 @@ a.work__project:focus-visible .work__project-name {
   position: absolute;
   left: var(--ox);
   top: var(--oy);
-  /* Full size on large screens (23vw / 280px). 25vh caps diameter on short
-     screens so vertical % gaps between side orbs stay clear. */
-  width: calc(clamp(140px, min(23vw, 25vh), 280px) * var(--os));
+  width: calc(var(--pricing-scale) * var(--os));
   aspect-ratio: 1;
   padding: 0;
   border: 0;
@@ -4448,12 +4449,12 @@ a.work__project:focus-visible .work__project-name {
 }
 
 /*
- * First pricing orb is LCP. Chrome skips opacity:0, so sit on the
- * pricing-orb-in-lcp start frame at opacity 0.01 before is-ready.
+ * First pricing orb is LCP. Chrome skips opacity:0, so keep a near-zero
+ * opacity before is-ready — never scale it down (must match sibling size).
  */
 .pricing-orb:first-child {
   opacity: 0.01;
-  transform: translate(-50%, -50%) scale(0.78);
+  transform: translate(-50%, -50%);
 }
 
 .pricing-page.is-ready .pricing-orb {
@@ -4465,7 +4466,6 @@ a.work__project:focus-visible .work__project-name {
 .pricing-page.is-ready .pricing-orb:first-child {
   animation-name: pricing-orb-in-lcp;
   animation-delay: 0s;
-  /* Drop the pre-ready LCP scale(0.78) so Omnichannel matches other orb sizes. */
   transform: translate(-50%, -50%);
 }
 
@@ -4473,14 +4473,14 @@ a.work__project:focus-visible .work__project-name {
   from {
     opacity: 0;
     filter: blur(10px);
-    transform: translate(-50%, -50%) scale(0.78);
+    transform: translate(-50%, -50%) scale(0.92);
   }
 }
 
 @keyframes pricing-orb-in-lcp {
   from {
     opacity: 0.01;
-    transform: translate(-50%, -50%) scale(0.78);
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -4729,10 +4729,11 @@ a.work__project:focus-visible .work__project-name {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* safe: when content is taller than the circle, start from the top so nothing is clipped */
-  justify-content: safe center;
+  /* Start from top so circle-edge clipping never cuts mid-line text; scroll for the rest. */
+  justify-content: flex-start;
   gap: 0;
-  padding: clamp(40px, 11cqh, 88px) clamp(36px, 10cqw, 80px);
+  /* Keep copy inside the inscribed safe area of the circle. */
+  padding: clamp(56px, 16cqh, 110px) clamp(40px, 14cqw, 96px);
   box-sizing: border-box;
 }
 
@@ -4796,9 +4797,9 @@ a.work__project:focus-visible .work__project-name {
 }
 
 .pricing-module__body--omni {
-  justify-content: safe center;
-  padding-top: clamp(40px, 9cqh, 60px);
-  padding-bottom: clamp(28px, 6cqh, 44px);
+  justify-content: flex-start;
+  padding-top: clamp(52px, 15cqh, 100px);
+  padding-bottom: clamp(48px, 14cqh, 96px);
   gap: 0;
 }
 
@@ -4868,10 +4869,12 @@ a.work__project:focus-visible .work__project-name {
 .pricing-module__blurb {
   margin: 0 0 clamp(10px, 2cqh, 16px);
   font-size: clamp(11px, 2cqh, 14px);
-  line-height: 1.4;
+  line-height: 1.45;
   max-width: 34ch;
   color: color-mix(in srgb, var(--ink-deep) 70%, transparent);
   flex-shrink: 0;
+  overflow: visible;
+  display: block;
 }
 
 .pricing-module__list {
@@ -4956,10 +4959,10 @@ a.work__project:focus-visible .work__project-name {
   background: var(--slate);
 }
 
-/* Ultra-short viewports: tighter padding; full text stays readable via scroll */
+/* Ultra-short viewports: keep safe padding; full text stays readable via scroll */
 @container pricing-mod (max-height: 520px) {
   .pricing-module__body {
-    padding: 12% 11%;
+    padding: 18% 14%;
     justify-content: flex-start;
   }
 }
