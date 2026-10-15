@@ -4721,12 +4721,16 @@ a.work__project:focus-visible .work__project-name {
   position: relative;
   z-index: 2;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* safe: when content is taller than the circle, start from the top so nothing is clipped */
+  justify-content: safe center;
   gap: 0;
   padding: clamp(40px, 11cqh, 88px) clamp(36px, 10cqw, 80px);
   box-sizing: border-box;
@@ -4792,16 +4796,10 @@ a.work__project:focus-visible .work__project-name {
 }
 
 .pricing-module__body--omni {
-  justify-content: center;
+  justify-content: safe center;
   padding-top: clamp(40px, 9cqh, 60px);
   padding-bottom: clamp(28px, 6cqh, 44px);
   gap: 0;
-  overflow: auto;
-  scrollbar-width: none;
-}
-
-.pricing-module__body--omni::-webkit-scrollbar {
-  display: none;
 }
 
 .pricing-module__body--omni .pricing-module__kicker {
@@ -4954,21 +4952,11 @@ a.work__project:focus-visible .work__project-name {
   background: var(--slate);
 }
 
-/* Ultra-short viewports: tighten further so Greek copy still fits in-circle */
+/* Ultra-short viewports: tighter padding; full text stays readable via scroll */
 @container pricing-mod (max-height: 520px) {
   .pricing-module__body {
     padding: 12% 11%;
-  }
-
-  .pricing-module__blurb {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .pricing-module__note {
-    display: none;
+    justify-content: flex-start;
   }
 }
 
