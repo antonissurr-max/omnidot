@@ -4381,8 +4381,8 @@ a.work__project:focus-visible .work__project-name {
   display: grid;
   place-items: center;
   /* Clear the top Omnichannel orb and the bottom SEO orb on laptops. */
-  padding-top: min(16vh, 140px);
-  padding-bottom: min(20vh, 170px);
+  padding-top: min(14vh, 120px);
+  padding-bottom: min(16vh, 140px);
   box-sizing: border-box;
   pointer-events: none;
   transition: color 0.45s var(--ease);
