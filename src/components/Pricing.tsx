@@ -28,7 +28,7 @@ const LAYOUT = [
 ] as const;
 
 /** Centered above the Packages & pricing title. */
-const OMNI_LAYOUT = { x: 50, y: 14, s: 0.95 } as const;
+const OMNI_LAYOUT = { x: 50, y: 14, s: 1 } as const;
 
 const ORB_MEDIA: Record<
   string,
