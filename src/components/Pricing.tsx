@@ -20,15 +20,15 @@ const OMNI_ID = "omnichannel" as const;
  * sized with vmin. Omnichannel sits above the title (see OMNI_LAYOUT).
  */
 const LAYOUT = [
-  { x: 16, y: 36, s: 1 },
-  { x: 84, y: 36, s: 1 },
-  { x: 14, y: 68, s: 1 },
-  { x: 86, y: 68, s: 1 },
-  { x: 50, y: 86, s: 1 },
+  { x: 22, y: 38, s: 1 },
+  { x: 78, y: 38, s: 1 },
+  { x: 20, y: 64, s: 1 },
+  { x: 80, y: 64, s: 1 },
+  { x: 50, y: 80, s: 1 },
 ] as const;
 
 /** Centered above the Packages & pricing title. */
-const OMNI_LAYOUT = { x: 50, y: 14, s: 1 } as const;
+const OMNI_LAYOUT = { x: 50, y: 20, s: 1 } as const;
 
 const ORB_MEDIA: Record<
   string,

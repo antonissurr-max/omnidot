@@ -1,3 +1,10 @@
+/* Interpolable so orb width + title size ease together on resize. */
+@property --pricing-scale {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 200px;
+}
+
 :root {
   /* Omnidot brand — Coolors strip + logo accents */
   --ink-deep: #0d1b2a;
@@ -4372,6 +4379,7 @@ a.work__project:focus-visible .work__project-name {
   background: var(--paper);
   /* Shared scale unit: orbs + title. 22vh keeps side pairs clear on short laptops. */
   --pricing-scale: clamp(120px, min(20vw, 22vh), 280px);
+  transition: --pricing-scale 0.45s var(--ease);
 }
 
 .pricing-hero__title-wrap {
@@ -4402,6 +4410,7 @@ a.work__project:focus-visible .work__project-name {
   line-height: 0.95;
   color: var(--navy);
   opacity: 0;
+  transition: font-size 0.45s var(--ease);
 }
 
 .pricing-page.is-ready .pricing-hero__title {
@@ -4441,11 +4450,22 @@ a.work__project:focus-visible .work__project-name {
   transition:
     left 0.95s var(--ease),
     top 0.95s var(--ease),
-    width 0.95s var(--ease),
+    /* Match --pricing-scale so resize eases; still covers open expand. */
+    width 0.45s var(--ease),
     opacity 0.65s var(--ease),
     transform 0.95s var(--ease),
     filter 0.65s var(--ease);
   z-index: 4;
+}
+
+.pricing-orb.is-open {
+  transition:
+    left 0.95s var(--ease),
+    top 0.95s var(--ease),
+    width 0.95s var(--ease),
+    opacity 0.65s var(--ease),
+    transform 0.95s var(--ease),
+    filter 0.65s var(--ease);
 }
 
 /*
