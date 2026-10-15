@@ -4504,13 +4504,7 @@ a.work__project:focus-visible .work__project-name {
 @keyframes pricing-orb-in-mobile {
   from {
     opacity: 0;
-    filter: blur(8px);
-  }
-}
-
-@keyframes pricing-orb-in-mobile-lcp {
-  from {
-    opacity: 0.01;
+    filter: blur(6px);
   }
 }
 
@@ -5408,13 +5402,6 @@ a.work__project:focus-visible .work__project-name {
     from {
       transform: scale(0.92);
       filter: blur(4px);
-    }
-  }
-
-  @keyframes pricing-orb-in-mobile {
-    from {
-      opacity: 0;
-      filter: blur(6px);
     }
   }
 
