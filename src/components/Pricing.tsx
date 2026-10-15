@@ -16,19 +16,19 @@ const DOT_TONES = ["blue", "pink", "green", "sand", "slate"] as const;
 const OMNI_ID = "omnichannel" as const;
 
 /**
- * Center-based coords (%). Top pair, mid sides, SEO under the title.
- * Omnichannel sits separately above the title (see OMNI_LAYOUT).
+ * Center-based coords (%). Even vertical bands so orbs don’t collide when
+ * sized with vmin. Omnichannel sits above the title (see OMNI_LAYOUT).
  */
 const LAYOUT = [
-  { x: 18, y: 36, s: 1 },
-  { x: 82, y: 36, s: 1 },
-  { x: 16, y: 64, s: 1 },
-  { x: 84, y: 64, s: 1 },
-  { x: 50, y: 88, s: 1 },
+  { x: 18, y: 38, s: 1 },
+  { x: 82, y: 38, s: 1 },
+  { x: 16, y: 65, s: 1 },
+  { x: 84, y: 65, s: 1 },
+  { x: 50, y: 90, s: 1 },
 ] as const;
 
 /** Centered above the Packages & pricing title. */
-const OMNI_LAYOUT = { x: 50, y: 14, s: 1 } as const;
+const OMNI_LAYOUT = { x: 50, y: 12, s: 1 } as const;
 
 const ORB_MEDIA: Record<
   string,

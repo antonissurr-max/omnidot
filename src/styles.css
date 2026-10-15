@@ -4425,7 +4425,8 @@ a.work__project:focus-visible .work__project-name {
   position: absolute;
   left: var(--ox);
   top: var(--oy);
-  width: calc(clamp(190px, 23vw, 280px) * var(--os));
+  /* vmin keeps diameter proportional to the shorter side so % gaps stay clear. */
+  width: calc(clamp(128px, 17.5vmin, 260px) * var(--os));
   aspect-ratio: 1;
   padding: 0;
   border: 0;
@@ -4444,15 +4445,14 @@ a.work__project:focus-visible .work__project-name {
   z-index: 4;
 }
 
-/* Short laptops: smaller orbs so Omnichannel / SEO clear the title. */
-@media (min-width: 800px) and (max-height: 860px) {
-  .pricing-orb {
-    width: calc(clamp(140px, 15vw, 190px) * var(--os));
+@media (min-width: 800px) and (max-height: 780px) {
+  .pricing-hero__title {
+    font-size: clamp(32px, 6.2vmin, 64px);
   }
 
   .pricing-hero__title-wrap {
-    padding-top: min(16vh, 120px);
-    padding-bottom: min(22vh, 160px);
+    padding-top: min(14vh, 110px);
+    padding-bottom: min(18vh, 140px);
   }
 }
 
@@ -4799,14 +4799,73 @@ a.work__project:focus-visible .work__project-name {
 }
 
 .pricing-module__body--omni {
-  justify-content: flex-start;
-  padding-top: clamp(48px, 12cqh, 72px);
-  padding-bottom: clamp(36px, 8cqh, 56px);
+  justify-content: center;
+  padding-top: clamp(40px, 9cqh, 60px);
+  padding-bottom: clamp(28px, 6cqh, 44px);
+  gap: 0;
   overflow: auto;
+  scrollbar-width: none;
+}
+
+.pricing-module__body--omni::-webkit-scrollbar {
+  display: none;
+}
+
+.pricing-module__body--omni .pricing-module__kicker {
+  margin-bottom: clamp(4px, 0.9cqh, 8px);
+}
+
+.pricing-module__body--omni .pricing-module__title {
+  margin-bottom: clamp(2px, 0.6cqh, 6px);
+}
+
+.pricing-module__body--omni .pricing-module__subtitle {
+  margin-bottom: clamp(6px, 1.2cqh, 10px);
+}
+
+.pricing-module__body--omni .pricing-module__blurb {
+  margin-bottom: clamp(8px, 1.5cqh, 12px);
+}
+
+.pricing-module__body--omni .pricing-module__includes {
+  margin: clamp(6px, 1.2cqh, 10px) 0 clamp(3px, 0.6cqh, 5px);
+}
+
+.pricing-module__body--omni .pricing-module__list {
+  margin-bottom: clamp(8px, 1.5cqh, 12px);
+  gap: clamp(4px, 1cqh, 8px);
+}
+
+.pricing-module__body--omni .pricing-module__blurb--tight {
+  margin-bottom: clamp(8px, 1.5cqh, 12px);
 }
 
 .pricing-module__blurb--tight {
   margin-bottom: clamp(10px, 2cqh, 16px);
+}
+
+@media (max-width: 799px) {
+  .pricing-module__body--omni {
+    padding-top: clamp(36px, 8cqh, 52px);
+    padding-bottom: clamp(24px, 5cqh, 36px);
+  }
+
+  .pricing-module__body--omni .pricing-module__blurb {
+    font-size: clamp(10px, 1.9cqh, 13px);
+  }
+
+  .pricing-module__body--omni .pricing-module__list li {
+    font-size: clamp(10px, 1.8cqh, 12px);
+  }
+
+  .pricing-module__body--omni .pricing-module__subtitle {
+    font-size: clamp(12px, 2.2cqh, 15px);
+    margin-bottom: clamp(5px, 1cqh, 8px);
+  }
+
+  .pricing-module__body--omni .pricing-module__list {
+    gap: clamp(3px, 0.9cqh, 6px);
+  }
 }
 
 .pricing-module__price {
