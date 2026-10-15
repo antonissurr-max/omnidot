@@ -4807,7 +4807,7 @@ a.work__project:focus-visible .work__project-name {
 .pricing-module__body--omni {
   justify-content: flex-start;
   padding-top: clamp(52px, 15cqh, 100px);
-  padding-bottom: clamp(48px, 14cqh, 96px);
+  padding-bottom: clamp(40px, 10cqh, 80px);
   gap: 0;
 }
 
