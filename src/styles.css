@@ -4458,16 +4458,6 @@ a.work__project:focus-visible .work__project-name {
   z-index: 4;
 }
 
-.pricing-orb.is-open {
-  transition:
-    left 0.95s var(--ease),
-    top 0.95s var(--ease),
-    width 0.95s var(--ease),
-    opacity 0.65s var(--ease),
-    transform 0.95s var(--ease),
-    filter 0.65s var(--ease);
-}
-
 /*
  * First pricing orb is LCP. Chrome skips opacity:0, so keep a near-zero
  * opacity before is-ready — never scale it down (must match sibling size).
@@ -4547,6 +4537,14 @@ a.work__project:focus-visible .work__project-name {
   opacity: 0;
   pointer-events: none;
   animation: none;
+  /* Longer width ease for the expand-to-module motion. */
+  transition:
+    left 0.95s var(--ease),
+    top 0.95s var(--ease),
+    width 0.95s var(--ease),
+    opacity 0.65s var(--ease),
+    transform 0.95s var(--ease),
+    filter 0.65s var(--ease);
 }
 
 .pricing-orb.is-open .pricing-orb__copy {
