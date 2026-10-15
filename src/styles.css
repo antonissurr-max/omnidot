@@ -4871,6 +4871,7 @@ a.work__project:focus-visible .work__project-name {
   line-height: 1.4;
   max-width: 34ch;
   color: color-mix(in srgb, var(--ink-deep) 70%, transparent);
+  flex-shrink: 0;
 }
 
 .pricing-module__list {
@@ -4881,6 +4882,7 @@ a.work__project:focus-visible .work__project-name {
   gap: clamp(6px, 1.4cqh, 10px);
   max-width: 36ch;
   text-align: left;
+  flex-shrink: 0;
 }
 
 .pricing-module__list li {
@@ -4911,6 +4913,7 @@ a.work__project:focus-visible .work__project-name {
   line-height: 1.35;
   text-align: left;
   color: color-mix(in srgb, var(--ink-deep) 82%, transparent);
+  flex-shrink: 0;
 }
 
 .pricing-module__important::before {
@@ -4930,6 +4933,7 @@ a.work__project:focus-visible .work__project-name {
   line-height: 1.35;
   max-width: 34ch;
   opacity: 0.5;
+  flex-shrink: 0;
 }
 
 .pricing-module__cta {
