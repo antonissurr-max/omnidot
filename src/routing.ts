@@ -1,3 +1,4 @@
+import { SHOW_PRICING } from "./flags";
 import type { Locale } from "./i18n";
 import type { PageId, View } from "./types";
 
@@ -78,7 +79,9 @@ export function viewFromLocation(pathname: string, search: string): View {
     }
     return { kind: "about" };
   }
-  if (bare === "/pricing") return { kind: "pricing" };
+  if (bare === "/pricing") {
+    return SHOW_PRICING ? { kind: "pricing" } : { kind: "notfound" };
+  }
   if (bare === "/articles") return { kind: "articles" };
   if (bare.startsWith("/articles/")) {
     const slug = bare.slice("/articles/".length).replace(/\/+$/, "");

@@ -1,6 +1,7 @@
 import { useEffect, useRef, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { useInViewOnce } from "../hooks/useInViewOnce";
+import { SHOW_PRICING } from "../flags";
 import { pages } from "../site";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
@@ -179,15 +180,27 @@ export function Works({ dimmed }: { dimmed: boolean }) {
             ))}
           </ul>
           <p className="home-seo__outro">
-            {t.homeSeoOutroLead}
-            <Link to={pathFromView({ kind: "pricing" }, locale)}>
-              {t.homeSeoPricingLabel}
-            </Link>
-            {t.homeSeoOutroMid}
+            {SHOW_PRICING ? (
+              <>
+                {t.homeSeoOutroLead}
+                <Link to={pathFromView({ kind: "pricing" }, locale)}>
+                  {t.homeSeoPricingLabel}
+                </Link>
+                {t.homeSeoOutroMid}
+              </>
+            ) : null}
             <Link to={pathFromView({ kind: "about" }, locale)}>
-              {t.homeSeoContactLabel}
+              {SHOW_PRICING
+                ? t.homeSeoContactLabel
+                : locale === "el"
+                  ? "Στείλε μας ένα μήνυμα"
+                  : "Send us a message"}
             </Link>
-            {t.homeSeoOutroEnd}
+            {SHOW_PRICING
+              ? t.homeSeoOutroEnd
+              : locale === "el"
+                ? " για να δούμε τι χρειάζεται η επιχείρησή σου."
+                : " to see what your business needs."}
           </p>
         </div>
       </section>

@@ -9,13 +9,15 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
 
+/** Keep in sync with src/flags.ts SHOW_PRICING. */
+const SHOW_PRICING = false;
+
 const baseFiles = [
   "index.html",
   "el/index.html",
   "about/index.html",
   "el/about/index.html",
-  "pricing/index.html",
-  "el/pricing/index.html",
+  ...(SHOW_PRICING ? ["pricing/index.html", "el/pricing/index.html"] : []),
   "social/index.html",
   "content/index.html",
   "performance/index.html",
@@ -193,6 +195,13 @@ for (const rel of files) {
           for (const q of node.mainEntity) {
             const qText = q.name || "";
             const aText = q.acceptedAnswer?.text || "";
+            // Price FAQs are omitted from HTML while SHOW_PRICING is false.
+            if (
+              !SHOW_PRICING &&
+              /€\d/.test(`${qText}${aText}`)
+            ) {
+              continue;
+            }
             if (qText && !pageText.includes(qText)) {
               console.log(`  FAIL FAQ Q missing in HTML: ${qText.slice(0, 80)}`);
               failed = true;

@@ -363,7 +363,7 @@ export const copy: Record<Locale, Copy> = {
   en: {
     metaTitle: "omnidot. — Marketing Agency Athens | Social, Ads & Web",
     metaDescription:
-      "Websites, social media management and SEO for businesses. Based in Athens, working across Greece. See services and pricing.",
+      "Websites, social media management and SEO for businesses. Based in Athens, working across Greece. See services and get in touch.",
     langLabel: "Language",
     homeAria: "omnidot — home",
     about: "About",
@@ -571,32 +571,32 @@ export const copy: Record<Locale, Copy> = {
     homeSeoTitle:
       "Websites, social media and SEO for businesses in Athens",
     homeSeoIntro:
-      "omnidot. is a small marketing team based in Athens, working with businesses across Greece. We build the site, run the social channels and make sure people can find you on Google. We take on a few clients at a time, agree on prices before we start, and you talk directly to the person doing the work.",
+      "omnidot. is a small marketing team based in Athens, working with businesses across Greece. We build the site, run the social channels and make sure people can find you on Google. We take on a few clients at a time, and you talk directly to the person doing the work.",
     homeSeoServices: [
       {
         id: "web",
         name: "Websites",
-        line: "Fast sites and landing pages, set up properly for Google. Landing pages €700–1,200.",
+        line: "Fast sites and landing pages, set up properly for Google.",
       },
       {
         id: "social",
         name: "Social media management",
-        line: "Instagram, Facebook, TikTok and LinkedIn, with a plan, content and a monthly report. From €450/mo.",
+        line: "Instagram, Facebook, TikTok and LinkedIn, with a plan, content and a monthly report.",
       },
       {
         id: "seo",
         name: "SEO & AEO",
-        line: "Google Business Profile, site fixes, and a check on whether ChatGPT and Google recommend you. From €300/mo.",
+        line: "Google Business Profile, site fixes, and a check on whether ChatGPT and Google recommend you.",
       },
       {
         id: "content",
         name: "Content creation",
-        line: "Photos, video and Reels for your feed, ads and site. From €350 per pack.",
+        line: "Photos, video and Reels for your feed, ads and site.",
       },
       {
         id: "performance",
         name: "Google & Meta Ads",
-        line: "€200 one-off setup, then management from €300/mo. Your ad budget stays yours.",
+        line: "Setup and ongoing management. Your ad budget stays yours.",
       },
     ],
     homeSeoOutroLead: "All packages are on the ",
@@ -691,7 +691,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Social Media",
         seoTitle: "Social Media Management in Athens | omnidot.",
         seoDescription:
-          "Social media management in Athens: Instagram, TikTok, Facebook and LinkedIn — strategy and monthly reports. From €450/month.",
+          "Social media management in Athens: Instagram, TikTok, Facebook and LinkedIn — strategy and monthly reports.",
         meta: [
           { label: "Goal", value: "Steady presence" },
           { label: "Channels", value: "IG · TikTok · LinkedIn" },
@@ -826,7 +826,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Content Creation",
         seoTitle: "Content Creation for Social Media | omnidot. Athens",
         seoDescription:
-          "Photo, video and Reels for social media, ads and websites, from idea to final file. Based in Athens. Shoot day €200, packages from €350.",
+          "Photo, video and Reels for social media, ads and websites, from idea to final file. Based in Athens.",
         meta: [
           { label: "Formats", value: "Photo · Video · Still" },
           { label: "Look", value: "Clean & editorial" },
@@ -950,7 +950,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Google & Meta Ads",
         seoTitle: "Google Ads & Meta Ads Management | omnidot. Athens",
         seoDescription:
-          "Google, Facebook and Instagram ads for leads and sales. Athens-based. Setup €200, management from €300/month. Ad budget stays yours.",
+          "Google, Facebook and Instagram ads for leads and sales. Athens-based. Ad budget stays yours.",
         meta: [
           { label: "Goal", value: "Conversion growth" },
           { label: "Channels", value: "Meta · Google" },
@@ -1015,7 +1015,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Websites",
         seoTitle: "Website Development in Athens | omnidot.",
         seoDescription:
-          "Website development in Athens: fast sites, landing pages and a structure Google understands. Landing pages from €700.",
+          "Website development in Athens: fast sites, landing pages and a structure Google understands.",
         meta: [
           { label: "Build", value: "Sites & landings" },
           { label: "SEO", value: "Findable on Google" },
@@ -1105,7 +1105,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "SEO & AEO",
         seoTitle: "SEO & AEO Services in Athens | omnidot.",
         seoDescription:
-          "Local SEO, Google Business Profile and AEO, so customers find you on Google and ChatGPT and Google AI Mode can recommend you. From €300/mo.",
+          "Local SEO, Google Business Profile and AEO, so customers find you on Google and ChatGPT and Google AI Mode can recommend you.",
         meta: [
           { label: "Goal", value: "Get found" },
           { label: "Channels", value: "Google · Maps · AI" },
@@ -1227,7 +1227,7 @@ export const copy: Record<Locale, Copy> = {
   el: {
     metaTitle: "omnidot. — Διαφημιστική στην Αθήνα | Social, Ads & Web",
     metaDescription:
-      "Ιστοσελίδες, διαχείριση social media και SEO για επιχειρήσεις. Έδρα στην Αθήνα, συνεργασίες σε όλη την Ελλάδα. Δες υπηρεσίες και τιμές.",
+      "Ιστοσελίδες, διαχείριση social media και SEO για επιχειρήσεις. Έδρα στην Αθήνα, συνεργασίες σε όλη την Ελλάδα. Δες υπηρεσίες και επικοινώνησε μαζί μας.",
     langLabel: "Γλώσσα",
     homeAria: "omnidot — αρχική",
     about: "Σχετικά",
@@ -1435,32 +1435,32 @@ export const copy: Record<Locale, Copy> = {
     homeSeoTitle:
       "Ιστοσελίδες, social media και SEO για επιχειρήσεις στην Αθήνα",
     homeSeoIntro:
-      "Το omnidot. είναι μικρή ομάδα marketing με έδρα στην Αθήνα και συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα. Φτιάχνουμε το site, τρέχουμε τα social και φροντίζουμε να σε βρίσκουν στη Google. Δουλεύουμε με λίγους πελάτες τη φορά, με ξεκάθαρες τιμές από την αρχή, και μιλάς απευθείας με αυτόν που κάνει τη δουλειά.",
+      "Το omnidot. είναι μικρή ομάδα marketing με έδρα στην Αθήνα και συνεργαζόμαστε με επιχειρήσεις σε όλη την Ελλάδα. Φτιάχνουμε το site, τρέχουμε τα social και φροντίζουμε να σε βρίσκουν στη Google. Δουλεύουμε με λίγους πελάτες τη φορά και μιλάς απευθείας με αυτόν που κάνει τη δουλειά.",
     homeSeoServices: [
       {
         id: "web",
         name: "Ιστοσελίδες",
-        line: "Γρήγορα sites και landing pages, στημένα σωστά για τη Google. Landing page €700–1.200.",
+        line: "Γρήγορα sites και landing pages, στημένα σωστά για τη Google.",
       },
       {
         id: "social",
         name: "Διαχείριση social media",
-        line: "Instagram, Facebook, TikTok και LinkedIn, με πρόγραμμα, περιεχόμενο και μηνιαία αναφορά. Από €450/μήνα.",
+        line: "Instagram, Facebook, TikTok και LinkedIn, με πρόγραμμα, περιεχόμενο και μηνιαία αναφορά.",
       },
       {
         id: "seo",
         name: "SEO & AEO",
-        line: "Google Business Profile, διορθώσεις στο site και έλεγχος για το αν σε προτείνουν το ChatGPT και η Google. Από €300/μήνα.",
+        line: "Google Business Profile, διορθώσεις στο site και έλεγχος για το αν σε προτείνουν το ChatGPT και η Google.",
       },
       {
         id: "content",
         name: "Δημιουργία περιεχομένου",
-        line: "Φωτογραφίες, βίντεο και Reels για το feed, τις διαφημίσεις και το site. Από €350 ανά πακέτο.",
+        line: "Φωτογραφίες, βίντεο και Reels για το feed, τις διαφημίσεις και το site.",
       },
       {
         id: "performance",
         name: "Διαφημίσεις Google & Meta",
-        line: "Στήσιμο €200 μία φορά και διαχείριση από €300/μήνα. Το budget των διαφημίσεων μένει δικό σου.",
+        line: "Στήσιμο και συνεχής διαχείριση. Το budget των διαφημίσεων μένει δικό σου.",
       },
     ],
     homeSeoOutroLead: "Όλα τα πακέτα είναι στις ",
@@ -1555,7 +1555,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Διαχείριση Social Media",
         seoTitle: "Διαχείριση Social Media στην Αθήνα | omnidot.",
         seoDescription:
-          "Διαχείριση Instagram, TikTok, Facebook και LinkedIn στην Αθήνα: στρατηγική, περιεχόμενο, community και reporting. Από €450/μήνα.",
+          "Διαχείριση Instagram, TikTok, Facebook και LinkedIn στην Αθήνα: στρατηγική, περιεχόμενο, community και reporting.",
         meta: [
           { label: "Στόχος", value: "Σταθερή παρουσία" },
           { label: "Κανάλια", value: "IG · TikTok · LinkedIn" },
@@ -1792,7 +1792,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Παραγωγή Περιεχομένου",
         seoTitle: "Παραγωγή Περιεχομένου για Social Media | omnidot. Αθήνα",
         seoDescription:
-          "Φωτογραφία, video και Reels για social media, διαφημίσεις και ιστοσελίδες, από την ιδέα ως το τελικό αρχείο. Γύρισμα €200, πακέτα από €350.",
+          "Φωτογραφία, video και Reels για social media, διαφημίσεις και ιστοσελίδες, από την ιδέα ως το τελικό αρχείο.",
         meta: [
           { label: "Μορφές", value: "Φωτο · Video · Still" },
           { label: "Ύφος", value: "Καθαρό & editorial" },
@@ -2010,7 +2010,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Google & Meta Ads",
         seoTitle: "Διαχείριση Google Ads & Meta Ads | omnidot. Αθήνα",
         seoDescription:
-          "Διαχείριση διαφημίσεων Google, Facebook και Instagram στην Αθήνα. Setup €200 μία φορά, διαχείριση από €300/μήνα. Το budget μένει δικό σου.",
+          "Διαχείριση διαφημίσεων Google, Facebook και Instagram στην Αθήνα. Το budget μένει δικό σου.",
         meta: [
           { label: "Στόχος", value: "Επαφές & πωλήσεις" },
           { label: "Κανάλια", value: "Google · Meta" },
@@ -2185,7 +2185,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "Κατασκευή Ιστοσελίδας",
         seoTitle: "Κατασκευή Ιστοσελίδας στην Αθήνα | omnidot.",
         seoDescription:
-          "Κατασκευή ιστοσελίδας για επιχειρήσεις σε όλη την Ελλάδα: γρήγορα sites, landing pages και σωστή δομή για τη Google. Landing page από €700.",
+          "Κατασκευή ιστοσελίδας για επιχειρήσεις σε όλη την Ελλάδα: γρήγορα sites, landing pages και σωστή δομή για τη Google.",
         meta: [
           { label: "Κατασκευή", value: "Sites & landings" },
           { label: "SEO", value: "Εμφανίσιμο στο Google" },
@@ -2383,7 +2383,7 @@ export const copy: Record<Locale, Copy> = {
         tileTitle: "SEO & AEO",
         seoTitle: "SEO & AEO για επιχειρήσεις στην Αθήνα | omnidot.",
         seoDescription:
-          "Τοπικό SEO, Google Business Profile και AEO, για να σε βρίσκουν στη Google και να σε προτείνουν το ChatGPT και το AI Mode. Από €300/μήνα.",
+          "Τοπικό SEO, Google Business Profile και AEO, για να σε βρίσκουν στη Google και να σε προτείνουν το ChatGPT και το AI Mode.",
         meta: [
           { label: "Στόχος", value: "Να σε βρίσκουν" },
           { label: "Κανάλια", value: "Google · Maps · AI" },

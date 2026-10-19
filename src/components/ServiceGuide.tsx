@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { SHOW_PRICING } from "../flags";
 import { FactRow } from "./ServicePanel";
 import type { ServiceGuideCopy } from "../i18n";
 
@@ -96,15 +97,17 @@ export function ServiceGuide({
         </ol>
       </section>
 
-      <section className="service-guide__section" aria-labelledby="sg-cost">
-        <h2 id="sg-cost" className="service-guide__h2">
-          {guide.costTitle}
-        </h2>
-        <p className="service-guide__p">{guide.costBody}</p>
-        <a className="service-guide__link" href={guide.costLinkHref}>
-          {guide.costLinkLabel}
-        </a>
-      </section>
+      {SHOW_PRICING ? (
+        <section className="service-guide__section" aria-labelledby="sg-cost">
+          <h2 id="sg-cost" className="service-guide__h2">
+            {guide.costTitle}
+          </h2>
+          <p className="service-guide__p">{guide.costBody}</p>
+          <a className="service-guide__link" href={guide.costLinkHref}>
+            {guide.costLinkLabel}
+          </a>
+        </section>
+      ) : null}
 
       {afterCost ? (
         <div className="service-guide__section service-guide__after-cost">
@@ -117,7 +120,10 @@ export function ServiceGuide({
           {guide.faqTitle}
         </h2>
         <ol className="facts facts--on-dark">
-          {guide.faq.map((item, i) => (
+          {(SHOW_PRICING
+            ? guide.faq
+            : guide.faq.filter((item) => !/€\d/.test(`${item.q}${item.a}`))
+          ).map((item, i) => (
             <FactRow
               key={item.q}
               index={i + 1}

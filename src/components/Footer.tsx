@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { openConsentPreferences } from "../consent";
 import { useInViewOnce } from "../hooks/useInViewOnce";
+import { SHOW_PRICING } from "../flags";
 import { formatPhoneDisplay, pages, phoneHref, site, socials } from "../site";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
@@ -110,7 +111,11 @@ export function Footer() {
             <Link to={pathFromView({ kind: "index" }, locale)}>
               {t.footerHome}
             </Link>
-            <Link to={pathFromView({ kind: "pricing" }, locale)}>{t.pricing}</Link>
+            {SHOW_PRICING ? (
+              <Link to={pathFromView({ kind: "pricing" }, locale)}>
+                {t.pricing}
+              </Link>
+            ) : null}
             <Link to={pathFromView({ kind: "articles" }, locale)}>{t.articles}</Link>
             <Link to={pathFromView({ kind: "about" }, locale)}>{t.about}</Link>
             <Link to={pathFromView({ kind: "about" }, locale)}>
