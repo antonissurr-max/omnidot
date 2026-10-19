@@ -1,6 +1,6 @@
 # Omnidot
 
-Marketing website for [Omnidot](https://omnidot.gr) — a Athens-based agency for websites, social media, SEO & AEO, and performance ads.
+Marketing website for [Omnidot](https://omnidot.gr) — an Athens-based agency for websites, social media, SEO & AEO, and performance ads.
 
 Built with Vite, React, and TypeScript; deployed on Cloudflare Pages.
 
