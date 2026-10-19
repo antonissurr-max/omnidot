@@ -15,17 +15,21 @@ https://www.omnidot.gr/*  https://omnidot.gr/:splat  301
 /el/articles/meta-one-links  /el/articles/meta-one-links/  301
 /el/content  /el/content/  301
 /el/performance  /el/performance/  301
-/el/pricing  /el/pricing/  301
 /el/privacy  /el/privacy/  301
 /el/seo  /el/seo/  301
 /el/social  /el/social/  301
 /el/web  /el/web/  301
 /performance  /performance/  301
-/pricing  /pricing/  301
 /privacy  /privacy/  301
 /seo  /seo/  301
 /social  /social/  301
 /web  /web/  301
+
+# Pricing temporarily hidden — send bookmarks to home.
+/pricing  /  301
+/pricing/  /  301
+/el/pricing  /el/  301
+/el/pricing/  /el/  301
 
 # Static files (llms.txt, sitemap.xml, robots.txt, assets) are served as-is
 # before this fallback — do not rewrite /llms.txt to index.html.

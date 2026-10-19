@@ -7,6 +7,7 @@ import {
   parseInlineParts,
   splitLeadIn,
 } from "./articleBlocks";
+import { SHOW_PRICING } from "./flags";
 
 function escapeHtml(value: string): string {
   return value
@@ -93,6 +94,7 @@ function blockToHtml(
       return `<div class="articles__table-wrap"><table>${caption}${head}${body}</table></div>`;
     }
     case "priceCard": {
+      if (!SHOW_PRICING) return "";
       const items = block.items
         .map(
           (item) =>

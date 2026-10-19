@@ -11,6 +11,7 @@ import {
   splitLeadIn,
   type ArticleBlock,
 } from "../articles";
+import { SHOW_PRICING } from "../flags";
 import { useLocale } from "../locale";
 import { pathFromView } from "../routing";
 
@@ -164,6 +165,7 @@ function BlockView({
         </div>
       );
     case "priceCard":
+      if (!SHOW_PRICING) return null;
       return (
         <aside className="articles__price">
           <ul>

@@ -7,6 +7,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
 const origin = "https://omnidot.gr";
 const phone = "+306970862839";
+/** Keep in sync with src/flags.ts SHOW_PRICING. */
+const SHOW_PRICING = false;
 
 /** @type {Awaited<ReturnType<typeof loadArticleModule>>} */
 let articleModule;
@@ -59,7 +61,9 @@ const navEn = [
   { href: "/performance/", label: "Performance Marketing" },
   { href: "/web/", label: "Web Development" },
   { href: "/seo/", label: "SEO & AEO" },
-  { href: "/pricing/", label: "Packages & pricing" },
+  ...(SHOW_PRICING
+    ? [{ href: "/pricing/", label: "Packages & pricing" }]
+    : []),
   { href: "/articles/", label: "Articles" },
   { href: "/about/", label: "About / Contact" },
   { href: "/privacy/", label: "Privacy" },
@@ -71,7 +75,9 @@ const navEl = [
   { href: "/el/performance/", label: "Performance Marketing" },
   { href: "/el/web/", label: "Ανάπτυξη Ιστοσελίδων" },
   { href: "/el/seo/", label: "SEO & AEO" },
-  { href: "/el/pricing/", label: "Πακέτα & τιμές" },
+  ...(SHOW_PRICING
+    ? [{ href: "/el/pricing/", label: "Πακέτα & τιμές" }]
+    : []),
   { href: "/el/articles/", label: "Άρθρα" },
   { href: "/el/about/", label: "Σχετικά / Επικοινωνία" },
   { href: "/el/privacy/", label: "Απόρρητο" },
@@ -378,7 +384,9 @@ function buildArticleRouteDefs() {
 
 function hydrateRouteDefs() {
   const articleRoutes = buildArticleRouteDefs();
-  const structure = [...routeStructure];
+  const structure = SHOW_PRICING
+    ? [...routeStructure]
+    : routeStructure.filter((def) => def.id !== "pricing");
   const privacyIdx = structure.findIndex((d) => d.id === "privacy");
   const insertAt = privacyIdx >= 0 ? privacyIdx : structure.length;
   structure.splice(insertAt, 0, ...articleRoutes);
@@ -641,13 +649,16 @@ function jsonLdFor(def, locale) {
     url,
     image: def.image,
   };
-  const primary = copy.guide?.faq?.length
+  const faqForSchema = (copy.guide?.faq || []).filter((item) =>
+    SHOW_PRICING ? true : !/€\d/.test(`${item.q || ""}${item.a || ""}`),
+  );
+  const primary = faqForSchema.length
     ? {
         "@graph": [
           serviceLd,
           {
             "@type": "FAQPage",
-            mainEntity: copy.guide.faq.map((item) => ({
+            mainEntity: faqForSchema.map((item) => ({
               "@type": "Question",
               name: item.q,
               acceptedAnswer: {
@@ -699,9 +710,12 @@ function crawlGuide(guide) {
         .join("")}</section>`,
     );
   }
-  if (guide.includesTitle && guide.includes?.length) {
+  const includeItems = SHOW_PRICING
+    ? guide.includes
+    : guide.includes?.filter((item) => !/€\d/.test(item));
+  if (guide.includesTitle && includeItems?.length) {
     parts.push(
-      `<section><h2>${escapeHtml(guide.includesTitle)}</h2><ul>${guide.includes
+      `<section><h2>${escapeHtml(guide.includesTitle)}</h2><ul>${includeItems
         .map((item) => `<li>${escapeHtml(item)}</li>`)
         .join("")}</ul></section>`,
     );
@@ -745,7 +759,7 @@ function crawlGuide(guide) {
         .join("")}</ol></section>`,
     );
   }
-  if (guide.costTitle) {
+  if (SHOW_PRICING && guide.costTitle) {
     parts.push(
       `<section><h2>${escapeHtml(guide.costTitle)}</h2><p>${escapeHtml(
         guide.costBody || "",
@@ -758,9 +772,14 @@ function crawlGuide(guide) {
       }</section>`,
     );
   }
-  if (guide.faqTitle && guide.faq?.length) {
+  const faqItems = SHOW_PRICING
+    ? guide.faq
+    : guide.faq?.filter(
+        (item) => !/€\d/.test(`${item.q || ""}${item.a || ""}`),
+      );
+  if (guide.faqTitle && faqItems?.length) {
     parts.push(
-      `<section><h2>${escapeHtml(guide.faqTitle)}</h2><dl>${guide.faq
+      `<section><h2>${escapeHtml(guide.faqTitle)}</h2><dl>${faqItems
             .map(
               (item) =>
             `<dt>${escapeHtml(item.q)}</dt><dd>${escapeHtml(item.a)}${
@@ -930,6 +949,9 @@ function crawlBody(def, locale) {
   if (def.id === "home" && copy.services?.length) {
     const pricingHref = locale === "el" ? "/el/pricing/" : "/pricing/";
     const aboutHref = locale === "el" ? "/el/about/" : "/about/";
+    const outro = SHOW_PRICING
+      ? `<p>${escapeHtml(copy.homeSeoOutroLead || "")}<a href="${escapeAttr(pricingHref)}">${escapeHtml(copy.homeSeoPricingLabel || "")}</a>${escapeHtml(copy.homeSeoOutroMid || "")}<a href="${escapeAttr(aboutHref)}">${escapeHtml(copy.homeSeoContactLabel || "")}</a>${escapeHtml(copy.homeSeoOutroEnd || "")}</p>`
+      : `<p><a href="${escapeAttr(aboutHref)}">${escapeHtml(locale === "el" ? "Στείλε μας ένα μήνυμα" : "Send us a message")}</a>${escapeHtml(locale === "el" ? " για να δούμε τι χρειάζεται η επιχείρησή σου." : " to see what your business needs.")}</p>`;
     parts.push(
       `<ul>${copy.services
         .map((s) => {
@@ -937,7 +959,7 @@ function crawlBody(def, locale) {
           return `<li><h2><a href="${escapeAttr(href)}">${escapeHtml(s.name)}</a></h2><p>${escapeHtml(s.line)}</p></li>`;
         })
         .join("")}</ul>`,
-      `<p>${escapeHtml(copy.homeSeoOutroLead || "")}<a href="${escapeAttr(pricingHref)}">${escapeHtml(copy.homeSeoPricingLabel || "")}</a>${escapeHtml(copy.homeSeoOutroMid || "")}<a href="${escapeAttr(aboutHref)}">${escapeHtml(copy.homeSeoContactLabel || "")}</a>${escapeHtml(copy.homeSeoOutroEnd || "")}</p>`,
+      outro,
     );
   }
 
@@ -1329,6 +1351,14 @@ function writeRedirects() {
   ];
   for (const bare of [...barePaths].sort()) {
     lines.push(`${bare}  ${bare}/  301`);
+  }
+  if (!SHOW_PRICING) {
+    lines.push("");
+    lines.push("# Pricing temporarily hidden — send bookmarks to home.");
+    lines.push("/pricing  /  301");
+    lines.push("/pricing/  /  301");
+    lines.push("/el/pricing  /el/  301");
+    lines.push("/el/pricing/  /el/  301");
   }
   lines.push("");
   lines.push(

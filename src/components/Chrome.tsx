@@ -3,6 +3,7 @@ import { BrandWord } from "./BrandWord";
 import { Logo } from "./Logo";
 import { useChromeTone } from "../hooks/useChromeTone";
 import { useLocale } from "../locale";
+import { SHOW_PRICING } from "../flags";
 import { pathForLocale, pathFromView } from "../routing";
 import type { View } from "../types";
 
@@ -78,12 +79,14 @@ export function Chrome({
               {t.footerHome}
             </Link>
           ) : null}
-          <Link
-            className="chrome__pricing"
-            to={pathFromView({ kind: "pricing" }, locale)}
-          >
-            {t.pricing}
-          </Link>
+          {SHOW_PRICING ? (
+            <Link
+              className="chrome__pricing"
+              to={pathFromView({ kind: "pricing" }, locale)}
+            >
+              {t.pricing}
+            </Link>
+          ) : null}
           <Link
             className="chrome__articles"
             to={pathFromView({ kind: "articles" }, locale)}
