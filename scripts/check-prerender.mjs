@@ -195,10 +195,12 @@ for (const rel of files) {
           for (const q of node.mainEntity) {
             const qText = q.name || "";
             const aText = q.acceptedAnswer?.text || "";
-            // Price FAQs are omitted from HTML while SHOW_PRICING is false.
+            // Price/package FAQs are omitted from HTML while SHOW_PRICING is false.
             if (
               !SHOW_PRICING &&
-              /€\d/.test(`${qText}${aText}`)
+              /(?:^|[^\d.,])€\s?\d{2,}|\bfrom €|\bαπό €|πακέτ(?:ο|α|ων)?\b|\bpackages?\b|Essential\s*:|Standard\s*:|Premium\s*:|See all packages|Δες όλα τα πακέτα|How much does a (?:shoot|site)|Πόσο κοστίζει/i.test(
+                `${qText}${aText}`,
+              )
             ) {
               continue;
             }

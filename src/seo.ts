@@ -4,7 +4,7 @@ import {
   articleSeo,
   articlesFor,
 } from "./articles";
-import { SHOW_PRICING } from "./flags";
+import { isPricingSensitiveCopy } from "./flags";
 import { copy, type Locale } from "./i18n";
 import { phoneHref, site } from "./site";
 import { pages } from "./site";
@@ -370,8 +370,8 @@ export function getRouteSeo(locale: Locale, view: View): RouteSeo {
       url: canonical,
       image,
     };
-    const faq = (page.serviceGuide?.faq || []).filter((item) =>
-      SHOW_PRICING ? true : !/€\d/.test(`${item.q}${item.a}`),
+    const faq = (page.serviceGuide?.faq || []).filter(
+      (item) => !isPricingSensitiveCopy(item.q, item.a),
     );
     const primary = faq.length
       ? {

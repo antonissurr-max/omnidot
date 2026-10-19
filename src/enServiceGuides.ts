@@ -12,9 +12,9 @@ export const enServiceGuides: Record<
     includesTitle: "What's included every month",
     includes: [
       "Strategy and a monthly posting plan",
-      "8–20 posts/Reels a month plus stories, depending on the package (Essential: 8–12 posts and 8 basic stories · Standard: 12–16 posts/Reels · Premium: 16–20 posts/Reels)",
+      "8–20 posts/Reels a month plus stories, depending on scope and platforms",
       "Captions, hashtags and scheduling",
-      "Replies to comments and messages, as part of the community work in your package",
+      "Replies to comments and messages, as part of community management",
       "A monthly report on what worked and what we'll change next month",
     ],
     audienceTitle: "Who it's for",
@@ -72,7 +72,7 @@ export const enServiceGuides: Record<
       },
       {
         q: "Who makes the photos and videos?",
-        a: "We create and publish the content for your management package. Creative can be included in the package or billed per asset. For a dedicated photo or video shoot, there's our ",
+        a: "We create and publish the content as part of social management. Creative can be included in the retainer or billed per asset. For a dedicated photo or video shoot, there's our ",
         aLink: { label: "Content Creation", href: "/content/" },
       },
       {
@@ -85,7 +85,7 @@ export const enServiceGuides: Record<
       },
       {
         q: "Do you also run social media ads?",
-        a: "Yes. Ad management starts at €300 a month, and the business pays the ad budget directly to the platforms. See ",
+        a: "Yes. We can run ads alongside social — the business pays the ad budget directly to the platforms. See ",
         aLink: { label: "Performance Marketing", href: "/performance/" },
       },
     ],
@@ -154,8 +154,8 @@ export const enServiceGuides: Record<
     faqTitle: "Frequently asked questions",
     faq: [
       {
-        q: "How much does a shoot cost?",
-        a: "A shoot day costs €200 and packages start at €350, depending on how much content you need.",
+        q: "How do you price a shoot?",
+        a: "We scope it from the shot list — days of shooting, how many final videos and photos you need, and the editing. You get a clear quote before we book the day.",
       },
       {
         q: "Who owns the photos and videos?",
@@ -171,7 +171,7 @@ export const enServiceGuides: Record<
       },
       {
         q: "Can content be part of my monthly social media management?",
-        a: "Yes. It can be included in your management package or billed separately per shoot. See ",
+        a: "Yes. It can be included in monthly social management or billed separately per shoot. See ",
         aLink: { label: "Social Media Management", href: "/social/" },
       },
     ],
@@ -410,11 +410,11 @@ export const enServiceGuides: Record<
         body: "AI tools build answers from what they find written clearly. So we put the answer first, with concrete prices, areas and steps, and keep your business details identical everywhere.",
       },
     ],
-    includesTitle: "Packages",
+    includesTitle: "What's included",
     includes: [
-      "Local SEO & AEO, from €300/mo: Google Business Profile management (posts, photos, review replies), monthly site checks and fixes, consistent name, address and phone across directories, a monthly check of whether ChatGPT and Google recommend you, and a monthly report with Search Console numbers.",
-      "SEO & AEO with content, from €600/mo: everything above, plus 2 articles a month written for search and AI answers, and improved or new service pages.",
-      "Initial site audit: €200 one-off.",
+      "Local SEO & AEO: Google Business Profile management (posts, photos, review replies), monthly site checks and fixes, consistent name, address and phone across directories, a monthly check of whether ChatGPT and Google recommend you, and a monthly report with Search Console numbers.",
+      "SEO & AEO with content: everything above, plus 2 articles a month written for search and AI answers, and improved or new service pages.",
+      "Initial site audit when we start.",
     ],
     audienceTitle: "Who it's for",
     audienceBody:
@@ -435,7 +435,7 @@ export const enServiceGuides: Record<
       },
       {
         title: "Every month: ",
-        body: "Google Business Profile, checks, content if your package includes it, and a report.",
+        body: "Google Business Profile, checks, content when it's in scope, and a report.",
       },
     ],
     costTitle: "What it costs",

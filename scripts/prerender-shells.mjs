@@ -7,8 +7,16 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
 const origin = "https://omnidot.gr";
 const phone = "+306970862839";
-/** Keep in sync with src/flags.ts SHOW_PRICING. */
+/** Keep in sync with src/flags.ts. */
 const SHOW_PRICING = false;
+
+function isPricingSensitiveCopy(...parts) {
+  if (SHOW_PRICING) return false;
+  const text = parts.join(" ");
+  return /(?:^|[^\d.,])€\s?\d{2,}|\bfrom €|\bαπό €|πακέτ(?:ο|α|ων)?\b|\bpackages?\b|Essential\s*:|Standard\s*:|Premium\s*:|See all packages|Δες όλα τα πακέτα|How much does a (?:shoot|site)|Πόσο κοστίζει/i.test(
+    text,
+  );
+}
 
 /** @type {Awaited<ReturnType<typeof loadArticleModule>>} */
 let articleModule;
@@ -649,8 +657,8 @@ function jsonLdFor(def, locale) {
     url,
     image: def.image,
   };
-  const faqForSchema = (copy.guide?.faq || []).filter((item) =>
-    SHOW_PRICING ? true : !/€\d/.test(`${item.q || ""}${item.a || ""}`),
+  const faqForSchema = (copy.guide?.faq || []).filter(
+    (item) => !isPricingSensitiveCopy(item.q || "", item.a || ""),
   );
   const primary = faqForSchema.length
     ? {
@@ -710,9 +718,9 @@ function crawlGuide(guide) {
         .join("")}</section>`,
     );
   }
-  const includeItems = SHOW_PRICING
-    ? guide.includes
-    : guide.includes?.filter((item) => !/€\d/.test(item));
+  const includeItems = guide.includes?.filter(
+    (item) => !isPricingSensitiveCopy(item),
+  );
   if (guide.includesTitle && includeItems?.length) {
     parts.push(
       `<section><h2>${escapeHtml(guide.includesTitle)}</h2><ul>${includeItems
@@ -772,11 +780,9 @@ function crawlGuide(guide) {
       }</section>`,
     );
   }
-  const faqItems = SHOW_PRICING
-    ? guide.faq
-    : guide.faq?.filter(
-        (item) => !/€\d/.test(`${item.q || ""}${item.a || ""}`),
-      );
+  const faqItems = guide.faq?.filter(
+    (item) => !isPricingSensitiveCopy(item.q || "", item.a || ""),
+  );
   if (guide.faqTitle && faqItems?.length) {
     parts.push(
       `<section><h2>${escapeHtml(guide.faqTitle)}</h2><dl>${faqItems

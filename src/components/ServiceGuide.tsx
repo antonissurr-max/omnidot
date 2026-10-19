@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { SHOW_PRICING } from "../flags";
+import { SHOW_PRICING, isPricingSensitiveCopy } from "../flags";
 import { FactRow } from "./ServicePanel";
 import type { ServiceGuideCopy } from "../i18n";
 
@@ -46,9 +46,11 @@ export function ServiceGuide({
             {guide.includesTitle}
           </h2>
           <ul className="service-guide__list">
-            {guide.includes.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
+            {guide.includes
+              .filter((item) => !isPricingSensitiveCopy(item))
+              .map((item) => (
+                <li key={item}>{item}</li>
+              ))}
           </ul>
         </section>
       ) : null}
@@ -120,10 +122,9 @@ export function ServiceGuide({
           {guide.faqTitle}
         </h2>
         <ol className="facts facts--on-dark">
-          {(SHOW_PRICING
-            ? guide.faq
-            : guide.faq.filter((item) => !/€\d/.test(`${item.q}${item.a}`))
-          ).map((item, i) => (
+          {guide.faq
+            .filter((item) => !isPricingSensitiveCopy(item.q, item.a))
+            .map((item, i) => (
             <FactRow
               key={item.q}
               index={i + 1}
