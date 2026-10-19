@@ -163,7 +163,7 @@ const articles: ArticleSource[] = [
             "Πραγματικές φωτογραφίες του χώρου, της ομάδας και του προϊόντος σε χρήση αντί για stock. Ο επισκέπτης καταλαβαίνει τη διαφορά αμέσως. Εδώ το site συναντά την παραγωγή περιεχομένου: μία μέρα γυρίσματος μπορεί να τροφοδοτήσει και το site και τα social.",
             "Απόδειξη κοντά στο κουμπί. Ένα έργο, μια κριτική ή ένα όνομα πελάτη ακριβώς εκεί που ζητάς από κάποιον να σου εμπιστευτεί τα στοιχεία του.",
             "Καθαρή διαδρομή. Κάθε σελίδα έχει ένα προφανές επόμενο βήμα. Όχι πέντε κουμπιά που ανταγωνίζονται μεταξύ τους.",
-            "Τιμή ή εύρος τιμής όπου γίνεται. Όταν δεν υπάρχει καμία ένδειξη, πολλοί φεύγουν αντί να ρωτήσουν. Εμείς βάζουμε τις τιμές μας δημόσια ακριβώς γι' αυτό.",
+            "Τιμή ή εύρος τιμής όπου γίνεται. Όταν δεν υπάρχει καμία ένδειξη, πολλοί φεύγουν αντί να ρωτήσουν. Μια καθαρή ένδειξη ή πρόσκληση σε σύντομη συζήτηση συχνά δουλεύει καλύτερα από μια κενή φόρμα προσφοράς.",
           ],
         },
         h2("4. SEO από την πρώτη μέρα (και τι σημαίνει «τοπικό» για την Αθήνα)"),
@@ -189,18 +189,8 @@ const articles: ArticleSource[] = [
           "Δύο προσφορές για «ένα site» μπορεί να απέχουν πολύ μεταξύ τους, γιατί συχνά περιγράφουν διαφορετική δουλειά. Αυτά είναι τα βασικά που ανεβάζουν ή κατεβάζουν την τιμή: αριθμός σελίδων και πόση δουλειά θέλει η καθεμία· ποιος γράφει τα κείμενα· φωτογραφίες και video· λειτουργίες (κρατήσεις, πολυγλωσσία, CRM)· e-shop· βάθος SEO· και τι συμβαίνει μετά το launch.",
         ),
         p(
-          "Πώς το τιμολογούμε στην omnidot. Τα νούμερα είναι δημόσια στη σελίδα πακέτων:",
+          "Στην omnidot κάνουμε πρόταση στα μέτρα κάθε πελάτη, με βάση σελίδες, κείμενα και λειτουργίες. Δείτε την υπηρεσία κατασκευής ιστοσελίδας: https://omnidot.gr/el/web/",
         ),
-        {
-          type: "priceCard",
-          href: "/el/pricing/",
-          items: [
-            { label: "Landing page", price: "€700–1.200" },
-            { label: "Πολυσέλιδο site", price: "≈ €700 / σελίδα" },
-            { label: "E-shop", price: "κατόπιν συζήτησης" },
-          ],
-          note: "Οι τιμές είναι χωρίς ΦΠΑ όπου εφαρμόζεται. Το ad spend είναι πάντα ξεχωριστό. Το scope γράφεται πριν ξεκινήσουμε, και το site μένει δικό σου.",
-        },
         h2("6. Landing page ή πολυσέλιδο site;"),
         p(
           "Μια landing page αρκεί όταν έχεις μία βασική υπηρεσία ή μία προσφορά, σκοπεύεις να φέρνεις κόσμο κυρίως από διαφημίσεις ή social, και θέλεις να ξεκινήσεις γρήγορα και να δοκιμάσεις την αγορά.",
@@ -362,7 +352,7 @@ const articles: ArticleSource[] = [
             "Real photos of the space, team and product in use — not stock.",
             "Proof near the button: a project, a review or a client name where you ask for contact details.",
             "A clean path: every page has one obvious next step.",
-            "Price or a price range when possible. We publish our packages for exactly that reason.",
+            "Price or a price range when possible. When there’s no indication at all, many people leave instead of asking. A clear hint or an invite to a short conversation often works better than a blank quote form.",
           ],
         },
         h2("4. SEO from day one (and what “local” means for Athens)"),
@@ -387,17 +377,9 @@ const articles: ArticleSource[] = [
         p(
           "Two quotes for “a website” can be far apart because they describe different work: number of pages, who writes the copy, photos and video, features, e-shop complexity, SEO depth, and what happens after launch.",
         ),
-        p("How we price at omnidot (public on our packages page):"),
-        {
-          type: "priceCard",
-          href: "/pricing/",
-          items: [
-            { label: "Landing page", price: "€700–1,200" },
-            { label: "Multi-page site", price: "≈ €700 / page" },
-            { label: "E-shop", price: "by discussion" },
-          ],
-          note: "Prices exclude VAT where applicable. Ad spend stays separate. Scope is written before we start, and the site remains yours.",
-        },
+        p(
+          "At omnidot we quote each project on its own scope — pages, copy and features. See our website development service: https://omnidot.gr/web/",
+        ),
         h2("6. Landing page or multi-page site?"),
         p(
           "A landing page is enough when you have one core offer, plan to send traffic mainly from ads or social, and want to start fast.",
@@ -618,7 +600,7 @@ const articles: ArticleSource[] = [
           "Όταν ένα post δεν έχει link, γράψε το όνομα του site ή «στείλε μήνυμα». Αυτό ζητά ένα βήμα παραπάνω, άρα το site πρέπει να βρίσκεται εύκολα.",
         ),
         p(
-          "Στο omnidot φτιάχνουμε και τα social και τις ιστοσελίδες, οπότε βλέπουμε και τις δύο άκρες: το post και τη σελίδα που ανοίγει μετά. Οι ιστοσελίδες και τα landing pages ξεκινούν από €700. Δείτε περισσότερα στη σελίδα κατασκευής ιστοσελίδων.",
+          "Στο omnidot φτιάχνουμε και τα social και τις ιστοσελίδες, οπότε βλέπουμε και τις δύο άκρες: το post και τη σελίδα που ανοίγει μετά. Δείτε περισσότερα στη σελίδα κατασκευής ιστοσελίδων: https://omnidot.gr/el/web/",
         ),
         h2("Τι αλλάζει στη διαχείριση των social"),
         p(
@@ -631,7 +613,7 @@ const articles: ArticleSource[] = [
           "Αν ο πελάτης βάλει πακέτο Meta One, αυτό είναι κόστος της πλατφόρμας, όπως το ad spend: το βλέπει χωριστά και δεν «χάνεται» μέσα στη μηνιαία αμοιβή.",
         ),
         p(
-          "Στο omnidot η διαχείριση social ξεκινά από €450 τον μήνα, το content από €350 και το performance από €300 τον μήνα, με το ad spend πάντα ξεχωριστά. Δείτε τις τιμές και την υπηρεσία social media.",
+          "Στο omnidot φτιάχνουμε εξατομικευμένη πρόταση για τη διαχείριση social, ανάλογα με τις πλατφόρμες και τον όγκο περιεχομένου. Δείτε την υπηρεσία social media: https://omnidot.gr/el/social/",
         ),
         h2("Συχνές ερωτήσεις"),
         h3("Τι είναι το Meta One για επιχειρήσεις;"),
@@ -826,7 +808,7 @@ const articles: ArticleSource[] = [
           "When a post has no link, write the site name or “send a message.” That asks for an extra step, so the site must be easy to find.",
         ),
         p(
-          "At omnidot we build both social and websites, so we see both ends: the post and the page that opens after. Websites and landing pages start from €700. See more on our website development page.",
+          "At omnidot we build both social and websites, so we see both ends: the post and the page that opens after. See more on our website development page: https://omnidot.gr/web/",
         ),
         h2("What changes in social media management"),
         p(
@@ -839,7 +821,7 @@ const articles: ArticleSource[] = [
           "If the client takes a Meta One plan, that is a platform cost, like ad spend: they see it separately and it does not get lost inside the monthly fee.",
         ),
         p(
-          "At omnidot social media management starts from €450 a month, content from €350 and performance from €300 a month, with ad spend always separate. See pricing and our social media service.",
+          "At omnidot we put together a tailored proposal for social media management, based on platforms and content volume. See our social media service: https://omnidot.gr/social/",
         ),
         h2("Frequently asked questions"),
         h3("What is Meta One for businesses?"),
